@@ -1,13 +1,13 @@
 import type { MediaAdapter, MediaItem, MediaListParams, MediaListResult, RestAdapterOptions, UploadOptions } from '../types';
-/** Eski ZoroEditor PHP formatını (altText, originalFilename) da kabul eden varsayılan dönüştürücü. */
+/** Default normalizer that also accepts the old ZoroEditor PHP format (altText, originalFilename). */
 export declare function normalizeMediaItem(raw: any): MediaItem;
 export declare class MediaApiError extends Error {
     status: number;
     constructor(message: string, status: number);
 }
 /**
- * Zoro PHP backend'ine (php/public/media.php) bağlanan adaptör.
- * Aynı JSON sözleşmesini uygulayan her backend ile çalışır (bkz. docs/media-api.md).
+ * Adapter that connects to the Zoro PHP backend (php/public/media.php).
+ * Works with any backend implementing the same JSON contract (see docs/media-api.md).
  */
 export declare class RestMediaAdapter implements MediaAdapter {
     private opts;
@@ -25,8 +25,8 @@ export declare class RestMediaAdapter implements MediaAdapter {
     deleteFolder(path: string): Promise<void>;
 }
 /**
- * Tarayıcı içinde çalışan sahte backend (demo, test, prototip).
- * Dosyalar blob URL olarak tutulur; sayfa yenilenince kaybolur.
+ * Fake in-browser backend (demo, tests, prototyping).
+ * Files are kept as blob URLs and are lost on page reload.
  */
 export declare class MemoryMediaAdapter implements MediaAdapter {
     items: MediaItem[];
@@ -44,7 +44,7 @@ export declare class MemoryMediaAdapter implements MediaAdapter {
     deleteFolder(path: string): Promise<void>;
 }
 export declare function formatBytes(n?: number): string;
-/** Editöre eklenecek en uygun URL + srcset. */
+/** Best URL + srcset to insert into the editor. */
 export declare function pickInsertSource(item: MediaItem, variant?: string): {
     src: string;
     srcset: string | null;

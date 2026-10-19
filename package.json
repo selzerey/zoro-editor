@@ -1,38 +1,7 @@
 {
   "name": "zoro-editor",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "WordPress Classic-style rich text editor for PHP, React, Next.js and TypeScript, with a built-in media manager (Zoro Finder) and PHP backend.",
-  "type": "module",
-  "license": "MIT",
-  "sideEffects": [
-    "*.css"
-  ],
-  "main": "./dist/zoro-editor.js",
-  "module": "./dist/zoro-editor.js",
-  "types": "./dist/types/index.d.ts",
-  "exports": {
-    ".": {
-      "types": "./dist/types/index.d.ts",
-      "import": "./dist/zoro-editor.js"
-    },
-    "./react": {
-      "types": "./dist/types/react/index.d.ts",
-      "import": "./dist/react.js"
-    },
-    "./style.css": "./dist/zoro-editor.css",
-    "./content.css": "./dist/zoro-content.css",
-    "./package.json": "./package.json"
-  },
-  "files": [
-    "dist",
-    "php/src",
-    "php/public",
-    "php/autoload.php",
-    "php/config.example.php",
-    "README.md",
-    "LICENSE",
-    "CHANGELOG.md"
-  ],
   "keywords": [
     "editor",
     "wysiwyg",
@@ -52,6 +21,52 @@
     "image-upload",
     "typescript"
   ],
+  "homepage": "https://github.com/selzerey/zoro-editor#readme",
+  "bugs": {
+    "url": "https://github.com/selzerey/zoro-editor/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/selzerey/zoro-editor.git"
+  },
+  "license": "MIT",
+  "author": "selzerey",
+  "type": "module",
+  "sideEffects": [
+    "*.css"
+  ],
+  "main": "./dist/zoro-editor.js",
+  "module": "./dist/zoro-editor.js",
+  "types": "./dist/types/index.d.ts",
+  "unpkg": "./dist/zoro-editor.iife.js",
+  "jsdelivr": "./dist/zoro-editor.iife.js",
+  "exports": {
+    ".": {
+      "types": "./dist/types/index.d.ts",
+      "import": "./dist/zoro-editor.js"
+    },
+    "./react": {
+      "types": "./dist/types/react/index.d.ts",
+      "import": "./dist/react.js"
+    },
+    "./style.css": "./dist/zoro-editor.css",
+    "./content.css": "./dist/zoro-content.css",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "dist",
+    "!dist/zoro-editor.iife.js.map",
+    "php/src",
+    "php/public",
+    "php/autoload.php",
+    "php/config.example.php",
+    "README.md",
+    "LICENSE",
+    "CHANGELOG.md"
+  ],
+  "engines": {
+    "node": ">=18"
+  },
   "scripts": {
     "build": "node scripts/clean.mjs && vite build && vite build --config vite.iife.config.ts && tsc -p tsconfig.build.json && node scripts/postbuild.mjs && node scripts/build-demo.mjs",
     "typecheck": "tsc --noEmit",
@@ -59,18 +74,6 @@
     "test:watch": "vitest",
     "test:php": "php php/tests/run.php",
     "test:e2e": "node e2e/smoke.mjs && node e2e/scrollbars.mjs"
-  },
-  "peerDependencies": {
-    "react": ">=18",
-    "react-dom": ">=18"
-  },
-  "peerDependenciesMeta": {
-    "react": {
-      "optional": true
-    },
-    "react-dom": {
-      "optional": true
-    }
   },
   "dependencies": {
     "@tiptap/core": "^3.32.0",
@@ -98,16 +101,19 @@
     "vite": "^8.3.4",
     "vitest": "^5.0.5"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/selzerey/zoro-editor.git"
+  "peerDependencies": {
+    "react": ">=18",
+    "react-dom": ">=18"
   },
-  "engines": {
-    "node": ">=18"
+  "peerDependenciesMeta": {
+    "react": {
+      "optional": true
+    },
+    "react-dom": {
+      "optional": true
+    }
   },
-  "homepage": "https://github.com/selzerey/zoro-editor#readme",
-  "bugs": {
-    "url": "https://github.com/selzerey/zoro-editor/issues"
-  },
-  "author": "selzerey"
+  "publishConfig": {
+    "access": "public"
+  }
 }

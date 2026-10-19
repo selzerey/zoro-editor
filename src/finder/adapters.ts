@@ -1,6 +1,6 @@
 import type { MediaAdapter, MediaItem, MediaListParams, MediaListResult, RestAdapterOptions, UploadOptions } from '../types';
 
-/** Eski ZoroEditor PHP formatını (altText, originalFilename) da kabul eden varsayılan dönüştürücü. */
+/** Default normalizer that also accepts the old ZoroEditor PHP format (altText, originalFilename). */
 export function normalizeMediaItem(raw: any): MediaItem {
   return {
     id: raw.id,
@@ -29,8 +29,8 @@ export class MediaApiError extends Error {
 }
 
 /**
- * Zoro PHP backend'ine (php/public/media.php) bağlanan adaptör.
- * Aynı JSON sözleşmesini uygulayan her backend ile çalışır (bkz. docs/media-api.md).
+ * Adapter that connects to the Zoro PHP backend (php/public/media.php).
+ * Works with any backend implementing the same JSON contract (see docs/media-api.md).
  */
 export class RestMediaAdapter implements MediaAdapter {
   private transform: (raw: any) => MediaItem;
@@ -41,7 +41,7 @@ export class RestMediaAdapter implements MediaAdapter {
   private url(action: string, params: Record<string, string | number | undefined> = {}): string {
     const u = new URL(this.opts.endpoint, typeof location !== 'undefined' ? location.href : 'http://localhost/');
     u.searchParams.set('action', action);
-    // folder="" (ana klasör) anlamlıdır, gönderilmeli; undefined = tüm klasörler
+    // folder="" (root folder) is meaningful and must be sent; undefined = all folders
     for (const [k, v] of Object.entries(params)) if (v !== undefined && v !== null && (v !== '' || k === 'folder')) u.searchParams.set(k, String(v));
     return u.toString();
   }
@@ -59,7 +59,7 @@ export class RestMediaAdapter implements MediaAdapter {
       headers: { ...this.headers(), ...(rest.body && !(rest.body instanceof FormData) ? { 'Content-Type': 'application/json' } : {}), ...(rest.headers as any) },
     });
     let data: any = null;
-    try { data = await res.json(); } catch { /* boş yanıt */ }
+    try { data = await res.json(); } catch { /* empty response */ }
     if (!res.ok || data?.error) throw new MediaApiError(data?.error || `HTTP ${res.status}`, res.status);
     return data;
   }
@@ -71,7 +71,7 @@ export class RestMediaAdapter implements MediaAdapter {
   }
 
   upload(file: File, opts: UploadOptions): Promise<MediaItem> {
-    // İlerleme bilgisi için XHR (fetch upload progress vermiyor)
+    // XHR for progress info (fetch doesn't report upload progress)
     return new Promise((resolve, reject) => {
       const xhr = new XMLHttpRequest();
       xhr.open('POST', this.url('upload'));
@@ -120,8 +120,8 @@ export class RestMediaAdapter implements MediaAdapter {
 }
 
 /**
- * Tarayıcı içinde çalışan sahte backend (demo, test, prototip).
- * Dosyalar blob URL olarak tutulur; sayfa yenilenince kaybolur.
+ * Fake in-browser backend (demo, tests, prototyping).
+ * Files are kept as blob URLs and are lost on page reload.
  */
 export class MemoryMediaAdapter implements MediaAdapter {
   items: MediaItem[] = [];
@@ -194,7 +194,7 @@ export class MemoryMediaAdapter implements MediaAdapter {
   }
 
   async deleteFolder(path: string): Promise<void> {
-    if (this.items.some((i) => i.folder === path)) throw new MediaApiError('Klasör boş değil', 409);
+    if (this.items.some((i) => i.folder === path)) throw new MediaApiError('Folder is not empty', 409);
     this.folders.delete(path);
   }
 }
@@ -206,7 +206,7 @@ export function formatBytes(n?: number): string {
   return `${(n / 1048576).toFixed(1)} MB`;
 }
 
-/** Editöre eklenecek en uygun URL + srcset. */
+/** Best URL + srcset to insert into the editor. */
 export function pickInsertSource(item: MediaItem, variant = 'lg'): { src: string; srcset: string | null; width: number | null; height: number | null } {
   const v = item.variants?.[variant];
   const src = v?.url ?? item.url;

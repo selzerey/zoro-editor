@@ -2,16 +2,16 @@ export declare function escapeHtml(str: unknown): string;
 export declare function countWords(html: string): number;
 export declare function countChars(html: string): number;
 /**
- * Çıktı HTML'ini sadeleştirir (ZoroEditor orijinal davranışı):
- * yapıştırmadan gelen koyu varsayılan renkleri, boş span/stil ve boş paragrafları atar,
- * blok etiketlerini satırlara böler (kaynak görünümü okunaklı olsun).
+ * Simplifies the output HTML (original ZoroEditor behavior):
+ * drops dark default colors from pastes, empty spans/styles and empty paragraphs,
+ * and puts block tags on separate lines (so the source view is readable).
  */
 export declare function cleanHTML(html: string): string;
-/** javascript:, data: vb. tehlikeli bağlantıları reddeder. Göreli (/sayfa, #id, ?q) URL'ler serbest. */
+/** Rejects dangerous links such as javascript: and data:. Relative URLs (/page, #id, ?q) are allowed. */
 export declare function isSafeUrl(url: string): boolean;
-/** "ornek.com" → "https://ornek.com" ; e-posta → mailto: */
+/** "example.com" → "https://example.com" ; email → mailto: */
 export declare function normalizeUrl(url: string): string;
-/** Word / Google Docs / Excel yapıştırma temizliği (ayrıntı: ./paste.ts). */
+/** Word / Google Docs / Excel paste cleanup (details: ./paste.ts). */
 export declare function cleanPastedHTML(html: string): string;
-/** YouTube URL'sinden embed edilebilir mi? */
+/** Can this YouTube URL be embedded? */
 export declare function isYoutubeUrl(url: string): boolean;

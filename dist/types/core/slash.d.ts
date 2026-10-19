@@ -1,6 +1,6 @@
 /**
- * "/" komut menüsü. Boş ya da metin içeren bir paragrafta "/" yazınca açılır.
- * Fikir: Novel / BlockNote / Yoopta (her arama kelimesi eşleşmeli); kod Zoro'ya özgü.
+ * "/" command menu. Opens when "/" is typed in an empty or non-empty paragraph.
+ * Idea: Novel / BlockNote / Yoopta (every search word must match); the code is Zoro's own.
  */
 import type { Editor } from '@tiptap/core';
 import type { GroupName } from '../types';
@@ -11,7 +11,7 @@ export interface SlashItem {
     hint?: (t: Messages) => string;
     keywords: string[];
     icon: string;
-    /** Bu grup editörde yoksa öğe gösterilmez. */
+    /** The item is hidden if this group isn't in the editor. */
     group?: GroupName;
     run: (editor: Editor, api: SlashHost) => void;
 }
@@ -22,7 +22,7 @@ export interface SlashHost {
     readonly t: Messages;
     readonly themeClass: string;
 }
-/** Türkçe katlama: "Başlık" → "baslik", "IŞIK" → "isik" */
+/** Turkish folding: "Başlık" → "baslik", "IŞIK" → "isik" */
 export declare function fold(s: string): string;
 export declare const SLASH_ITEMS: SlashItem[];
 export declare class SlashMenu {
@@ -36,13 +36,13 @@ export declare class SlashMenu {
     private dismissedAt;
     constructor(editor: Editor, host: SlashHost, extra?: SlashItem[]);
     get isOpen(): boolean;
-    /** Her işlemden sonra çağrılır: "/sorgu" imleçten hemen önce mi? */
+    /** Called after every transaction: is "/query" right before the cursor? */
     update(): void;
     private filter;
     private render;
     private highlight;
     private position;
-    /** Editörün keydown'undan çağrılır; true = olay işlendi. */
+    /** Called from the editor's keydown; true = event handled. */
     onKeyDown(e: KeyboardEvent): boolean;
     private choose;
     close(): void;

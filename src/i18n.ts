@@ -366,7 +366,7 @@ const en: Messages = {
 export const locales = { tr, en };
 export type Locale = keyof typeof locales;
 
-/** Sayfanın dili: <html lang="tr"> → tr, aksi hâlde en. */
+/** Page language: <html lang="tr"> → tr, otherwise en. */
 export function detectLocale(): Locale {
   if (typeof document === 'undefined') return 'en';
   const lang = (document.documentElement.lang || (typeof navigator !== 'undefined' ? navigator.language : '') || '').toLowerCase();
@@ -379,7 +379,7 @@ export function resolveMessages(locale?: Locale | Partial<Messages>): Messages {
   return { ...tr, ...locale };
 }
 
-/** "{n} dosya" → "3 dosya" */
+/** "{n} files" → "3 files" */
 export function fmt(str: string, vars: Record<string, string | number>): string {
   return str.replace(/\{(\w+)\}/g, (_, k) => String(vars[k] ?? ''));
 }

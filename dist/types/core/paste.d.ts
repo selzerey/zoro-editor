@@ -1,19 +1,19 @@
 /**
- * Yapıştırma temizliği — Word (masaüstü/Online), Google Docs, Google Sheets, Excel, LibreOffice.
+ * Paste cleanup — Word (desktop/Online), Google Docs, Google Sheets, Excel, LibreOffice.
  *
- * DOM üzerinde çalışır (regex iç içe span'larda bozulur). Kurallar; CKEditor, TinyMCE, Quill (BSD-3),
- * SunEditor (MIT) ve Jodit (MIT) incelenerek davranış tarifi olarak yeniden yazılmıştır, kod kopyalanmamıştır.
- * Word'ün `mso-list` / `@list` biçimi dosya formatı olgusudur.
+ * Works on the DOM (regex breaks on nested spans). The rules were rewritten as behavior specs after studying
+ * CKEditor, TinyMCE, Quill (BSD-3), SunEditor (MIT) and Jodit (MIT); no code was copied.
+ * Word's `mso-list` / `@list` syntax is a fact of the file format.
  */
 export type PasteSource = 'word' | 'gdocs' | 'sheets' | 'excel' | 'html';
 export interface PasteResult {
     html: string;
     source: PasteSource;
-    /** Word'ün yerel diskteki (file:///) görselleri: tarayıcı bunları okuyamaz. */
+    /** Word images on the local disk (file:///): the browser can't read them. */
     droppedLocalImages: number;
 }
 export declare function detectSource(html: string): PasteSource;
-/** Ana giriş: tarayıcıda DOM ile, DOM yoksa (SSR) regex yedeğiyle. */
+/** Main entry: uses the DOM in the browser, a regex fallback without a DOM (SSR). */
 export declare function cleanPasted(input: string): PasteResult;
-/** DOM olmayan ortam için (SSR, eski testler) basit regex temizliği. */
+/** Simple regex cleanup for environments without a DOM (SSR, old tests). */
 export declare function cleanPastedRegex(html: string): string;

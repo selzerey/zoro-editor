@@ -2,9 +2,9 @@ import { Node } from '@tiptap/core';
 import type { Messages } from '../i18n';
 export type ImageAlignment = 'none' | 'left' | 'center' | 'right';
 export interface ResizableImageOptions {
-    /** Dil metinleri (ZoroEditor tarafından verilir). */
+    /** Locale strings (provided by ZoroEditor). */
     messages: Messages | null;
-    /** Dialoglara aktarılacak tema sınıfı. */
+    /** Theme class passed to dialogs. */
     themeClass: () => string;
     HTMLAttributes: Record<string, any>;
 }
@@ -26,12 +26,12 @@ declare module '@tiptap/core' {
     }
 }
 /**
- * Hizalama, WordPress ile aynı anlamda:
- *  left/right → metin görselin yanından akar (float), center → ortada blok, none → normal akış.
- * Çıktıda data-alignment (Zoro), align* sınıfı (WordPress temaları) ve satır içi stil (CSS'siz siteler) birlikte yazılır.
+ * Alignment, with the same meaning as in WordPress:
+ *  left/right → text flows beside the image (float), center → centered block, none → normal flow.
+ * The output carries data-alignment (Zoro), an align* class (WordPress themes) and an inline style (sites without the CSS).
  */
 export interface UploadState {
-    /** 0-100; null = belirsiz (ilerleme bilgisi yok) */
+    /** 0-100; null = indeterminate (no progress info) */
     progress: number | null;
     error?: string;
     retry?: () => void;

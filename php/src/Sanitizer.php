@@ -5,14 +5,14 @@ declare(strict_types=1);
 namespace Zoro\Editor;
 
 /**
- * Sunucu tarafı HTML temizleyici — editörün ürettiği etiketlere izin verir, gerisini atar.
- * Tarayıcıdaki kontroller atlatılabilir; veritabanına yazmadan önce MUTLAKA bunu çağır:
+ * Server-side HTML sanitizer — allows the tags the editor produces and drops the rest.
+ * Browser-side checks can be bypassed; ALWAYS call this before writing to the database:
  *
- *   $temiz = \Zoro\Editor\Sanitizer::clean($_POST['icerik']);
+ *   $clean = \Zoro\Editor\Sanitizer::clean($_POST['content']);
  */
 final class Sanitizer
 {
-    /** etiket => izinli öznitelikler */
+    /** tag => allowed attributes */
     private const TAGS = [
         'p' => ['style'], 'br' => [], 'hr' => [],
         'h1' => ['style', 'id'], 'h2' => ['style', 'id'], 'h3' => ['style', 'id'], 'h4' => ['style', 'id'], 'h5' => ['style', 'id'], 'h6' => ['style', 'id'],
@@ -28,7 +28,7 @@ final class Sanitizer
         'iframe' => ['src', 'width', 'height', 'allowfullscreen', 'allow', 'frameborder', 'title', 'loading', 'referrerpolicy'],
     ];
 
-    /** İçeriğiyle birlikte silinecek etiketler. */
+    /** Tags removed together with their content. */
     private const DROP = ['script', 'style', 'noscript', 'template', 'object', 'embed', 'applet', 'form', 'input', 'button', 'select', 'textarea', 'svg', 'math', 'link', 'meta', 'base', 'head', 'title', 'frame', 'frameset'];
 
     private const CSS = ['text-align', 'color', 'background-color', 'display', 'margin', 'margin-left', 'margin-right', 'width', 'min-width', 'max-width', 'float'];
@@ -43,7 +43,7 @@ final class Sanitizer
             return '';
         }
         $wrapped = '<!DOCTYPE html><html><head><meta charset="utf-8"></head><body><div id="__zoro_root">' . $html . '</div></body></html>';
-        // PHP 8.4+: tarayıcılarla aynı HTML5 ayrıştırıcısı (mutation-XSS'e karşı). Eski sürümler: libxml.
+        // PHP 8.4+: the same HTML5 parser as browsers (guards against mutation XSS). Older versions: libxml.
         if (self::$useHtml5 && class_exists(\Dom\HTMLDocument::class)) {
             $doc = \Dom\HTMLDocument::createFromString($wrapped, LIBXML_NOERROR);
         } else {
@@ -65,7 +65,7 @@ final class Sanitizer
         return trim($out);
     }
 
-    /** Testler için: false = eski (libxml) ayrıştırıcıyı zorla. */
+    /** For tests: false = force the old (libxml) parser. */
     public static bool $useHtml5 = true;
 
     /** @param \DOMNode|\Dom\Node $node */
@@ -86,7 +86,7 @@ final class Sanitizer
                 continue;
             }
             if (!isset(self::TAGS[$tag]) || str_contains($tag, ':')) {
-                // Bilinmeyen etiket: kendisini at, içeriğini koru
+                // Unknown tag: drop the tag itself, keep its content
                 self::walk($child);
                 while ($child->firstChild) {
                     $node->insertBefore($child->firstChild, $child);
@@ -142,7 +142,7 @@ final class Sanitizer
                 $el->setAttribute($attr->name, $clean);
             }
         }
-        // target=_blank bağlantılarına noopener zorunlu
+        // noopener is required on target=_blank links
         if ($tag === 'a' && $el->getAttribute('target') === '_blank') {
             $rel = preg_split('/\s+/', (string) $el->getAttribute('rel'), -1, PREG_SPLIT_NO_EMPTY) ?: [];
             $el->setAttribute('rel', implode(' ', array_unique([...$rel, 'noopener', 'noreferrer'])));
@@ -162,7 +162,7 @@ final class Sanitizer
             return str_starts_with($u, '//') ? 'https:' . $u : $url;
         }
         if (!preg_match('/^([a-z][a-z0-9+.-]*):/i', $u, $m)) {
-            return $url; // şemasız göreli adres
+            return $url; // scheme-less relative URL
         }
         $scheme = strtolower($m[1]);
         $ok = $allowMail ? ['http', 'https', 'mailto', 'tel', 'sms', 'ftp'] : ['http', 'https'];
@@ -209,7 +209,7 @@ final class Sanitizer
             if (!in_array($prop, self::CSS, true)) {
                 continue;
             }
-            // url(), expression(), javascript:, @import, \ kaçışları yasak
+            // url(), expression(), javascript:, @import and \ escapes are forbidden
             if (preg_match('/url\s*\(|expression|javascript|@import|\\\\|behavior|<|>/i', $val)) {
                 continue;
             }

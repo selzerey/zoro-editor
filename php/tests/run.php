@@ -6,7 +6,7 @@ declare(strict_types=1);
 
 require dirname(__DIR__) . '/autoload.php';
 
-use Zoro\Editor\{Config, MediaStore, Sanitizer, Support, UserError, Editor};
+use Zoro\Editor\{Config, MediaStore, Sanitizer, Support, UserError, Editor, Lang};
 
 $pass = 0;
 $fail = 0;
@@ -156,6 +156,15 @@ file_put_contents("$legacyDir/media.json", json_encode([['id' => 7, 'filename' =
 $legacy = new MediaStore(new Config(['upload' => ['path' => $legacyDir, 'url_base' => '/u']]));
 $li = $legacy->list()['items'][0] ?? [];
 check('eski format geçişi', ($li['alt'] ?? '') === 'Eski alt' && ($li['filename'] ?? '') === 'eski.png' && $li['id'] === 7);
+
+echo "\nLang\n";
+new Config([]);
+check('default language is English', Lang::t('not_found') === 'Media not found.');
+check('placeholders', Lang::t('too_large', ['max' => '20 MB']) === 'The file is too large. Maximum: 20 MB.');
+new Config(['locale' => 'tr']);
+check("'locale' => 'tr'", Lang::t('not_found') === 'Medya bulunamadı.');
+new Config(['locale' => 'xx']);
+check('unknown locale falls back to English', Lang::t('not_found') === 'Media not found.');
 
 echo "\nEditor::render\n";
 $html = Editor::render('icerik', '<p>"merhaba"</p>', ['preset' => 'blog', 'media' => '/zoro/media.php', 'addGroups' => ['embed'], 'script' => '/js/z.js']);

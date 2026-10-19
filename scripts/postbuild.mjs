@@ -1,4 +1,4 @@
-// Next.js App Router için React girişine "use client" ekler, CSS'leri kopyalar, sürümü yazar.
+// Adds "use client" to the React entry for the Next.js App Router, copies the CSS files, writes the version.
 import { readFileSync, writeFileSync, copyFileSync, readdirSync } from 'node:fs';
 
 const root = new URL('../', import.meta.url);

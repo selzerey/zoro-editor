@@ -6,10 +6,10 @@ import { registerGroup, registerPreset } from './groups';
 type Mode = 'visual' | 'code';
 type EventName = 'change' | 'focus' | 'blur' | 'ready' | 'mode' | 'destroy';
 /**
- * ZoroEditor — WordPress Klasik tarzı zengin metin editörü.
+ * ZoroEditor — a WordPress Classic-style rich text editor.
  *
  * ```js
- * const editor = new ZoroEditor('#icerik', { preset: 'blog', media: { endpoint: '/zoro/media.php' } });
+ * const editor = new ZoroEditor('#content', { preset: 'blog', media: { endpoint: '/zoro/media.php' } });
  * ```
  */
 export declare class ZoroEditor {
@@ -59,15 +59,15 @@ export declare class ZoroEditor {
     private lastColors;
     private destroyed;
     constructor(target: string | HTMLElement, options?: ZoroEditorOptions);
-    /** Temizlenmiş HTML. Boş editörde "" döner. */
+    /** Cleaned HTML. Returns "" for an empty editor. */
     getHTML(): string;
     getText(): string;
     isEmpty(): boolean;
-    /** Sadece tek boş paragraf = boş. (TipTap isEmpty, boş hücreli tabloyu da boş sayar.) */
+    /** Only a single empty paragraph counts as empty. (TipTap's isEmpty also treats a table with empty cells as empty.) */
     private docIsEmpty;
-    /** İçeriği değiştir. emit=true ise onChange tetiklenir. */
+    /** Replace the content. emit=true fires onChange. */
     setContent(html: string, emit?: boolean): void;
-    /** İmlecin olduğu yere HTML ekle. */
+    /** Insert HTML at the cursor. */
     insertHTML(html: string): void;
     insertImage(img: {
         src: string;
@@ -80,7 +80,7 @@ export declare class ZoroEditor {
     focus(): void;
     setReadOnly(readOnly: boolean): void;
     setTheme(theme: 'light' | 'dark' | 'auto'): void;
-    /** Tek hamlede grup ekle: `editor.addGroups(['table', 'color'])` */
+    /** Add groups in one call: `editor.addGroups(['table', 'color'])` */
     addGroups(groups: GroupName[]): void;
     removeGroups(groups: GroupName[]): void;
     setPreset(preset: PresetName, extra?: {
@@ -93,20 +93,20 @@ export declare class ZoroEditor {
     on(event: EventName, fn: (arg?: any) => void): () => void;
     setMode(mode: Mode): void;
     toggleFullscreen(force?: boolean): void;
-    /** Medya kütüphanesini aç (ya da sadece dosya seçici). */
+    /** Open the media library (or just the file picker). */
     openMedia(): void;
-    /** Bu editörün ayarlarıyla bir Finder aç. */
+    /** Open a Finder with this editor's settings. */
     finder(opts?: {
         multiple?: boolean;
         onSelect?: (items: SelectedMedia[]) => void;
         files?: File[];
     }): ZoroFinder | null;
     insertMedia(items: SelectedMedia[]): void;
-    /** Taslağı sil (içerik kaydedildikten sonra çağır). */
+    /** Delete the draft (call after the content is saved). */
     clearDraft(): void;
     destroy(): void;
     get isDestroyed(): boolean;
-    /** Dialog/açılır kutulara da aktarılan görünüm sınıfları. */
+    /** Appearance classes also passed to dialogs/popovers. */
     get themeClass(): string;
     get skin(): 'modern' | 'classic';
     setSkin(skin: 'modern' | 'classic'): void;
@@ -119,7 +119,7 @@ export declare class ZoroEditor {
     private emit;
     private syncInput;
     private updateCounts;
-    /** Durum çubuğunda imlecin bulunduğu öğe yolu: ul › li › p › strong */
+    /** Element path at the cursor, shown in the status bar: ul › li › p › strong */
     private updatePath;
     private get slashEnabled();
     private get bubbleEnabled();
@@ -128,7 +128,7 @@ export declare class ZoroEditor {
     private tableDefs;
     private updateTableBar;
     private hideTableBar;
-    /** Seçili hücre(ler)in zemin rengi. */
+    /** Background color of the selected cell(s). */
     openCellColor(anchor: HTMLElement): void;
     private hideBubble;
     private get ctx();
@@ -143,29 +143,29 @@ export declare class ZoroEditor {
     private bindEvents;
     private onKeyDown;
     private insertIntoSource;
-    /** Uzun kaynakta imlecin olduğu satırı görünür yap. */
+    /** Scroll the cursor's line into view in long source. */
     private revealSourceCaret;
     private autosizeSource;
     private setupDraft;
     private scheduleDraft;
     /**
-     * Akıllı yapıştırma (TinyMCE/BlockNote fikri): tek bir URL yapıştırılınca
-     * seçili metin → bağlantı, boş satırda YouTube → video, görsel adresi → görsel.
+     * Smart paste (idea from TinyMCE/BlockNote): when a single URL is pasted,
+     * selected text → link, YouTube on an empty line → video, image address → image.
      */
     private smartPaste;
-    /** Dosyaları yükleyip editöre ekler. true = olay işlendi. */
+    /** Uploads files and inserts them into the editor. true = event handled. */
     handleFiles(files: File[], pos: number | null): boolean;
     private uploadWithPlaceholder;
     /**
-     * Yer tutucuyu geçmişe yazmadan kaldırır, gerçek görseli tek geri-al adımı olarak ekler
-     * (geri al → ileri al süresi dolmuş blob görselini geri getirmesin).
+     * Removes the placeholder without recording history and inserts the real image as a single undo step
+     * (so undo → redo doesn't bring back an expired blob image).
      */
     private replaceUploadPlaceholder;
-    /** explicit=true: Ctrl+K / düğme (giriş kutusu odaklanır). false: imleç bağlantıya girdi (odak editörde kalır). */
+    /** explicit=true: Ctrl+K / button (the input gets focus). false: the cursor entered a link (focus stays in the editor). */
     openLinkPopover(explicit?: boolean): void;
     private syncLinkPopover;
     private openLinkDialog;
-    /** Bağlantıyı uygula. false = URL geçersiz. */
+    /** Apply the link. false = invalid URL. */
     applyLink(o: {
         href: string;
         text?: string;

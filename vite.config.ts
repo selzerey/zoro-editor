@@ -2,7 +2,7 @@ import { defineConfig } from 'vite';
 import { resolve } from 'node:path';
 import pkg from './package.json' with { type: 'json' };
 
-// npm paketi: ESM, bağımlılıklar dışarıda (kullanıcının bundler'ı çözer)
+// npm package: ESM, dependencies external (resolved by the user's bundler)
 const deps = Object.keys((pkg as { dependencies?: Record<string, string> }).dependencies ?? {});
 const external = (id: string) =>
   ['react', 'react-dom', 'react/jsx-runtime', ...deps].some((d) => id === d || id.startsWith(d + '/'));

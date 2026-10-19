@@ -8,9 +8,9 @@ import type { Messages } from '../i18n';
 export type ImageAlignment = 'none' | 'left' | 'center' | 'right';
 
 export interface ResizableImageOptions {
-  /** Dil metinleri (ZoroEditor tarafından verilir). */
+  /** Locale strings (provided by ZoroEditor). */
   messages: Messages | null;
-  /** Dialoglara aktarılacak tema sınıfı. */
+  /** Theme class passed to dialogs. */
   themeClass: () => string;
   HTMLAttributes: Record<string, any>;
 }
@@ -25,12 +25,12 @@ declare module '@tiptap/core' {
 }
 
 /**
- * Hizalama, WordPress ile aynı anlamda:
- *  left/right → metin görselin yanından akar (float), center → ortada blok, none → normal akış.
- * Çıktıda data-alignment (Zoro), align* sınıfı (WordPress temaları) ve satır içi stil (CSS'siz siteler) birlikte yazılır.
+ * Alignment, with the same meaning as in WordPress:
+ *  left/right → text flows beside the image (float), center → centered block, none → normal flow.
+ * The output carries data-alignment (Zoro), an align* class (WordPress themes) and an inline style (sites without the CSS).
  */
 export interface UploadState {
-  /** 0-100; null = belirsiz (ilerleme bilgisi yok) */
+  /** 0-100; null = indeterminate (no progress info) */
   progress: number | null;
   error?: string;
   retry?: () => void;
@@ -71,7 +71,7 @@ function parseSize(v: string | null | undefined): number | null {
   return Number.isFinite(n) && n > 0 ? n : null;
 }
 
-/** <figure> eşleşmesinde asıl <img>'i bul (öznitelik ayrıştırıcıları eşleşen öğeyi alır). */
+/** Find the actual <img> when matching a <figure> (attribute parsers receive the matched element). */
 const imgOf = (el: HTMLElement): HTMLElement => (el.tagName === 'FIGURE' ? (el.querySelector('img') as HTMLElement) ?? el : el);
 const attr = (name: string) => (el: HTMLElement) => imgOf(el).getAttribute(name);
 
@@ -115,13 +115,13 @@ export const ResizableImage = Node.create<ResizableImageOptions>({
       title: { default: null, parseHTML: attr('title') },
       srcset: { default: null, parseHTML: attr('srcset') },
       sizes: { default: null, parseHTML: attr('sizes') },
-      /** Alt yazı → <figure><figcaption> */
+      /** Caption → <figure><figcaption> */
       caption: {
         default: null,
         parseHTML: (el) => (el.tagName === 'FIGURE' ? el.querySelector('figcaption')?.textContent?.trim() || null : null),
         rendered: false,
       },
-      /** Süs görseli: alt="" + role="presentation" (ekran okuyucu atlar) */
+      /** Decorative image: alt="" + role="presentation" (skipped by screen readers) */
       decorative: {
         default: false,
         parseHTML: (el) => imgOf(el).getAttribute('role') === 'presentation' || imgOf(el).getAttribute('alt') === '',
@@ -130,7 +130,7 @@ export const ResizableImage = Node.create<ResizableImageOptions>({
       alignment: { default: 'none', parseHTML: (el) => parseAlignment(el), rendered: false },
       width: { default: null, parseHTML: (el) => parseSize(imgOf(el).getAttribute('width') || imgOf(el).style.width), rendered: false },
       height: { default: null, parseHTML: (el) => parseSize(imgOf(el).getAttribute('height') || imgOf(el).style.height), rendered: false },
-      // Yükleme sırasında geçici kimlik; HTML'e yazılmaz.
+      // Temporary ID during upload; not written to the HTML.
       uploadId: { default: null, rendered: false, parseHTML: () => null },
     };
   },
@@ -153,7 +153,7 @@ export const ResizableImage = Node.create<ResizableImageOptions>({
       img.role = 'presentation';
     }
     if (!a.caption) return ['img', { ...img, ...alignAttrs(align) }];
-    // Alt yazılı görsel: hizalama figure'a taşınır (WordPress [caption] çıktısıyla uyumlu)
+    // Captioned image: alignment moves to the figure (compatible with WordPress [caption] output)
     const fig = alignAttrs(align);
     const style = [fig.style, a.width ? `width:${a.width}px;max-width:100%` : ''].filter(Boolean).join(';');
     return [
@@ -300,7 +300,7 @@ function createImageView(props: NodeViewRendererProps, options: ResizableImageOp
   const buildToolbar = () => {
     toolbar?.remove();
     const current = (node.attrs.alignment || 'none') as ImageAlignment;
-    // Sayfa katmanında (body) sabit konumlu: tablo/kaydırma kapsayıcıları kırpmaz, ekrandan taşmaz
+    // Fixed-positioned on the page layer (body): not clipped by tables/scroll containers, stays on screen
     toolbar = h('div', { class: `zoro-root zoro-image-toolbar ${options.themeClass()}`, role: 'toolbar', 'aria-label': t.imageSettings });
     const btn = (icon: string, title: string, onClick: () => void, extra = '') => {
       const b = h('button', { type: 'button', class: `zoro-image-toolbar-btn ${extra}`, 'data-tip': title, 'aria-label': title, html: icon });
@@ -317,7 +317,7 @@ function createImageView(props: NodeViewRendererProps, options: ResizableImageOp
     for (const [a, icon, title] of aligns) {
       toolbar.appendChild(btn(icon, title, () => {
         const patch: Record<string, any> = { alignment: a };
-        // Yana hizalamada metne yer kalsın: boyutsuz büyük görseli editör genişliğinin yarısına indir
+        // Leave room for text when floated: shrink a large unsized image to half the editor width
         if ((a === 'left' || a === 'right') && !node.attrs.width) {
           const max = Math.round(((editor.view.dom as HTMLElement).clientWidth || 800) * 0.5);
           const natural = img.naturalWidth || img.offsetWidth;
@@ -344,18 +344,18 @@ function createImageView(props: NodeViewRendererProps, options: ResizableImageOp
     const tb = toolbar.getBoundingClientRect();
     const vw = document.documentElement.clientWidth;
     const vh = window.innerHeight;
-    // Görselin üstüne; yer yoksa görselin içine (üst kenar), o da görünmüyorsa alta
+    // Above the image; if there's no room, inside it (top edge); if that's not visible either, below
     let top = r.top - tb.height - 8;
     if (top < 8) top = r.top + 8;
     if (top + tb.height > vh - 8 || r.bottom < 0) top = Math.min(vh - tb.height - 8, Math.max(8, r.bottom + 8));
     const left = Math.max(8, Math.min(r.left + r.width / 2 - tb.width / 2, vw - tb.width - 8));
     toolbar.style.top = `${Math.round(top)}px`;
     toolbar.style.left = `${Math.round(left)}px`;
-    // Görsel görünmüyorsa (kaydırıldı, kaynak moduna geçildi) gizle
+    // Hide if the image isn't visible (scrolled away, switched to source mode)
     toolbar.style.visibility = r.bottom < 0 || r.top > vh || !img.offsetParent ? 'hidden' : '';
   };
   const onViewport = () => positionToolbar();
-  // Dışarı tıklanınca araç çubuğunu gizle (WordPress gibi); görsele tekrar dokununca göster
+  // Hide the toolbar on outside click (like WordPress); show it again when the image is tapped
   const onOutside = (e: Event) => {
     if (!toolbar) return;
     const target = e.target as globalThis.Node;
@@ -408,11 +408,11 @@ function createImageView(props: NodeViewRendererProps, options: ResizableImageOp
 
     const move = (ev: PointerEvent) => {
       const dx = ev.clientX - startX;
-      // Ortalanmış görsel iki yana büyür: tutamacın imleçle aynı hızda gitmesi için farkı ikile
+      // A centered image grows on both sides: double the delta so the handle keeps pace with the pointer
       const factor = (node.attrs.alignment || 'none') === 'center' ? 2 : 1;
       w = Math.round(Math.min(maxW, Math.max(50, corner.endsWith('e') ? startW + dx * factor : startW - dx * factor)));
       hgt = Math.round(w / ratio);
-      // Önizleme: işlem geçmişine yazmadan doğrudan stil
+      // Preview: set the style directly without recording history
       img.style.width = `${w}px`;
       container.style.width = `${w}px`;
       if (sizeInfo) sizeInfo.textContent = `${w} × ${hgt}`;
@@ -423,7 +423,7 @@ function createImageView(props: NodeViewRendererProps, options: ResizableImageOp
       target.removeEventListener('pointerup', up);
       target.removeEventListener('pointercancel', up);
       container.classList.remove('resizing');
-      updateAttrs({ width: w, height: hgt }); // tek geri-al adımı
+      updateAttrs({ width: w, height: hgt }); // single undo step
       selectSelf();
     };
     target.addEventListener('pointermove', move);
@@ -455,7 +455,7 @@ function createImageView(props: NodeViewRendererProps, options: ResizableImageOp
       }
     };
     renderAlign();
-    // Otomatik / Özel boyut: çıplak <select> yerine segmentli seçici
+    // Auto / Custom size: a segmented control instead of a bare <select>
     const mode = { value: a.width ? 'custom' : 'auto' };
     const modeRow = h('div', { class: 'zoro-segmented', role: 'group', 'aria-label': t.size });
     const renderMode = () => {
@@ -534,7 +534,7 @@ function createImageView(props: NodeViewRendererProps, options: ResizableImageOp
       hideChrome();
     },
     stopEvent(e: Event) {
-      // Araç çubuğu ve tutamaçlar kendi olaylarını yönetir
+      // The toolbar and handles manage their own events
       const t = e.target as HTMLElement;
       return !!t.closest?.('.zoro-image-toolbar, .zoro-resize-handle');
     },

@@ -1,7 +1,7 @@
 import { defineConfig } from 'vite';
 import { resolve } from 'node:path';
 
-// PHP / düz HTML için tek dosya: <script src="zoro-editor.iife.js"> → window.ZoroEditor
+// Single file for PHP / plain HTML: <script src="zoro-editor.iife.js"> → window.ZoroEditor
 export default defineConfig({
   build: {
     outDir: 'dist',

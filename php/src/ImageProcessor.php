@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace Zoro\Editor;
 
 /**
- * GD ile görsel işleme: yön düzeltme (EXIF), küçültme, kırpma, WebP varyantları.
- * Yeniden kodlama, dosyaya gizlenmiş içerikleri ve EXIF (konum vb.) verisini de temizler.
+ * Image processing with GD: orientation fix (EXIF), downscaling, cropping, WebP variants.
+ * Re-encoding also strips content hidden in the file and EXIF data (location, etc.).
  */
 final class ImageProcessor
 {
@@ -31,8 +31,8 @@ final class ImageProcessor
     }
 
     /**
-     * Yüklenen görseli normalleştir: EXIF yönünü uygula, çok büyükse küçült, yeniden kodla.
-     * GIF (animasyon) ve GD'nin açamadığı türler olduğu gibi bırakılır.
+     * Normalize an uploaded image: apply EXIF orientation, downscale if too large, re-encode.
+     * GIFs (animation) and types GD can't open are left as is.
      * @return array{width:int, height:int}|null
      */
     public function normalize(string $path, string $mime, int $maxWidth, int $quality, ?string $outPath = null, ?string $outMime = null): ?array
@@ -81,7 +81,7 @@ final class ImageProcessor
             $crop = !empty($o['crop']);
             $q = (int) ($o['quality'] ?? 80);
             if (!$crop && $sw <= $tw) {
-                continue; // orijinal zaten küçük
+                continue; // original is already small
             }
             if ($crop && $tw && $th) {
                 $img = $this->cropResize($src, $sw, $sh, $tw, $th);
@@ -102,7 +102,7 @@ final class ImageProcessor
         return $out;
     }
 
-    /** Anlık boyutlandırma. Dönen dizi: [ikili veri, mime] */
+    /** On-the-fly resizing. Returns: [binary data, mime] */
     public function resizeOnTheFly(string $sourcePath, int $width, int $quality, string $format): ?array
     {
         $info = $this->inspect($sourcePath);
@@ -110,7 +110,7 @@ final class ImageProcessor
             return null;
         }
         if ($width >= $info['width'] || $info['mime'] === 'image/gif' || !self::available()) {
-            // Küçültmeye gerek yok: orijinali kendi türüyle döndür
+            // No need to downscale: return the original in its own type
             return [(string) file_get_contents($sourcePath), $info['mime']];
         }
         $src = $this->load($sourcePath, $info['mime']);
@@ -138,7 +138,7 @@ final class ImageProcessor
         return [$data, $mime];
     }
 
-    // ───────────────────────── iç işlemler ─────────────────────────
+    // ───────────────────────── internals ─────────────────────────
 
     private function load(string $path, string $mime): ?\GdImage
     {

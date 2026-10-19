@@ -1,8 +1,8 @@
 /**
- * Tarayıcı (IIFE) girişi — PHP / düz HTML için:
+ * Browser (IIFE) entry — for PHP / plain HTML:
  *   <script src="zoro-editor.iife.js"></script>
- *   <textarea name="icerik" data-zoro-editor data-preset="blog" data-media-endpoint="/zoro/media.php"></textarea>
- * CSS otomatik eklenir (kapatmak için: window.ZORO_NO_CSS = true).
+ *   <textarea name="content" data-zoro-editor data-preset="blog" data-media-endpoint="/zoro/media.php"></textarea>
+ * CSS is injected automatically (to disable: window.ZORO_NO_CSS = true).
  */
 import css from './styles/zoro-editor.css?inline';
 import * as api from './index';
@@ -19,7 +19,7 @@ function injectCss() {
   const style = document.createElement('style');
   style.id = 'zoro-editor-css';
   style.textContent = css;
-  document.head.prepend(style); // sitenin kendi CSS'i ezebilsin
+  document.head.prepend(style); // so the site's own CSS can override it
 }
 
 const list = (v?: string) => (v ? v.split(/[\s,]+/).filter(Boolean) : undefined);
@@ -28,7 +28,7 @@ function optionsFromDataset(el: HTMLElement): ZoroEditorOptions {
   const d = el.dataset;
   let json: ZoroEditorOptions = {};
   if (d.options) {
-    try { json = JSON.parse(d.options); } catch (e) { console.error('ZoroEditor: data-options geçersiz JSON', e); }
+    try { json = JSON.parse(d.options); } catch (e) { console.error('ZoroEditor: data-options is not valid JSON', e); }
   }
   const o: ZoroEditorOptions = { ...json };
   if (d.preset) o.preset = d.preset;
@@ -52,7 +52,7 @@ function optionsFromDataset(el: HTMLElement): ZoroEditorOptions {
   return o;
 }
 
-/** Sayfadaki tüm [data-zoro-editor] elemanlarını başlatır. Tekrar çağrılabilir. */
+/** Initializes all [data-zoro-editor] elements on the page. Safe to call again. */
 function init(root: ParentNode = document): ZoroEditor[] {
   injectCss();
   const out: ZoroEditor[] = [];
@@ -68,7 +68,7 @@ function init(root: ParentNode = document): ZoroEditor[] {
 const Z = ZoroEditor as typeof ZoroEditor & typeof api & { init: typeof init; injectCss: typeof injectCss };
 Object.assign(Z, api, { init, injectCss });
 
-// Sınıf oluşturulurken de CSS eklensin (data-* kullanmayanlar için)
+// Also inject CSS when the class is instantiated (for those not using data-*)
 
 if (typeof document !== 'undefined') {
   injectCss();

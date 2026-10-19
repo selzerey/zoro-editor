@@ -4,6 +4,9 @@
  * Copy this file to "config.php" in the same folder and edit it (config.php is git-ignored).
  */
 return [
+    // Language of the messages shown in Zoro Finder: 'en' or 'tr'
+    'locale' => 'en',
+
     'upload' => [
         // Folder where files are stored, and the public URL of that folder.
         // Default: /uploads in your site root (when the "zoro" folder sits in the site root: zoro/php → ../../uploads)

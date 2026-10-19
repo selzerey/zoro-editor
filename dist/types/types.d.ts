@@ -1,44 +1,44 @@
 import type { Editor, AnyExtension } from '@tiptap/core';
 import type { Locale, Messages } from './i18n';
-/** Yerleşik araç çubuğu grupları. */
+/** Built-in toolbar groups. */
 export type BuiltinGroup = 'block' | 'format' | 'list' | 'align' | 'link' | 'table' | 'media' | 'embed' | 'color' | 'extra' | 'indent' | 'history' | 'help' | 'view';
 export type GroupName = BuiltinGroup | (string & {});
-/** Hazır paketler: tek kelimeyle bir grup listesi. */
+/** Presets: a group list in a single word. */
 export type PresetName = 'minimal' | 'basic' | 'blog' | 'full' | (string & {});
 export type ThemeMode = 'light' | 'dark' | 'auto';
 export type SkinName = 'modern' | 'classic';
-/** Araç çubuğu düğmesi tanımı. Kendi gruplarını yazarken de bunu kullanırsın. */
+/** Toolbar button definition. Also used when writing your own groups. */
 export interface ToolbarButton {
-    /** Benzersiz anahtar (ör. "bold"). */
+    /** Unique key (e.g. "bold"). */
     name: string;
     /** SVG string. */
     icon: string;
-    /** Başlık (tooltip + aria-label). Dil dosyasından gelen fonksiyonla da verilebilir. */
+    /** Title (tooltip + aria-label). Can also be a function that reads from the locale. */
     title: string | ((t: Messages) => string);
-    /** Tıklanınca çalışır. */
+    /** Runs on click. */
     run: (ctx: ToolbarContext, event: MouseEvent) => void;
-    /** Aktif mi (basılı görünür). */
+    /** Whether it is active (shown pressed). */
     isActive?: (ctx: ToolbarContext) => boolean;
-    /** Kullanılabilir mi. */
+    /** Whether it is enabled. */
     isEnabled?: (ctx: ToolbarContext) => boolean;
-    /** Tıklamada editör odağını kaybetmesin (seçim korunur). Varsayılan: true */
+    /** Keep editor focus on click (selection is preserved). Default: true */
     keepFocus?: boolean;
-    /** Grubun satırından farklı satırda durmalıysa. */
+    /** If it should sit on a different row than its group. */
     row?: 1 | 2;
 }
-/** Grup = araç çubuğunda yan yana duran düğmeler. */
+/** Group = buttons placed side by side in the toolbar. */
 export interface ToolbarGroup {
     name: GroupName;
-    /** 1 = ana satır, 2 = "Araç çubuğunu aç/kapat" ile açılan ikinci satır. */
+    /** 1 = main row, 2 = second row shown by "Toggle toolbar". */
     row?: 1 | 2;
-    /** Düğmeler ya da özel bir eleman üreten fonksiyon (ör. blok seçici). */
+    /** Buttons, or a function that builds a custom element (e.g. the block picker). */
     items: ToolbarButton[] | ((ctx: ToolbarContext) => ToolbarWidget);
-    /** Bu grup için ek TipTap eklentileri gerekiyorsa. */
+    /** Extra TipTap extensions this group needs, if any. */
     extensions?: AnyExtension[];
 }
 export interface ToolbarWidget {
     el: HTMLElement;
-    /** Seçim değişince çağrılır (aktif durumları güncelle). */
+    /** Called when the selection changes (update active states). */
     update?: () => void;
     destroy?: () => void;
 }
@@ -47,7 +47,7 @@ export interface ToolbarContext {
     zoro: import('./core/editor').ZoroEditor;
     t: Messages;
 }
-/** Medya öğesi — Zoro Finder ve PHP backend'in ortak formatı. */
+/** Media item — the shared format of Zoro Finder and the PHP backend. */
 export interface MediaItem {
     id: string | number;
     url: string;
@@ -68,7 +68,7 @@ export interface MediaItem {
         size?: number;
     }>;
     createdAt?: string;
-    /** Backend biliyorsa: bu dosya kaç yerde kullanılıyor. */
+    /** If the backend knows: how many places use this file. */
     usageCount?: number;
 }
 export interface MediaFolder {
@@ -98,8 +98,8 @@ export interface UploadOptions {
     signal?: AbortSignal;
 }
 /**
- * Medya backend'i. Hazır `RestMediaAdapter` PHP backend'ine bağlanır;
- * kendi API'ni (Laravel, Next.js route, Supabase, S3...) bağlamak için bu arayüzü uygula.
+ * Media backend. The built-in `RestMediaAdapter` connects to the PHP backend;
+ * implement this interface to plug in your own API (Laravel, Next.js route, Supabase, S3...).
  */
 export interface MediaAdapter {
     list(params: MediaListParams): Promise<MediaListResult>;
@@ -111,86 +111,86 @@ export interface MediaAdapter {
     deleteFolder?(path: string): Promise<void>;
 }
 export interface RestAdapterOptions {
-    /** Ör. "/zoro/php/public/media.php" */
+    /** E.g. "/zoro/php/public/media.php" */
     endpoint: string;
-    /** CSRF token, Authorization vb. */
+    /** CSRF token, Authorization, etc. */
     headers?: Record<string, string> | (() => Record<string, string>);
-    /** Çerez gönderilsin mi (farklı domain için "include"). Varsayılan: "same-origin" */
+    /** Whether to send cookies ("include" for a different domain). Default: "same-origin" */
     credentials?: RequestCredentials;
-    /** Backend farklı alan adları döndürüyorsa normalize et. */
+    /** Normalize items if the backend returns different field names. */
     transform?: (raw: any) => MediaItem;
 }
 export interface MediaOptions {
-    /** Kısa yol: PHP endpoint adresi. */
+    /** Shorthand: PHP endpoint URL. */
     endpoint?: string;
     headers?: RestAdapterOptions['headers'];
     credentials?: RequestCredentials;
     transform?: RestAdapterOptions['transform'];
-    /** Ya da tamamen özel backend. */
+    /** Or a fully custom backend. */
     adapter?: MediaAdapter;
-    /** Kabul edilen MIME türleri. Varsayılan: görseller. */
+    /** Accepted MIME types. Default: images. */
     accept?: string[];
-    /** MB cinsinden azami boyut (istemci tarafı kontrol). Varsayılan: 20 */
+    /** Maximum size in MB (client-side check). Default: 20 */
     maxSizeMB?: number;
-    /** ALT metni zorunlu mu. Varsayılan: true */
+    /** Whether ALT text is required. Default: true */
     requireAlt?: boolean;
-    /** Editöre eklerken hangi varyant kullanılsın. Varsayılan: "lg" (yoksa orijinal). */
+    /** Which variant to insert into the editor. Default: "lg" (falls back to the original). */
     insertVariant?: string;
-    /** Klasör özellikleri gösterilsin mi (adapter destekliyorsa). Varsayılan: true */
+    /** Whether to show folder features (if the adapter supports them). Default: true */
     folders?: boolean;
 }
 export interface ZoroEditorOptions {
-    /** Başlangıç HTML içeriği. */
+    /** Initial HTML content. */
     content?: string;
-    /** Hazır paket. Varsayılan: "full" */
+    /** Preset. Default: "full" */
     preset?: PresetName;
-    /** Grupları tek tek seç. Verilirse preset'in yerini alır. */
+    /** Pick groups individually. Overrides the preset when given. */
     groups?: GroupName[];
-    /** Preset'e ek gruplar. */
+    /** Groups added to the preset. */
     addGroups?: GroupName[];
-    /** Preset'ten çıkarılacak gruplar. */
+    /** Groups removed from the preset. */
     removeGroups?: GroupName[];
-    /** Editör yüksekliği (px). Varsayılan: 400 */
+    /** Editor height (px). Default: 400 */
     height?: number;
-    /** Yükseklik içeriğe göre büyüsün mü (min = height). Varsayılan: true */
+    /** Whether the height grows with the content (min = height). Default: true */
     autoGrow?: boolean;
     placeholder?: string;
-    /** Dil. Varsayılan: "tr" */
+    /** Language. Default: "tr" */
     locale?: Locale | Partial<Messages>;
     theme?: ThemeMode;
-    /** Görünüm: "modern" (TinyMCE Premium tarzı, varsayılan) ya da "classic" (WordPress Klasik). */
+    /** Skin: "modern" (TinyMCE Premium style, default) or "classic" (WordPress Classic). */
     skin?: SkinName;
-    /** Metin seçilince üstünde açılan biçim menüsü. Varsayılan: modern'de açık, classic'te kapalı. */
+    /** Formatting menu shown above selected text. Default: on in modern, off in classic. */
     bubbleMenu?: boolean;
-    /** "/" komut menüsü. Varsayılan: modern'de açık, classic'te kapalı. */
+    /** "/" command menu. Default: on in modern, off in classic. */
     slashMenu?: boolean;
     readOnly?: boolean;
-    /** Azami karakter sayısı. */
+    /** Maximum number of characters. */
     maxLength?: number;
-    /** Üstteki "Ortam ekle" düğmesi ve görsel yükleme. false = medya kapalı. */
+    /** The "Add Media" button at the top and image uploads. false = media disabled. */
     media?: MediaOptions | false;
-    /** Basit yükleme kancası: dosyayı al, URL döndür. (adapter yoksa yapıştır/sürükle için kullanılır) */
+    /** Simple upload hook: take a file, return a URL. (used for paste/drag when there is no adapter) */
     onImageUpload?: (file: File) => Promise<string | {
         url: string;
         alt?: string;
         width?: number;
         height?: number;
     }>;
-    /** Araç çubuğu sayfa kayınca yapışık kalsın. Varsayılan: true. Sayı verilirse üst boşluk (px). */
+    /** Keep the toolbar sticky while the page scrolls. Default: true. A number sets the top offset (px). */
     stickyToolbar?: boolean | number;
-    /** Form entegrasyonu: değer bu input/textarea'ya yazılır (seçici ya da eleman). */
+    /** Form integration: the value is written to this input/textarea (selector or element). */
     input?: string | HTMLInputElement | HTMLTextAreaElement;
-    /** Kelime/karakter sayacı. Varsayılan: true */
+    /** Word/character counter. Default: true */
     statusBar?: boolean;
-    /** Ek TipTap eklentileri. */
+    /** Extra TipTap extensions. */
     extensions?: AnyExtension[];
-    /** Kaynak (HTML) sekmesi. Varsayılan: true */
+    /** Source (HTML) tab. Default: true */
     sourceMode?: boolean;
-    /** Kendi CSS sınıfın. */
+    /** Your own CSS class. */
     className?: string;
     /**
-     * Taslak otomatik kaydetme (tarayıcıda). Anahtar ver: ör. "yazi-42".
-     * Sayfa kapanıp açılınca "Geri yükle" önerisi çıkar. Kaydettikten sonra `clearDraft()` çağır.
+     * Draft autosave (in the browser). Pass a key, e.g. "post-42".
+     * After the page is closed and reopened a "Restore" prompt appears. Call `clearDraft()` after saving.
      */
     autosave?: string | {
         key: string;

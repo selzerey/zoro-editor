@@ -1,4 +1,4 @@
-// README ekran görüntüleri: node scripts/screenshots.mjs → docs/images/*.png
+// README screenshots: node scripts/screenshots.mjs → docs/images/*.png
 import { chromium, devices } from '@playwright/test';
 import { pathToFileURL } from 'node:url';
 const url = pathToFileURL('test/ZoroEditor-Demo.html').href;
@@ -10,7 +10,7 @@ await p.evaluate(() => localStorage.clear());
 await p.addStyleTag({ content: '.zoro-tooltip{display:none!important}' });
 const wrap = p.locator('.zoro-editor-wrapper');
 await wrap.scrollIntoViewIfNeeded();
-// metin seçili: baloncuk menü görünsün
+// text selected so the bubble menu shows
 await p.evaluate(() => {
   const e = window.editor.editor;
   let from = 0;
@@ -35,7 +35,7 @@ await p.locator('.zoro-add-media').click(); await p.waitForSelector('.zoro-media
 await p.locator('.zoro-media-item[title="deniz.svg"]').click(); await p.waitForTimeout(400);
 await p.locator('.zoro-dialog').screenshot({ path: `${OUT}/finder.png` });
 await p.keyboard.press('Escape');
-// tablo + slash
+// table + slash
 await p.evaluate(() => { window.editor.setContent('<h2>Price list</h2><table><tbody><tr><th><p>Product</p></th><th><p>Price</p></th><th><p>Stock</p></th></tr><tr><td><p>Apples</p></td><td style="background-color:#edfaef"><p>$2.40</p></td><td><p>120</p></td></tr><tr><td><p>Pears</p></td><td><p>$3.10</p></td><td><p>64</p></td></tr></tbody></table><p></p>'); });
 await p.locator('.zoro-prose td p').first().click(); await p.waitForSelector('.zoro-context-bar'); await p.waitForTimeout(300);
 const t = await p.locator('.zoro-prose table').boundingBox();
@@ -45,7 +45,7 @@ await p.evaluate(() => window.editor.editor.commands.focus('end'));
 await p.keyboard.type('/'); await p.waitForSelector('.zoro-slash'); await p.waitForTimeout(300);
 await p.locator('.zoro-slash').screenshot({ path: `${OUT}/slash.png` });
 await p.keyboard.press('Escape');
-// mobil
+// mobile
 const m = await b.newPage({ ...devices['iPhone 13'] });
 await m.goto(url); await m.waitForSelector('.zoro-prose');
 await m.evaluate(() => { const r = document.querySelector('.zoro-editor-wrapper').getBoundingClientRect(); scrollBy(0, r.top - 12); });

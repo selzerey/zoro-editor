@@ -1,7 +1,7 @@
 /**
- * HTML girintileme (kaynak görünümü için).
- * Kurallar Monaco (MIT) ve Ace beautify (BSD-3) davranışından esinlenerek yeniden yazıldı:
- * blok öğeler kendi satırında ve girintili; satır içi içerik tek satırda; <pre> olduğu gibi.
+ * HTML indentation (for the source view).
+ * Rules rewritten based on the behavior of Monaco (MIT) and Ace beautify (BSD-3):
+ * block elements on their own indented lines; inline content on one line; <pre> as is.
  */
 
 const BLOCK = new Set([
@@ -13,7 +13,7 @@ const INDENT = '  ';
 
 export interface FormatResult {
   html: string;
-  /** Her üst düzey öğenin metindeki başlangıç ofseti (imleç eşlemesi için). */
+  /** Start offset of each top-level element in the text (for cursor mapping). */
   blockStarts: number[];
 }
 
@@ -27,7 +27,7 @@ function openTag(el: Element): string {
   return s + '>';
 }
 
-/** Öğenin yalnızca satır içi içeriği var mı (tek satırda yazılabilir)? */
+/** Does the element have only inline content (can it be written on one line)? */
 function isInlineOnly(el: Element): boolean {
   for (const c of Array.from(el.childNodes)) {
     if (c.nodeType === 1 && (BLOCK.has((c as Element).tagName.toLowerCase()) || (c as Element).tagName === 'IFRAME')) return false;
@@ -35,7 +35,7 @@ function isInlineOnly(el: Element): boolean {
   return true;
 }
 
-/** <li><p>metin</p></li> gibi tek basit paragraflı liste/tablo hücresi: tek satır. */
+/** List item/table cell with a single simple paragraph, like <li><p>text</p></li>: one line. */
 function isCompactCell(el: Element): boolean {
   if (!['li', 'td', 'th'].includes(el.tagName.toLowerCase())) return false;
   const kids = Array.from(el.childNodes).filter((c) => !(c.nodeType === 3 && !c.textContent!.trim()));
@@ -62,7 +62,7 @@ export function formatHTML(html: string): FormatResult {
       if (text) push(pad + text.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;'), top);
       return;
     }
-    if (node.nodeType === 8) return; // yorum
+    if (node.nodeType === 8) return; // comment
     if (node.nodeType !== 1) return;
     const el = node as Element;
     const tag = el.tagName.toLowerCase();
@@ -76,7 +76,7 @@ export function formatHTML(html: string): FormatResult {
       return;
     }
     if (tag === 'pre' || isInlineOnly(el) || isCompactCell(el)) {
-      // Tek satır: <p>metin <strong>kalın</strong></p>, <pre> içeriği aynen
+      // One line: <p>text <strong>bold</strong></p>, <pre> content verbatim
       push(pad + el.outerHTML, top);
       return;
     }
@@ -85,10 +85,10 @@ export function formatHTML(html: string): FormatResult {
     push(`${pad}</${tag}>`);
   };
 
-  // Üst düzeyde satır içi öğe (ör. tek başına <img>, <a>) kendi satırında
+  // Top-level inline element (e.g. a lone <img>, <a>) on its own line
   const isInlineTop = (el: Element) => !['img', 'iframe'].includes(el.tagName.toLowerCase()) && !BLOCK.has(el.tagName.toLowerCase());
 
-  // Bloklar arasındaki satır sonu boşluklarını at (pre hariç): girinti bunları yeniden üretir
+  // Drop line-break whitespace between blocks (except pre): indentation recreates it
   const tw = document.createTreeWalker(tpl.content, NodeFilter.SHOW_TEXT);
   const junk: Node[] = [];
   for (let n = tw.nextNode(); n; n = tw.nextNode()) {
@@ -99,7 +99,7 @@ export function formatHTML(html: string): FormatResult {
   return { html: lines.join('\n'), blockStarts };
 }
 
-/** Kaynak metindeki imleç ofsetinden üst düzey blok indeksini tahmin et. */
+/** Estimate the top-level block index from the cursor offset in the source text. */
 export function blockIndexAt(source: string, caret: number): number {
   let index = -1;
   let lineStart = 0;

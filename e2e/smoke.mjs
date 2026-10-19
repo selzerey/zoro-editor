@@ -1,5 +1,5 @@
-// Gerçek tarayıcıda duman testi: masaüstü + mobil, konsol hataları, temel akışlar.
-// Kullanım:  php -S 127.0.0.1:8765 -t .   (ayrı terminalde)  →  node e2e/smoke.mjs
+// Smoke test in a real browser: desktop + mobile, console errors, core flows.
+// Usage:  php -S 127.0.0.1:8765 -t .   (in a separate terminal)  →  node e2e/smoke.mjs
 import { chromium, devices } from '@playwright/test';
 import { mkdirSync } from 'node:fs';
 
@@ -27,11 +27,11 @@ async function run(label, contextOpts) {
   ok('editör yüklendi', await page.locator('.zoro-root').count() === 1);
   await page.screenshot({ path: `${OUT}/${label}-1-ilk.png`, fullPage: false });
 
-  // Yatay taşma yok
+  // No horizontal overflow
   const overflow = await page.evaluate(() => document.documentElement.scrollWidth - document.documentElement.clientWidth);
   ok('sayfada yatay taşma yok', overflow <= 1, `${overflow}px`);
 
-  // Yazma + kalın (kelime üzerinde, seçimsiz)
+  // Typing + bold (on a word, no selection)
   const prose = page.locator('.zoro-prose');
   await prose.click();
   await page.evaluate(() => window.editor.editor.commands.focus('end'));
@@ -41,32 +41,32 @@ async function run(label, contextOpts) {
   await page.locator('[data-name="bold"]').click();
   ok('seçimsiz Kalın kelimeye uygulanır', (await page.locator('#out-html').textContent()).includes('<strong>kelimesi</strong>'));
 
-  // Shift+Alt+2 başlık
+  // Shift+Alt+2 heading
   await page.keyboard.press('Shift+Alt+Digit2');
   ok('Shift+Alt+2 → H2', (await page.locator('#out-html').textContent()).includes('<h2>deneme <strong>kelimesi</strong></h2>'));
 
-  // Bağlantı: Ctrl+K
+  // Link: Ctrl+K
   await page.keyboard.press('Control+k');
   await page.waitForSelector('.zoro-link-popover input');
   await page.keyboard.type('ornek.com');
   await page.keyboard.press('Enter');
   ok('Ctrl+K bağlantı ekler', (await page.locator('#out-html').textContent()).includes('href="https://ornek.com"'));
 
-  // Preset değişimi
+  // Preset change
   await page.locator('[data-preset="minimal"]').click();
   ok('minimal preset: tablo düğmesi yok', await page.locator('[data-name="table"]').count() === 0);
   await page.locator('#groups input[value="table"]').check();
   ok('tek hamlede tablo grubu eklendi', await page.locator('[data-name="table"]').count() === 1);
   await page.locator('[data-preset="full"]').click();
 
-  // Tablo seçici
+  // Table picker
   await page.evaluate(() => window.editor.editor.commands.focus('end'));
   await page.locator('[data-name="table"]').click();
   await page.waitForSelector('.zoro-table-picker');
-  await page.locator('.zoro-table-cell').nth(8 + 2).click(); // 3 sütun × 2 satır
+  await page.locator('.zoro-table-cell').nth(8 + 2).click(); // 3 columns × 2 rows
   ok('tablo eklendi (3×2)', await page.locator('.zoro-prose table tr').count() === 2 && await page.locator('.zoro-prose table tr:first-child > *').count() === 3);
 
-  // Finder (imleç tablonun dışında, sonda)
+  // Finder (cursor outside the table, at the end)
   await page.evaluate(() => { const ed = window.editor.editor; ed.chain().focus('end').run(); });
   await page.locator('.zoro-add-media').click();
   await page.waitForSelector('.zoro-media-item');
@@ -80,40 +80,40 @@ async function run(label, contextOpts) {
   await insert.click();
   ok('görsel editöre eklendi', (await page.locator('#out-html').textContent()).includes('alt="Sea view"'));
 
-  // Görsel seçimi + araç çubuğu
+  // Image selection + toolbar
   await page.locator('.zoro-image-container img').first().click();
   ok('görsel araç çubuğu görünür', await page.locator('.zoro-image-toolbar').isVisible());
-  await page.locator('.zoro-image-toolbar-btn').nth(1).click(); // ortala
+  await page.locator('.zoro-image-toolbar-btn').nth(1).click(); // center
   ok('görsel ortalandı', (await page.locator('#out-html').textContent()).includes('data-alignment="center"'));
   await page.screenshot({ path: `${OUT}/${label}-4-gorsel.png` });
 
-  // Kaynak modu
+  // Source mode
   await page.locator('.zoro-tab-toggle button').nth(1).click();
   ok('kaynak modu', await page.locator('.zoro-source').isVisible());
   await page.locator('.zoro-tab-toggle button').nth(0).click();
 
-  // Tam ekran
+  // Fullscreen
   await page.locator('[data-name="fullscreen"]').click();
   const fs = await page.locator('.zoro-fullscreen').boundingBox();
   const vp = page.viewportSize();
   ok('tam ekran tüm alanı kaplar', fs && Math.abs(fs.width - vp.width) < 2 && Math.abs(fs.height - vp.height) < 2, JSON.stringify(fs));
   await page.screenshot({ path: `${OUT}/${label}-5-tamekran.png` });
-  // ESC önce açık açılır kutuyu (ör. bağlantı) kapatır, sonra tam ekrandan çıkar
+  // ESC first closes the open popover (e.g. link), then exits fullscreen
   for (let i = 0; i < 3 && await page.locator('.zoro-fullscreen').count(); i++) await page.keyboard.press('Escape');
   ok('ESC tam ekrandan çıkar', await page.locator('.zoro-fullscreen').count() === 0);
 
-  // Bağımsız Finder (öne çıkan görsel)
+  // Standalone Finder (featured image)
   await page.locator('#pick').click();
   await page.waitForSelector('.zoro-media-item');
   await page.locator('.zoro-media-item[title="orman.svg"]').dblclick();
   ok('bağımsız Finder ile öne çıkan görsel', await page.locator('#featured-img').isVisible());
 
-  // Koyu tema
+  // Dark theme
   await page.locator('#theme').click();
   ok('koyu tema sınıfı', await page.locator('.zoro-root.zoro-theme-dark').count() === 1);
   await page.screenshot({ path: `${OUT}/${label}-6-koyu.png` });
 
-  // Araç çubuğu düğmeleri dokunmatikte ≥ 40px
+  // Toolbar buttons are ≥ 40px on touch
   if (contextOpts.hasTouch) {
     const box = await page.locator('[data-name="bold"]').boundingBox();
     ok('dokunmatik hedef ≥ 40px', box.width >= 40 && box.height >= 40, `${box.width}×${box.height}`);
@@ -121,7 +121,7 @@ async function run(label, contextOpts) {
     ok('araç çubuğu ekrana sığar', tb.width <= vp.width, `${tb.width} > ${vp.width}`);
   }
 
-  // Tablo hücresindeki küçük görselin araç çubuğu ekranda ve tıklanabilir
+  // Toolbar of a small image in a table cell is on screen and clickable
   await page.evaluate(() => {
     const ed = window.editor.editor;
     let cell = null;
@@ -133,7 +133,7 @@ async function run(label, contextOpts) {
   const tbb = await page.locator('.zoro-image-toolbar').boundingBox();
   const vpp = page.viewportSize();
   ok('hücredeki görselin araç çubuğu ekranda', tbb && tbb.x >= 0 && tbb.x + tbb.width <= vpp.width && tbb.y >= 0 && tbb.y + tbb.height <= vpp.height, JSON.stringify(tbb));
-  await page.locator('.zoro-image-toolbar-btn').nth(5).click(); // sil
+  await page.locator('.zoro-image-toolbar-btn').nth(5).click(); // delete
   ok('hücredeki görsel araç çubuğundan silindi', await page.locator('.zoro-prose td img').count() === 0);
 
   ok('konsol hatası yok', errors.length === 0, errors.join(' | '));
@@ -150,7 +150,7 @@ async function runPhp() {
   await page.waitForSelector('.zoro-prose');
   ok('PHP sayfasında editör (data-zoro-editor otomatik)', await page.locator('.zoro-root').count() === 1);
 
-  // Tarayıcıda gerçek bir PNG üret
+  // Generate a real PNG in the browser
   const b64 = await page.evaluate(() => {
     const c = document.createElement('canvas');
     c.width = 1600; c.height = 900;

@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Zoro\Editor;
 
 /**
- * Zoro Finder REST API'si (tek dosya uç noktası).
+ * Zoro Finder REST API (single-file endpoint).
  *
  *   GET  ?action=list&page=1&limit=40&search=&folder=&type=&sort=newest&filter=
  *   POST ?action=upload          multipart: file, alt, folder
@@ -15,7 +15,7 @@ namespace Zoro\Editor;
  *   POST ?action=folder-create   JSON: {path: "blog/2026"}
  *   POST ?action=folder-delete   JSON: {path: "blog/2026"}
  *
- * Tüm değiştirici işlemler POST'tur (PATCH/DELETE'i engelleyen paylaşımlı hostinglerde de çalışır).
+ * All mutating actions use POST (so it also works on shared hosts that block PATCH/DELETE).
  */
 final class Api
 {
@@ -45,7 +45,7 @@ final class Api
             $action = (string) ($_GET['action'] ?? 'list');
             $readOnly = in_array($action, ['list', 'get'], true);
             if (!$readOnly && $method !== 'POST') {
-                throw new UserError('Bu işlem için POST gerekli.', 405);
+                throw new UserError(Lang::t('post_required'), 405);
             }
             $this->authorize($action, $readOnly);
             $store = $this->store();
@@ -60,7 +60,7 @@ final class Api
                     'sort' => (string) ($_GET['sort'] ?? 'newest'),
                     'filter' => (string) ($_GET['filter'] ?? ''),
                 ]),
-                'get' => ['item' => $store->get((int) ($_GET['id'] ?? 0)) ?? throw new UserError('Medya bulunamadı.', 404)],
+                'get' => ['item' => $store->get((int) ($_GET['id'] ?? 0)) ?? throw new UserError(Lang::t('not_found'), 404)],
                 'upload' => $this->upload($store),
                 'update' => ['item' => $store->update((int) ($_GET['id'] ?? 0), $this->body())],
                 'delete' => ['deleted' => $store->delete($this->ids())],
@@ -70,7 +70,7 @@ final class Api
                     $store->deleteFolder((string) ($this->body()['path'] ?? ''));
                     return ['success' => true];
                 })(),
-                default => throw new UserError('Bilinmeyen işlem.', 404),
+                default => throw new UserError(Lang::t('unknown_action'), 404),
             };
             $this->json(['success' => true] + $result, $action === 'upload' ? 201 : 200);
         } catch (UserError $e) {
@@ -79,7 +79,7 @@ final class Api
             $this->json(['error' => $e->getMessage()], 422);
         } catch (\Throwable $e) {
             error_log('[zoro-editor] ' . $e::class . ': ' . $e->getMessage() . ' @ ' . $e->getFile() . ':' . $e->getLine());
-            $this->json(['error' => 'Sunucu hatası. Ayrıntı için sunucu günlüğüne bakın.'], 500);
+            $this->json(['error' => Lang::t('server_error')], 500);
         }
     }
 
@@ -91,15 +91,15 @@ final class Api
     /** @return array<string,mixed> */
     private function upload(MediaStore $store): array
     {
-        $file = $_FILES['file'] ?? $_FILES['image'] ?? null; // "image": eski ZoroEditor uyumu
+        $file = $_FILES['file'] ?? $_FILES['image'] ?? null; // "image": legacy ZoroEditor compatibility
         if (!is_array($file)) {
-            // post_max_size aşılınca PHP $_FILES ve $_POST'u boş bırakır
+            // When post_max_size is exceeded PHP leaves $_FILES and $_POST empty
             $len = (int) ($_SERVER['CONTENT_LENGTH'] ?? 0);
-            throw new UserError($len > 0 ? 'Dosya sunucu sınırını aşıyor (post_max_size).' : 'Dosya bulunamadı.', 413);
+            throw new UserError(Lang::t($len > 0 ? 'post_max_size' : 'no_file'), 413);
         }
         $alt = trim((string) ($_POST['alt'] ?? $_POST['altText'] ?? ''));
         if ($alt === '' && ($this->config->get('require_alt', true))) {
-            throw new UserError('ALT metni zorunludur.', 422);
+            throw new UserError(Lang::t('alt_required'), 422);
         }
         $item = $store->upload($file, $alt, (string) ($_POST['folder'] ?? ''));
         return ['item' => $item, 'image' => $item];
@@ -109,16 +109,16 @@ final class Api
     {
         $auth = $this->config->get('auth');
         if (!is_callable($auth)) {
-            throw new UserError('Zoro media API is not configured: define "auth" in php/config.php.', 403);
+            throw new UserError(Lang::t('not_configured'), 403);
         }
         if (!$auth($action)) {
-            throw new UserError('Yetkiniz yok.', 403);
+            throw new UserError(Lang::t('forbidden'), 403);
         }
         $csrf = $this->config->get('csrf');
         if (!$readOnly && is_callable($csrf)) {
             $token = $_SERVER['HTTP_X_CSRF_TOKEN'] ?? $_POST['_token'] ?? null;
             if (!$csrf(is_string($token) ? $token : null)) {
-                throw new UserError('Oturum doğrulaması başarısız (CSRF). Sayfayı yenileyin.', 419);
+                throw new UserError(Lang::t('csrf'), 419);
             }
         }
     }
@@ -157,7 +157,7 @@ final class Api
     {
         $ids = $this->body()['ids'] ?? [];
         if (!is_array($ids) || !$ids) {
-            throw new UserError('Dosya seçilmedi.', 422);
+            throw new UserError(Lang::t('nothing_selected'), 422);
         }
         return array_values(array_map('intval', $ids));
     }

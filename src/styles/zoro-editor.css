@@ -1,7 +1,7 @@
 /* ==========================================================================
-   ZoroEditor — editör + Zoro Finder stilleri
-   Tüm kurallar .zoro-root altında kapsüllenir; sitenin CSS'ine sızmaz.
-   Renkleri değiştirmek için --zoro-* değişkenlerini ez.
+   ZoroEditor — editor + Zoro Finder styles
+   All rules are scoped under .zoro-root and don't leak into the site's CSS.
+   Override the --zoro-* variables to change colors.
    ========================================================================== */
 
 .zoro-root {
@@ -83,7 +83,7 @@
   }
 }
 
-/* Dokunmatik ekranlarda daha büyük hedefler */
+/* Larger targets on touch screens */
 @media (pointer: coarse) {
   .zoro-root { --zoro-btn-size: 40px; }
 }
@@ -92,12 +92,12 @@
 .zoro-root *::before,
 .zoro-root *::after { box-sizing: border-box; }
 .zoro-root [hidden] { display: none !important; }
-:where(.zoro-root) button { font: inherit; color: inherit; } /* özgüllük 0: .zoro-btn-* renkleri ezilmesin */
+:where(.zoro-root) button { font: inherit; color: inherit; } /* specificity 0 so .zoro-btn-* colors aren't overridden */
 .zoro-root svg { flex-shrink: 0; }
 
 body.zoro-scroll-lock { overflow: hidden; }
 
-/* Kaydırma çubukları: ince, yuvarlak, ok düğmesi yok */
+/* Scrollbars: thin, rounded, no arrow buttons */
 .zoro-root, .zoro-root * {
   scrollbar-width: thin;
   scrollbar-color: color-mix(in srgb, var(--zoro-text) 22%, transparent) transparent;
@@ -114,7 +114,7 @@ body.zoro-scroll-lock { overflow: hidden; }
 .zoro-root ::-webkit-scrollbar-thumb:hover, .zoro-root::-webkit-scrollbar-thumb:hover { background-color: color-mix(in srgb, var(--zoro-text) 38%, transparent); }
 
 /* ==========================================================================
-   Sarmalayıcı
+   Wrapper
    ========================================================================== */
 .zoro-editor-wrapper {
   container-type: inline-size;
@@ -137,13 +137,13 @@ body.zoro-scroll-lock { overflow: hidden; }
   border: 1px solid var(--zoro-border);
   border-radius: 2px;
   background: var(--zoro-editor-bg);
-  /* overflow kullanmıyoruz: yapışık araç çubuğu çalışsın */
+  /* no overflow here so the sticky toolbar works */
 }
 
 .zoro-editor-wrapper.zoro-focused .zoro-frame { border-color: var(--zoro-border-strong); }
 
 /* ==========================================================================
-   Araç çubuğu
+   Toolbar
    ========================================================================== */
 .zoro-toolbar {
   background: var(--zoro-bg);
@@ -232,7 +232,7 @@ body.zoro-scroll-lock { overflow: hidden; }
   box-shadow: none;
 }
 
-/* Blok türü seçici */
+/* Block type picker */
 .zoro-select-wrapper { position: relative; margin: 1px 4px 1px 1px; }
 
 .zoro-select-trigger {
@@ -286,7 +286,7 @@ body.zoro-scroll-lock { overflow: hidden; }
 .zoro-select-shortcut { font-size: 11px; color: var(--zoro-text-lighter); white-space: nowrap; }
 @media (pointer: coarse) { .zoro-select-shortcut { display: none; } }
 
-/* Form alanı açılır menüsü (Finder filtreleri, eylem menüleri) */
+/* Form field dropdown (Finder filters, action menus) */
 .zoro-select-wrapper-field { margin: 0; }
 .zoro-select-field {
   display: inline-flex;
@@ -331,7 +331,7 @@ body.zoro-scroll-lock { overflow: hidden; }
 .zoro-skin-modern .zoro-select-dropdown-field .zoro-select-option.active { background: transparent; color: var(--zoro-text); }
 .zoro-skin-modern .zoro-select-dropdown-field .zoro-select-option.focused { background: var(--zoro-hover); }
 
-/* Görsel / Kaynak */
+/* Visual / Source */
 .zoro-tab-toggle {
   display: inline-flex;
   align-items: stretch;
@@ -357,7 +357,7 @@ body.zoro-scroll-lock { overflow: hidden; }
 .zoro-tab-toggle-divider { width: 1px; background: var(--zoro-border); }
 
 /* ==========================================================================
-   İçerik alanı
+   Content area
    ========================================================================== */
 .zoro-content {
   cursor: text;
@@ -425,7 +425,7 @@ body.zoro-scroll-lock { overflow: hidden; }
 .zoro-root .zoro-prose mark { padding: 0 0.1em; border-radius: 2px; color: inherit; }
 .zoro-root .zoro-prose [style*="text-align: center"] { text-align: center; }
 
-/* Yer tutucu */
+/* Placeholder */
 .zoro-root .zoro-prose p.is-editor-empty:first-child::before {
   content: attr(data-placeholder);
   float: left;
@@ -434,7 +434,7 @@ body.zoro-scroll-lock { overflow: hidden; }
   pointer-events: none;
 }
 
-/* Seçim / imleç */
+/* Selection / cursor */
 .zoro-root .zoro-prose .ProseMirror-gapcursor { position: relative; display: none; pointer-events: none; }
 .zoro-root .zoro-prose.ProseMirror-focused .ProseMirror-gapcursor { display: block; }
 .zoro-root .zoro-prose .ProseMirror-gapcursor::after {
@@ -447,7 +447,7 @@ body.zoro-scroll-lock { overflow: hidden; }
 }
 .zoro-root .zoro-prose .ProseMirror-hideselection *::selection { background: transparent; }
 
-/* Tablolar */
+/* Tables */
 .zoro-root .zoro-prose .tableWrapper { overflow-x: auto; overflow-y: hidden; margin: 1em 0; padding-bottom: 2px; -webkit-overflow-scrolling: touch; }
 .zoro-root .zoro-prose table { border-collapse: collapse; width: 100%; table-layout: fixed; margin: 0; }
 .zoro-root .zoro-prose td, .zoro-root .zoro-prose th {
@@ -482,7 +482,7 @@ body.zoro-scroll-lock { overflow: hidden; }
 .zoro-root .zoro-prose div[data-youtube-video] iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; border-radius: var(--zoro-radius); }
 .zoro-root .zoro-prose div[data-youtube-video].ProseMirror-selectednode { outline: 3px solid var(--zoro-primary); outline-offset: 2px; }
 
-/* Kaynak (HTML) görünümü */
+/* Source (HTML) view */
 .zoro-source {
   display: block;
   width: 100%;
@@ -499,7 +499,7 @@ body.zoro-scroll-lock { overflow: hidden; }
   tab-size: 2;
 }
 
-/* Durum çubuğu */
+/* Status bar */
 .zoro-status-bar {
   display: flex;
   justify-content: flex-end;
@@ -513,7 +513,7 @@ body.zoro-scroll-lock { overflow: hidden; }
 }
 .zoro-status-bar .zoro-limit { color: var(--zoro-danger); font-weight: 600; }
 
-/* Taslak bildirimi */
+/* Draft notice */
 .zoro-draft-bar {
   display: flex;
   flex-wrap: wrap;
@@ -526,11 +526,11 @@ body.zoro-scroll-lock { overflow: hidden; }
   font-size: 13px;
 }
 
-/* Salt okunur */
+/* Read-only */
 .zoro-readonly .zoro-toolbar, .zoro-readonly .zoro-topbar { display: none; }
 .zoro-readonly .zoro-content { cursor: default; }
 
-/* Tam ekran */
+/* Fullscreen */
 .zoro-editor-wrapper.zoro-fullscreen {
   position: fixed;
   inset: 0;
@@ -549,10 +549,10 @@ body.zoro-scroll-lock { overflow: hidden; }
 .zoro-fullscreen .zoro-prose { max-width: 860px; margin: 0 auto; min-height: 100%; }
 
 /* ==========================================================================
-   Görsel düğümü
+   Image node
    ========================================================================== */
 .zoro-image-wrapper { display: block; margin: 1em 0; line-height: 0; }
-/* WordPress alignleft / alignright: metin görselin yanından akar */
+/* WordPress alignleft / alignright: text flows beside the image */
 .zoro-image-wrapper[data-alignment="left"] { float: left; margin: 0.25em 1.5em 1em 0; max-width: 100%; }
 .zoro-image-wrapper[data-alignment="right"] { float: right; margin: 0.25em 0 1em 1.5em; max-width: 100%; }
 .zoro-root .zoro-prose::after { content: ""; display: table; clear: both; }
@@ -664,7 +664,7 @@ body.zoro-scroll-lock { overflow: hidden; }
 }
 
 /* ==========================================================================
-   Açılır kutular (body'ye eklenir)
+   Popovers (appended to body)
    ========================================================================== */
 .zoro-popover {
   position: fixed;
@@ -829,7 +829,7 @@ body.zoro-scroll-lock { overflow: hidden; }
 }
 .zoro-confirm-text { margin: 0; }
 
-/* Mobilde dialoglar alttan açılan tam ekran sayfa olur */
+/* On mobile, dialogs become full-screen bottom sheets */
 @media (max-width: 640px) {
   .zoro-dialog-overlay { padding: 0; align-items: flex-end; }
   .zoro-dialog { max-width: none !important; max-height: 100dvh; border-radius: 12px 12px 0 0; animation-name: zoro-sheet; }
@@ -841,7 +841,7 @@ body.zoro-scroll-lock { overflow: hidden; }
 }
 
 /* ==========================================================================
-   Form öğeleri
+   Form elements
    ========================================================================== */
 .zoro-form { display: flex; flex-direction: column; gap: 16px; }
 .zoro-field { display: flex; flex-direction: column; gap: 6px; }
@@ -899,7 +899,7 @@ select.zoro-input { cursor: pointer; padding-right: 28px; }
 .zoro-checkbox-group input[type="checkbox"]:focus { outline: none; }
 .zoro-checkbox-group input[type="checkbox"]:focus-visible { box-shadow: 0 0 0 2px var(--zoro-primary); }
 .zoro-checkbox-group input[type="checkbox"]:disabled { opacity: 0.5; cursor: not-allowed; }
-/* Sayı alanlarındaki tarayıcı oklarını gizle */
+/* Hide the browser's spinner arrows on number fields */
 .zoro-root input[type="number"]::-webkit-inner-spin-button, .zoro-root input[type="number"]::-webkit-outer-spin-button { -webkit-appearance: none; margin: 0; }
 .zoro-root input[type="number"] { -moz-appearance: textfield; appearance: textfield; }
 .zoro-size-row { align-items: center; gap: 8px; margin-top: 8px; }
@@ -932,7 +932,7 @@ select.zoro-input { cursor: pointer; padding-right: 28px; }
 }
 
 /* ==========================================================================
-   Düğmeler
+   Buttons
    ========================================================================== */
 .zoro-btn {
   display: inline-flex;
@@ -984,10 +984,10 @@ select.zoro-input { cursor: pointer; padding-right: 28px; }
 }
 
 /* ==========================================================================
-   Sekmeler
+   Tabs
    ========================================================================== */
 .zoro-tabs { display: flex; flex-direction: column; height: 100%; min-height: 0; }
-/* Alt çizgi gölgeyle çizilir: taşma ve gereksiz kaydırma çubuğu oluşmaz */
+/* The underline is drawn with a shadow: no overflow or needless scrollbar */
 .zoro-tabs-list { display: flex; gap: 4px; flex-shrink: 0; box-shadow: inset 0 -1px 0 var(--zoro-border); }
 .zoro-tab {
   display: inline-flex;
@@ -1094,7 +1094,7 @@ select.zoro-input { cursor: pointer; padding-right: 28px; }
 .zoro-media-empty p { margin: 0; font-size: 14px; }
 .zoro-center { display: flex; justify-content: center; padding: 16px 0; }
 
-/* Ayrıntı paneli (WordPress "Ek ayrıntıları") */
+/* Details panel (WordPress "Attachment details") */
 .zoro-finder-details { display: none; }
 .zoro-finder-body.has-details .zoro-finder-details {
   position: relative;
@@ -1119,13 +1119,13 @@ select.zoro-input { cursor: pointer; padding-right: 28px; }
 .zoro-details-edit .zoro-btn { align-self: flex-start; }
 .zoro-details-actions { justify-content: flex-start; }
 
-/* Alt çubuk */
+/* Bottom bar */
 .zoro-finder-footer { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px; }
 .zoro-finder-footer-left { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; min-width: 0; }
 .zoro-finder-selected { font-weight: 600; font-size: 13px; }
 .zoro-finder-count { color: var(--zoro-text-lighter); font-size: 13px; }
 
-/* Yükleme */
+/* Upload */
 .zoro-dropzone {
   display: flex;
   flex-direction: column;
@@ -1156,7 +1156,7 @@ select.zoro-input { cursor: pointer; padding-right: 28px; }
 .zoro-progress-bar.error { background: var(--zoro-danger); }
 .zoro-truncate { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; min-width: 0; }
 
-/* Finder mobil: ayrıntılar ızgaranın altında (alt düğmeleri örtmez) */
+/* Finder on mobile: details below the grid (doesn't cover the bottom buttons) */
 @media (max-width: 760px) {
   .zoro-finder-body { flex-direction: column; gap: 0; }
   .zoro-finder-body.has-details .zoro-finder-details {
@@ -1178,7 +1178,7 @@ select.zoro-input { cursor: pointer; padding-right: 28px; }
   .zoro-finder-filters .zoro-select-field { width: 100%; max-width: none; }
 }
 
-/* Bildirim */
+/* Toast */
 .zoro-toast-host {
   position: fixed;
   left: 50%;
@@ -1208,7 +1208,7 @@ select.zoro-input { cursor: pointer; padding-right: 28px; }
 .zoro-toast.leaving { opacity: 0; transform: translateY(6px); transition: opacity 180ms ease-in, transform 180ms ease-in; }
 
 /* ==========================================================================
-   Dar editör (container query): kenar çubuğu, mobil
+   Narrow editor (container query): sidebar, mobile
    ========================================================================== */
 @container zoro (max-width: 560px) {
   .zoro-select-trigger { min-width: 110px; }
@@ -1235,7 +1235,7 @@ select.zoro-input { cursor: pointer; padding-right: 28px; }
 }
 
 /* ==========================================================================
-   Ortak cilalar (iki görünüm)
+   Shared polish (both skins)
    ========================================================================== */
 .zoro-root {
   --zoro-active-bg: #f0f0f1;
@@ -1247,12 +1247,12 @@ select.zoro-input { cursor: pointer; padding-right: 28px; }
 .zoro-frame { transition: border-color 150ms ease-out, box-shadow 150ms ease-out; }
 .zoro-group + .zoro-group { margin-left: 4px; }
 
-/* Durum çubuğu: sol öğe yolu, sağ sayaçlar */
+/* Status bar: element path on the left, counters on the right */
 .zoro-status-bar { justify-content: space-between; align-items: center; }
 .zoro-path { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-family: var(--zoro-mono); font-size: 11px; letter-spacing: 0.01em; color: var(--zoro-text-lighter); }
 .zoro-counts { display: flex; gap: 14px; flex-shrink: 0; font-variant-numeric: tabular-nums; }
 
-/* Taslak bildirimi: ince, tek satır */
+/* Draft notice: slim, single line */
 .zoro-draft-bar {
   display: flex;
   flex-wrap: nowrap;
@@ -1297,7 +1297,7 @@ select.zoro-input { cursor: pointer; padding-right: 28px; }
 .zoro-icon-action:hover, .zoro-icon-action:focus-visible { background: var(--zoro-hover); color: var(--zoro-text); outline: none; }
 .zoro-icon-action svg { width: 16px; height: 16px; }
 
-/* Bağlantı kutusu (bağlam araç çubuğu) */
+/* Link box (context toolbar) */
 .zoro-link-popover { padding: 6px; }
 .zoro-link-row { gap: 4px; }
 .zoro-link-field {
@@ -1322,11 +1322,11 @@ select.zoro-input { cursor: pointer; padding-right: 28px; }
 .zoro-link-btn.zoro-link-apply { background: var(--zoro-primary); color: var(--zoro-primary-contrast); }
 .zoro-link-btn.zoro-link-apply:hover, .zoro-link-btn.zoro-link-apply:focus-visible { background: var(--zoro-primary-hover); color: var(--zoro-primary-contrast); }
 
-/* Dialog kapatma: simge düğmesi */
+/* Dialog close: icon button */
 .zoro-dialog-close { display: inline-flex; align-items: center; justify-content: center; font-size: 0; }
 
 /* ==========================================================================
-   Modern görünüm (skin: "modern") — TinyMCE Premium tadında, Zoro'ya özgü
+   Modern skin (skin: "modern") — TinyMCE Premium flavor, Zoro's own
    ========================================================================== */
 .zoro-root.zoro-skin-modern {
   --zoro-primary: #1a5fd6;
@@ -1397,7 +1397,7 @@ select.zoro-input { cursor: pointer; padding-right: 28px; }
   }
 }
 
-/* Çerçeve */
+/* Frame */
 .zoro-skin-modern .zoro-frame {
   border-color: var(--zoro-border);
   border-radius: 12px;
@@ -1405,7 +1405,7 @@ select.zoro-input { cursor: pointer; padding-right: 28px; }
 }
 .zoro-skin-modern.zoro-focused .zoro-frame { border-color: var(--zoro-border-strong); }
 
-/* Araç çubuğu */
+/* Toolbar */
 .zoro-skin-modern .zoro-toolbar { background: var(--zoro-surface); border-bottom-color: var(--zoro-border); border-radius: 12px 12px 0 0; }
 .zoro-skin-modern .zoro-toolbar-row { padding: 5px 6px; gap: 2px; }
 .zoro-skin-modern .zoro-row2 { background: var(--zoro-bg); border-top: 1px solid var(--zoro-border); }
@@ -1438,7 +1438,7 @@ select.zoro-input { cursor: pointer; padding-right: 28px; }
 .zoro-skin-modern .zoro-toolbar-btn-active svg { opacity: 1; }
 .zoro-skin-modern .zoro-toolbar-btn:disabled { opacity: 0.32; }
 
-/* Blok seçici: menü düğmesi */
+/* Block picker: menu button */
 .zoro-skin-modern .zoro-select-wrapper { margin: 0 2px 0 0; }
 .zoro-skin-modern .zoro-select-trigger {
   min-width: 132px;
@@ -1457,16 +1457,16 @@ select.zoro-input { cursor: pointer; padding-right: 28px; }
 .zoro-skin-modern .zoro-select-option { padding: 8px 10px; border-radius: 6px; }
 .zoro-skin-modern .zoro-select-option.active { background: var(--zoro-active-bg); color: var(--zoro-active-fg); }
 
-/* Görsel / Kaynak: kayan anahtar */
+/* Visual / Source: sliding switch */
 .zoro-skin-modern .zoro-tab-toggle { height: calc(var(--zoro-btn-size) - 2px); padding: 3px; border: 0; border-radius: 8px; background: var(--zoro-hover); }
 .zoro-skin-modern .zoro-tab-toggle button { padding: 0 10px; border-radius: 6px; color: var(--zoro-text-muted); font-weight: 500; transition: background-color 120ms ease-out, color 120ms ease-out, box-shadow 120ms ease-out; }
 .zoro-skin-modern .zoro-tab-toggle button.active { background: var(--zoro-surface); color: var(--zoro-text); font-weight: 600; box-shadow: 0 1px 2px rgba(16, 24, 40, 0.12), 0 0 0 1px rgba(16, 24, 40, 0.04); }
 .zoro-skin-modern .zoro-tab-toggle-divider { display: none; }
 
-/* Üst çubuk (Ortam ekle) */
+/* Top bar (Add Media) */
 .zoro-skin-modern .zoro-topbar { margin-bottom: 10px; }
 
-/* İçerik tipografisi */
+/* Content typography */
 .zoro-skin-modern .zoro-content { border-radius: 0 0 12px 12px; }
 .zoro-root.zoro-skin-modern .zoro-prose { padding: 26px 34px 32px; font-size: 16.5px; line-height: 1.75; }
 .zoro-root.zoro-skin-modern .zoro-prose h1,
@@ -1492,12 +1492,12 @@ select.zoro-input { cursor: pointer; padding-right: 28px; }
 .zoro-root.zoro-skin-modern .zoro-prose th { background: var(--zoro-bg); }
 .zoro-root.zoro-skin-modern .zoro-prose p.is-editor-empty:first-child::before { color: var(--zoro-text-lighter); }
 
-/* Kaynak görünümü + durum çubuğu */
+/* Source view + status bar */
 .zoro-skin-modern .zoro-source { padding: 20px 26px; background: var(--zoro-bg); }
 .zoro-skin-modern .zoro-status-bar { padding: 6px 14px; border-top-color: var(--zoro-border); background: var(--zoro-surface); color: var(--zoro-text-lighter); border-radius: 0 0 12px 12px; }
 .zoro-skin-modern .zoro-draft-bar { padding-left: 16px; }
 
-/* Düğmeler, alanlar */
+/* Buttons, fields */
 .zoro-skin-modern .zoro-btn { border-radius: 8px; font-weight: 600; }
 .zoro-skin-modern .zoro-btn-primary { box-shadow: 0 1px 2px rgba(16, 24, 40, 0.12); }
 .zoro-skin-modern .zoro-btn-secondary { background: var(--zoro-surface); border-color: var(--zoro-border-strong); color: var(--zoro-text); box-shadow: 0 1px 2px rgba(16, 24, 40, 0.06); }
@@ -1510,7 +1510,7 @@ select.zoro-input { cursor: pointer; padding-right: 28px; }
 .zoro-skin-modern .zoro-segment { border-radius: 8px; border-color: var(--zoro-border-strong); }
 .zoro-skin-modern .zoro-label { font-weight: 600; font-size: 13px; color: var(--zoro-text-muted); }
 
-/* Açılır kutular */
+/* Popovers */
 .zoro-skin-modern.zoro-popover { padding: 8px; border: 0; border-radius: 12px; box-shadow: var(--zoro-shadow-sm); }
 .zoro-skin-modern.zoro-link-popover { padding: 6px; }
 .zoro-skin-modern .zoro-menu-item { padding: 9px 12px; border-radius: 6px; }
@@ -1518,7 +1518,7 @@ select.zoro-input { cursor: pointer; padding-right: 28px; }
 .zoro-skin-modern .zoro-char-btn { border-radius: 6px; border-color: var(--zoro-border); }
 .zoro-skin-modern .zoro-table-cell { border-radius: 3px; border-color: var(--zoro-border-strong); }
 
-/* Dialoglar */
+/* Dialogs */
 .zoro-skin-modern.zoro-dialog-overlay { background: var(--zoro-overlay); backdrop-filter: blur(3px); -webkit-backdrop-filter: blur(3px); }
 .zoro-skin-modern .zoro-dialog { border-radius: 14px; box-shadow: var(--zoro-shadow); }
 .zoro-skin-modern .zoro-dialog-header { padding: 14px 12px 14px 22px; border-bottom-color: var(--zoro-border); }
@@ -1541,21 +1541,21 @@ select.zoro-input { cursor: pointer; padding-right: 28px; }
 .zoro-skin-modern .zoro-upload-item { border-radius: 10px; border-color: var(--zoro-border); }
 .zoro-skin-modern .zoro-progress { height: 6px; border-radius: 3px; }
 
-/* Görsel düğümü */
+/* Image node */
 .zoro-skin-modern .zoro-image-container img { border-radius: 6px; }
 .zoro-skin-modern.zoro-image-toolbar { padding: 4px; border: 0; border-radius: 10px; box-shadow: var(--zoro-shadow-sm); }
 .zoro-skin-modern .zoro-image-toolbar-btn { border-radius: 6px; color: var(--zoro-text); }
 .zoro-skin-modern .zoro-image-toolbar-btn.active { background: var(--zoro-active-bg); color: var(--zoro-active-fg); }
 
-/* Bildirim */
+/* Toast */
 .zoro-skin-modern .zoro-toast { border-radius: 10px; padding: 11px 16px; }
 
-/* Dar editör (modern) */
+/* Narrow editor (modern) */
 @container zoro (max-width: 560px) {
   .zoro-root.zoro-skin-modern .zoro-prose { padding: 16px 16px 20px; }
   .zoro-skin-modern .zoro-select-trigger { min-width: 104px; }
   .zoro-path { display: none; }
-  /* Dar alanda satır başına düşen ayraçlar kötü durur: çizgi yerine boşluk */
+  /* Separators wrapping to a line start look bad in narrow space: use a gap instead of a line */
   .zoro-skin-modern .zoro-group + .zoro-group { padding-left: 3px; }
   .zoro-skin-modern .zoro-group + .zoro-group::before { display: none; }
 }
@@ -1565,11 +1565,11 @@ select.zoro-input { cursor: pointer; padding-right: 28px; }
   .zoro-skin-modern .zoro-dialog-footer { border-radius: 0; }
 }
 
-/* Yapışık araç çubuğu: sayfa kayınca hafif gölge */
+/* Sticky toolbar: subtle shadow when the page scrolls */
 .zoro-sticky .zoro-toolbar { transition: box-shadow 150ms ease-out; }
 .zoro-stuck .zoro-toolbar { box-shadow: 0 1px 0 var(--zoro-border), 0 8px 16px -10px rgba(16, 24, 40, 0.28); }
 
-/* İpuçları */
+/* Tooltips */
 .zoro-tooltip {
   position: fixed;
   z-index: 100030;
@@ -1599,7 +1599,7 @@ select.zoro-input { cursor: pointer; padding-right: 28px; }
 }
 .zoro-tooltip.zoro-theme-dark { background: #3a3f48; }
 
-/* "/" komut menüsü */
+/* "/" command menu */
 .zoro-slash {
   position: fixed;
   z-index: 100009;
@@ -1644,7 +1644,7 @@ select.zoro-input { cursor: pointer; padding-right: 28px; }
 .zoro-slash-text small { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: 12px; color: var(--zoro-text-lighter); }
 .zoro-slash-empty { padding: 10px 12px; color: var(--zoro-text-lighter); font-size: 13px; }
 
-/* Bağlam araç çubuğu (tablo) */
+/* Context toolbar (table) */
 .zoro-context-bar {
   position: fixed;
   z-index: 99995;
@@ -1666,7 +1666,7 @@ select.zoro-input { cursor: pointer; padding-right: 28px; }
 .zoro-root .zoro-danger-btn:hover:not(:disabled) { color: var(--zoro-danger) !important; }
 .zoro-skin-modern.zoro-context-bar { padding: 4px; border: 0; border-radius: 10px; }
 
-/* Baloncuk menü (seçili metnin üstünde) */
+/* Bubble menu (above selected text) */
 .zoro-bubble {
   position: fixed;
   z-index: 100008;
@@ -1699,7 +1699,7 @@ select.zoro-input { cursor: pointer; padding-right: 28px; }
 
 
 /* ==========================================================================
-   Animasyonlar (kısa, ease-out; hareketi azalt tercihine saygı)
+   Animations (short, ease-out; respects reduced-motion preference)
    ========================================================================== */
 @keyframes zoro-pop { from { opacity: 0; transform: translateY(-4px) scale(0.98); } to { opacity: 1; transform: none; } }
 @keyframes zoro-rise { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }

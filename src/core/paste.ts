@@ -1,9 +1,9 @@
 /**
- * Yapıştırma temizliği — Word (masaüstü/Online), Google Docs, Google Sheets, Excel, LibreOffice.
+ * Paste cleanup — Word (desktop/Online), Google Docs, Google Sheets, Excel, LibreOffice.
  *
- * DOM üzerinde çalışır (regex iç içe span'larda bozulur). Kurallar; CKEditor, TinyMCE, Quill (BSD-3),
- * SunEditor (MIT) ve Jodit (MIT) incelenerek davranış tarifi olarak yeniden yazılmıştır, kod kopyalanmamıştır.
- * Word'ün `mso-list` / `@list` biçimi dosya formatı olgusudur.
+ * Works on the DOM (regex breaks on nested spans). The rules were rewritten as behavior specs after studying
+ * CKEditor, TinyMCE, Quill (BSD-3), SunEditor (MIT) and Jodit (MIT); no code was copied.
+ * Word's `mso-list` / `@list` syntax is a fact of the file format.
  */
 
 export type PasteSource = 'word' | 'gdocs' | 'sheets' | 'excel' | 'html';
@@ -11,7 +11,7 @@ export type PasteSource = 'word' | 'gdocs' | 'sheets' | 'excel' | 'html';
 export interface PasteResult {
   html: string;
   source: PasteSource;
-  /** Word'ün yerel diskteki (file:///) görselleri: tarayıcı bunları okuyamaz. */
+  /** Word images on the local disk (file:///): the browser can't read them. */
   droppedLocalImages: number;
 }
 
@@ -34,7 +34,7 @@ function parseListStyles(css: string): Map<string, ListDef> {
     const body = m[3]!;
     const fmt = /mso-level-number-format:\s*([\w-]+)/i.exec(body)?.[1]?.toLowerCase();
     const start = /mso-level-start-at:\s*(\d+)/i.exec(body)?.[1];
-    // Biçim belirtilmemişse Word varsayılanı ondalık numaradır
+    // Without an explicit format, Word defaults to decimal numbering
     const ordered = fmt ? !['bullet', 'image', 'none'].includes(fmt) : true;
     map.set(`${m[1]}:${m[2]}`, { ordered, start: start ? +start : undefined });
   }
@@ -78,12 +78,12 @@ function isTransparent(v: string): boolean {
   return /^(transparent|#fff(fff)?|white|rgb\(\s*255\s*,\s*255\s*,\s*255\s*\)|rgba\(.*,\s*0\s*\)|initial|inherit|auto|none)$/i.test(v.trim());
 }
 
-/** Word list paragraflarını gerçek ul/ol yapısına çevirir. */
+/** Converts Word list paragraphs into real ul/ol structure. */
 function convertWordLists(doc: Document, defs: Map<string, ListDef>) {
   const items = Array.from(doc.body.querySelectorAll<HTMLElement>('p, h1, h2, h3, h4, h5, h6, div')).filter((el) => {
     const st = styleOf(el);
     if (/mso-list:\s*l\d+/.test(st)) return true;
-    // Yedek: Word Online / mso-list'siz çıktılar
+    // Fallback: Word Online / output without mso-list
     return /MsoListParagraph/i.test(el.className) && !!markerInfo(el.textContent ?? '');
   });
   if (!items.length) return;
@@ -91,7 +91,7 @@ function convertWordLists(doc: Document, defs: Map<string, ListDef>) {
   const processed = new Set<Element>();
   for (const first of items) {
     if (processed.has(first)) continue;
-    // Ardışık kardeş liste paragraflarından bir "koşu" oluştur
+    // Build a "run" from consecutive sibling list paragraphs
     const run: HTMLElement[] = [];
     let cur: Element | null = first;
     while (cur && items.includes(cur as HTMLElement)) {
@@ -116,7 +116,7 @@ function convertWordLists(doc: Document, defs: Map<string, ListDef>) {
       const fromMarker = markerInfo(markerText || (el.textContent ?? ''));
       if (!def) def = fromMarker ?? { ordered: false };
       if (!marker && !m && fromMarker) {
-        // mso-list yoksa işaretçi metnin başında: sil
+        // Without mso-list the marker is at the start of the text: remove it
         const walker = doc.createTreeWalker(el, NodeFilter.SHOW_TEXT);
         const tn = walker.nextNode();
         if (tn) tn.textContent = tn.textContent!.replace(def.ordered ? NUMBER_RE : BULLET_RE, '').replace(/^[•·§●○▪]\s*/, '');
@@ -144,10 +144,10 @@ function convertWordLists(doc: Document, defs: Map<string, ListDef>) {
   }
 }
 
-/** Satır içi stilleri anlamsal etiketlere çevir (Google Docs, Word, LibreOffice). */
+/** Convert inline styles to semantic tags (Google Docs, Word, LibreOffice). */
 function convertInlineStyles(doc: Document) {
   const spans = Array.from(doc.body.querySelectorAll<HTMLElement>('span, font'));
-  // İçten dışa: iç içe span'lar doğru kapansın
+  // Inside out, so nested spans close correctly
   for (const el of spans.reverse()) {
     if (!el.isConnected) continue;
     const st = styleOf(el);
@@ -173,7 +173,7 @@ function convertInlineStyles(doc: Document) {
       inner = w;
     }
     if (keep.length) {
-      // Arka plan rengi editörde "vurgu" (mark) olarak tutulur
+      // Background color is kept as a "highlight" (mark) in the editor
       let target: Node = inner;
       const fg = keep.find((k) => k.startsWith('color'));
       const back = keep.find((k) => k.startsWith('background'));
@@ -224,18 +224,18 @@ function cleanAttributes(doc: Document) {
   }
 }
 
-/** Ana giriş: tarayıcıda DOM ile, DOM yoksa (SSR) regex yedeğiyle. */
+/** Main entry: uses the DOM in the browser, a regex fallback without a DOM (SSR). */
 export function cleanPasted(input: string): PasteResult {
   const source = detectSource(input);
   if (typeof DOMParser === 'undefined') return { html: cleanPastedRegex(input), source, droppedLocalImages: 0 };
 
   let html = input
     .replace(/<!--(Start|End)Fragment-->/gi, '')
-    // "downlevel-revealed" koşullu bloklar: <![if !supportLists]>·&nbsp;<![endif]>
+    // "downlevel-revealed" conditional blocks: <![if !supportLists]>·&nbsp;<![endif]>
     .replace(/<!\[if !supportLists\]>/gi, '<span style="mso-list:Ignore">')
     .replace(/<!\[endif\]>/gi, '</span>')
     .replace(/<!\[if[^\]]*\]>/gi, '<span>')
-    // Gizli koşullu yorumlar: liste işaretçisini (içerik) koru, diğerlerini sil
+    // Hidden conditional comments: keep the list marker (content), remove the rest
     .replace(/<!--\[if !supportLists\]-->/gi, '')
     .replace(/<!--\[if[\s\S]*?<!\[endif\]-->/gi, '')
     .replace(/<!--\[endif\]-->/gi, '');
@@ -246,10 +246,10 @@ export function cleanPasted(input: string): PasteResult {
   const doc = new DOMParser().parseFromString(html, 'text/html');
   const body = doc.body;
 
-  // Gereksiz / tehlikeli öğeler
+  // Unneeded / dangerous elements
   body.querySelectorAll('style, meta, link, script, title, xml, template, noscript').forEach((n) => n.remove());
   body.querySelectorAll('[style*="mso-element:comment"], [style*="mso-element: comment"], .msocomtxt, .MsoCommentReference').forEach((n) => n.remove());
-  // Ad alanlı Word öğeleri (o:p, w:sdt, v:shape...)
+  // Namespaced Word elements (o:p, w:sdt, v:shape...)
   for (const el of Array.from(body.getElementsByTagName('*'))) {
     if (!el.tagName.includes(':')) continue;
     const t = el.tagName.toLowerCase();
@@ -259,9 +259,9 @@ export function cleanPasted(input: string): PasteResult {
   body.querySelectorAll('br.Apple-interchange-newline').forEach((n) => n.remove());
   body.querySelectorAll('.Apple-converted-space').forEach((n) => n.replaceWith(doc.createTextNode(' ')));
   body.querySelectorAll('b[id^="docs-internal-guid"], google-sheets-html-origin').forEach((n) => unwrap(n));
-  body.querySelectorAll('a[name]:not([href])').forEach((n) => unwrap(n)); // Word yer imleri (_Toc, _Hlk)
+  body.querySelectorAll('a[name]:not([href])').forEach((n) => unwrap(n)); // Word bookmarks (_Toc, _Hlk)
 
-  // Yerel disk görselleri
+  // Local disk images
   let droppedLocalImages = 0;
   body.querySelectorAll('img').forEach((img) => {
     const src = img.getAttribute('src') ?? '';
@@ -278,13 +278,13 @@ export function cleanPasted(input: string): PasteResult {
     for (let l = 1; l <= 6; l++) body.querySelectorAll(`p.MsoHeading${l}, p[class^="MsoHeading${l}"]`).forEach((p) => rename(p, `h${l}`));
   }
 
-  // Google Docs: li > p sarmalayıcıları ve bloklar arası tek <br>
+  // Google Docs: li > p wrappers and single <br> between blocks
   body.querySelectorAll('li > p:only-child').forEach((p) => unwrap(p));
   if (source === 'gdocs') {
     for (const br of Array.from(body.children).filter((c) => c.tagName === 'BR')) br.replaceWith(doc.createElement('p'));
   }
 
-  // Tablolar: sıfır genişlikler, colgroup, hizalama sarmalayıcıları
+  // Tables: zero widths, colgroup, alignment wrappers
   body.querySelectorAll('colgroup, col').forEach((n) => n.remove());
   body.querySelectorAll('div[align] > table').forEach((t) => unwrap(t.parentElement!));
   body.querySelectorAll('td > p:only-child, th > p:only-child').forEach((p) => {
@@ -294,10 +294,10 @@ export function cleanPasted(input: string): PasteResult {
   convertInlineStyles(doc);
   cleanAttributes(doc);
 
-  // Boş span/font ve anlamsız sarmalayıcılar
+  // Empty span/font and meaningless wrappers
   body.querySelectorAll('span:not([style]), font').forEach((n) => unwrap(n));
 
-  // &nbsp; yığınları (Word her boşluğu nbsp yapar)
+  // &nbsp; runs (Word turns every space into nbsp)
   const walker = doc.createTreeWalker(body, NodeFilter.SHOW_TEXT);
   for (let n = walker.nextNode(); n; n = walker.nextNode()) {
     if (n.parentElement?.closest('pre, code')) continue;
@@ -307,7 +307,7 @@ export function cleanPasted(input: string): PasteResult {
   return { html: body.innerHTML.trim(), source, droppedLocalImages };
 }
 
-/** DOM olmayan ortam için (SSR, eski testler) basit regex temizliği. */
+/** Simple regex cleanup for environments without a DOM (SSR, old tests). */
 export function cleanPastedRegex(html: string): string {
   let h = html;
   h = h.replace(/<b[^>]*id="docs-internal-guid[^"]*"[^>]*>([\s\S]*?)<\/b>/gi, '$1');

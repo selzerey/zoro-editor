@@ -1477,7 +1477,7 @@ var U = class extends Error {
 		this.folders.add(e);
 	}
 	async deleteFolder(e) {
-		if (this.items.some((t) => t.folder === e)) throw new U("Klasör boş değil", 409);
+		if (this.items.some((t) => t.folder === e)) throw new U("Folder is not empty", 409);
 		this.folders.delete(e);
 	}
 };
@@ -1533,7 +1533,7 @@ var Ee = class {
 			t.length && (e.preventDefault(), this.tabs?.setActive("upload"), this.addFiles(t));
 		}, this.t = e.messages ?? w(e.locale);
 		let t = Te(e);
-		if (!t) throw Error("ZoroFinder: \"adapter\" ya da \"endpoint\" gerekli.");
+		if (!t) throw Error("ZoroFinder: an \"adapter\" or \"endpoint\" option is required.");
 		this.adapter = t, this.themeClass = e.themeClass ?? [`zoro-skin-${e.skin === "classic" ? "classic" : "modern"}`, e.theme && e.theme !== "light" ? `zoro-theme-${e.theme}` : ""].filter(Boolean).join(" "), this.view = Ce("view", "grid") === "list" ? "list" : "grid", this.params = {
 			page: 1,
 			limit: Se,
@@ -3212,9 +3212,9 @@ var jt = class {
 				return;
 			}
 			r < 0 || (e.preventDefault(), t[n].setAttribute("tabindex", "-1"), t[r].setAttribute("tabindex", "0"), t[r].focus());
-		}, typeof document > "u") throw Error("ZoroEditor yalnızca tarayıcıda çalışır (SSR için zoro-editor/react kullanın).");
+		}, typeof document > "u") throw Error("ZoroEditor only runs in the browser (use zoro-editor/react for SSR frameworks).");
 		let n = typeof e == "string" ? document.querySelector(e) : e;
-		if (!n) throw Error(`ZoroEditor: hedef eleman bulunamadı (${String(e)})`);
+		if (!n) throw Error(`ZoroEditor: target element not found (${String(e)})`);
 		this.options = {
 			height: 400,
 			autoGrow: !0,
@@ -4563,4 +4563,4 @@ var jt = class {
 //#endregion
 export { ge as A, De as C, W as D, ye as E, C as M, S as N, ve as O, w as P, Te as S, be as T, st as _, gt as a, Ee as b, X as c, at as d, ct as f, Y as g, J as h, $ as i, O as j, G as k, ut as l, rt as m, pt as n, _t as o, it as p, Q as r, vt as s, jt as t, dt as u, Ve as v, U as w, K as x, Oe as y };
 
-//# sourceMappingURL=editor-BfOkbMWc.js.map
+//# sourceMappingURL=editor-BpbEvjmr.js.map

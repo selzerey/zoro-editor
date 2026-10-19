@@ -1,4 +1,4 @@
-// Gereksiz kaydırma çubuğu taraması: içerik sığdığı hâlde kaydırma çubuğu gösteren öğeleri bulur
+// Needless scrollbar scan: finds elements that show a scrollbar even though their content fits
 import { chromium, devices } from '@playwright/test';
 import { pathToFileURL } from 'node:url';
 const url = pathToFileURL('test/ZoroEditor-Demo.html').href;

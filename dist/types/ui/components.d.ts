@@ -2,7 +2,7 @@ export declare function h<K extends keyof HTMLElementTagNameMap>(tag: K, props?:
 export interface DialogOptions {
     title: string;
     size?: 'sm' | 'md' | 'lg' | 'xl';
-    /** Tema/ölçek sınıfları (editör sarmalayıcısından aktarılır). */
+    /** Theme/scale classes (passed from the editor wrapper). */
     themeClass?: string;
     closeLabel?: string;
     onClose?: () => void;
@@ -21,7 +21,7 @@ export declare class ZoroDialog {
     close(): void;
     private onKeyDown;
 }
-/** Sabit konumlu açılır kutu. Ekrandan taşmaz, dışarı tıklayınca / ESC ile kapanır. */
+/** Fixed-positioned popover. Stays on screen; closes on outside click / ESC. */
 export declare class ZoroPopover {
     private themeClass;
     private onClose?;
@@ -42,11 +42,11 @@ export interface SelectItem {
     label: string;
     shortcut?: string;
     style?: Partial<CSSStyleDeclaration>;
-    /** Seçeneğin solunda SVG simge */
+    /** SVG icon to the left of the option */
     icon?: string;
-    /** Girinti düzeyi (klasör ağacı) */
+    /** Indent level (folder tree) */
     depth?: number;
-    /** Sağda soluk ek bilgi (ör. dosya sayısı) */
+    /** Faded extra info on the right (e.g. file count) */
     meta?: string;
 }
 export interface SelectOptions {
@@ -54,17 +54,17 @@ export interface SelectOptions {
     value: string;
     label: string;
     onChange: (v: string) => void;
-    /** toolbar: araç çubuğu düğmesi; field: form alanı (Finder, dialoglar) */
+    /** toolbar: toolbar button; field: form field (Finder, dialogs) */
     variant?: 'toolbar' | 'field';
-    /** Değer listede yoksa gösterilen metin (eylem menüleri: "Taşı…") */
+    /** Text shown when the value isn't in the list (action menus: "Move…") */
     placeholder?: string;
-    /** Tetikleyicide etiketin solunda simge */
+    /** Icon to the left of the label in the trigger */
     icon?: string;
     size?: 'sm' | 'md';
-    /** Seçim sonrası değeri yer tutucuya geri al (eylem menüsü) */
+    /** Reset the value to the placeholder after selection (action menu) */
     resetAfterChange?: boolean;
 }
-/** Klavye ile gezilebilen özel açılır liste (tarayıcının çıplak <select>'i yerine). */
+/** Keyboard-navigable custom dropdown (instead of the browser's bare <select>). */
 export declare class ZoroSelect {
     private opts;
     wrapper: HTMLDivElement;
@@ -88,7 +88,7 @@ export declare class ZoroSelect {
     private onScrollClose;
     destroy(): void;
 }
-/** Sekmeler. */
+/** Tabs. */
 export declare class ZoroTabs {
     private opts;
     container: HTMLDivElement;
@@ -108,9 +108,9 @@ export declare class ZoroTabs {
     get active(): string;
     panel(id: string): HTMLDivElement;
 }
-/** Kısa bildirim (ekranın altında). */
+/** Short notification (at the bottom of the screen). */
 export declare function toast(message: string, type?: 'info' | 'error' | 'success', themeClass?: string, ms?: number): () => void;
-/** Basit onay penceresi (window.confirm yerine; mobilde de düzgün görünür). */
+/** Simple confirm dialog (instead of window.confirm; looks right on mobile too). */
 export declare function confirmDialog(message: string, opts: {
     title: string;
     ok: string;
@@ -118,7 +118,7 @@ export declare function confirmDialog(message: string, opts: {
     danger?: boolean;
     themeClass?: string;
 }): Promise<boolean>;
-/** Tek alanlı giriş penceresi (window.prompt yerine). */
+/** Single-field input dialog (instead of window.prompt). */
 export declare function promptDialog(opts: {
     title: string;
     label: string;
@@ -129,10 +129,10 @@ export declare function promptDialog(opts: {
     themeClass?: string;
     validate?: (v: string) => string | null;
 }): Promise<string | null>;
-/** "Kalın (Ctrl+B)" → { label: "Kalın", keys: "Ctrl+B" } ; Mac'te ⌘ ⌥ ⇧ */
+/** "Bold (Ctrl+B)" → { label: "Bold", keys: "Ctrl+B" } ; ⌘ ⌥ ⇧ on Mac */
 export declare function splitShortcut(title: string): {
     label: string;
     keys: string;
 };
-/** Belge genelinde bir kez kurulur: .zoro-root içindeki [data-tip] öğeleri. */
+/** Set up once per document: [data-tip] elements inside .zoro-root. */
 export declare function installTooltips(): void;

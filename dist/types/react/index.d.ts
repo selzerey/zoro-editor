@@ -1,30 +1,30 @@
 /**
- * React / Next.js bileşeni.
+ * React / Next.js component.
  *
  *   import { ZoroEditor } from 'zoro-editor/react';
  *   import 'zoro-editor/style.css';
  *
  *   <ZoroEditor value={html} onChange={setHtml} preset="blog" media={{ endpoint: '/api/media' }} />
  *
- * SSR güvenli: editör yalnızca tarayıcıda (useEffect içinde) oluşturulur.
+ * SSR-safe: the editor is created only in the browser (inside useEffect).
  */
 import { type CSSProperties } from 'react';
 import { ZoroEditor as Core } from '../core/editor';
 import { ZoroFinder, type FinderOptions } from '../finder/finder';
 import type { ZoroEditorOptions } from '../types';
 export interface ZoroEditorProps extends Omit<ZoroEditorOptions, 'content' | 'onChange' | 'input' | 'onReady' | 'className'> {
-    /** Kontrollü kullanım. */
+    /** Controlled usage. */
     value?: string;
-    /** Kontrolsüz kullanım (başlangıç değeri). */
+    /** Uncontrolled usage (initial value). */
     defaultValue?: string;
     onChange?: (html: string) => void;
     onReady?: (editor: Core) => void;
-    /** Form / Server Action için gizli input adı. */
+    /** Hidden input name for forms / Server Actions. */
     name?: string;
     id?: string;
     className?: string;
     style?: CSSProperties;
-    /** Editör sarmalayıcısına eklenecek sınıf. */
+    /** Class added to the editor wrapper. */
     editorClassName?: string;
 }
 export interface ZoroEditorHandle {
@@ -33,15 +33,15 @@ export interface ZoroEditorHandle {
     insertHTML(html: string): void;
     focus(): void;
     clearDraft(): void;
-    /** Alttaki çekirdek örnek (gelişmiş kullanım). */
+    /** The underlying core instance (advanced usage). */
     getInstance(): Core | null;
 }
 export declare const ZoroEditor: import("react").ForwardRefExoticComponent<ZoroEditorProps & import("react").RefAttributes<ZoroEditorHandle>>;
 /**
- * Editörden bağımsız Finder (öne çıkan görsel, avatar vb.):
+ * Standalone Finder (featured image, avatar, etc.):
  *
  *   const openFinder = useZoroFinder({ endpoint: '/api/media' });
- *   <button onClick={() => openFinder({ onSelect: ([img]) => setCover(img.url) })}>Görsel seç</button>
+ *   <button onClick={() => openFinder({ onSelect: ([img]) => setCover(img.url) })}>Choose image</button>
  */
 export declare function useZoroFinder(base: Omit<FinderOptions, 'onSelect'>): (opts?: Partial<FinderOptions>) => ZoroFinder;
 export { Core as ZoroEditorCore };

@@ -24,17 +24,17 @@ function rememberColor(c: string) {
   try { localStorage.setItem(RECENT_KEY, JSON.stringify([c, ...recentColors().filter((x) => x !== c)].slice(0, 10))); } catch { /* */ }
 }
 
-/** Tablo hücresi zemin rengi: <td style="background-color: …"> */
+/** Table cell background color: <td style="background-color: …"> */
 const cellBackground = {
   backgroundColor: {
     default: null,
-    // Ham style'dan oku: tarayıcı #fcf9e8'i rgb(...)'e çevirmesin
+    // Read from the raw style so the browser doesn't convert #fcf9e8 to rgb(...)
     parseHTML: (el: HTMLElement) => /background(?:-color)?:\s*([^;]+)/i.exec(el.getAttribute('style') ?? '')?.[1]?.trim() || el.getAttribute('data-background-color') || null,
     renderHTML: (attrs: Record<string, any>) => (attrs.backgroundColor ? { style: `background-color: ${attrs.backgroundColor}` } : {}),
   },
 };
 
-/** Görseli indirip çöz (zaman aşımıyla); hata olursa da devam et. */
+/** Download and decode the image (with a timeout); continue even on error. */
 function preload(src: string): Promise<void> {
   return new Promise((resolve) => {
     if (typeof Image === 'undefined' || /jsdom/i.test(navigator.userAgent)) return resolve();
@@ -70,10 +70,10 @@ function writePref(key: string, v: string | null) {
 }
 
 /**
- * ZoroEditor — WordPress Klasik tarzı zengin metin editörü.
+ * ZoroEditor — a WordPress Classic-style rich text editor.
  *
  * ```js
- * const editor = new ZoroEditor('#icerik', { preset: 'blog', media: { endpoint: '/zoro/media.php' } });
+ * const editor = new ZoroEditor('#content', { preset: 'blog', media: { endpoint: '/zoro/media.php' } });
  * ```
  */
 export class ZoroEditor {
@@ -126,9 +126,9 @@ export class ZoroEditor {
   private destroyed = false;
 
   constructor(target: string | HTMLElement, options: ZoroEditorOptions = {}) {
-    if (typeof document === 'undefined') throw new Error('ZoroEditor yalnızca tarayıcıda çalışır (SSR için zoro-editor/react kullanın).');
+    if (typeof document === 'undefined') throw new Error('ZoroEditor only runs in the browser (use zoro-editor/react for SSR frameworks).');
     const el = typeof target === 'string' ? document.querySelector<HTMLElement>(target) : target;
-    if (!el) throw new Error(`ZoroEditor: hedef eleman bulunamadı (${String(target)})`);
+    if (!el) throw new Error(`ZoroEditor: target element not found (${String(target)})`);
 
     this.options = { height: 400, autoGrow: true, statusBar: true, sourceMode: true, stickyToolbar: true, theme: 'light', ...options };
     this.t = resolveMessages(this.options.locale);
@@ -140,7 +140,7 @@ export class ZoroEditor {
 
     let initial = this.options.content;
     if (el instanceof HTMLTextAreaElement) {
-      // <textarea> verildiyse onun yerine geç ve değeri ona yaz (TinyMCE gibi)
+      // If given a <textarea>, replace it and write the value back to it (like TinyMCE)
       initial ??= el.value;
       this.inputEl = el;
       this.replacedTextarea = { el, display: el.style.display };
@@ -171,13 +171,13 @@ export class ZoroEditor {
     });
   }
 
-  // ───────────────────────── Ortak API ─────────────────────────
+  // ───────────────────────── Public API ─────────────────────────
 
-  /** Temizlenmiş HTML. Boş editörde "" döner. */
+  /** Cleaned HTML. Returns "" for an empty editor. */
   getHTML(): string {
     if (this.mode === 'code') return this.sourceEl.value.trim();
     if (!this.editor || this.docIsEmpty()) return '';
-    const html = this.editor.getHTML().replace(/<img[^>]*src="blob:[^"]*"[^>]*>/g, ''); // yüklenmekte olan görseller
+    const html = this.editor.getHTML().replace(/<img[^>]*src="blob:[^"]*"[^>]*>/g, ''); // images still uploading
     return cleanHTML(html);
   }
 
@@ -189,14 +189,14 @@ export class ZoroEditor {
     return this.mode === 'code' ? !this.sourceEl.value.trim() : this.docIsEmpty();
   }
 
-  /** Sadece tek boş paragraf = boş. (TipTap isEmpty, boş hücreli tabloyu da boş sayar.) */
+  /** Only a single empty paragraph counts as empty. (TipTap's isEmpty also treats a table with empty cells as empty.) */
   private docIsEmpty(): boolean {
     const doc = this.editor.state.doc;
     const first = doc.firstChild;
     return doc.childCount === 0 || (doc.childCount === 1 && !!first && first.type.name === 'paragraph' && first.content.size === 0);
   }
 
-  /** İçeriği değiştir. emit=true ise onChange tetiklenir. */
+  /** Replace the content. emit=true fires onChange. */
   setContent(html: string, emit = false): void {
     if (this.destroyed) return;
     this.editor.commands.setContent(html || '', { emitUpdate: false });
@@ -206,7 +206,7 @@ export class ZoroEditor {
     if (emit) this.fireChange();
   }
 
-  /** İmlecin olduğu yere HTML ekle. */
+  /** Insert HTML at the cursor. */
   insertHTML(html: string): void {
     if (this.mode === 'code') this.insertIntoSource(html);
     else this.editor.chain().focus().insertContent(html).run();
@@ -239,7 +239,7 @@ export class ZoroEditor {
     this.hideBubble();
   }
 
-  /** Tek hamlede grup ekle: `editor.addGroups(['table', 'color'])` */
+  /** Add groups in one call: `editor.addGroups(['table', 'color'])` */
   addGroups(groups: GroupName[]): void {
     this.setGroups([...this.groups, ...groups]);
   }
@@ -275,7 +275,7 @@ export class ZoroEditor {
   setMode(mode: Mode): void {
     if (mode === this.mode || (mode === 'code' && this.options.sourceMode === false)) return;
     if (mode === 'code') {
-      // Girintili HTML + imleci aynı bloğa taşı
+      // Indented HTML + move the cursor to the same block
       const { html, blockStarts } = formatHTML(this.getHTML());
       const blockIndex = this.editor.state.selection.$from.index(0);
       this.sourceEl.value = html;
@@ -293,7 +293,7 @@ export class ZoroEditor {
     } else {
       const value = this.sourceEl.value;
       const caret = this.sourceEl.selectionStart ?? 0;
-      // Kaynak değişmediyse yeniden yükleme: geri-al geçmişi ve seçim korunur
+      // Don't reload if the source is unchanged: undo history and selection are kept
       if (value !== this.sourceSnapshot) {
         this.editor.commands.setContent(value, { emitUpdate: false });
         const doc = this.editor.state.doc;
@@ -333,7 +333,7 @@ export class ZoroEditor {
     this.focus();
   }
 
-  /** Medya kütüphanesini aç (ya da sadece dosya seçici). */
+  /** Open the media library (or just the file picker). */
   openMedia(): void {
     if (this.adapter) {
       this.finder({ multiple: true, onSelect: (items) => this.insertMedia(items) });
@@ -348,7 +348,7 @@ export class ZoroEditor {
     toast(this.t.uploadNotConfigured, 'error', this.themeClass);
   }
 
-  /** Bu editörün ayarlarıyla bir Finder aç. */
+  /** Open a Finder with this editor's settings. */
   finder(opts: { multiple?: boolean; onSelect?: (items: SelectedMedia[]) => void; files?: File[] } = {}): ZoroFinder | null {
     if (!this.adapter) return null;
     const m = this.mediaOpts;
@@ -385,7 +385,7 @@ export class ZoroEditor {
     this.editor.chain().focus().insertContent(nodes).run();
   }
 
-  /** Taslağı sil (içerik kaydedildikten sonra çağır). */
+  /** Delete the draft (call after the content is saved). */
   clearDraft(): void {
     const key = this.draftKey;
     if (key) writePref(key, null);
@@ -418,9 +418,9 @@ export class ZoroEditor {
     return this.destroyed;
   }
 
-  // ───────────────────────── Kurulum ─────────────────────────
+  // ───────────────────────── Setup ─────────────────────────
 
-  /** Dialog/açılır kutulara da aktarılan görünüm sınıfları. */
+  /** Appearance classes also passed to dialogs/popovers. */
   get themeClass(): string {
     const th = this.options.theme;
     return [`zoro-skin-${this.skin}`, th && th !== 'light' ? `zoro-theme-${th}` : ''].filter(Boolean).join(' ');
@@ -509,7 +509,7 @@ export class ZoroEditor {
       autolink: true,
       linkOnPaste: true,
       defaultProtocol: 'https',
-      // v3 varsayılanı her bağlantıya target=_blank + nofollow ekler; SEO için kapatıyoruz.
+      // The v3 default adds target=_blank + nofollow to every link; we turn it off for SEO.
       HTMLAttributes: { target: null, rel: null, class: null },
       isAllowedUri: (url, ctx) => isSafeUrl(url) && ctx.defaultValidate(url),
     });
@@ -558,8 +558,8 @@ export class ZoroEditor {
           const cd = event.clipboardData;
           const files = Array.from(cd?.files ?? []);
           if (!files.length) return this.smartPaste(cd);
-          // Excel/Word/Google Docs tabloyu hem HTML hem de resim olarak panoya koyar:
-          // HTML'de görsel dışında gerçek içerik varsa resmi değil içeriği yapıştır.
+          // Excel/Word/Google Docs put tables on the clipboard as both HTML and an image:
+          // if the HTML has real content besides images, paste the content, not the image.
           const html = cd?.getData('text/html') ?? '';
           if (html && html.replace(/<img[^>]*>/gi, '').replace(/<[^>]+>/g, '').replace(/&nbsp;|\s/g, '')) return false;
           return this.handleFiles(files, null);
@@ -592,12 +592,12 @@ export class ZoroEditor {
       },
       onBlur: () => {
         this.root.classList.remove('zoro-focused');
-        // Baloncuk düğmesine tıklayınca odak editörde kalır; gerçekten çıkıldıysa gizle
+        // Clicking a bubble button keeps focus in the editor; hide only if focus really left
         requestAnimationFrame(() => {
           if (this.editor?.view.hasFocus()) return;
           this.slash?.close();
           this.hideBubble();
-          // Tablo araç çubuğundaki bir açılır kutu (hücre rengi) odak alırsa çubuğu koru
+          // Keep the table toolbar if one of its popovers (cell color) takes focus
           if (!document.querySelector('.zoro-popover')) this.hideTableBar();
         });
         this.options.onBlur?.();
@@ -632,7 +632,7 @@ export class ZoroEditor {
   private updateCounts() {
     if (this.options.statusBar === false) return;
     const t = this.t;
-    // Görsel modda sayımı CharacterCount yapar (HTML üretmeden, her tuşta ucuz)
+    // In visual mode CharacterCount does the counting (no HTML generation, cheap on every keystroke)
     const visual = this.mode === 'visual' && !!this.editor;
     const html = visual ? '' : this.sourceEl.value;
     const words = visual ? this.editor.storage.characterCount.words() : countWords(html);
@@ -645,7 +645,7 @@ export class ZoroEditor {
     );
   }
 
-  /** Durum çubuğunda imlecin bulunduğu öğe yolu: ul › li › p › strong */
+  /** Element path at the cursor, shown in the status bar: ul › li › p › strong */
   private updatePath() {
     if (this.options.statusBar === false || !this.editor) return;
     const NAMES: Record<string, string> = {
@@ -671,7 +671,7 @@ export class ZoroEditor {
     if (this.pathEl.textContent !== text) this.pathEl.textContent = text;
   }
 
-  // ───────────────────────── Baloncuk menü (metin seçilince) ─────────────────────────
+  // ───────────────────────── Bubble menu (on text selection) ─────────────────────────
 
   private get slashEnabled(): boolean {
     return this.options.slashMenu ?? this.skin === 'modern';
@@ -722,19 +722,19 @@ export class ZoroEditor {
     const coarse = typeof matchMedia === 'function' && matchMedia('(pointer: coarse)').matches;
     const c = this.contentEl.getBoundingClientRect();
     const mid = Math.abs(a.top - b.top) < 4 ? (a.left + b.right) / 2 : (c.left + c.right) / 2;
-    // Seçim görünür içerik alanının dışındaysa (kaydırıldı / yapışık araç çubuğunun altında) gizle
+    // Hide if the selection is outside the visible content area (scrolled away / under the sticky toolbar)
     const toolbarBottom = this.options.stickyToolbar !== false ? this.toolbarEl.getBoundingClientRect().bottom : 0;
     const minTop = Math.max(8, toolbarBottom + 4, c.top);
     const maxBottom = Math.min(window.innerHeight, c.bottom);
     this.bubble.style.visibility = b.bottom < minTop || a.top > maxBottom ? 'hidden' : '';
-    // Dokunmatikte sistemin kopyala/yapıştır menüsüyle çakışmasın diye seçimin altında
+    // On touch devices, below the selection so it doesn't clash with the system copy/paste menu
     let top = coarse ? b.bottom + 12 : a.top - box.height - 10;
     if (top < minTop) top = b.bottom + 12;
     this.bubble.style.top = `${Math.round(top)}px`;
     this.bubble.style.left = `${Math.round(Math.max(8, Math.min(mid - box.width / 2, vw - box.width - 8)))}px`;
   }
 
-  // ───────────────────────── Tablo bağlam araç çubuğu ─────────────────────────
+  // ───────────────────────── Table context toolbar ─────────────────────────
 
   private tableDefs(): ToolbarButton[] {
     const c = (fn: (ch: any) => any) => ({ editor }: ToolbarContext) => fn(editor.chain().focus()).run();
@@ -758,7 +758,7 @@ export class ZoroEditor {
     const ed = this.editor;
     const show = !!ed && this.hasGroup('table') && this.mode === 'visual' && ed.isEditable && ed.isActive('table') && ed.view.hasFocus() && !this.destroyed;
     if (!show) return this.hideTableBar();
-    // İmlecin bulunduğu tablonun DOM'u
+    // DOM of the table containing the cursor
     const $pos = ed.state.selection.$from;
     let tablePos = -1;
     for (let d = $pos.depth; d > 0; d--) if ($pos.node(d).type.name === 'table') { tablePos = $pos.before(d); break; }
@@ -790,8 +790,8 @@ export class ZoroEditor {
     const toolbarBottom = this.options.stickyToolbar !== false ? this.toolbarEl.getBoundingClientRect().bottom : 0;
     const content = this.contentEl.getBoundingClientRect();
     let top = r.top - box.height - 8;
-    if (top < Math.max(8, toolbarBottom + 4)) top = r.bottom + 8; // üstte yer yoksa tablonun altına
-    // Tablo görünür alanın dışındaysa gizle
+    if (top < Math.max(8, toolbarBottom + 4)) top = r.bottom + 8; // below the table if there's no room above
+    // Hide if the table is outside the visible area
     const visible = r.bottom > Math.max(toolbarBottom, content.top) && r.top < Math.min(window.innerHeight, content.bottom);
     this.tableBar.style.visibility = visible ? '' : 'hidden';
     this.tableBar.style.top = `${Math.round(Math.min(top, window.innerHeight - box.height - 8))}px`;
@@ -804,7 +804,7 @@ export class ZoroEditor {
     this.tableBarButtons = [];
   }
 
-  /** Seçili hücre(ler)in zemin rengi. */
+  /** Background color of the selected cell(s). */
   openCellColor(anchor: HTMLElement): void {
     const t = this.t;
     const pop = new ZoroPopover(this.themeClass);
@@ -825,7 +825,7 @@ export class ZoroEditor {
     this.bubbleButtons = [];
   }
 
-  // ───────────────────────── Araç çubuğu ─────────────────────────
+  // ───────────────────────── Toolbar ─────────────────────────
 
   private get ctx(): ToolbarContext {
     return { editor: this.editor, zoro: this, t: this.t };
@@ -864,7 +864,7 @@ export class ZoroEditor {
           ((def.row ?? rowDefault) === 1 ? wrapper1 : wrapper2).append(el);
         }
       }
-      // geri al/ileri al/yardım ikinci satırın sağına
+      // undo/redo/help go to the right of the second row
       const target2 = name === 'history' || name === 'help' ? r2end : r2;
       if (wrapper1.childElementCount) r1.append(wrapper1);
       if (wrapper2.childElementCount) target2.append(wrapper2);
@@ -917,7 +917,7 @@ export class ZoroEditor {
 
   private makeButton(def: ToolbarButton): HTMLButtonElement {
     const title = typeof def.title === 'function' ? def.title(this.t) : def.title;
-    // title yerine data-tip: özel ipucu (kısayol ayrı gösterilir); erişilebilir ad aria-label'da
+    // data-tip instead of title: custom tooltip (shortcut shown separately); accessible name is in aria-label
     const b = h('button', { type: 'button', class: 'zoro-toolbar-btn', 'data-tip': title, 'aria-label': splitShortcut(title).label, 'aria-keyshortcuts': splitShortcut(title).keys || null, 'data-name': def.name, html: def.icon, tabindex: '-1' });
     if (def.isActive) b.setAttribute('aria-pressed', 'false');
     if (def.keepFocus !== false) b.addEventListener('mousedown', (e) => e.preventDefault());
@@ -995,7 +995,7 @@ export class ZoroEditor {
     this.updateTableBar();
   }
 
-  // ───────────────────────── Olaylar / kısayollar ─────────────────────────
+  // ───────────────────────── Events / shortcuts ─────────────────────────
 
   private bindEvents() {
     const onScroll = () => {
@@ -1014,7 +1014,7 @@ export class ZoroEditor {
     const onKey = (e: KeyboardEvent) => this.onKeyDown(e);
     this.root.addEventListener('keydown', onKey);
     this.toolbarEl.addEventListener('keydown', this.onToolbarKey);
-    // Araç çubuğunda bir menü/açılır kutu açılırken baloncuk üstünde kalmasın
+    // Don't let the bubble stay on top while a toolbar menu/popover is opening
     this.toolbarEl.addEventListener('pointerdown', () => this.hideBubble());
     this.cleanups.push(() => this.root.removeEventListener('keydown', onKey));
 
@@ -1026,7 +1026,7 @@ export class ZoroEditor {
     this.sourceEl.addEventListener('input', onSourceInput);
     for (const ev of ['select', 'click', 'keyup', 'blur']) this.sourceEl.addEventListener(ev, trackCursor);
 
-    // Form gönderilirken son değeri yaz (kaynak modundayken de)
+    // Write the latest value on form submit (also in source mode)
     const form = (this.inputEl ?? this.root).closest('form');
     if (form) {
       const sync = () => this.syncInput();
@@ -1037,10 +1037,10 @@ export class ZoroEditor {
   }
 
   private onKeyDown(e: KeyboardEvent) {
-    if (e.isComposing || e.keyCode === 229) return; // IME birleştirmesi sürerken kısayol yok
+    if (e.isComposing || e.keyCode === 229) return; // no shortcuts during IME composition
     const mod = e.ctrlKey || e.metaKey;
     if (e.key === 'F10' && e.altKey) { e.preventDefault(); this.focusToolbar(); return; }
-    // Açık kutular ESC'yi kendileri yakalar (capture); buraya ulaştıysa tam ekrandan çık
+    // Open popovers catch ESC themselves (capture); if it gets here, exit fullscreen
     if (e.key === 'Escape' && this.fullscreen && !document.querySelector('.zoro-dialog-overlay')) {
       e.preventDefault();
       this.toggleFullscreen(false);
@@ -1052,7 +1052,7 @@ export class ZoroEditor {
       return;
     }
     if (!(e.shiftKey && e.altKey) || mod) return;
-    // e.code: klavye düzeninden bağımsız (Türkçe Q/F, Mac Option karakterleri)
+    // e.code: independent of keyboard layout (Turkish Q/F, Mac Option characters)
     const code = e.code;
     const ed = this.editor;
     const visual = this.mode === 'visual';
@@ -1086,7 +1086,7 @@ export class ZoroEditor {
     const { start, end } = this.sourceCursor;
     ta.focus();
     ta.setSelectionRange(start, end);
-    // execCommand textarea'nın geri alma (Ctrl+Z) geçmişini korur; desteklenmezse setRangeText
+    // execCommand keeps the textarea's undo (Ctrl+Z) history; falls back to setRangeText
     let ok = false;
     try { ok = document.execCommand('insertText', false, text); } catch { /* */ }
     if (!ok) {
@@ -1097,7 +1097,7 @@ export class ZoroEditor {
     this.sourceCursor = { start: pos, end: pos };
   }
 
-  /** Uzun kaynakta imlecin olduğu satırı görünür yap. */
+  /** Scroll the cursor's line into view in long source. */
   private revealSourceCaret(caret: number) {
     const ta = this.sourceEl;
     const line = ta.value.slice(0, caret).split('\n').length - 1;
@@ -1117,7 +1117,7 @@ export class ZoroEditor {
     ta.style.height = `${Math.max(this.options.height!, ta.scrollHeight + 2)}px`;
   }
 
-  // ───────────────────────── Taslak ─────────────────────────
+  // ───────────────────────── Draft ─────────────────────────
 
   private setupDraft(initial: string) {
     const key = this.draftKey;
@@ -1145,18 +1145,18 @@ export class ZoroEditor {
     this.draftTimer = setTimeout(() => writePref(key, JSON.stringify({ html, at: Date.now() })), delay);
   }
 
-  // ───────────────────────── Görsel yükleme (yapıştır / sürükle) ─────────────────────────
+  // ───────────────────────── Image upload (paste / drag) ─────────────────────────
 
   /**
-   * Akıllı yapıştırma (TinyMCE/BlockNote fikri): tek bir URL yapıştırılınca
-   * seçili metin → bağlantı, boş satırda YouTube → video, görsel adresi → görsel.
+   * Smart paste (idea from TinyMCE/BlockNote): when a single URL is pasted,
+   * selected text → link, YouTube on an empty line → video, image address → image.
    */
   private smartPaste(cd: DataTransfer | null): boolean {
     if (!cd || this.options.readOnly) return false;
     const text = (cd.getData('text/plain') ?? '').trim();
     if (!/^https?:\/\/\S+$/i.test(text) || !isSafeUrl(text)) return false;
     const html = cd.getData('text/html') ?? '';
-    // HTML'de bağlantı metninden başka içerik varsa normal yapıştır
+    // Paste normally if the HTML has content besides the link text
     if (html && html.replace(/<[^>]+>/g, '').trim() !== text) return false;
     const ed = this.editor;
     if (ed.isActive('codeBlock') || ed.isActive('code')) return false;
@@ -1177,12 +1177,12 @@ export class ZoroEditor {
     return false;
   }
 
-  /** Dosyaları yükleyip editöre ekler. true = olay işlendi. */
+  /** Uploads files and inserts them into the editor. true = event handled. */
   handleFiles(files: File[], pos: number | null): boolean {
     const accept = this.mediaOpts.accept ?? DEFAULT_ACCEPT;
     const images = files.filter((f) => f.type.startsWith('image/'));
     if (!images.length) return false;
-    if (this.options.media === false || this.options.readOnly) return true; // base64 gömmeyi engelle
+    if (this.options.media === false || this.options.readOnly) return true; // prevent base64 embedding
     const t = this.t;
     const maxMB = this.mediaOpts.maxSizeMB ?? 20;
     const valid = images.filter((f) => {
@@ -1196,7 +1196,7 @@ export class ZoroEditor {
       const requireAlt = this.mediaOpts.requireAlt !== false;
       const needAlt = valid.filter((f) => requireAlt && !altFromFilename(f.name));
       const direct = valid.filter((f) => !needAlt.includes(f));
-      // ALT türetilemeyenler için Finder açılır (kullanıcı ALT yazar)
+      // Open Finder for files whose ALT can't be derived (the user types it)
       if (needAlt.length) {
         if (pos !== null) this.editor.commands.setTextSelection(pos);
         this.finder({ multiple: true, files: needAlt, onSelect: (items) => this.insertMedia(items) });
@@ -1228,7 +1228,7 @@ export class ZoroEditor {
     const blobUrl = URL.createObjectURL(file);
     const alt = altFromFilename(file.name);
     const { state, view } = this.editor;
-    // İlerleme bilgisi verebilen adaptörde halka %0'dan başlar; onImageUpload'da belirsiz döner
+    // With an adapter that reports progress the ring starts at 0%; with onImageUpload it spins indeterminately
     uploadRegistry.set(uploadId, { progress: this.adapter ? 0 : null });
     const node = state.schema.nodes.image!.create({ src: blobUrl, alt, uploadId });
     const tr = pos !== null ? state.tr.insert(Math.min(pos, state.doc.content.size), node) : state.tr.replaceSelectionWith(node);
@@ -1240,7 +1240,7 @@ export class ZoroEditor {
         const r = await upload(file, alt, (p) => uploadRegistry.set(uploadId, { progress: Math.min(99, Math.round(p)) }));
         if (this.destroyed) return;
         uploadRegistry.set(uploadId, { progress: 100 });
-        // Sunucudaki görseli önceden çöz: yer tutucudan geçişte boş kare görünmesin
+        // Pre-decode the server image so no blank frame shows when swapping out the placeholder
         await preload(r.src);
         if (this.destroyed) return;
         this.replaceUploadPlaceholder(uploadId, { src: r.src, srcset: r.srcset, alt: r.alt || alt, sizes: r.srcset ? '(max-width: 768px) 100vw, 768px' : null });
@@ -1248,7 +1248,7 @@ export class ZoroEditor {
         URL.revokeObjectURL(blobUrl);
       } catch (e: any) {
         if (this.destroyed) return;
-        // Görseli silme: hata durumunda "Yeniden dene / Kaldır" göster
+        // Don't remove the image: on error show "Retry / Remove"
         uploadRegistry.set(uploadId, {
           error: e?.message || '',
           retry: () => void attempt(),
@@ -1264,8 +1264,8 @@ export class ZoroEditor {
   }
 
   /**
-   * Yer tutucuyu geçmişe yazmadan kaldırır, gerçek görseli tek geri-al adımı olarak ekler
-   * (geri al → ileri al süresi dolmuş blob görselini geri getirmesin).
+   * Removes the placeholder without recording history and inserts the real image as a single undo step
+   * (so undo → redo doesn't bring back an expired blob image).
    */
   private replaceUploadPlaceholder(uploadId: string, attrs: Record<string, any> | null) {
     const { state, view } = this.editor;
@@ -1284,9 +1284,9 @@ export class ZoroEditor {
     }
   }
 
-  // ───────────────────────── Bağlantı ─────────────────────────
+  // ───────────────────────── Link ─────────────────────────
 
-  /** explicit=true: Ctrl+K / düğme (giriş kutusu odaklanır). false: imleç bağlantıya girdi (odak editörde kalır). */
+  /** explicit=true: Ctrl+K / button (the input gets focus). false: the cursor entered a link (focus stays in the editor). */
   openLinkPopover(explicit = false): void {
     if (this.mode !== 'visual' || this.options.readOnly) return;
     const ed = this.editor;
@@ -1334,7 +1334,7 @@ export class ZoroEditor {
     const b = ed.view.coordsAtPos(r.to);
     const rect = new DOMRect(Math.min(a.left, b.left), a.top, Math.max(1, Math.abs(b.right - a.left)), b.bottom - a.top);
     this.linkPopover.open(content, rect, 'zoro-link-popover');
-    // Hemen odakla: hızlı yazanların ilk harfleri editöre kaçmasın
+    // Focus right away so fast typists' first letters don't leak into the editor
     if (explicit) { input.focus({ preventScroll: true }); input.select(); }
   }
 
@@ -1387,7 +1387,7 @@ export class ZoroEditor {
     ));
   }
 
-  /** Bağlantıyı uygula. false = URL geçersiz. */
+  /** Apply the link. false = invalid URL. */
   applyLink(
     o: { href: string; text?: string; title?: string | null; newTab?: boolean; nofollow?: boolean; sponsored?: boolean },
     range = this.linkRange,
@@ -1420,7 +1420,7 @@ export class ZoroEditor {
     return true;
   }
 
-  // ───────────────────────── Renk / özel karakter / tablo / YouTube ─────────────────────────
+  // ───────────────────────── Color / special characters / table / YouTube ─────────────────────────
 
   openColorPicker(anchor: HTMLElement, type: 'text' | 'bg'): void {
     const t = this.t;
@@ -1442,7 +1442,7 @@ export class ZoroEditor {
     const recentRow = recent.length
       ? h('div', { class: 'zoro-color-section' }, h('span', { class: 'zoro-color-label' }, t.recentColors), h('div', { class: 'zoro-color-grid' }, ...recent.map(swatch)))
       : null;
-    // Özel renk: sistem seçici + HEX alanı
+    // Custom color: system picker + HEX field
     const picker = h('input', { type: 'color', value: this.lastColors[type], 'aria-label': t.customColor });
     const hex = h('input', { type: 'text', class: 'zoro-input zoro-input-sm', value: this.lastColors[type], maxlength: 7, spellcheck: false, 'aria-label': 'HEX' });
     picker.addEventListener('input', () => { hex.value = picker.value; });
@@ -1493,7 +1493,7 @@ export class ZoroEditor {
       ), anchor);
       return;
     }
-    // Boyut seçici (TinyMCE tarzı): üzerine gel / dokun
+    // Size picker (TinyMCE style): hover / tap
     const N = 8;
     const label = h('div', { class: 'zoro-table-picker-label' }, '1 × 1');
     const grid = h('div', { class: 'zoro-table-picker', style: { gridTemplateColumns: `repeat(${N}, 1fr)` } });

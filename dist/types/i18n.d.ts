@@ -542,9 +542,9 @@ export declare const locales: {
     };
 };
 export type Locale = keyof typeof locales;
-/** Sayfanın dili: <html lang="tr"> → tr, aksi hâlde en. */
+/** Page language: <html lang="tr"> → tr, otherwise en. */
 export declare function detectLocale(): Locale;
 export declare function resolveMessages(locale?: Locale | Partial<Messages>): Messages;
-/** "{n} dosya" → "3 dosya" */
+/** "{n} files" → "3 files" */
 export declare function fmt(str: string, vars: Record<string, string | number>): string;
 export {};

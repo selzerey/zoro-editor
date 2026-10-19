@@ -5,7 +5,7 @@ import { applyMark, indent, smartHeading } from './commands';
 
 const btn = (b: ToolbarButton) => b;
 
-/** Yerleşik gruplar. Sıra = araç çubuğundaki sıra. */
+/** Built-in groups. Order = order in the toolbar. */
 export const BUILTIN_GROUPS: ToolbarGroup[] = [
   {
     name: 'block',
@@ -106,7 +106,7 @@ export const BUILTIN_GROUPS: ToolbarGroup[] = [
   {
     name: 'media',
     row: 1,
-    // Görsel düğmesi; ayrıca üstteki "Ortam ekle" düğmesini de bu grup açar.
+    // Image button; this group also enables the "Add Media" button at the top.
     items: [btn({ name: 'image', icon: ICONS.image, title: (t) => t.image, run: ({ zoro }) => zoro.openMedia() })],
   },
   {
@@ -152,20 +152,20 @@ export const BUILTIN_GROUPS: ToolbarGroup[] = [
     row: 2,
     items: [btn({ name: 'help', icon: ICONS.help, title: (t) => t.help, run: ({ zoro }) => zoro.showHelp(), keepFocus: false })],
   },
-  // "view" özel: Görsel/Kaynak + Tam ekran (editör sınıfı çizer)
+  // "view" is special: Visual/Source + Fullscreen (rendered by the editor class)
   { name: 'view', row: 1, items: [] },
 ];
 
 const ALL: GroupName[] = BUILTIN_GROUPS.map((g) => g.name);
 
 export const PRESETS: Record<string, GroupName[]> = {
-  /** Yorum kutusu, kısa açıklama */
+  /** Comment box, short description */
   minimal: ['format', 'link', 'list'],
-  /** Ürün açıklaması, basit sayfa */
+  /** Product description, simple page */
   basic: ['block', 'format', 'list', 'link', 'history', 'view'],
-  /** Blog / makale (WordPress Klasik) */
+  /** Blog / article (WordPress Classic) */
   blog: ['block', 'format', 'list', 'align', 'link', 'table', 'media', 'color', 'extra', 'indent', 'history', 'help', 'view'],
-  /** Her şey */
+  /** Everything */
   full: ALL,
 };
 
@@ -184,8 +184,8 @@ export function getGroup(name: GroupName): ToolbarGroup | undefined {
 }
 
 /**
- * preset + groups + addGroups + removeGroups → nihai grup listesi (yerleşik sıra korunur,
- * özel gruplar sona eklenir).
+ * preset + groups + addGroups + removeGroups → final group list (built-in order is kept,
+ * custom groups are appended).
  */
 export function resolveGroups(o: { preset?: PresetName; groups?: GroupName[]; addGroups?: GroupName[]; removeGroups?: GroupName[] }): GroupName[] {
   const base = o.groups ?? PRESETS[o.preset ?? 'full'] ?? PRESETS.full!;

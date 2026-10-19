@@ -5,13 +5,13 @@ import { ZoroDialog, ZoroSelect, ZoroTabs, h, toast, confirmDialog, promptDialog
 import { RestMediaAdapter, formatBytes } from './adapters';
 
 export interface SelectedMedia extends MediaItem {
-  /** Kullanıcının bu içerik için girdiği ALT metni. */
+  /** ALT text the user entered for this content. */
   insertAlt: string;
 }
 
 export interface FinderOptions {
   adapter?: MediaAdapter;
-  /** Kısa yol: REST endpoint. */
+  /** Shorthand: REST endpoint. */
   endpoint?: string;
   headers?: MediaOptions['headers'];
   credentials?: RequestCredentials;
@@ -21,18 +21,18 @@ export interface FinderOptions {
   themeClass?: string;
   theme?: 'light' | 'dark' | 'auto';
   skin?: 'modern' | 'classic';
-  /** Birden fazla dosya seçilebilsin mi. */
+  /** Whether multiple files can be selected. */
   multiple?: boolean;
   accept?: string[];
   maxSizeMB?: number;
   requireAlt?: boolean;
   folders?: boolean;
   title?: string;
-  /** "Ekle" düğmesinin metni. */
+  /** Label of the "Insert" button. */
   selectLabel?: string;
-  /** Başlangıç sekmesi. */
+  /** Initial tab. */
   tab?: 'library' | 'upload';
-  /** Yönetim modu: seçim düğmesi gizlenir (sadece kütüphane yönetimi). */
+  /** Manage mode: the select button is hidden (library management only). */
   manageOnly?: boolean;
   onSelect?: (items: SelectedMedia[]) => void;
   onClose?: () => void;
@@ -45,7 +45,7 @@ function readPref(key: string, fallback: string): string {
   try { return localStorage.getItem('zoro-finder-' + key) ?? fallback; } catch { return fallback; }
 }
 function writePref(key: string, v: string) {
-  try { localStorage.setItem('zoro-finder-' + key, v); } catch { /* gizli sekme */ }
+  try { localStorage.setItem('zoro-finder-' + key, v); } catch { /* private tab */ }
 }
 
 export function createAdapter(o: { adapter?: MediaAdapter; endpoint?: string; headers?: any; credentials?: RequestCredentials; transform?: any }): MediaAdapter | null {
@@ -55,8 +55,8 @@ export function createAdapter(o: { adapter?: MediaAdapter; endpoint?: string; he
 }
 
 /**
- * Zoro Finder — CKFinder benzeri medya yöneticisi.
- * Editörden bağımsız da kullanılabilir: `openFinder({ endpoint, onSelect })`.
+ * Zoro Finder — a CKFinder-like media manager.
+ * Can also be used without the editor: `openFinder({ endpoint, onSelect })`.
  */
 export class ZoroFinder {
   private t: Messages;
@@ -65,7 +65,7 @@ export class ZoroFinder {
   private tabs: ZoroTabs | null = null;
   private themeClass: string;
 
-  // durum
+  // state
   private items: MediaItem[] = [];
   private folders: MediaFolder[] = [];
   private total = 0;
@@ -80,11 +80,11 @@ export class ZoroFinder {
   private reqSeq = 0;
   private searchTimer: ReturnType<typeof setTimeout> | undefined;
 
-  // yükleme
+  // upload
   private queue: Array<{ file: File; preview: string; alt: string; progress?: number; error?: string }> = [];
   private uploading = false;
 
-  // elemanlar
+  // elements
   private el = {} as {
     root: HTMLDivElement; grid: HTMLDivElement; details: HTMLElement; footer: HTMLDivElement;
     folderSelect: ZoroSelect; search: HTMLInputElement; queue: HTMLDivElement; uploadBtn: HTMLDivElement;
@@ -94,7 +94,7 @@ export class ZoroFinder {
   constructor(private opts: FinderOptions) {
     this.t = opts.messages ?? resolveMessages(opts.locale);
     const adapter = createAdapter(opts);
-    if (!adapter) throw new Error('ZoroFinder: "adapter" ya da "endpoint" gerekli.');
+    if (!adapter) throw new Error('ZoroFinder: an "adapter" or "endpoint" option is required.');
     this.adapter = adapter;
     this.themeClass = opts.themeClass ?? [`zoro-skin-${opts.skin === 'classic' ? 'classic' : 'modern'}`, opts.theme && opts.theme !== 'light' ? `zoro-theme-${opts.theme}` : ''].filter(Boolean).join(' ');
     this.view = readPref('view', 'grid') === 'list' ? 'list' : 'grid';
@@ -155,7 +155,7 @@ export class ZoroFinder {
     this.opts.onClose?.();
   }
 
-  // ───────────────────────── Kütüphane ─────────────────────────
+  // ───────────────────────── Library ─────────────────────────
 
   private buildLibrary(panel: HTMLDivElement) {
     const t = this.t;
@@ -265,9 +265,9 @@ export class ZoroFinder {
     try {
       const params = { ...this.params, folder: this.params.folder === '*' ? undefined : this.params.folder };
       const res = await this.adapter.list(params as MediaListParams);
-      if (seq !== this.reqSeq) return; // eski istek
+      if (seq !== this.reqSeq) return; // stale request
       this.items = more ? [...this.items, ...res.items] : res.items;
-      // Backend kullanım bilgisi veriyorsa "Kullanılmayanlar" filtresini göster
+      // Show the "Unused" filter if the backend provides usage info
       if (this.items.some((i) => i.usageCount !== undefined)) {
         const usage = this.dialog?.dialog?.querySelector<HTMLElement>('.zoro-finder-usage');
         if (usage) usage.hidden = false;
@@ -399,14 +399,14 @@ export class ZoroFinder {
       if (this.selected.has(m.id)) this.selected.delete(m.id);
       else this.selected.set(m.id, m);
     } else if (this.selected.size === 1 && this.selected.has(m.id) && this.focused?.id === m.id) {
-      // aynı öğeye tekrar dokununca seçimi kaldır
+      // tapping the same item again deselects it
       this.selected.clear();
     } else {
       this.selected.clear();
       this.selected.set(m.id, m);
     }
     this.focused = this.selected.has(m.id) ? m : [...this.selected.values()].pop() ?? null;
-    // yeniden çizmeden sınıfları güncelle (kaydırma konumu korunur)
+    // update classes without re-rendering (scroll position is kept)
     this.el.grid.querySelectorAll<HTMLElement>('.zoro-media-item').forEach((el, i) => {
       const it = this.items[i];
       if (!it) return;
@@ -612,7 +612,7 @@ export class ZoroFinder {
     } catch (e: any) { toast(e?.message || 'Hata', 'error', this.themeClass); }
   }
 
-  // ───────────────────────── Yükleme ─────────────────────────
+  // ───────────────────────── Upload ─────────────────────────
 
   private buildUpload(panel: HTMLDivElement) {
     const t = this.t;
@@ -645,7 +645,7 @@ export class ZoroFinder {
     this.addFiles(files);
   };
 
-  /** Dışarıdan dosya ekle (editöre sürüklenen dosyalar için). */
+  /** Add files from outside (for files dragged into the editor). */
   addFiles(files: File[]) {
     const t = this.t;
     for (const f of files) {
@@ -730,7 +730,7 @@ export class ZoroFinder {
     this.uploading = false;
     this.renderQueue();
     if (uploaded.length) {
-      // yüklenenler seçili gelsin
+      // uploaded files start out selected
       this.selected.clear();
       if (!this.opts.multiple) uploaded.splice(0, uploaded.length - 1);
       for (const u of uploaded) { this.selected.set(u.id, u); this.insertAlts.set(u.id, u.alt ?? ''); }
@@ -745,12 +745,12 @@ export class ZoroFinder {
 
 export function altFromFilename(name: string): string {
   const base = name.replace(/\.[^.]+$/, '').replace(/[-_]+/g, ' ').replace(/\s+/g, ' ').trim();
-  // "IMG 2024 0102" gibi anlamsız adlarda ALT boş kalsın (kullanıcı yazsın)
+  // Leave ALT empty for meaningless names like "IMG 2024 0102" (let the user write it)
   if (/^(img|image|dsc|pxl|screenshot|ekran görüntüsü|photo|whatsapp image)?\s*[\d\s.]*$/i.test(base)) return '';
   return base.charAt(0).toLocaleUpperCase('tr') + base.slice(1);
 }
 
-/** Editörden bağımsız Finder: öne çıkan görsel, avatar, galeri seçimi vb. */
+/** Standalone Finder: featured image, avatar, gallery picking, etc. */
 export function openFinder(options: FinderOptions): ZoroFinder {
   return new ZoroFinder(options).open();
 }

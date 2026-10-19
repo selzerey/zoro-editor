@@ -1,8 +1,8 @@
 /* ==========================================================================
-   ZoroEditor — yayın (ön yüz) stilleri
-   Kaydedilen HTML'i gösterdiğin kapsayıcıya .zoro-output sınıfını ver:
-     <article class="zoro-output"><?= $icerik ?></article>
-   Sadece hizalama, görsel, tablo ve video için gerekenler; tipografi senin temanda.
+   ZoroEditor — published content (front-end) styles
+   Add the .zoro-output class to the container that displays the saved HTML:
+     <article class="zoro-output"><?= $content ?></article>
+   Only what alignment, images, tables and video need; typography is up to your theme.
    ========================================================================== */
 
 .zoro-output img { max-width: 100%; height: auto; }
@@ -14,7 +14,7 @@
 .zoro-output figure.wp-caption:not(.alignleft):not(.alignright) { margin-left: auto; margin-right: auto; }
 .zoro-output figure.wp-caption img { display: block; width: 100%; height: auto; }
 .zoro-output figcaption { margin-top: 0.5em; font-size: 0.875em; line-height: 1.45; color: #646970; text-align: center; }
-/* Dar ekranda yana hizalı görseller tam genişlik */
+/* Floated images go full width on narrow screens */
 @media (max-width: 520px) {
   .zoro-output .alignleft, .zoro-output .alignright, .zoro-output [data-alignment="left"], .zoro-output [data-alignment="right"] { float: none; display: block; margin: 1em auto; }
 }
@@ -23,7 +23,7 @@
 .zoro-output td, .zoro-output th { padding: 6px 10px; border: 1px solid #c3c4c7; vertical-align: top; }
 .zoro-output th { background: #f6f7f7; text-align: left; }
 .zoro-output td > p, .zoro-output th > p { margin: 0; }
-/* Dar ekranda tablo yatay kaysın */
+/* Tables scroll horizontally on narrow screens */
 @media (max-width: 640px) {
   .zoro-output table { display: block; overflow-x: auto; -webkit-overflow-scrolling: touch; }
 }

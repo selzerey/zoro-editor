@@ -1,5 +1,12 @@
 # Changelog
 
+## 1.0.1 — 2026-10-19
+
+- Published on npm: `npm install zoro-editor`; CDN via `cdn.jsdelivr.net/npm/zoro-editor` and unpkg
+- PHP media API messages are now English by default; set `'locale' => 'tr'` in `php/config.php` for Turkish
+- Code comments translated to English
+- Smaller npm package (the IIFE source map is no longer published)
+
 ## 1.0.0 — 2026-10-19
 
 First packaged release. The original `ZoroEditor` (vanilla JS loaded from a CDN) was rewritten in TypeScript.

@@ -1,12 +1,12 @@
 /**
- * React / Next.js bileşeni.
+ * React / Next.js component.
  *
  *   import { ZoroEditor } from 'zoro-editor/react';
  *   import 'zoro-editor/style.css';
  *
  *   <ZoroEditor value={html} onChange={setHtml} preset="blog" media={{ endpoint: '/api/media' }} />
  *
- * SSR güvenli: editör yalnızca tarayıcıda (useEffect içinde) oluşturulur.
+ * SSR-safe: the editor is created only in the browser (inside useEffect).
  */
 import { forwardRef, useCallback, useEffect, useImperativeHandle, useRef, type CSSProperties } from 'react';
 import { ZoroEditor as Core } from '../core/editor';
@@ -14,18 +14,18 @@ import { ZoroFinder, type FinderOptions } from '../finder/finder';
 import type { ZoroEditorOptions } from '../types';
 
 export interface ZoroEditorProps extends Omit<ZoroEditorOptions, 'content' | 'onChange' | 'input' | 'onReady' | 'className'> {
-  /** Kontrollü kullanım. */
+  /** Controlled usage. */
   value?: string;
-  /** Kontrolsüz kullanım (başlangıç değeri). */
+  /** Uncontrolled usage (initial value). */
   defaultValue?: string;
   onChange?: (html: string) => void;
   onReady?: (editor: Core) => void;
-  /** Form / Server Action için gizli input adı. */
+  /** Hidden input name for forms / Server Actions. */
   name?: string;
   id?: string;
   className?: string;
   style?: CSSProperties;
-  /** Editör sarmalayıcısına eklenecek sınıf. */
+  /** Class added to the editor wrapper. */
   editorClassName?: string;
 }
 
@@ -35,11 +35,11 @@ export interface ZoroEditorHandle {
   insertHTML(html: string): void;
   focus(): void;
   clearDraft(): void;
-  /** Alttaki çekirdek örnek (gelişmiş kullanım). */
+  /** The underlying core instance (advanced usage). */
   getInstance(): Core | null;
 }
 
-/** Değişince editörün yeniden kurulmasını gerektiren ayarların imzası. */
+/** Signature of the options that require rebuilding the editor when they change. */
 function structuralKey(p: ZoroEditorProps): string {
   const media = p.media === false ? false : p.media ? { ...p.media, adapter: !!p.media.adapter, headers: typeof p.media.headers === 'function' ? 'fn' : p.media.headers } : undefined;
   return JSON.stringify({
@@ -56,7 +56,7 @@ export const ZoroEditor = forwardRef<ZoroEditorHandle, ZoroEditorProps>(function
   const inputRef = useRef<HTMLInputElement>(null);
   const instRef = useRef<Core | null>(null);
   const lastHtml = useRef<string | undefined>(undefined);
-  // En güncel callback'ler (editörü yeniden kurmadan)
+  // Latest callbacks (without rebuilding the editor)
   const cb = useRef({ onChange, onReady, onFocus, onBlur, onImageUpload: props.onImageUpload });
   cb.current = { onChange, onReady, onFocus, onBlur, onImageUpload: props.onImageUpload };
   const valueRef = useRef(value ?? defaultValue ?? '');
@@ -90,11 +90,11 @@ export const ZoroEditor = forwardRef<ZoroEditorHandle, ZoroEditorProps>(function
       inst.destroy();
       if (instRef.current === inst) instRef.current = null;
     };
-    // extensions yalnızca ilk kurulumda okunur (satır içi dizi her render'da yeni referanstır);
-    // değiştirmek için bileşene farklı bir `key` ver.
+    // extensions is read only on first setup (an inline array is a new reference on every render);
+    // to change it, give the component a different `key`.
   }, [key]);
 
-  // Dışarıdan gelen value değişimi (kendi yazdığımız değer değilse)
+  // External value change (unless it is the value we wrote ourselves)
   useEffect(() => {
     const inst = instRef.current;
     if (!inst || value === undefined) return;
@@ -129,10 +129,10 @@ export const ZoroEditor = forwardRef<ZoroEditorHandle, ZoroEditorProps>(function
 });
 
 /**
- * Editörden bağımsız Finder (öne çıkan görsel, avatar vb.):
+ * Standalone Finder (featured image, avatar, etc.):
  *
  *   const openFinder = useZoroFinder({ endpoint: '/api/media' });
- *   <button onClick={() => openFinder({ onSelect: ([img]) => setCover(img.url) })}>Görsel seç</button>
+ *   <button onClick={() => openFinder({ onSelect: ([img]) => setCover(img.url) })}>Choose image</button>
  */
 export function useZoroFinder(base: Omit<FinderOptions, 'onSelect'>) {
   const baseRef = useRef(base);

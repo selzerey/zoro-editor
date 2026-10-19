@@ -1,4 +1,4 @@
-// Next.js örneği duman testi:  (examples/nextjs) npx next dev -p 3100  →  node e2e/nextjs.mjs
+// Smoke test for the Next.js example:  (examples/nextjs) npx next dev -p 3100  →  node e2e/nextjs.mjs
 import { chromium } from '@playwright/test';
 
 const BASE = process.env.NEXT_URL ?? 'http://localhost:3100';
@@ -9,7 +9,7 @@ const ok = (name, cond, extra = '') => {
 };
 
 for (let i = 0; i < 60; i++) {
-  try { if ((await fetch(BASE)).ok) break; } catch { /* henüz açılmadı */ }
+  try { if ((await fetch(BASE)).ok) break; } catch { /* not up yet */ }
   await new Promise((r) => setTimeout(r, 1000));
 }
 

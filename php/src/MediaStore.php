@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace Zoro\Editor;
 
 /**
- * Dosya tabanlı medya kütüphanesi (veritabanı gerekmez).
- * Metadata: {data_path}/media.json — her yazma işlemi dosya kilidiyle yapılır.
- * Klasörler sanaldır: dosya taşınınca URL değişmez, içerikteki bağlantılar kırılmaz.
+ * File-based media library (no database needed).
+ * Metadata: {data_path}/media.json — every write happens under a file lock.
+ * Folders are virtual: moving a file doesn't change its URL, so links in content don't break.
  */
 final class MediaStore
 {
@@ -29,7 +29,7 @@ final class MediaStore
         $this->images = new ImageProcessor((array) $config->get('variants', []));
     }
 
-    // ───────────────────────── Okuma ─────────────────────────
+    // ───────────────────────── Reading ─────────────────────────
 
     /**
      * @param array{page?:int, limit?:int, search?:string, folder?:?string, type?:string, sort?:string, filter?:string} $p
@@ -105,10 +105,10 @@ final class MediaStore
         return null;
     }
 
-    // ───────────────────────── Yükleme ─────────────────────────
+    // ───────────────────────── Upload ─────────────────────────
 
     /**
-     * $_FILES['file'] girdisini işler.
+     * Handles the $_FILES['file'] entry.
      * @param array{name?:string, tmp_name?:string, error?:int, size?:int} $file
      * @return array<string,mixed>
      */
@@ -117,21 +117,21 @@ final class MediaStore
         $err = (int) ($file['error'] ?? UPLOAD_ERR_NO_FILE);
         if ($err !== UPLOAD_ERR_OK) {
             throw new UserError(match ($err) {
-                UPLOAD_ERR_INI_SIZE, UPLOAD_ERR_FORM_SIZE => 'Dosya sunucu sınırını aşıyor (upload_max_filesize).',
-                UPLOAD_ERR_PARTIAL => 'Dosya yarım yüklendi, tekrar deneyin.',
-                UPLOAD_ERR_NO_FILE => 'Dosya seçilmedi.',
-                default => 'Dosya yüklenemedi (kod ' . $err . ').',
+                UPLOAD_ERR_INI_SIZE, UPLOAD_ERR_FORM_SIZE => Lang::t('upload_max_filesize'),
+                UPLOAD_ERR_PARTIAL => Lang::t('upload_partial'),
+                UPLOAD_ERR_NO_FILE => Lang::t('nothing_selected'),
+                default => Lang::t('upload_failed', ['code' => $err]),
             });
         }
         $tmp = (string) ($file['tmp_name'] ?? '');
         if (!is_uploaded_file($tmp)) {
-            throw new UserError('Geçersiz yükleme.');
+            throw new UserError(Lang::t('invalid_upload'));
         }
         return $this->importFile($tmp, (string) ($file['name'] ?? 'dosya'), $alt, $folder, true);
     }
 
     /**
-     * Sunucudaki bir dosyayı kütüphaneye ekler (toplu içe aktarma, testler).
+     * Adds a file already on the server to the library (bulk import, tests).
      * @return array<string,mixed>
      */
     public function importFile(string $sourcePath, string $originalName, string $alt, string $folder = '', bool $moveUploaded = false): array
@@ -141,22 +141,22 @@ final class MediaStore
         $maxSize = (int) $this->config->get('upload.max_size');
         $size = (int) @filesize($sourcePath);
         if ($size <= 0) {
-            throw new UserError('Dosya boş.');
+            throw new UserError(Lang::t('empty_file'));
         }
         if ($size > $maxSize) {
-            throw new UserError('Dosya çok büyük. En fazla ' . Support::formatBytes($maxSize) . '.');
+            throw new UserError(Lang::t('too_large', ['max' => Support::formatBytes($maxSize)]));
         }
 
-        // Türü içerikten tespit et (istemcinin söylediğine güvenme)
+        // Detect the type from the content (don't trust what the client says)
         $mime = (string) (new \finfo(FILEINFO_MIME_TYPE))->file($sourcePath);
         $allowed = (array) $this->config->get('upload.allowed');
         if (!in_array($mime, $allowed, true)) {
-            throw new UserError('Desteklenmeyen dosya türü: ' . $mime);
+            throw new UserError(Lang::t('unsupported_type', ['mime' => $mime]));
         }
         $isImage = str_starts_with($mime, 'image/');
         $info = $isImage ? $this->images->inspect($sourcePath) : null;
         if ($isImage && !$info) {
-            throw new UserError('Görsel okunamadı (bozuk dosya).');
+            throw new UserError(Lang::t('broken_image'));
         }
 
         $hash = hash_file('sha256', $sourcePath) ?: '';
@@ -185,7 +185,7 @@ final class MediaStore
         $tmpDest = $dest . '.part';
         $moved = $moveUploaded ? move_uploaded_file($sourcePath, $tmpDest) : copy($sourcePath, $tmpDest);
         if (!$moved) {
-            throw new \RuntimeException('Dosya kaydedilemedi.');
+            throw new \RuntimeException('Could not save the uploaded file.');
         }
 
         $dims = null;
@@ -194,7 +194,7 @@ final class MediaStore
             if ($dims && is_file($dest)) {
                 @unlink($tmpDest);
             } else {
-                // GD açamadı (ör. AVIF desteği yok) — orijinali koru
+                // GD couldn't open it (e.g. no AVIF support) — keep the original
                 rename($tmpDest, $dest);
                 $dims = $info ? ['width' => $info['width'], 'height' => $info['height']] : null;
             }
@@ -238,7 +238,7 @@ final class MediaStore
         });
     }
 
-    // ───────────────────────── Güncelleme ─────────────────────────
+    // ───────────────────────── Update ─────────────────────────
 
     /**
      * @param array{alt?:string, caption?:string, title?:string, filename?:string} $data
@@ -262,7 +262,7 @@ final class MediaStore
                 }
                 return $this->publicItem($m);
             }
-            throw new UserError('Medya bulunamadı.', 404);
+            throw new UserError(Lang::t('not_found'), 404);
         });
         if ($renamed) {
             $hook = $this->config->get('on_rename');
@@ -275,13 +275,13 @@ final class MediaStore
 
     /**
      * @param array<string,mixed> $m
-     * @return array{0:string,1:string}|null [eskiUrl, yeniUrl]
+     * @return array{0:string,1:string}|null [oldUrl, newUrl]
      */
     private function renameFiles(array &$m, string $newName): ?array
     {
         $slug = Support::slugify(Support::basename($newName), '');
         if ($slug === '') {
-            throw new UserError('Geçersiz dosya adı.');
+            throw new UserError(Lang::t('invalid_filename'));
         }
         $oldPath = $this->pathOf($m);
         $dir = dirname($oldPath);
@@ -291,7 +291,7 @@ final class MediaStore
         }
         $newFile = Support::uniqueFilename($dir, $slug, $ext);
         if (!@rename($oldPath, "$dir/$newFile")) {
-            throw new \RuntimeException('Dosya yeniden adlandırılamadı.');
+            throw new \RuntimeException('Could not rename the file.');
         }
         $oldBase = Support::basename((string) $m['filename']);
         $newBase = Support::basename($newFile);
@@ -367,7 +367,7 @@ final class MediaStore
     {
         $path = Support::cleanFolder($path);
         if ($path === '') {
-            throw new UserError('Klasör adı gerekli.');
+            throw new UserError(Lang::t('folder_required'));
         }
         $this->mutate(function (array &$db) use ($path) {
             $this->addFolderPaths($db, $path);
@@ -382,16 +382,16 @@ final class MediaStore
             foreach ($db['items'] as $m) {
                 $f = (string) ($m['folder'] ?? '');
                 if ($f === $path || str_starts_with($f, $path . '/')) {
-                    throw new UserError('Klasör boş değil.', 409);
+                    throw new UserError(Lang::t('folder_not_empty'), 409);
                 }
             }
             $db['folders'] = array_values(array_filter($db['folders'], fn ($f) => $f !== $path && !str_starts_with($f, $path . '/')));
         });
     }
 
-    // ───────────────────────── Yardımcılar ─────────────────────────
+    // ───────────────────────── Helpers ─────────────────────────
 
-    /** Dışarı verilen format (sha256 ve sunucu yolları gizlenir). */
+    /** Public output format (sha256 and server paths are hidden). */
     public function publicItem(array $m): array
     {
         $variants = (array) ($m['variants'] ?? []);
@@ -468,7 +468,7 @@ final class MediaStore
         }
         $fh = fopen($this->dataFile, 'rb');
         if (!$fh) {
-            throw new \RuntimeException('Metadata okunamadı.');
+            throw new \RuntimeException('Could not read the media metadata file.');
         }
         flock($fh, LOCK_SH);
         $raw = stream_get_contents($fh);
@@ -478,7 +478,7 @@ final class MediaStore
     }
 
     /**
-     * Kilit altında oku-değiştir-yaz.
+     * Read-modify-write under a lock.
      * @template T
      * @param callable(array &$db): T $fn
      * @return T
@@ -491,7 +491,7 @@ final class MediaStore
         }
         $fh = fopen($this->dataFile, 'c+b');
         if (!$fh || !flock($fh, LOCK_EX)) {
-            throw new \RuntimeException('Metadata kilitlenemedi.');
+            throw new \RuntimeException('Could not lock the media metadata file.');
         }
         try {
             $db = $this->decode((string) stream_get_contents($fh));
@@ -516,7 +516,7 @@ final class MediaStore
             return ['seq' => 0, 'items' => [], 'folders' => []];
         }
         if (array_is_list($data)) {
-            $data = ['items' => $data]; // eski format: düz liste
+            $data = ['items' => $data]; // old format: plain list
         }
         $items = array_map([$this, 'upgradeRecord'], (array) ($data['items'] ?? []));
         $seq = (int) ($data['seq'] ?? 0);
@@ -526,7 +526,7 @@ final class MediaStore
         return ['seq' => $seq, 'items' => $items, 'folders' => array_values((array) ($data['folders'] ?? []))];
     }
 
-    /** Eski ZoroEditor kaydı (altText, filename uzantısız) → yeni format. */
+    /** Legacy ZoroEditor record (altText, filename without extension) → new format. */
     private function upgradeRecord(array $m): array
     {
         if (isset($m['altText']) && !isset($m['alt'])) {
@@ -548,7 +548,7 @@ final class MediaStore
         return $m;
     }
 
-    /** Eski sürümün uploads/media/media.json dosyasını içeri al. */
+    /** Import the old version's uploads/media/media.json file. */
     private function migrateLegacy(): ?array
     {
         $legacy = $this->uploadPath . '/media.json';

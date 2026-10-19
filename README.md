@@ -1,5 +1,10 @@
 # ZoroEditor
 
+[![npm](https://img.shields.io/npm/v/zoro-editor.svg)](https://www.npmjs.com/package/zoro-editor)
+[![CI](https://github.com/selzerey/zoro-editor/actions/workflows/ci.yml/badge.svg)](https://github.com/selzerey/zoro-editor/actions/workflows/ci.yml)
+[![license](https://img.shields.io/npm/l/zoro-editor.svg)](LICENSE)
+[![gzip size](https://img.shields.io/badge/gzip-~195%20KB-blue)](#browser-support-and-bundle-size)
+
 A WordPress Classic–style rich text editor that works the same way in **plain PHP, React, Next.js and TypeScript** — with a built-in, CKFinder-like media manager (**Zoro Finder**) and a ready-to-use **PHP media backend**.
 
 ![ZoroEditor — modern skin](docs/images/modern.png)
@@ -145,27 +150,26 @@ That's it. Everything below is optional detail.
 
 ## Installation
 
-ZoroEditor is distributed from GitHub. The `dist/` folder is committed, so no build step is needed.
+ZoroEditor is published on [npm](https://www.npmjs.com/package/zoro-editor) and GitHub. The `dist/` folder is prebuilt, so no build step is needed.
 
 ### Download (plain PHP / HTML)
 
 Download the ZIP from GitHub and copy `dist/` (and `php/` if you want the media backend). See the [quick start](#quick-start-php-site-5-minutes).
 
-### CDN (jsDelivr, served from this GitHub repo)
+### CDN
 
 ```html
-<script src="https://cdn.jsdelivr.net/gh/selzerey/zoro-editor@v1.0.0/dist/zoro-editor.iife.js"></script>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/selzerey/zoro-editor@v1.0.0/dist/zoro-content.css">
+<script src="https://cdn.jsdelivr.net/npm/zoro-editor@1/dist/zoro-editor.iife.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/zoro-editor@1/dist/zoro-content.css">
 ```
 
-The IIFE build injects its own CSS. Self-hosting is recommended for production.
+Also available on unpkg (`https://unpkg.com/zoro-editor@1`) and straight from GitHub (`https://cdn.jsdelivr.net/gh/selzerey/zoro-editor@v1.0.1/dist/zoro-editor.iife.js`). The IIFE build injects its own CSS. Pin an exact version (e.g. `@1.0.1`) in production, or self-host the files.
 
 ### npm (React, Next.js, Vite, any bundler)
 
 ```bash
-npm install github:selzerey/zoro-editor
-# or a specific version
-npm install github:selzerey/zoro-editor#v1.0.0
+npm install zoro-editor
+# pnpm add zoro-editor  ·  yarn add zoro-editor  ·  bun add zoro-editor
 ```
 
 ```js

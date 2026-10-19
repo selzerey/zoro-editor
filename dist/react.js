@@ -1,5 +1,5 @@
 "use client";
-import { b as e, t } from "./chunks/editor-BfOkbMWc.js";
+import { b as e, t } from "./chunks/editor-BpbEvjmr.js";
 import { forwardRef as n, useCallback as r, useEffect as i, useImperativeHandle as a, useRef as o } from "react";
 import { jsx as s, jsxs as c } from "react/jsx-runtime";
 //#region src/react/index.tsx

@@ -16,6 +16,6 @@ describe('SSR / Next.js', () => {
 
   it('çekirdek sınıf sunucuda anlaşılır hata verir', async () => {
     const { ZoroEditor } = await import('../src/index');
-    expect(() => new ZoroEditor('#x')).toThrow(/tarayıcıda/);
+    expect(() => new ZoroEditor('#x')).toThrow(/only runs in the browser/);
   });
 });

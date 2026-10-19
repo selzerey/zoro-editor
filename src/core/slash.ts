@@ -1,6 +1,6 @@
 /**
- * "/" komut menüsü. Boş ya da metin içeren bir paragrafta "/" yazınca açılır.
- * Fikir: Novel / BlockNote / Yoopta (her arama kelimesi eşleşmeli); kod Zoro'ya özgü.
+ * "/" command menu. Opens when "/" is typed in an empty or non-empty paragraph.
+ * Idea: Novel / BlockNote / Yoopta (every search word must match); the code is Zoro's own.
  */
 import type { Editor } from '@tiptap/core';
 import type { GroupName } from '../types';
@@ -14,7 +14,7 @@ export interface SlashItem {
   hint?: (t: Messages) => string;
   keywords: string[];
   icon: string;
-  /** Bu grup editörde yoksa öğe gösterilmez. */
+  /** The item is hidden if this group isn't in the editor. */
   group?: GroupName;
   run: (editor: Editor, api: SlashHost) => void;
 }
@@ -27,7 +27,7 @@ export interface SlashHost {
   readonly themeClass: string;
 }
 
-/** Türkçe katlama: "Başlık" → "baslik", "IŞIK" → "isik" */
+/** Turkish folding: "Başlık" → "baslik", "IŞIK" → "isik" */
 export function fold(s: string): string {
   return s
     .toLocaleLowerCase('tr')
@@ -77,7 +77,7 @@ export class SlashMenu {
     return !!this.el;
   }
 
-  /** Her işlemden sonra çağrılır: "/sorgu" imleçten hemen önce mi? */
+  /** Called after every transaction: is "/query" right before the cursor? */
   update(): void {
     const ed = this.editor;
     const { selection } = ed.state;
@@ -92,7 +92,7 @@ export class SlashMenu {
     if (from === this.dismissedAt) return this.close();
     this.range = { from, to: selection.from };
     this.filter(m[1]!);
-    if (!this.items.length && m[1]!.length > 6) return this.close(); // anlamsız uzun sorgu: menüyü kapat
+    if (!this.items.length && m[1]!.length > 6) return this.close(); // meaninglessly long query: close the menu
     this.render();
   }
 
@@ -106,7 +106,7 @@ export class SlashMenu {
         let score = 0;
         for (const w of words) {
           const pos = Math.min(...hay.map((x) => (x.startsWith(w) ? 0 : x.includes(w) ? 1 : 9)));
-          if (pos === 9) return null; // her kelime eşleşmeli
+          if (pos === 9) return null; // every word must match
           score += pos;
         }
         return { item, score };
@@ -164,7 +164,7 @@ export class SlashMenu {
     this.el.style.left = `${Math.round(Math.max(8, Math.min(c.left, vw - box.width - 8)))}px`;
   }
 
-  /** Editörün keydown'undan çağrılır; true = olay işlendi. */
+  /** Called from the editor's keydown; true = event handled. */
   onKeyDown(e: KeyboardEvent): boolean {
     if (!this.el) return false;
     const n = this.items.length;

@@ -1,13 +1,13 @@
 import type { GroupName, PresetName, ToolbarGroup } from '../types';
-/** Yerleşik gruplar. Sıra = araç çubuğundaki sıra. */
+/** Built-in groups. Order = order in the toolbar. */
 export declare const BUILTIN_GROUPS: ToolbarGroup[];
 export declare const PRESETS: Record<string, GroupName[]>;
 export declare function registerGroup(group: ToolbarGroup): void;
 export declare function registerPreset(name: PresetName, groups: GroupName[]): void;
 export declare function getGroup(name: GroupName): ToolbarGroup | undefined;
 /**
- * preset + groups + addGroups + removeGroups → nihai grup listesi (yerleşik sıra korunur,
- * özel gruplar sona eklenir).
+ * preset + groups + addGroups + removeGroups → final group list (built-in order is kept,
+ * custom groups are appended).
  */
 export declare function resolveGroups(o: {
     preset?: PresetName;

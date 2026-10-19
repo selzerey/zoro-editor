@@ -1,4 +1,4 @@
-// Satır içi SVG simgeleri (ZoroEditor orijinal seti + Finder simgeleri)
+// Inline SVG icons (original ZoroEditor set + Finder icons)
 
 const s = (body: string, size = 20, vb = '0 0 24 24') =>
   `<svg width="${size}" height="${size}" viewBox="${vb}" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">${body}</svg>`;

@@ -13,5 +13,5 @@ export type * from './types';
 export declare const version = "__ZORO_VERSION__";
 import { ZoroEditor } from './core/editor';
 import type { ZoroEditorOptions } from './types';
-/** Kısa yol: `createEditor('#icerik', { preset: 'blog' })` */
+/** Shorthand: `createEditor('#content', { preset: 'blog' })` */
 export declare function createEditor(target: string | HTMLElement, options?: ZoroEditorOptions): ZoroEditor;

@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace Zoro\Editor;
 
 /**
- * Anlık görsel boyutlandırma:  /img/w640-q75/2026/10/gorsel.jpg
- * Sadece config'teki genişlik/kalite listesi kabul edilir (sınırsız varyant üretip
- * diski/CPU'yu doldurma saldırısını engeller); istenen değer bir üst izinli değere yuvarlanır.
+ * On-the-fly image resizing:  /img/w640-q75/2026/10/photo.jpg
+ * Only the width/quality lists from the config are accepted (prevents attacks that fill
+ * disk/CPU by generating unlimited variants); the requested value is rounded up to the next allowed one.
  */
 final class ImageServer
 {
@@ -98,9 +98,9 @@ final class ImageServer
         http_response_code($code);
         header('Content-Type: text/plain; charset=utf-8');
         echo match ($code) {
-            404 => 'Görsel bulunamadı',
-            415 => 'Görsel işlenemedi',
-            default => 'Geçersiz istek',
+            404 => Lang::t('image_not_found'),
+            415 => Lang::t('image_failed'),
+            default => Lang::t('bad_request'),
         };
         exit;
     }

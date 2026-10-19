@@ -5,15 +5,15 @@ declare(strict_types=1);
 namespace Zoro\Editor;
 
 /**
- * PHP sayfalarında tek satırla editör:
+ * One-line editor for PHP pages:
  *
- *   <?= \Zoro\Editor\Editor::render('icerik', $yazi['icerik'], ['preset' => 'blog', 'media' => '/zoro/media.php']) ?>
+ *   <?= \Zoro\Editor\Editor::render('content', $post['content'], ['preset' => 'blog', 'media' => '/zoro/media.php']) ?>
  *
- * Script etiketi sayfada yalnızca bir kez basılır.
+ * The script tag is printed only once per page.
  */
 final class Editor
 {
-    /** Varsayılan betik adresi (kendi sunucundaki dist/zoro-editor.iife.js ya da CDN). */
+    /** Default script URL (dist/zoro-editor.iife.js on your own server, or a CDN). */
     public static string $scriptUrl = 'https://cdn.jsdelivr.net/gh/selzerey/zoro-editor@v1.0.0/dist/zoro-editor.iife.js';
 
     private static bool $scriptPrinted = false;
@@ -72,7 +72,7 @@ final class Editor
         return $html;
     }
 
-    /** Sadece script etiketi (editörleri kendin yerleştiriyorsan). */
+    /** Script tag only (if you place the editors yourself). */
     public static function script(?string $src = null): string
     {
         self::$scriptPrinted = true;

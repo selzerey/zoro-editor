@@ -1,4 +1,4 @@
-// Bağımlılıksız arayüz bileşenleri: Dialog, Popover, Select, Tabs, Toast
+// Dependency-free UI components: Dialog, Popover, Select, Tabs, Toast
 
 export function h<K extends keyof HTMLElementTagNameMap>(
   tag: K,
@@ -24,13 +24,13 @@ export function h<K extends keyof HTMLElementTagNameMap>(
 
 const FOCUSABLE = 'a[href],button:not([disabled]),input:not([disabled]),select:not([disabled]),textarea:not([disabled]),[tabindex]:not([tabindex="-1"])';
 
-/** Açık dialog yığını: ESC sadece en üsttekini kapatır. */
+/** Stack of open dialogs: ESC closes only the topmost one. */
 const dialogStack: ZoroDialog[] = [];
 
 export interface DialogOptions {
   title: string;
   size?: 'sm' | 'md' | 'lg' | 'xl';
-  /** Tema/ölçek sınıfları (editör sarmalayıcısından aktarılır). */
+  /** Theme/scale classes (passed from the editor wrapper). */
   themeClass?: string;
   closeLabel?: string;
   onClose?: () => void;
@@ -125,7 +125,7 @@ export class ZoroDialog {
   };
 }
 
-/** Sabit konumlu açılır kutu. Ekrandan taşmaz, dışarı tıklayınca / ESC ile kapanır. */
+/** Fixed-positioned popover. Stays on screen; closes on outside click / ESC. */
 export class ZoroPopover {
   el: HTMLDivElement | null = null;
   isOpen = false;
@@ -140,7 +140,7 @@ export class ZoroPopover {
     this.el = h('div', { class: `zoro-root zoro-popover ${extraClass} ${this.themeClass}`, role: 'dialog' }, content);
     document.body.appendChild(this.el);
     this.position(anchor instanceof Element ? anchor.getBoundingClientRect() : anchor);
-    // Açan tıklamayı yakalamamak için bir sonraki turda dinle; o arada kapandıysa hiç ekleme
+    // Listen on the next tick so the opening click isn't caught; skip if it closed in the meantime
     clearTimeout(this.listenTimer);
     this.listenTimer = setTimeout(() => {
       if (!this.isOpen) return;
@@ -159,7 +159,7 @@ export class ZoroPopover {
     const pr = this.el.getBoundingClientRect();
     let top = rect.bottom + 6;
     let left = rect.left + rect.width / 2 - pr.width / 2;
-    if (rect.width < 60) left = rect.left; // küçük düğmelerde sola hizala
+    if (rect.width < 60) left = rect.left; // left-align for small buttons
     left = Math.max(8, Math.min(left, vw - pr.width - 8));
     if (top + pr.height > vh - 8 && rect.top - pr.height - 6 > 8) top = rect.top - pr.height - 6;
     this.el.style.top = `${Math.max(8, top)}px`;
@@ -198,11 +198,11 @@ export interface SelectItem {
   label: string;
   shortcut?: string;
   style?: Partial<CSSStyleDeclaration>;
-  /** Seçeneğin solunda SVG simge */
+  /** SVG icon to the left of the option */
   icon?: string;
-  /** Girinti düzeyi (klasör ağacı) */
+  /** Indent level (folder tree) */
   depth?: number;
-  /** Sağda soluk ek bilgi (ör. dosya sayısı) */
+  /** Faded extra info on the right (e.g. file count) */
   meta?: string;
 }
 
@@ -211,21 +211,21 @@ export interface SelectOptions {
   value: string;
   label: string;
   onChange: (v: string) => void;
-  /** toolbar: araç çubuğu düğmesi; field: form alanı (Finder, dialoglar) */
+  /** toolbar: toolbar button; field: form field (Finder, dialogs) */
   variant?: 'toolbar' | 'field';
-  /** Değer listede yoksa gösterilen metin (eylem menüleri: "Taşı…") */
+  /** Text shown when the value isn't in the list (action menus: "Move…") */
   placeholder?: string;
-  /** Tetikleyicide etiketin solunda simge */
+  /** Icon to the left of the label in the trigger */
   icon?: string;
   size?: 'sm' | 'md';
-  /** Seçim sonrası değeri yer tutucuya geri al (eylem menüsü) */
+  /** Reset the value to the placeholder after selection (action menu) */
   resetAfterChange?: boolean;
 }
 
 const CHECK = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>';
 const CHEVRON = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>';
 
-/** Klavye ile gezilebilen özel açılır liste (tarayıcının çıplak <select>'i yerine). */
+/** Keyboard-navigable custom dropdown (instead of the browser's bare <select>). */
 export class ZoroSelect {
   wrapper!: HTMLDivElement;
   trigger!: HTMLButtonElement;
@@ -315,7 +315,7 @@ export class ZoroSelect {
       this.dropdown!.appendChild(opt);
     });
     this.wrapper.appendChild(this.dropdown);
-    // Sabit konum: kaydırılabilir satırlar / dialoglar menüyü kırpmasın
+    // Fixed position so scrollable rows / dialogs don't clip the menu
     const r = this.trigger.getBoundingClientRect();
     const d = this.dropdown;
     d.style.position = 'fixed';
@@ -391,7 +391,7 @@ export class ZoroSelect {
   }
 }
 
-/** Sekmeler. */
+/** Tabs. */
 export class ZoroTabs {
   container!: HTMLDivElement;
   private buttons: Record<string, HTMLButtonElement> = {};
@@ -440,7 +440,7 @@ export class ZoroTabs {
   }
 }
 
-/** Kısa bildirim (ekranın altında). */
+/** Short notification (at the bottom of the screen). */
 export function toast(message: string, type: 'info' | 'error' | 'success' = 'info', themeClass = '', ms = 2600): () => void {
   let host = document.querySelector<HTMLDivElement>('.zoro-toast-host');
   if (!host) {
@@ -461,7 +461,7 @@ export function toast(message: string, type: 'info' | 'error' | 'success' = 'inf
   return remove;
 }
 
-/** Basit onay penceresi (window.confirm yerine; mobilde de düzgün görünür). */
+/** Simple confirm dialog (instead of window.confirm; looks right on mobile too). */
 export function confirmDialog(message: string, opts: { title: string; ok: string; cancel: string; danger?: boolean; themeClass?: string }): Promise<boolean> {
   return new Promise((resolve) => {
     let result = false;
@@ -474,7 +474,7 @@ export function confirmDialog(message: string, opts: { title: string; ok: string
   });
 }
 
-/** Tek alanlı giriş penceresi (window.prompt yerine). */
+/** Single-field input dialog (instead of window.prompt). */
 export function promptDialog(opts: { title: string; label: string; value?: string; placeholder?: string; ok: string; cancel: string; themeClass?: string; validate?: (v: string) => string | null }): Promise<string | null> {
   return new Promise((resolve) => {
     let result: string | null = null;
@@ -497,11 +497,11 @@ export function promptDialog(opts: { title: string; label: string; value?: strin
   });
 }
 
-// ───────────────────────── İpuçları (tooltip) ─────────────────────────
+// ───────────────────────── Tooltips ─────────────────────────
 
 const IS_MAC = typeof navigator !== 'undefined' && /Mac|iPhone|iPad/.test(navigator.platform || navigator.userAgent);
 
-/** "Kalın (Ctrl+B)" → { label: "Kalın", keys: "Ctrl+B" } ; Mac'te ⌘ ⌥ ⇧ */
+/** "Bold (Ctrl+B)" → { label: "Bold", keys: "Ctrl+B" } ; ⌘ ⌥ ⇧ on Mac */
 export function splitShortcut(title: string): { label: string; keys: string } {
   const m = /^(.*?)\s*\(([^()]*(?:Ctrl|Alt|Shift|⌘)[^()]*)\)\s*$/.exec(title);
   if (!m) return { label: title, keys: '' };
@@ -540,7 +540,7 @@ function showTip(target: HTMLElement) {
   tipEl.style.left = `${Math.round(Math.max(4, Math.min(r.left + r.width / 2 - b.width / 2, vw - b.width - 4)))}px`;
 }
 
-/** Belge genelinde bir kez kurulur: .zoro-root içindeki [data-tip] öğeleri. */
+/** Set up once per document: [data-tip] elements inside .zoro-root. */
 export function installTooltips(): void {
   if (typeof document === 'undefined' || (document as any).__zoroTips) return;
   (document as any).__zoroTips = true;
@@ -549,7 +549,7 @@ export function installTooltips(): void {
     const t = (e.target as Element | null)?.closest?.('.zoro-root [data-tip]') as HTMLElement | null;
     if (!t || t === tipTarget) return;
     clearTimeout(tipTimer);
-    // Butonlar arasında gezinirken bekleme yok (TinyMCE: 300 ms ilk, 60 ms sonraki)
+    // No delay while moving between buttons (TinyMCE: 300 ms first, 60 ms after)
     const delay = tipEl || Date.now() - lastHide < 400 ? 60 : 300;
     tipTimer = setTimeout(() => showTip(t), delay);
   });
