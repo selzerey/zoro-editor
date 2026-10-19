@@ -1,0 +1,237 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>ZoroEditor Demo</title>
+  <meta name="description" content="ZoroEditor — a WordPress Classic style rich text editor for PHP, React and Next.js, with the Zoro Finder media manager.">
+  <link rel="stylesheet" href="../dist/zoro-content.css">
+  <style>
+    :root {
+      --bg: #f0f0f1; --card: #fff; --text: #1d2327; --muted: #50575e; --line: #dcdcde; --accent: #2271b1; --code-bg: #f6f7f7;
+      color-scheme: light;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root:not([data-theme="light"]) { --bg: #101517; --card: #1d2327; --text: #f0f0f1; --muted: #a7aaad; --line: #3c434a; --accent: #72aee6; --code-bg: #23282d; color-scheme: dark; }
+    }
+    :root[data-theme="dark"] { --bg: #101517; --card: #1d2327; --text: #f0f0f1; --muted: #a7aaad; --line: #3c434a; --accent: #72aee6; --code-bg: #23282d; color-scheme: dark; }
+
+    * { box-sizing: border-box; }
+    body { margin: 0; background: var(--bg); color: var(--text); font: 15px/1.55 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+    .wrap { max-width: 1040px; margin: 0 auto; padding: 24px 16px 64px; }
+    header { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 8px 16px; margin-bottom: 20px; }
+    h1 { margin: 0; font-size: 24px; letter-spacing: -0.01em; }
+    h1 small { font-weight: 400; color: var(--muted); font-size: 14px; margin-left: 6px; }
+    header nav { display: flex; gap: 14px; font-size: 14px; }
+    a { color: var(--accent); }
+    .card { background: var(--card); border: 1px solid var(--line); border-radius: 6px; padding: 18px; margin-bottom: 16px; }
+    .card > h2 { margin: 0 0 12px; font-size: 15px; }
+    .row { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+    .row + .row { margin-top: 12px; }
+    .label { font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.04em; color: var(--muted); min-width: 72px; }
+    .chip { display: inline-flex; align-items: center; gap: 6px; min-height: 34px; padding: 0 12px; border: 1px solid var(--line); border-radius: 999px; background: transparent; color: var(--text); font: inherit; font-size: 13px; cursor: pointer; }
+    .chip[aria-pressed="true"] { background: var(--accent); border-color: var(--accent); color: #fff; }
+    .chip input { margin: 0; accent-color: var(--accent); }
+    label.chip:has(input:checked) { border-color: var(--accent); }
+    .field { display: grid; gap: 6px; margin-bottom: 14px; }
+    .field input[type="text"] { height: 40px; padding: 0 12px; border: 1px solid var(--line); border-radius: 4px; background: var(--card); color: var(--text); font: inherit; }
+    .featured { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
+    .featured img { width: 120px; height: 72px; object-fit: cover; border-radius: 4px; border: 1px solid var(--line); background: var(--code-bg); }
+    .featured .ph { width: 120px; height: 72px; display: grid; place-items: center; border: 1px dashed var(--line); border-radius: 4px; color: var(--muted); font-size: 12px; }
+    .btn { min-height: 36px; padding: 0 14px; border: 1px solid var(--accent); border-radius: 4px; background: var(--accent); color: #fff; font: inherit; font-size: 14px; cursor: pointer; }
+    .btn.ghost { background: transparent; color: var(--accent); }
+    .tabs { display: flex; gap: 4px; border-bottom: 1px solid var(--line); margin-bottom: 12px; }
+    .tabs button { padding: 8px 12px; border: 0; border-bottom: 2px solid transparent; background: none; color: var(--muted); font: inherit; cursor: pointer; }
+    .tabs button[aria-selected="true"] { color: var(--text); border-bottom-color: var(--accent); }
+    pre.out { margin: 0; max-height: 360px; overflow: auto; padding: 12px; background: var(--code-bg); border-radius: 4px; font: 12px/1.6 ui-monospace, Menlo, Consolas, monospace; white-space: pre-wrap; word-break: break-word; }
+    .preview { padding: 4px 2px; }
+    .preview :first-child { margin-top: 0; }
+    .note { color: var(--muted); font-size: 13px; margin: 8px 0 0; }
+    kbd { padding: 1px 5px; border: 1px solid var(--line); border-bottom-width: 2px; border-radius: 3px; font-size: 12px; }
+  </style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>ZoroEditor <small>v1 demo</small></h1>
+    <nav><a href="https://github.com/selzerey/zoro-editor" id="repo-link">GitHub</a><a href="../README.md">Docs</a></nav>
+  </header>
+
+  <section class="card" aria-labelledby="ayar">
+    <h2 id="ayar">Settings</h2>
+    <div class="row" role="group" aria-label="Preset">
+      <span class="label">Preset</span>
+      <button class="chip" data-preset="minimal">minimal</button>
+      <button class="chip" data-preset="basic">basic</button>
+      <button class="chip" data-preset="blog">blog</button>
+      <button class="chip" data-preset="full" aria-pressed="true">full</button>
+    </div>
+    <div class="row" id="groups" role="group" aria-label="Gruplar">
+      <span class="label">Groups</span>
+    </div>
+    <div class="row">
+      <span class="label">Look</span>
+      <button class="chip" id="skin" aria-pressed="true">Skin: Modern</button>
+      <button class="chip" id="theme">Theme: light</button>
+      <button class="chip" id="locale">Language: EN</button>
+      <button class="chip" id="readonly" aria-pressed="false">Read-only</button>
+    </div>
+    <p class="note">Shortcuts: <kbd>Ctrl</kbd>+<kbd>K</kbd> link · <kbd>Shift</kbd>+<kbd>Alt</kbd>+<kbd>1–6</kbd> headings · <kbd>Shift</kbd>+<kbd>Alt</kbd>+<kbd>H</kbd> all shortcuts · type <kbd>/</kbd> for commands · drop or paste an image to upload it.</p>
+  </section>
+
+  <form class="card" id="form" onsubmit="return false">
+    <div class="field">
+      <label for="title">Title</label>
+      <input type="text" id="title" value="My first post with ZoroEditor">
+    </div>
+    <div class="field">
+      <span>Featured image <small style="color:var(--muted)">(standalone Finder, no editor needed)</small></span>
+      <div class="featured">
+        <div class="ph" id="featured-ph">No image</div>
+        <img id="featured-img" alt="" hidden>
+        <button type="button" class="btn ghost" id="pick">Choose image</button>
+      </div>
+    </div>
+    <div class="field">
+      <span>Content</span>
+      <textarea id="content" name="content"></textarea>
+    </div>
+  </form>
+
+  <section class="card">
+    <div class="tabs" role="tablist">
+      <button role="tab" aria-selected="true" data-tab="html">HTML output</button>
+      <button role="tab" aria-selected="false" data-tab="preview">Preview (content.css)</button>
+    </div>
+    <pre class="out" id="out-html"></pre>
+    <div class="preview zoro-output" id="out-preview" hidden></div>
+  </section>
+</div>
+
+<script src="../dist/zoro-editor.iife.js"></script>
+<script>
+  // Sample images (SVG) for the demo — in a real project use the PHP backend or your own API
+  const sample = (label, hue, w = 1200, h = 750) => {
+    const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="${w}" height="${h}" viewBox="0 0 ${w} ${h}"><defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="hsl(${hue} 70% 55%)"/><stop offset="1" stop-color="hsl(${hue + 40} 70% 35%)"/></linearGradient></defs><rect width="100%" height="100%" fill="url(#g)"/><text x="50%" y="52%" font-family="system-ui,sans-serif" font-size="${w / 12}" fill="white" text-anchor="middle" dominant-baseline="middle">${label}</text></svg>`;
+    return 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(svg);
+  };
+  const adapter = new ZoroEditor.MemoryMediaAdapter([
+    { url: sample('Sea', 200), filename: 'deniz.svg', alt: 'Sea view', width: 1200, height: 750, folder: 'landscapes', mime: 'image/svg+xml', size: 2100, usageCount: 1 },
+    { url: sample('Forest', 110), filename: 'orman.svg', alt: 'Forest path', width: 1200, height: 750, folder: 'manzara', mime: 'image/svg+xml', size: 2050, usageCount: 0 },
+    { url: sample('City', 260), filename: 'sehir.svg', alt: 'City at night', width: 1200, height: 750, folder: '', mime: 'image/svg+xml', size: 1980, usageCount: 2 },
+    { url: sample('Logo', 20, 600, 600), filename: 'logo.svg', alt: '', width: 600, height: 600, folder: 'brand', mime: 'image/svg+xml', size: 1500, usageCount: 0 },
+  ]);
+
+  const initial = `<h2>Hello Zoro 👋</h2>
+<p>This editor looks like the <strong>WordPress Classic</strong> editor and works the same way in <em>PHP</em>, <em>React</em> and <em>Next.js</em>. Put the cursor inside a word and press <strong>Bold</strong> — no selection needed.</p>
+<blockquote><p>Try it on your phone too: the toolbar scrolls in one row and dialogs open from the bottom.</p></blockquote>
+<ul><li>Open Zoro Finder with <strong>Add Media</strong> above the toolbar</li><li>Folders, search, multi-select and an "unused" filter</li><li>Drag and drop or paste an image to upload it</li><li>Type <code>/</code> on an empty line for the command menu</li></ul>
+<p>Link example: <a href="https://github.com/selzerey/zoro-editor">ZoroEditor on GitHub</a>.</p>`;
+
+  const mediaOpts = { adapter, accept: ['image/jpeg', 'image/png', 'image/gif', 'image/webp', 'image/avif', 'image/svg+xml'] };
+  let current = new ZoroEditor('#content', {
+    content: initial,
+    preset: 'full',
+    skin: 'modern',
+    height: 360,
+    autosave: 'zoro-demo-en',
+    stickyToolbar: true,
+    media: mediaOpts,
+    onChange: render,
+  });
+  window.editor = current; // for playing in the console
+
+  // Output
+  const outHtml = document.getElementById('out-html');
+  const outPrev = document.getElementById('out-preview');
+  function render(html = current.getHTML()) {
+    outHtml.textContent = html || '(empty)';
+    outPrev.innerHTML = html; // in a real project: sanitize on the server with Sanitizer::clean()
+  }
+  render();
+  document.querySelectorAll('.tabs button').forEach((b) => b.addEventListener('click', () => {
+    document.querySelectorAll('.tabs button').forEach((x) => x.setAttribute('aria-selected', String(x === b)));
+    outHtml.hidden = b.dataset.tab !== 'html';
+    outPrev.hidden = b.dataset.tab !== 'preview';
+  }));
+
+  // Preset buttons
+  const presetBtns = document.querySelectorAll('[data-preset]');
+  presetBtns.forEach((b) => b.addEventListener('click', () => {
+    current.setPreset(b.dataset.preset);
+    presetBtns.forEach((x) => x.setAttribute('aria-pressed', String(x === b)));
+    syncGroups();
+  }));
+
+  // Toggle groups in one move
+  const groupsRow = document.getElementById('groups');
+  const all = ZoroEditor.PRESETS.full;
+  const boxes = all.map((g) => {
+    const label = document.createElement('label');
+    label.className = 'chip';
+    label.innerHTML = `<input type="checkbox" value="${g}"> ${g}`;
+    label.querySelector('input').addEventListener('change', (e) => {
+      e.target.checked ? current.addGroups([g]) : current.removeGroups([g]);
+      presetBtns.forEach((x) => x.setAttribute('aria-pressed', 'false'));
+    });
+    groupsRow.appendChild(label);
+    return label.querySelector('input');
+  });
+  function syncGroups() {
+    const active = current.getGroups();
+    boxes.forEach((b) => (b.checked = active.includes(b.value)));
+  }
+  syncGroups();
+
+  // Theme / language / read-only
+  let theme = 'light';
+  document.getElementById('theme').addEventListener('click', (e) => {
+    theme = theme === 'light' ? 'dark' : theme === 'dark' ? 'auto' : 'light';
+    current.setTheme(theme);
+    document.documentElement.dataset.theme = theme === 'auto' ? '' : theme;
+    e.currentTarget.textContent = 'Theme: ' + theme;
+  });
+  let skin = 'modern';
+  document.getElementById('skin').addEventListener('click', (e) => {
+    skin = skin === 'modern' ? 'classic' : 'modern';
+    current.setSkin(skin);
+    e.currentTarget.textContent = 'Skin: ' + (skin === 'modern' ? 'Modern' : 'Classic (WordPress)');
+    e.currentTarget.setAttribute('aria-pressed', String(skin === 'modern'));
+  });
+  let locale = 'en';
+  document.getElementById('locale').addEventListener('click', (e) => {
+    // Changing the language rebuilds the editor (content is kept)
+    locale = locale === 'en' ? 'tr' : 'en';
+    const html = current.getHTML();
+    const groups = current.getGroups();
+    current.destroy();
+    current = new ZoroEditor('#content', { content: html, groups, locale, theme, skin, height: 360, media: mediaOpts, onChange: render });
+    window.editor = current;
+    e.currentTarget.textContent = 'Language: ' + locale.toUpperCase();
+  });
+  document.getElementById('readonly').addEventListener('click', (e) => {
+    const on = e.currentTarget.getAttribute('aria-pressed') !== 'true';
+    current.setReadOnly(on);
+    e.currentTarget.setAttribute('aria-pressed', String(on));
+  });
+
+  // Standalone Finder (featured image)
+  document.getElementById('pick').addEventListener('click', () => {
+    ZoroEditor.openFinder({
+      adapter,
+      theme,
+      skin,
+      title: 'Featured image',
+      selectLabel: 'Use this image',
+      onSelect: ([img]) => {
+        const el = document.getElementById('featured-img');
+        el.src = img.url;
+        el.alt = img.insertAlt;
+        el.hidden = false;
+        document.getElementById('featured-ph').hidden = true;
+      },
+    });
+  });
+</script>
+</body>
+</html>

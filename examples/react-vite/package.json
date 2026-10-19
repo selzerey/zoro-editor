@@ -1,0 +1,8 @@
+{
+  "name": "zoro-editor-react-example",
+  "private": true,
+  "type": "module",
+  "scripts": { "dev": "vite", "build": "vite build" },
+  "dependencies": { "react": "^19.3.1", "react-dom": "^19.3.1", "zoro-editor": "file:../.." },
+  "devDependencies": { "@vitejs/plugin-react": "^5", "vite": "^8", "typescript": "5.9.3", "@types/react": "^19", "@types/react-dom": "^19" }
+}

@@ -1,0 +1,26 @@
+{
+  "name": "zoro/editor",
+  "description": "ZoroEditor PHP backend: Zoro Finder media API, image processing (WebP variants) and a server-side HTML sanitizer.",
+  "type": "library",
+  "license": "MIT",
+  "homepage": "https://github.com/selzerey/zoro-editor",
+  "authors": [{ "name": "selzerey" }],
+  "keywords": ["editor", "wysiwyg", "media-library", "file-manager", "sanitizer", "xss", "webp"],
+  "require": {
+    "php": ">=8.1",
+    "ext-dom": "*",
+    "ext-fileinfo": "*",
+    "ext-json": "*",
+    "ext-mbstring": "*"
+  },
+  "suggest": {
+    "ext-gd": "For WebP variants and image resizing",
+    "ext-exif": "To fix the orientation of phone photos"
+  },
+  "autoload": {
+    "psr-4": { "Zoro\\Editor\\": "php/src/" }
+  },
+  "scripts": {
+    "test": "php php/tests/run.php"
+  }
+}

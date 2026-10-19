@@ -1,0 +1,12 @@
+node_modules/
+*.log
+.DS_Store
+coverage/
+test-results/
+playwright-report/
+php/vendor/
+examples/**/uploads/
+examples/**/node_modules/
+examples/**/.next/
+php/config.php
+uploads/
