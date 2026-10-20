@@ -1,5 +1,5 @@
 import type { MediaAdapter, MediaFolder, MediaItem, MediaListParams, MediaOptions } from '../types';
-import { resolveMessages, fmt, type Locale, type Messages } from '../i18n';
+import { resolveMessages, localeDir, fmt, type Locale, type Messages } from '../i18n';
 import { ICONS } from '../icons';
 import { ZoroDialog, ZoroSelect, ZoroTabs, h, toast, confirmDialog, promptDialog } from '../ui/components';
 import { RestMediaAdapter, formatBytes } from './adapters';
@@ -96,7 +96,7 @@ export class ZoroFinder {
     const adapter = createAdapter(opts);
     if (!adapter) throw new Error('ZoroFinder: an "adapter" or "endpoint" option is required.');
     this.adapter = adapter;
-    this.themeClass = opts.themeClass ?? [`zoro-skin-${opts.skin === 'classic' ? 'classic' : 'modern'}`, opts.theme && opts.theme !== 'light' ? `zoro-theme-${opts.theme}` : ''].filter(Boolean).join(' ');
+    this.themeClass = opts.themeClass ?? [`zoro-skin-${opts.skin === 'classic' ? 'classic' : 'modern'}`, opts.theme && opts.theme !== 'light' ? `zoro-theme-${opts.theme}` : '', localeDir(opts.locale) === 'rtl' ? 'zoro-rtl' : ''].filter(Boolean).join(' ');
     this.view = readPref('view', 'grid') === 'list' ? 'list' : 'grid';
     this.params = { page: 1, limit: PAGE_SIZE, search: '', folder: '*', type: '', sort: 'newest', filter: '' };
   }

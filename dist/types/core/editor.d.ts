@@ -108,6 +108,8 @@ export declare class ZoroEditor {
     get isDestroyed(): boolean;
     /** Appearance classes also passed to dialogs/popovers. */
     get themeClass(): string;
+    /** Writing direction of the UI language (Arabic, Hebrew, Persian, Urdu, Pashto: rtl). */
+    get dir(): 'ltr' | 'rtl';
     get skin(): 'modern' | 'classic';
     setSkin(skin: 'modern' | 'classic'): void;
     private get mediaOpts();

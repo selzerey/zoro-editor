@@ -8,7 +8,8 @@ export { cleanPasted, detectSource } from './core/paste';
 export { cleanHTML, cleanPastedHTML, countWords, countChars, escapeHtml, isSafeUrl, normalizeUrl } from './core/html';
 export { ResizableImage } from './extensions/resizable-image';
 export { ICONS } from './icons';
-export { locales, resolveMessages, detectLocale } from './i18n';
+export { locales, resolveMessages, detectLocale, registerLocale, getLocale, availableLocales, localeDir } from './i18n';
+export type { LocaleDefinition, CompleteLocale } from './i18n';
 export type * from './types';
 
 export const version = '__ZORO_VERSION__';

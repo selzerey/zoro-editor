@@ -1,10 +1,10 @@
-import { A as e, C as t, D as n, E as r, M as i, N as a, O as o, P as s, S as c, T as l, _ as u, a as d, b as f, c as p, d as m, f as h, g, h as _, i as v, j as y, k as b, l as x, m as S, n as C, o as w, p as T, r as E, s as D, t as O, u as k, v as A, w as j, x as M, y as N } from "./chunks/editor-BpbEvjmr.js";
+import { A as e, C as t, D as n, E as r, F as i, I as a, L as o, M as s, N as c, O as l, P as u, R as d, S as f, T as p, _ as m, a as h, b as g, c as _, d as v, f as y, g as b, h as x, i as S, j as C, k as w, l as T, m as E, n as D, o as O, p as k, r as A, s as j, t as M, u as N, v as P, w as F, x as I, y as L } from "./chunks/editor-DLLp0J_f.js";
 //#region src/index.ts
-var P = "1.0.1";
-function F(e, t) {
-	return new O(e, t);
+var R = "1.1.0";
+function z(e, t) {
+	return new M(e, t);
 }
 //#endregion
-export { C as BUILTIN_GROUPS, y as ICONS, j as MediaApiError, l as MemoryMediaAdapter, E as PRESETS, e as ResizableImage, r as RestMediaAdapter, O as ZoroEditor, f as ZoroFinder, M as altFromFilename, p as applyMark, m as cleanHTML, A as cleanPasted, h as cleanPastedHTML, T as countChars, S as countWords, c as createAdapter, F as createEditor, i as detectLocale, N as detectSource, _ as escapeHtml, n as formatBytes, v as getGroup, x as getWordBoundaries, g as isSafeUrl, a as locales, o as normalizeMediaItem, u as normalizeUrl, t as openFinder, b as pickInsertSource, d as registerGroup, w as registerPreset, D as resolveGroups, s as resolveMessages, k as smartHeading, P as version };
+export { D as BUILTIN_GROUPS, C as ICONS, F as MediaApiError, p as MemoryMediaAdapter, A as PRESETS, e as ResizableImage, r as RestMediaAdapter, M as ZoroEditor, g as ZoroFinder, I as altFromFilename, _ as applyMark, s as availableLocales, v as cleanHTML, P as cleanPasted, y as cleanPastedHTML, k as countChars, E as countWords, f as createAdapter, z as createEditor, c as detectLocale, L as detectSource, x as escapeHtml, n as formatBytes, S as getGroup, u as getLocale, T as getWordBoundaries, b as isSafeUrl, i as localeDir, a as locales, l as normalizeMediaItem, m as normalizeUrl, t as openFinder, w as pickInsertSource, h as registerGroup, o as registerLocale, O as registerPreset, j as resolveGroups, d as resolveMessages, N as smartHeading, R as version };
 
 //# sourceMappingURL=zoro-editor.js.map

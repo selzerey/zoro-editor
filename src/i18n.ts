@@ -363,20 +363,69 @@ const en: Messages = {
   editorLabel: 'Content editor',
 };
 
-export const locales = { tr, en };
-export type Locale = keyof typeof locales;
+/** A UI language. Extra languages ship as separate files in `zoro-editor/locales/*`. */
+export interface LocaleDefinition {
+  /** BCP 47 code, lower case: "de", "pt-br", "zh-cn" */
+  code: string;
+  /** Native name: "Deutsch" */
+  name: string;
+  /** Writing direction (default "ltr") */
+  dir?: 'ltr' | 'rtl';
+  /** Missing keys fall back to English */
+  messages: Partial<Messages>;
+}
 
-/** Page language: <html lang="tr"> → tr, otherwise en. */
+/** A complete translation (every key present) — used by the bundled locale files. */
+export type CompleteLocale = LocaleDefinition & { messages: Messages };
+
+const registry = new Map<string, LocaleDefinition>([
+  ['en', { code: 'en', name: 'English', messages: en }],
+  ['tr', { code: 'tr', name: 'Türkçe', messages: tr }],
+]);
+
+/** Built-in messages (English and Turkish). */
+export const locales = { tr, en };
+export type Locale = string;
+
+/** Register a language so that `locale: 'de'` (or `<html lang="de">`) uses it. */
+export function registerLocale(def: LocaleDefinition): void {
+  registry.set(def.code.toLowerCase(), { ...def, code: def.code.toLowerCase() });
+}
+
+/** Registered language codes. */
+export function availableLocales(): string[] {
+  return [...registry.keys()];
+}
+
+/** Find a registered language: exact code ("pt-br"), then the base language ("pt"). */
+export function getLocale(code: string | undefined | null): LocaleDefinition | undefined {
+  if (!code) return undefined;
+  const c = code.toLowerCase().replace('_', '-');
+  return registry.get(c) ?? registry.get(c.split('-')[0]!) ?? [...registry.values()].find((l) => l.code.split('-')[0] === c.split('-')[0]);
+}
+
+/** Page language (<html lang>, then the browser language) if it is registered, otherwise English. */
 export function detectLocale(): Locale {
   if (typeof document === 'undefined') return 'en';
-  const lang = (document.documentElement.lang || (typeof navigator !== 'undefined' ? navigator.language : '') || '').toLowerCase();
-  return lang.startsWith('tr') ? 'tr' : 'en';
+  const candidates = [document.documentElement.lang, typeof navigator !== 'undefined' ? navigator.language : ''];
+  for (const c of candidates) {
+    const found = getLocale(c);
+    if (found) return found.code;
+  }
+  return 'en';
+}
+
+/** Writing direction of a locale option. */
+export function localeDir(locale?: Locale | Partial<Messages>): 'ltr' | 'rtl' {
+  const code = typeof locale === 'string' ? locale : !locale ? detectLocale() : undefined;
+  return (code && getLocale(code)?.dir) || 'ltr';
 }
 
 export function resolveMessages(locale?: Locale | Partial<Messages>): Messages {
-  if (!locale) return locales[detectLocale()];
-  if (typeof locale === 'string') return locales[locale] ?? tr;
-  return { ...tr, ...locale };
+  if (!locale) return { ...en, ...getLocale(detectLocale())?.messages };
+  if (typeof locale === 'string') return { ...en, ...(getLocale(locale)?.messages ?? {}) };
+  // Your own strings: merged over the page language
+  return { ...en, ...getLocale(detectLocale())?.messages, ...locale };
 }
 
 /** "{n} files" → "3 files" */

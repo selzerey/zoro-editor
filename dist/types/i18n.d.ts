@@ -179,6 +179,22 @@ declare const tr: {
     editorLabel: string;
 };
 export type Messages = typeof tr;
+/** A UI language. Extra languages ship as separate files in `zoro-editor/locales/*`. */
+export interface LocaleDefinition {
+    /** BCP 47 code, lower case: "de", "pt-br", "zh-cn" */
+    code: string;
+    /** Native name: "Deutsch" */
+    name: string;
+    /** Writing direction (default "ltr") */
+    dir?: 'ltr' | 'rtl';
+    /** Missing keys fall back to English */
+    messages: Partial<Messages>;
+}
+/** A complete translation (every key present) — used by the bundled locale files. */
+export type CompleteLocale = LocaleDefinition & {
+    messages: Messages;
+};
+/** Built-in messages (English and Turkish). */
 export declare const locales: {
     tr: {
         addMedia: string;
@@ -541,9 +557,17 @@ export declare const locales: {
         editorLabel: string;
     };
 };
-export type Locale = keyof typeof locales;
-/** Page language: <html lang="tr"> → tr, otherwise en. */
+export type Locale = string;
+/** Register a language so that `locale: 'de'` (or `<html lang="de">`) uses it. */
+export declare function registerLocale(def: LocaleDefinition): void;
+/** Registered language codes. */
+export declare function availableLocales(): string[];
+/** Find a registered language: exact code ("pt-br"), then the base language ("pt"). */
+export declare function getLocale(code: string | undefined | null): LocaleDefinition | undefined;
+/** Page language (<html lang>, then the browser language) if it is registered, otherwise English. */
 export declare function detectLocale(): Locale;
+/** Writing direction of a locale option. */
+export declare function localeDir(locale?: Locale | Partial<Messages>): 'ltr' | 'rtl';
 export declare function resolveMessages(locale?: Locale | Partial<Messages>): Messages;
 /** "{n} files" → "3 files" */
 export declare function fmt(str: string, vars: Record<string, string | number>): string;

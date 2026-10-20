@@ -1,5 +1,22 @@
 # Changelog
 
+## 1.1.0 — 2026-10-20
+
+### Added
+- **80 UI languages.** English and Turkish stay built in; 78 more ship as separate files in `dist/locales/` (~3 KB gzipped each):
+  - `<script src=".../dist/locales/de.global.js">` for plain HTML / PHP (may load before or after the editor)
+  - `import de from 'zoro-editor/locales/de'` + `registerLocale(de)` for bundlers
+  - `dist/locales/index.json` lists every language with its `code`, `name` and `dir`
+- **Right-to-left support** for Arabic, Hebrew, Persian, Urdu and Pashto: the editor and Zoro Finder set `dir="rtl"`, mirror toolbar, menus and direction-sensitive icons
+- `registerLocale`, `getLocale`, `availableLocales`, `localeDir` exports; `LocaleDefinition` / `CompleteLocale` types
+- Region codes fall back to the base language (`de-AT` → `de`); `<html lang>` and the browser language are used when registered
+- Demo: searchable language picker
+- Tests that check every language file has all keys, placeholders and keyboard shortcuts
+
+### Changed
+- Styles use logical CSS properties (`margin-inline-start`, `inset-inline-end`, …) so layouts mirror correctly in RTL
+- npm releases are published from GitHub Actions with provenance
+
 ## 1.0.1 — 2026-10-19
 
 - Published on npm: `npm install zoro-editor`; CDN via `cdn.jsdelivr.net/npm/zoro-editor` and unpkg

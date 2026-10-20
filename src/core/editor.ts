@@ -11,7 +11,7 @@ import Superscript from '@tiptap/extension-superscript';
 import { Placeholder, CharacterCount } from '@tiptap/extensions';
 
 import type { GroupName, MediaAdapter, PresetName, ToolbarButton, ToolbarContext, ToolbarWidget, ZoroEditorOptions } from '../types';
-import { resolveMessages, fmt, type Messages } from '../i18n';
+import { resolveMessages, localeDir, fmt, type Messages } from '../i18n';
 import { ICONS } from '../icons';
 import { ZoroDialog, ZoroPopover, h, toast, promptDialog, installTooltips, splitShortcut } from '../ui/components';
 import { ResizableImage, uploadRegistry } from '../extensions/resizable-image';
@@ -423,7 +423,12 @@ export class ZoroEditor {
   /** Appearance classes also passed to dialogs/popovers. */
   get themeClass(): string {
     const th = this.options.theme;
-    return [`zoro-skin-${this.skin}`, th && th !== 'light' ? `zoro-theme-${th}` : ''].filter(Boolean).join(' ');
+    return [`zoro-skin-${this.skin}`, th && th !== 'light' ? `zoro-theme-${th}` : '', this.dir === 'rtl' ? 'zoro-rtl' : ''].filter(Boolean).join(' ');
+  }
+
+  /** Writing direction of the UI language (Arabic, Hebrew, Persian, Urdu, Pashto: rtl). */
+  get dir(): 'ltr' | 'rtl' {
+    return localeDir(this.options.locale);
   }
 
   get skin(): 'modern' | 'classic' {
@@ -456,6 +461,7 @@ export class ZoroEditor {
     const t = this.t;
     this.root = h('div', {
       class: ['zoro-root', 'zoro-editor-wrapper', this.themeClass, this.options.readOnly ? 'zoro-readonly' : '', this.options.className ?? ''].filter(Boolean).join(' '),
+      dir: this.dir,
       id: this.id,
     });
     const sticky = this.options.stickyToolbar;

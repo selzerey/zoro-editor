@@ -53,8 +53,15 @@ function optionsFromDataset(el: HTMLElement): ZoroEditorOptions {
 }
 
 /** Initializes all [data-zoro-editor] elements on the page. Safe to call again. */
+/** Locale files loaded with <script> before the editor queue themselves here. */
+function drainLocaleQueue() {
+  const q = (window as any).ZoroEditorLocales as Array<Parameters<typeof api.registerLocale>[0]> | undefined;
+  if (Array.isArray(q)) for (const def of q.splice(0)) api.registerLocale(def);
+}
+
 function init(root: ParentNode = document): ZoroEditor[] {
   injectCss();
+  drainLocaleQueue();
   const out: ZoroEditor[] = [];
   root.querySelectorAll<HTMLElement>('[data-zoro-editor]').forEach((el) => {
     if (el.zoroEditor && !el.zoroEditor.isDestroyed) return;

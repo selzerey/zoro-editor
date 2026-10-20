@@ -4,6 +4,7 @@
 [![CI](https://github.com/selzerey/zoro-editor/actions/workflows/ci.yml/badge.svg)](https://github.com/selzerey/zoro-editor/actions/workflows/ci.yml)
 [![license](https://img.shields.io/npm/l/zoro-editor.svg)](LICENSE)
 [![gzip size](https://img.shields.io/badge/gzip-~195%20KB-blue)](#browser-support-and-bundle-size)
+[![languages](https://img.shields.io/badge/languages-80-blue)](#languages)
 
 A WordPress Classic–style rich text editor that works the same way in **plain PHP, React, Next.js and TypeScript** — with a built-in, CKFinder-like media manager (**Zoro Finder**) and a ready-to-use **PHP media backend**.
 
@@ -11,6 +12,7 @@ A WordPress Classic–style rich text editor that works the same way in **plain 
 
 - **MIT licensed.** No license key, no "Powered by" badge, no cloud account. Built on [TipTap v3](https://tiptap.dev) / ProseMirror.
 - **One `<script>` tag** in a PHP page, or **`npm install`** in React / Next.js. Nothing is loaded from third-party CDNs at runtime.
+- **80 UI languages**, including right-to-left (Arabic, Hebrew, Persian, Urdu, Pashto). Each language is a separate ~3 KB (gzipped) file — see [Languages](#languages).
 - **Two skins:** `modern` (TinyMCE-Premium-like, default) and `classic` (WordPress Classic Editor look).
 - **Toolbar groups & presets:** turn whole groups on or off with one line (`minimal`, `basic`, `blog`, `full`, or your own).
 - **Mobile first:** one-row scrolling toolbar, 40px touch targets, bottom-sheet dialogs, touch image resizing.
@@ -223,7 +225,7 @@ Requirements: **PHP 8.1+** with `dom`, `fileinfo`, `mbstring`, `json`; `gd` (wit
 <script src="/zoro/dist/zoro-editor.iife.js" defer></script>
 ```
 
-Supported attributes: `data-preset`, `data-groups`, `data-add-groups`, `data-remove-groups` (comma-separated), `data-height`, `data-placeholder`, `data-skin` (`modern|classic`), `data-theme` (`light|dark|auto`), `data-locale` (`en|tr`), `data-max-length`, `data-autosave`, `data-readonly`, `data-media-endpoint`, `data-media="false"`, `data-csrf-token`, `data-bubble-menu="false"`, `data-options` (JSON for everything else).
+Supported attributes: `data-preset`, `data-groups`, `data-add-groups`, `data-remove-groups` (comma-separated), `data-height`, `data-placeholder`, `data-skin` (`modern|classic`), `data-theme` (`light|dark|auto`), `data-locale` (language code, see [Languages](#languages)), `data-max-length`, `data-autosave`, `data-readonly`, `data-media-endpoint`, `data-media="false"`, `data-csrf-token`, `data-bubble-menu="false"`, `data-options` (JSON for everything else).
 
 A CSRF token is read automatically from `<meta name="csrf-token" content="…">` or `data-csrf-token` and sent as the `X-CSRF-Token` header.
 
@@ -562,7 +564,7 @@ location /img/ { rewrite ^/img/(.*)$ /zoro/php/public/image.php?p=$1 last; }
 | `addGroups` / `removeGroups` | `string[]` | — | Add to / remove from the preset |
 | `skin` | `'modern' \| 'classic'` | `'modern'` | Modern (TinyMCE-Premium-like) or WordPress Classic look |
 | `theme` | `'light' \| 'dark' \| 'auto'` | `'light'` | `auto` follows the operating system |
-| `locale` | `'en' \| 'tr' \| object` | from `<html lang>` | UI language or your own strings |
+| `locale` | `string \| object` | from `<html lang>` | UI language code (`'en'`, `'de'`, `'ar'` … see [Languages](#languages)) or your own strings |
 | `height` | `number` | `400` | Minimum height in px |
 | `autoGrow` | `boolean` | `true` | Grow with the content (`false` = fixed height with an inner scroll) |
 | `placeholder` | `string` | localized | Empty editor hint |
@@ -618,7 +620,7 @@ ZoroEditor.openFinder(options)      // ESM: import { openFinder } from 'zoro-edi
 ZoroEditor.init(root?)              // initialise [data-zoro-editor] elements
 ```
 
-Other exports from `zoro-editor`: `ZoroFinder`, `openFinder`, `RestMediaAdapter`, `MemoryMediaAdapter`, `cleanPasted`, `cleanHTML`, `isSafeUrl`, `PRESETS`, `BUILTIN_GROUPS`, `ICONS`, `locales`, and all TypeScript types (`ZoroEditorOptions`, `MediaAdapter`, `MediaItem`, `ToolbarGroup`, …).
+Other exports from `zoro-editor`: `ZoroFinder`, `openFinder`, `RestMediaAdapter`, `MemoryMediaAdapter`, `cleanPasted`, `cleanHTML`, `isSafeUrl`, `PRESETS`, `BUILTIN_GROUPS`, `ICONS`, `locales`, `registerLocale`, `getLocale`, `availableLocales`, `detectLocale`, `localeDir`, and all TypeScript types (`ZoroEditorOptions`, `MediaAdapter`, `MediaItem`, `ToolbarGroup`, …).
 
 ---
 
@@ -671,13 +673,96 @@ Dark mode: `theme: 'dark'`, or `theme: 'auto'` to follow `prefers-color-scheme`.
 
 ## Languages
 
-English (`en`) and Turkish (`tr`) are built in. By default the language follows the page (`<html lang="tr">` → Turkish, anything else → English). Force one with `locale: 'en'`, or pass your own strings — missing keys fall back to the built-in text:
+ZoroEditor ships with **80 UI languages**. English and Turkish (★) are built in; every other language is a small separate file (~7 KB, ~3 KB gzipped) that you load only if you need it. Right-to-left languages (↔) flip the whole editor and Zoro Finder automatically.
 
-```js
-new ZoroEditor('#e', { locale: { addMedia: 'Medien hinzufügen', bold: 'Fett (Ctrl+B)' /* … */ } });
+<details>
+<summary><strong>All 80 languages</strong></summary>
+
+| | | |
+|---|---|---|
+| `af` Afrikaans | `ka` Georgian · ქართული | `nb` Norwegian Bokmål · Norsk bokmål |
+| `sq` Albanian · Shqip | `de` German · Deutsch | `ps` Pashto · پښتو ↔ |
+| `am` Amharic · አማርኛ | `el` Greek · Ελληνικά | `fa` Persian · فارسی ↔ |
+| `ar` Arabic · العربية ↔ | `gu` Gujarati · ગુજરાતી | `pl` Polish · Polski |
+| `hy` Armenian · Հայերեն | `he` Hebrew · עברית ↔ | `pt` Portuguese · Português |
+| `az` Azerbaijani · Azərbaycan dili | `hi` Hindi · हिन्दी | `pa` Punjabi · ਪੰਜਾਬੀ |
+| `bn` Bangla · বাংলা | `hu` Hungarian · Magyar | `ro` Romanian · Română |
+| `eu` Basque · Euskara | `is` Icelandic · Íslenska | `ru` Russian · Русский |
+| `be` Belarusian · Беларуская | `id` Indonesian · Bahasa Indonesia | `sr` Serbian · Српски |
+| `bs` Bosnian · Bosanski | `ga` Irish · Gaeilge | `sr-latn` Serbian (Latin) · Srpski |
+| `pt-br` Brazilian Portuguese · Português do Brasil | `it` Italian · Italiano | `si` Sinhala · සිංහල |
+| `bg` Bulgarian · Български | `ja` Japanese · 日本語 | `sk` Slovak · Slovenčina |
+| `my` Burmese · မြန်မာ | `kn` Kannada · ಕನ್ನಡ | `sl` Slovenian · Slovenščina |
+| `ca` Catalan · Català | `kk` Kazakh · Қазақ тілі | `es` Spanish · Español |
+| `zh-cn` Chinese (China) · 简体中文 | `km` Khmer · ខ្មែរ | `sw` Swahili · Kiswahili |
+| `zh-tw` Chinese (Taiwan) · 繁體中文 | `ko` Korean · 한국어 | `sv` Swedish · Svenska |
+| `hr` Croatian · Hrvatski | `ku` Kurdish · Kurdî | `ta` Tamil · தமிழ் |
+| `cs` Czech · Čeština | `ky` Kyrgyz · Кыргызча | `te` Telugu · తెలుగు |
+| `da` Danish · Dansk | `lo` Lao · ລາວ | `th` Thai · ไทย |
+| `nl` Dutch · Nederlands | `lv` Latvian · Latviešu | `tr` Turkish · Türkçe ★ |
+| `en` English ★ | `lt` Lithuanian · Lietuvių | `tk` Turkmen · Türkmençe |
+| `eo` Esperanto | `mk` Macedonian · Македонски | `uk` Ukrainian · Українська |
+| `et` Estonian · Eesti | `ms` Malay · Bahasa Melayu | `ur` Urdu · اردو ↔ |
+| `fil` Filipino | `ml` Malayalam · മലയാളം | `uz` Uzbek · Oʻzbekcha |
+| `fi` Finnish · Suomi | `mr` Marathi · मराठी | `vi` Vietnamese · Tiếng Việt |
+| `fr` French · Français | `mn` Mongolian · Монгол | `cy` Welsh · Cymraeg |
+| `gl` Galician · Galego | `ne` Nepali · नेपाली |  |
+
+</details>
+
+### Load a language
+
+**Plain HTML / PHP** — add the language file after the editor script. With `data-locale` (or `<html lang="de">`) it is picked up automatically:
+
+```html
+<script src="https://cdn.jsdelivr.net/npm/zoro-editor/dist/zoro-editor.iife.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/zoro-editor/dist/locales/de.global.js"></script>
+
+<textarea class="zoro-editor" name="content" data-locale="de"></textarea>
 ```
 
-See [`src/i18n.ts`](src/i18n.ts) for all keys.
+The language file may also be loaded *before* the editor script — it waits in `window.ZoroEditorLocales` and registers itself when the editor loads.
+
+**npm (React, Next.js, Vite …)** — import the language and register it once:
+
+```ts
+import { ZoroEditor, registerLocale } from 'zoro-editor';
+import de from 'zoro-editor/locales/de';
+
+registerLocale(de);
+new ZoroEditor('#e', { locale: 'de' });
+```
+
+```tsx
+// React / Next.js
+import { registerLocale } from 'zoro-editor';
+import ar from 'zoro-editor/locales/ar';
+registerLocale(ar);
+
+<ZoroEditor locale="ar" />  // right-to-left
+```
+
+### How the language is chosen
+
+1. `locale` option (`'de'`, `'pt-BR'`, …) — region codes fall back to the base language (`de-AT` → `de`)
+2. Otherwise `<html lang="…">`, then the browser language — whichever is registered
+3. Otherwise English. Any missing string also falls back to English.
+
+### Your own strings or a new language
+
+```js
+// Override a few strings
+new ZoroEditor('#e', { locale: { addMedia: 'Add file', bold: 'Strong (Ctrl+B)' } });
+
+// Add a language that isn't included
+ZoroEditor.registerLocale({ code: 'xx', name: 'My language', dir: 'ltr', messages: { bold: '…' /* … */ } });
+```
+
+`availableLocales()` lists registered codes, `getLocale(code)` returns one, and `dist/locales/index.json` lists every shipped language with its `code`, `name` and `dir`. See [`src/i18n.ts`](src/i18n.ts) for all keys.
+
+> Translations other than English and Turkish were machine-assisted. Corrections from native speakers are very welcome — edit `src/locales/<code>.ts` and open a pull request (`npm test` checks that keys, placeholders and shortcuts match).
+
+The PHP backend's messages (shown in Finder) are available in English and Turkish: set `'locale' => 'tr'` in `php/config.php`.
 
 ---
 
@@ -721,9 +806,8 @@ Evergreen browsers: Chrome / Edge 111+, Firefox 113+, Safari 16.4+ (iOS and macO
 | PHP runs inside the upload folder on Nginx | Add the Nginx rules from [Security](#security) |
 | The editor doesn't appear | Check the browser console for a 404 on `zoro-editor.iife.js` and fix the `src` path |
 | Next.js dev: the editor doesn't load | Use `http://localhost:…` (Next.js blocks `127.0.0.1` dev requests by default) |
-| The UI is in the wrong language | Set `<html lang="…">` or pass `locale: 'en'` / `'tr'` |
+| The UI is in the wrong language | Load the language file (see [Languages](#languages)), then set `<html lang="…">` or pass `locale: '…'` |
 
-The PHP backend's error messages are currently in Turkish; they are shown to editors in Finder.
 
 ---
 

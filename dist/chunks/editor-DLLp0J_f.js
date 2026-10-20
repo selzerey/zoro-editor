@@ -191,291 +191,330 @@ var x = {
 	formatMenu: "Biçim",
 	editorLabel: "İçerik editörü"
 }, S = {
+	addMedia: "Add Media",
+	visual: "Visual",
+	source: "Code",
+	sourcePlaceholder: "Write HTML here...",
+	placeholder: "Start writing...",
+	words: "words",
+	chars: "characters",
+	paragraph: "Paragraph",
+	heading: "Heading",
+	preformatted: "Preformatted",
+	bold: "Bold (Ctrl+B)",
+	italic: "Italic (Ctrl+I)",
+	underline: "Underline (Ctrl+U)",
+	strike: "Strikethrough (Shift+Alt+D)",
+	code: "Inline code",
+	superscript: "Superscript",
+	subscript: "Subscript",
+	localImagesDropped: "{n} image(s) from Word are on your computer and could not be pasted. Upload them with Add Media.",
+	bulletList: "Bulleted list (Shift+Alt+U)",
+	orderedList: "Numbered list (Shift+Alt+O)",
+	blockquote: "Blockquote (Shift+Alt+Q)",
+	alignLeft: "Align left (Shift+Alt+L)",
+	alignCenter: "Align center (Shift+Alt+C)",
+	alignRight: "Align right (Shift+Alt+R)",
+	alignJustify: "Justify (Shift+Alt+J)",
+	link: "Insert link (Ctrl+K)",
+	unlink: "Remove link (Shift+Alt+S)",
+	table: "Insert table",
+	tableMenu: "Table",
+	tableAddRowBefore: "Add row above",
+	tableAddRowAfter: "Add row below",
+	tableAddColBefore: "Add column left",
+	tableToggleHeaderCol: "Toggle header column",
+	tableCellBg: "Cell background",
+	tableToolbar: "Table tools",
+	tableAddColAfter: "Add column right",
+	tableDeleteRow: "Delete row",
+	tableDeleteCol: "Delete column",
+	tableToggleHeader: "Toggle header row",
+	tableMerge: "Merge / split cells",
+	tableDelete: "Delete table",
+	toolbarToggle: "Toolbar toggle (Shift+Alt+Z)",
+	fullscreen: "Fullscreen",
+	exitFullscreen: "Exit fullscreen",
+	hr: "Horizontal line",
+	textColor: "Text color",
+	bgColor: "Background color",
+	removeColor: "Remove color",
+	recentColors: "Recent",
+	customColor: "Custom color",
+	removeFormat: "Clear formatting",
+	specialChars: "Special characters",
+	outdent: "Decrease indent",
+	indent: "Increase indent",
+	undo: "Undo (Ctrl+Z)",
+	redo: "Redo (Ctrl+Y)",
+	help: "Keyboard shortcuts (Shift+Alt+H)",
+	image: "Insert image (Shift+Alt+M)",
+	youtube: "Insert YouTube video",
+	youtubePrompt: "YouTube URL",
+	youtubeInvalid: "Enter a valid YouTube URL.",
+	urlPlaceholder: "Paste URL",
+	apply: "Apply",
+	advanced: "Link options",
+	openLink: "Open link in new tab",
+	linkTitle: "Insert Link",
+	linkUrl: "URL",
+	linkText: "Link text",
+	linkTitleAttr: "Title",
+	linkNewTab: "Open in new tab",
+	linkNofollow: "Add nofollow",
+	linkSponsored: "Add sponsored",
+	linkInvalid: "This link type is not allowed.",
+	cancel: "Cancel",
+	save: "Save",
+	close: "Close",
+	insert: "Insert",
+	delete: "Delete",
+	edit: "Edit",
+	shortcutsTitle: "Keyboard shortcuts",
+	shortcutsCtrl: "Default shortcuts, Ctrl + letter:",
+	shortcutsShiftAlt: "Additional shortcuts, Shift + Alt + letter:",
+	shortcutsMarkdown: "Formatting shortcuts (line start + space):",
+	imageSettings: "Image Settings",
+	imageAlt: "Alt text",
+	imageAltPlaceholder: "Describe the image...",
+	imageTitle: "Title / caption",
+	imageDecorative: "Decorative image (screen readers skip it, no alt needed)",
+	captionPlaceholder: "Text shown below the image",
+	imageAlign: "Alignment",
+	alignNone: "None",
+	left: "Left",
+	center: "Center",
+	right: "Right",
+	size: "Size",
+	sizeAuto: "Auto",
+	sizeCustom: "Custom size",
+	width: "Width",
+	height: "Height",
+	uploading: "Uploading...",
+	uploadFailed: "Upload failed",
+	uploadNotConfigured: "Image upload is not configured.",
+	tooLarge: "File is too large (max {max} MB).",
+	badType: "This file type is not supported.",
+	finderTitle: "Media Library",
+	library: "Library",
+	upload: "Upload",
+	search: "Search media...",
+	allFolders: "All files",
+	rootFolder: "Root",
+	newFolder: "New folder",
+	folderName: "Folder name",
+	deleteFolder: "Delete folder",
+	deleteFolderConfirm: "Delete this folder? (Only empty folders can be deleted)",
+	moveTo: "Move",
+	emptyLibrary: "No media yet",
+	noResults: "No results",
+	loadMore: "Load more",
+	loading: "Loading...",
+	loadFailed: "Could not load media.",
+	retry: "Retry",
+	dropHere: "Drop files, paste, or click to upload",
+	dropHint: "{types} (max {max} MB)",
+	altRequired: "Alt text (required)",
+	altForArticle: "Alt text (for this content)",
+	uploadFiles: "Upload {n} files",
+	insertImage: "Insert image",
+	insertImages: "Insert {n} images",
+	selectFile: "Select",
+	selected: "{n} selected",
+	clearSelection: "Clear selection",
+	deleteSelected: "Delete selected",
+	deleteConfirm: "Permanently delete {n} files?",
+	copyUrl: "Copy URL",
+	copied: "Copied",
+	details: "Details",
+	filename: "File name",
+	caption: "Caption",
+	dimensions: "Dimensions",
+	fileSize: "File size",
+	uploadedAt: "Uploaded",
+	usage: "Usage",
+	unused: "Unused",
+	allMedia: "All",
+	notUsed: "Not used anywhere",
+	usedIn: "Used in {n} places",
+	sortNewest: "Newest",
+	sortOldest: "Oldest",
+	sortName: "Name",
+	sortSize: "Size",
+	gridView: "Grid view",
+	listView: "List view",
+	saved: "Saved",
+	back: "Back",
+	draftFound: "An unsaved draft was found.",
+	restore: "Restore",
+	dismiss: "Dismiss",
+	toolbarLabel: "Formatting toolbar",
+	more: "More tools (Shift+Alt+Z)",
+	slashTitle: "Commands",
+	slashParagraph: "Plain text",
+	slashHeading: "Section heading",
+	slashBullet: "Bulleted list",
+	slashBulletHint: "Simple bulleted list",
+	slashOrdered: "Numbered list",
+	slashOrderedHint: "Ordered 1, 2, 3",
+	slashQuote: "Quote",
+	slashQuoteHint: "Capture a quote",
+	slashCode: "Code block",
+	slashCodeHint: "Preformatted code",
+	slashTableHint: "3 × 3 table",
+	slashImage: "Image",
+	slashImageHint: "From library or upload",
+	slashYoutubeHint: "Embed a video",
+	slashHrHint: "Section divider",
+	path: "Path",
+	formatMenu: "Format",
+	editorLabel: "Content editor"
+}, C = /* @__PURE__ */ new Map([["en", {
+	code: "en",
+	name: "English",
+	messages: S
+}], ["tr", {
+	code: "tr",
+	name: "Türkçe",
+	messages: x
+}]]), ee = {
 	tr: x,
-	en: {
-		addMedia: "Add Media",
-		visual: "Visual",
-		source: "Code",
-		sourcePlaceholder: "Write HTML here...",
-		placeholder: "Start writing...",
-		words: "words",
-		chars: "characters",
-		paragraph: "Paragraph",
-		heading: "Heading",
-		preformatted: "Preformatted",
-		bold: "Bold (Ctrl+B)",
-		italic: "Italic (Ctrl+I)",
-		underline: "Underline (Ctrl+U)",
-		strike: "Strikethrough (Shift+Alt+D)",
-		code: "Inline code",
-		superscript: "Superscript",
-		subscript: "Subscript",
-		localImagesDropped: "{n} image(s) from Word are on your computer and could not be pasted. Upload them with Add Media.",
-		bulletList: "Bulleted list (Shift+Alt+U)",
-		orderedList: "Numbered list (Shift+Alt+O)",
-		blockquote: "Blockquote (Shift+Alt+Q)",
-		alignLeft: "Align left (Shift+Alt+L)",
-		alignCenter: "Align center (Shift+Alt+C)",
-		alignRight: "Align right (Shift+Alt+R)",
-		alignJustify: "Justify (Shift+Alt+J)",
-		link: "Insert link (Ctrl+K)",
-		unlink: "Remove link (Shift+Alt+S)",
-		table: "Insert table",
-		tableMenu: "Table",
-		tableAddRowBefore: "Add row above",
-		tableAddRowAfter: "Add row below",
-		tableAddColBefore: "Add column left",
-		tableToggleHeaderCol: "Toggle header column",
-		tableCellBg: "Cell background",
-		tableToolbar: "Table tools",
-		tableAddColAfter: "Add column right",
-		tableDeleteRow: "Delete row",
-		tableDeleteCol: "Delete column",
-		tableToggleHeader: "Toggle header row",
-		tableMerge: "Merge / split cells",
-		tableDelete: "Delete table",
-		toolbarToggle: "Toolbar toggle (Shift+Alt+Z)",
-		fullscreen: "Fullscreen",
-		exitFullscreen: "Exit fullscreen",
-		hr: "Horizontal line",
-		textColor: "Text color",
-		bgColor: "Background color",
-		removeColor: "Remove color",
-		recentColors: "Recent",
-		customColor: "Custom color",
-		removeFormat: "Clear formatting",
-		specialChars: "Special characters",
-		outdent: "Decrease indent",
-		indent: "Increase indent",
-		undo: "Undo (Ctrl+Z)",
-		redo: "Redo (Ctrl+Y)",
-		help: "Keyboard shortcuts (Shift+Alt+H)",
-		image: "Insert image (Shift+Alt+M)",
-		youtube: "Insert YouTube video",
-		youtubePrompt: "YouTube URL",
-		youtubeInvalid: "Enter a valid YouTube URL.",
-		urlPlaceholder: "Paste URL",
-		apply: "Apply",
-		advanced: "Link options",
-		openLink: "Open link in new tab",
-		linkTitle: "Insert Link",
-		linkUrl: "URL",
-		linkText: "Link text",
-		linkTitleAttr: "Title",
-		linkNewTab: "Open in new tab",
-		linkNofollow: "Add nofollow",
-		linkSponsored: "Add sponsored",
-		linkInvalid: "This link type is not allowed.",
-		cancel: "Cancel",
-		save: "Save",
-		close: "Close",
-		insert: "Insert",
-		delete: "Delete",
-		edit: "Edit",
-		shortcutsTitle: "Keyboard shortcuts",
-		shortcutsCtrl: "Default shortcuts, Ctrl + letter:",
-		shortcutsShiftAlt: "Additional shortcuts, Shift + Alt + letter:",
-		shortcutsMarkdown: "Formatting shortcuts (line start + space):",
-		imageSettings: "Image Settings",
-		imageAlt: "Alt text",
-		imageAltPlaceholder: "Describe the image...",
-		imageTitle: "Title / caption",
-		imageDecorative: "Decorative image (screen readers skip it, no alt needed)",
-		captionPlaceholder: "Text shown below the image",
-		imageAlign: "Alignment",
-		alignNone: "None",
-		left: "Left",
-		center: "Center",
-		right: "Right",
-		size: "Size",
-		sizeAuto: "Auto",
-		sizeCustom: "Custom size",
-		width: "Width",
-		height: "Height",
-		uploading: "Uploading...",
-		uploadFailed: "Upload failed",
-		uploadNotConfigured: "Image upload is not configured.",
-		tooLarge: "File is too large (max {max} MB).",
-		badType: "This file type is not supported.",
-		finderTitle: "Media Library",
-		library: "Library",
-		upload: "Upload",
-		search: "Search media...",
-		allFolders: "All files",
-		rootFolder: "Root",
-		newFolder: "New folder",
-		folderName: "Folder name",
-		deleteFolder: "Delete folder",
-		deleteFolderConfirm: "Delete this folder? (Only empty folders can be deleted)",
-		moveTo: "Move",
-		emptyLibrary: "No media yet",
-		noResults: "No results",
-		loadMore: "Load more",
-		loading: "Loading...",
-		loadFailed: "Could not load media.",
-		retry: "Retry",
-		dropHere: "Drop files, paste, or click to upload",
-		dropHint: "{types} (max {max} MB)",
-		altRequired: "Alt text (required)",
-		altForArticle: "Alt text (for this content)",
-		uploadFiles: "Upload {n} files",
-		insertImage: "Insert image",
-		insertImages: "Insert {n} images",
-		selectFile: "Select",
-		selected: "{n} selected",
-		clearSelection: "Clear selection",
-		deleteSelected: "Delete selected",
-		deleteConfirm: "Permanently delete {n} files?",
-		copyUrl: "Copy URL",
-		copied: "Copied",
-		details: "Details",
-		filename: "File name",
-		caption: "Caption",
-		dimensions: "Dimensions",
-		fileSize: "File size",
-		uploadedAt: "Uploaded",
-		usage: "Usage",
-		unused: "Unused",
-		allMedia: "All",
-		notUsed: "Not used anywhere",
-		usedIn: "Used in {n} places",
-		sortNewest: "Newest",
-		sortOldest: "Oldest",
-		sortName: "Name",
-		sortSize: "Size",
-		gridView: "Grid view",
-		listView: "List view",
-		saved: "Saved",
-		back: "Back",
-		draftFound: "An unsaved draft was found.",
-		restore: "Restore",
-		dismiss: "Dismiss",
-		toolbarLabel: "Formatting toolbar",
-		more: "More tools (Shift+Alt+Z)",
-		slashTitle: "Commands",
-		slashParagraph: "Plain text",
-		slashHeading: "Section heading",
-		slashBullet: "Bulleted list",
-		slashBulletHint: "Simple bulleted list",
-		slashOrdered: "Numbered list",
-		slashOrderedHint: "Ordered 1, 2, 3",
-		slashQuote: "Quote",
-		slashQuoteHint: "Capture a quote",
-		slashCode: "Code block",
-		slashCodeHint: "Preformatted code",
-		slashTableHint: "3 × 3 table",
-		slashImage: "Image",
-		slashImageHint: "From library or upload",
-		slashYoutubeHint: "Embed a video",
-		slashHrHint: "Section divider",
-		path: "Path",
-		formatMenu: "Format",
-		editorLabel: "Content editor"
-	}
+	en: S
 };
-function C() {
-	return typeof document > "u" ? "en" : (document.documentElement.lang || (typeof navigator < "u" ? navigator.language : "") || "").toLowerCase().startsWith("tr") ? "tr" : "en";
+function te(e) {
+	C.set(e.code.toLowerCase(), {
+		...e,
+		code: e.code.toLowerCase()
+	});
+}
+function ne() {
+	return [...C.keys()];
 }
 function w(e) {
-	return e ? typeof e == "string" ? S[e] ?? x : {
-		...x,
-		...e
-	} : S[C()];
+	if (!e) return;
+	let t = e.toLowerCase().replace("_", "-");
+	return C.get(t) ?? C.get(t.split("-")[0]) ?? [...C.values()].find((e) => e.code.split("-")[0] === t.split("-")[0]);
 }
-function T(e, t) {
+function T() {
+	if (typeof document > "u") return "en";
+	let e = [document.documentElement.lang, typeof navigator < "u" ? navigator.language : ""];
+	for (let t of e) {
+		let e = w(t);
+		if (e) return e.code;
+	}
+	return "en";
+}
+function E(e) {
+	let t = typeof e == "string" ? e : e ? void 0 : T();
+	return t && w(t)?.dir || "ltr";
+}
+function D(e) {
+	return e ? typeof e == "string" ? {
+		...S,
+		...w(e)?.messages ?? {}
+	} : {
+		...S,
+		...w(T())?.messages,
+		...e
+	} : {
+		...S,
+		...w(T())?.messages
+	};
+}
+function O(e, t) {
 	return e.replace(/\{(\w+)\}/g, (e, n) => String(t[n] ?? ""));
 }
 //#endregion
 //#region src/icons.ts
-var E = (e, t = 20, n = "0 0 24 24") => `<svg width="${t}" height="${t}" viewBox="${n}" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">${e}</svg>`, D = (e, t = 20, n = "0 0 24 24") => `<svg width="${t}" height="${t}" viewBox="${n}" fill="currentColor" aria-hidden="true" focusable="false">${e}</svg>`, O = {
-	bold: D("<path d=\"M14.6 11.8c.9-.6 1.4-1.4 1.4-2.3 0-2-1.6-3.5-3.5-3.5H7v12h6.3c1.7 0 3.2-1.5 3.2-3.3 0-1.3-.8-2.4-1.9-2.9ZM9.5 8h2.8a1.5 1.5 0 1 1 0 3H9.4V8Zm3.3 8H9.4v-3h3.3a1.5 1.5 0 1 1 0 3Z\"/>"),
-	italic: D("<path d=\"M10 6v2h2.6l-3.7 8H6v2h8v-2h-2.6l3.7-8H18V6z\"/>"),
-	underline: D("<path d=\"M12 16a5 5 0 0 0 5-5V4h-2.5v7a2.5 2.5 0 0 1-5 0V4H7v7a5 5 0 0 0 5 5Zm-5 2v2h10v-2H7Z\"/>"),
-	strikethrough: E("<line x1=\"4\" y1=\"12\" x2=\"20\" y2=\"12\"/><path d=\"M17.5 7.5c0-2-1.5-3.5-3.5-3.5H10c-2 0-3.5 1.5-3.5 3.5s1.5 3.5 3.5 3.5h4c2 0 3.5 1.5 3.5 3.5s-1.5 3.5-3.5 3.5H10c-2 0-3.5-1.5-3.5-3.5\"/>"),
-	code: E("<polyline points=\"16 18 22 12 16 6\"/><polyline points=\"8 6 2 12 8 18\"/>"),
-	link: D("<path d=\"M312.5 199.6a116 116 0 0 0-20.1-16.1 119.5 119.5 0 0 0-64.4-18.9 119 119 0 0 0-84.5 35L35 308.2a119.5 119.5 0 0 0-35 84.3c0 66 53.4 119.5 119.4 119.5 32.5 0 62-12.8 84.4-34.8l89.6-89.6a8.5 8.5 0 0 0-6.1-14.6h-3.4a143.6 143.6 0 0 1-54.6-10.6 8.5 8.5 0 0 0-9.3 1.9l-64.4 64.5c-20 20-52.5 20-72.5 0s-20-52.4 0-72.4l109-108.9c20-20 52.4-20 72.4 0 13.5 12.7 34.5 12.7 48 0a34.1 34.1 0 0 0 9.9-21.7 34.1 34.1 0 0 0-9.9-26.3z\"/><path d=\"M477.1 35c-46.7-46.7-122.3-46.7-169 0l-89.5 89.4a8.5 8.5 0 0 0 6.2 14.6h3.2a143.4 143.4 0 0 1 54.5 10.7 8.5 8.5 0 0 0 9.3-1.9l64.3-64.2c20-20 52.4-20 72.4 0s20 52.5 0 72.5l-80 80-.7.7-28 27.8c-20 20-52.4 20-72.4 0-13.5-12.7-34.5-12.7-48 0a34.1 34.1 0 0 0 0 48.1 118.4 118.4 0 0 0 34.1 23.9l5.4 2.3 5.5 2a68 68 0 0 0 5.4 1.8l5 1.4c3.4.8 6.8 1.5 10.3 2.1 4.2.6 8.5 1 12.7 1.2h7.3l5.1-.6c1.9-.1 3.8-.5 6.1-.5h2.9l5.9-.9 2.7-.5 5-1h.9a119.5 119.5 0 0 0 55.4-31.4l108.6-108.6c46.7-46.7 46.7-122.3 0-169z\"/>", 18, "0 0 512 512"),
-	unlink: E("<path d=\"m18.84 12.25 1.72-1.71h-.02a5.004 5.004 0 0 0-.12-7.07 5.006 5.006 0 0 0-6.95 0l-1.72 1.71\"/><path d=\"m5.17 11.75-1.71 1.71a5.004 5.004 0 0 0 .12 7.07 5.006 5.006 0 0 0 6.95 0l1.71-1.71\"/><line x1=\"8\" y1=\"2\" x2=\"8\" y2=\"5\"/><line x1=\"2\" y1=\"8\" x2=\"5\" y2=\"8\"/><line x1=\"16\" y1=\"19\" x2=\"16\" y2=\"22\"/><line x1=\"19\" y1=\"16\" x2=\"22\" y2=\"16\"/>"),
-	bulletList: E("<line x1=\"8\" y1=\"6\" x2=\"21\" y2=\"6\"/><line x1=\"8\" y1=\"12\" x2=\"21\" y2=\"12\"/><line x1=\"8\" y1=\"18\" x2=\"21\" y2=\"18\"/><line x1=\"3\" y1=\"6\" x2=\"3.01\" y2=\"6\"/><line x1=\"3\" y1=\"12\" x2=\"3.01\" y2=\"12\"/><line x1=\"3\" y1=\"18\" x2=\"3.01\" y2=\"18\"/>"),
-	orderedList: E("<line x1=\"10\" y1=\"6\" x2=\"21\" y2=\"6\"/><line x1=\"10\" y1=\"12\" x2=\"21\" y2=\"12\"/><line x1=\"10\" y1=\"18\" x2=\"21\" y2=\"18\"/><path d=\"M4 6h1v4\"/><path d=\"M4 10h2\"/><path d=\"M6 18H4c0-1 2-2 2-3s-1-1.5-2-1\"/>"),
-	quote: E("<path d=\"M3 21c3 0 7-1 7-8V5c0-1.25-.756-2.017-2-2H4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 1-1 2-2 2s-1 .008-1 1.031V21z\"/><path d=\"M15 21c3 0 7-1 7-8V5c0-1.25-.757-2.017-2-2h-4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2h.75c0 2.25.25 4-2.75 4v3z\"/>"),
-	alignLeft: E("<line x1=\"17\" y1=\"10\" x2=\"3\" y2=\"10\"/><line x1=\"21\" y1=\"6\" x2=\"3\" y2=\"6\"/><line x1=\"21\" y1=\"14\" x2=\"3\" y2=\"14\"/><line x1=\"17\" y1=\"18\" x2=\"3\" y2=\"18\"/>"),
-	alignCenter: E("<line x1=\"18\" y1=\"10\" x2=\"6\" y2=\"10\"/><line x1=\"21\" y1=\"6\" x2=\"3\" y2=\"6\"/><line x1=\"21\" y1=\"14\" x2=\"3\" y2=\"14\"/><line x1=\"18\" y1=\"18\" x2=\"6\" y2=\"18\"/>"),
-	alignRight: E("<line x1=\"21\" y1=\"10\" x2=\"7\" y2=\"10\"/><line x1=\"21\" y1=\"6\" x2=\"3\" y2=\"6\"/><line x1=\"21\" y1=\"14\" x2=\"3\" y2=\"14\"/><line x1=\"21\" y1=\"18\" x2=\"7\" y2=\"18\"/>"),
-	alignJustify: E("<line x1=\"21\" y1=\"10\" x2=\"3\" y2=\"10\"/><line x1=\"21\" y1=\"6\" x2=\"3\" y2=\"6\"/><line x1=\"21\" y1=\"14\" x2=\"3\" y2=\"14\"/><line x1=\"21\" y1=\"18\" x2=\"3\" y2=\"18\"/>"),
-	alignNone: E("<rect x=\"3\" y=\"3\" width=\"18\" height=\"18\" rx=\"2\"/><line x1=\"9\" y1=\"3\" x2=\"9\" y2=\"21\" opacity=\"0.4\"/><line x1=\"3\" y1=\"9\" x2=\"21\" y2=\"9\" opacity=\"0.4\"/>"),
-	table: D("<path d=\"M55.46 2.5H8.54a6 6 0 0 0-6 6v46.96a6 6 0 0 0 6 6h46.92a6 6 0 0 0 6-6V8.54a6 6 0 0 0-6-6.04zm-34.29 56H8.54a3 3 0 0 1-3-3v-5.2h15.63zm0-11.2H5.5v-8.2h15.67zm0-11.2H5.5v-8.2h15.67zm0-11.2H5.5v-8.2h15.67zm18.66 33.6H24.17v-8.2h15.66zm0-11.2H24.17v-8.2h15.66zm0-11.2H24.17v-8.2h15.66zm0-11.2H24.17v-8.2h15.66zM58.5 55.46a3 3 0 0 1-3 3H42.83V50.3H58.5zm0-8.16H42.83v-8.2H58.5zm0-11.2H42.83v-8.2H58.5zm0-11.2H42.83v-8.2H58.5z\"/>", 18, "0 0 64 64"),
-	toolbarToggle: D("<path d=\"M30 6v5c0 2.2-1.8 4-4 4h-5c-2.2 0-4-1.8-4-4V6c0-2.2 1.8-4 4-4h5c2.2 0 4 1.8 4 4zM11 17H6c-2.2 0-4 1.8-4 4v5c0 2.2 1.8 4 4 4h5c2.2 0 4-1.8 4-4v-5c0-2.2-1.8-4-4-4zm18 9H18a1 1 0 1 0 0 2h11a1 1 0 1 0 0-2zM11 2H6C3.8 2 2 3.8 2 6v5c0 2.2 1.8 4 4 4h5c2.2 0 4-1.8 4-4V6c0-2.2-1.8-4-4-4zm18 20H18a1 1 0 1 0 0 2h11a1 1 0 1 0 0-2zm0-4H18a1 1 0 1 0 0 2h11a1 1 0 1 0 0-2z\"/>", 18, "0 0 32 32"),
+var k = (e, t = 20, n = "0 0 24 24") => `<svg width="${t}" height="${t}" viewBox="${n}" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">${e}</svg>`, A = (e, t = 20, n = "0 0 24 24") => `<svg width="${t}" height="${t}" viewBox="${n}" fill="currentColor" aria-hidden="true" focusable="false">${e}</svg>`, j = {
+	bold: A("<path d=\"M14.6 11.8c.9-.6 1.4-1.4 1.4-2.3 0-2-1.6-3.5-3.5-3.5H7v12h6.3c1.7 0 3.2-1.5 3.2-3.3 0-1.3-.8-2.4-1.9-2.9ZM9.5 8h2.8a1.5 1.5 0 1 1 0 3H9.4V8Zm3.3 8H9.4v-3h3.3a1.5 1.5 0 1 1 0 3Z\"/>"),
+	italic: A("<path d=\"M10 6v2h2.6l-3.7 8H6v2h8v-2h-2.6l3.7-8H18V6z\"/>"),
+	underline: A("<path d=\"M12 16a5 5 0 0 0 5-5V4h-2.5v7a2.5 2.5 0 0 1-5 0V4H7v7a5 5 0 0 0 5 5Zm-5 2v2h10v-2H7Z\"/>"),
+	strikethrough: k("<line x1=\"4\" y1=\"12\" x2=\"20\" y2=\"12\"/><path d=\"M17.5 7.5c0-2-1.5-3.5-3.5-3.5H10c-2 0-3.5 1.5-3.5 3.5s1.5 3.5 3.5 3.5h4c2 0 3.5 1.5 3.5 3.5s-1.5 3.5-3.5 3.5H10c-2 0-3.5-1.5-3.5-3.5\"/>"),
+	code: k("<polyline points=\"16 18 22 12 16 6\"/><polyline points=\"8 6 2 12 8 18\"/>"),
+	link: A("<path d=\"M312.5 199.6a116 116 0 0 0-20.1-16.1 119.5 119.5 0 0 0-64.4-18.9 119 119 0 0 0-84.5 35L35 308.2a119.5 119.5 0 0 0-35 84.3c0 66 53.4 119.5 119.4 119.5 32.5 0 62-12.8 84.4-34.8l89.6-89.6a8.5 8.5 0 0 0-6.1-14.6h-3.4a143.6 143.6 0 0 1-54.6-10.6 8.5 8.5 0 0 0-9.3 1.9l-64.4 64.5c-20 20-52.5 20-72.5 0s-20-52.4 0-72.4l109-108.9c20-20 52.4-20 72.4 0 13.5 12.7 34.5 12.7 48 0a34.1 34.1 0 0 0 9.9-21.7 34.1 34.1 0 0 0-9.9-26.3z\"/><path d=\"M477.1 35c-46.7-46.7-122.3-46.7-169 0l-89.5 89.4a8.5 8.5 0 0 0 6.2 14.6h3.2a143.4 143.4 0 0 1 54.5 10.7 8.5 8.5 0 0 0 9.3-1.9l64.3-64.2c20-20 52.4-20 72.4 0s20 52.5 0 72.5l-80 80-.7.7-28 27.8c-20 20-52.4 20-72.4 0-13.5-12.7-34.5-12.7-48 0a34.1 34.1 0 0 0 0 48.1 118.4 118.4 0 0 0 34.1 23.9l5.4 2.3 5.5 2a68 68 0 0 0 5.4 1.8l5 1.4c3.4.8 6.8 1.5 10.3 2.1 4.2.6 8.5 1 12.7 1.2h7.3l5.1-.6c1.9-.1 3.8-.5 6.1-.5h2.9l5.9-.9 2.7-.5 5-1h.9a119.5 119.5 0 0 0 55.4-31.4l108.6-108.6c46.7-46.7 46.7-122.3 0-169z\"/>", 18, "0 0 512 512"),
+	unlink: k("<path d=\"m18.84 12.25 1.72-1.71h-.02a5.004 5.004 0 0 0-.12-7.07 5.006 5.006 0 0 0-6.95 0l-1.72 1.71\"/><path d=\"m5.17 11.75-1.71 1.71a5.004 5.004 0 0 0 .12 7.07 5.006 5.006 0 0 0 6.95 0l1.71-1.71\"/><line x1=\"8\" y1=\"2\" x2=\"8\" y2=\"5\"/><line x1=\"2\" y1=\"8\" x2=\"5\" y2=\"8\"/><line x1=\"16\" y1=\"19\" x2=\"16\" y2=\"22\"/><line x1=\"19\" y1=\"16\" x2=\"22\" y2=\"16\"/>"),
+	bulletList: k("<line x1=\"8\" y1=\"6\" x2=\"21\" y2=\"6\"/><line x1=\"8\" y1=\"12\" x2=\"21\" y2=\"12\"/><line x1=\"8\" y1=\"18\" x2=\"21\" y2=\"18\"/><line x1=\"3\" y1=\"6\" x2=\"3.01\" y2=\"6\"/><line x1=\"3\" y1=\"12\" x2=\"3.01\" y2=\"12\"/><line x1=\"3\" y1=\"18\" x2=\"3.01\" y2=\"18\"/>"),
+	orderedList: k("<line x1=\"10\" y1=\"6\" x2=\"21\" y2=\"6\"/><line x1=\"10\" y1=\"12\" x2=\"21\" y2=\"12\"/><line x1=\"10\" y1=\"18\" x2=\"21\" y2=\"18\"/><path d=\"M4 6h1v4\"/><path d=\"M4 10h2\"/><path d=\"M6 18H4c0-1 2-2 2-3s-1-1.5-2-1\"/>"),
+	quote: k("<path d=\"M3 21c3 0 7-1 7-8V5c0-1.25-.756-2.017-2-2H4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 1-1 2-2 2s-1 .008-1 1.031V21z\"/><path d=\"M15 21c3 0 7-1 7-8V5c0-1.25-.757-2.017-2-2h-4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2h.75c0 2.25.25 4-2.75 4v3z\"/>"),
+	alignLeft: k("<line x1=\"17\" y1=\"10\" x2=\"3\" y2=\"10\"/><line x1=\"21\" y1=\"6\" x2=\"3\" y2=\"6\"/><line x1=\"21\" y1=\"14\" x2=\"3\" y2=\"14\"/><line x1=\"17\" y1=\"18\" x2=\"3\" y2=\"18\"/>"),
+	alignCenter: k("<line x1=\"18\" y1=\"10\" x2=\"6\" y2=\"10\"/><line x1=\"21\" y1=\"6\" x2=\"3\" y2=\"6\"/><line x1=\"21\" y1=\"14\" x2=\"3\" y2=\"14\"/><line x1=\"18\" y1=\"18\" x2=\"6\" y2=\"18\"/>"),
+	alignRight: k("<line x1=\"21\" y1=\"10\" x2=\"7\" y2=\"10\"/><line x1=\"21\" y1=\"6\" x2=\"3\" y2=\"6\"/><line x1=\"21\" y1=\"14\" x2=\"3\" y2=\"14\"/><line x1=\"21\" y1=\"18\" x2=\"7\" y2=\"18\"/>"),
+	alignJustify: k("<line x1=\"21\" y1=\"10\" x2=\"3\" y2=\"10\"/><line x1=\"21\" y1=\"6\" x2=\"3\" y2=\"6\"/><line x1=\"21\" y1=\"14\" x2=\"3\" y2=\"14\"/><line x1=\"21\" y1=\"18\" x2=\"3\" y2=\"18\"/>"),
+	alignNone: k("<rect x=\"3\" y=\"3\" width=\"18\" height=\"18\" rx=\"2\"/><line x1=\"9\" y1=\"3\" x2=\"9\" y2=\"21\" opacity=\"0.4\"/><line x1=\"3\" y1=\"9\" x2=\"21\" y2=\"9\" opacity=\"0.4\"/>"),
+	table: A("<path d=\"M55.46 2.5H8.54a6 6 0 0 0-6 6v46.96a6 6 0 0 0 6 6h46.92a6 6 0 0 0 6-6V8.54a6 6 0 0 0-6-6.04zm-34.29 56H8.54a3 3 0 0 1-3-3v-5.2h15.63zm0-11.2H5.5v-8.2h15.67zm0-11.2H5.5v-8.2h15.67zm0-11.2H5.5v-8.2h15.67zm18.66 33.6H24.17v-8.2h15.66zm0-11.2H24.17v-8.2h15.66zm0-11.2H24.17v-8.2h15.66zm0-11.2H24.17v-8.2h15.66zM58.5 55.46a3 3 0 0 1-3 3H42.83V50.3H58.5zm0-8.16H42.83v-8.2H58.5zm0-11.2H42.83v-8.2H58.5zm0-11.2H42.83v-8.2H58.5z\"/>", 18, "0 0 64 64"),
+	toolbarToggle: A("<path d=\"M30 6v5c0 2.2-1.8 4-4 4h-5c-2.2 0-4-1.8-4-4V6c0-2.2 1.8-4 4-4h5c2.2 0 4 1.8 4 4zM11 17H6c-2.2 0-4 1.8-4 4v5c0 2.2 1.8 4 4 4h5c2.2 0 4-1.8 4-4v-5c0-2.2-1.8-4-4-4zm18 9H18a1 1 0 1 0 0 2h11a1 1 0 1 0 0-2zM11 2H6C3.8 2 2 3.8 2 6v5c0 2.2 1.8 4 4 4h5c2.2 0 4-1.8 4-4V6c0-2.2-1.8-4-4-4zm18 20H18a1 1 0 1 0 0 2h11a1 1 0 1 0 0-2zm0-4H18a1 1 0 1 0 0 2h11a1 1 0 1 0 0-2z\"/>", 18, "0 0 32 32"),
 	textColor: (e) => `<svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M11 2 5.5 16h2.2l1.1-3h6.4l1.1 3h2.2L13 2h-2Zm-1.3 9L12 4.8 14.3 11H9.7Z"/><rect fill="${e}" x="4" y="18" width="16" height="3" rx="0.5"/></svg>`,
 	bgColor: (e) => `<svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="m19.4 7.6-3-3a1 1 0 0 0-1.4 0L5.3 14.3a1 1 0 0 0-.3.7v3a1 1 0 0 0 1 1h3a1 1 0 0 0 .7-.3L19.4 9a1 1 0 0 0 0-1.4ZM8.6 17H7v-1.6l8-8L16.6 9l-8 8Z"/><rect fill="${e}" x="4" y="18" width="16" height="3" rx="0.5"/></svg>`,
-	omega: D("<path d=\"M4 19h4.5v-2H6.8c.8-1.1 1.2-2.5 1.2-4 0-3.3 2.7-6 6-6s6 2.7 6 6c0 1.5.4 2.9 1.2 4h-1.7v2H24v-2h-2.3c-.5-.9-.7-1.9-.7-3 0-4.4-3.6-8-8-8s-8 3.6-8 8c0 1.1-.2 2.1-.7 3H2v2h2Z\"/>"),
-	hr: E("<line x1=\"5\" y1=\"12\" x2=\"19\" y2=\"12\"/>"),
-	removeFormat: E("<path d=\"M4 7V4h16v3\"/><path d=\"M9 20h6\"/><line x1=\"12\" y1=\"4\" x2=\"12\" y2=\"20\"/><line x1=\"17\" y1=\"4\" x2=\"7\" y2=\"20\" opacity=\"0.5\"/>"),
-	outdent: E("<polyline points=\"7 8 3 12 7 16\"/><line x1=\"21\" y1=\"12\" x2=\"11\" y2=\"12\"/><line x1=\"21\" y1=\"6\" x2=\"11\" y2=\"6\"/><line x1=\"21\" y1=\"18\" x2=\"11\" y2=\"18\"/>"),
-	indent: E("<polyline points=\"3 8 7 12 3 16\"/><line x1=\"21\" y1=\"12\" x2=\"11\" y2=\"12\"/><line x1=\"21\" y1=\"6\" x2=\"11\" y2=\"6\"/><line x1=\"21\" y1=\"18\" x2=\"11\" y2=\"18\"/>"),
-	undo: D("<path d=\"M6.4 8H12a6 6 0 0 1 0 12H8v-2h4a4 4 0 0 0 0-8H6.4l2.3 2.3-1.4 1.4L3 9.3l4.3-4.6 1.4 1.4L6.4 8Z\"/>"),
-	redo: D("<path d=\"M17.6 8H12a6 6 0 0 0 0 12h4v-2h-4a4 4 0 0 1 0-8h5.6l-2.3 2.3 1.4 1.4L21 9.3l-4.3-4.6-1.4 1.4L17.6 8Z\"/>"),
-	help: E("<circle cx=\"12\" cy=\"12\" r=\"10\"/><path d=\"M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3\"/><line x1=\"12\" y1=\"17\" x2=\"12.01\" y2=\"17\"/>"),
-	maximize: E("<polyline points=\"15 3 21 3 21 9\"/><polyline points=\"9 21 3 21 3 15\"/><line x1=\"21\" y1=\"3\" x2=\"14\" y2=\"10\"/><line x1=\"3\" y1=\"21\" x2=\"10\" y2=\"14\"/>"),
-	minimize: E("<polyline points=\"4 14 10 14 10 20\"/><polyline points=\"20 10 14 10 14 4\"/><line x1=\"14\" y1=\"10\" x2=\"21\" y2=\"3\"/><line x1=\"3\" y1=\"21\" x2=\"10\" y2=\"14\"/>"),
-	eye: E("<path d=\"M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z\"/><circle cx=\"12\" cy=\"12\" r=\"3\"/>", 14),
-	codeSmall: E("<polyline points=\"16 18 22 12 16 6\"/><polyline points=\"8 6 2 12 8 18\"/>", 14),
-	image: E("<rect x=\"3\" y=\"3\" width=\"18\" height=\"18\" rx=\"2\"/><circle cx=\"8.5\" cy=\"8.5\" r=\"1.5\"/><path d=\"m21 15-5-5L5 21\"/>"),
-	imagePlus: E("<rect x=\"3\" y=\"3\" width=\"18\" height=\"18\" rx=\"2\"/><circle cx=\"8.5\" cy=\"8.5\" r=\"1.5\"/><path d=\"m21 15-5-5L5 21\"/>", 16),
-	imageBig: E("<rect x=\"3\" y=\"3\" width=\"18\" height=\"18\" rx=\"2\"/><circle cx=\"8.5\" cy=\"8.5\" r=\"1.5\"/><path d=\"m21 15-5-5L5 21\"/>", 48),
-	youtube: E("<path d=\"M2.5 17a24.12 24.12 0 0 1 0-10 2 2 0 0 1 1.4-1.4 49.56 49.56 0 0 1 16.2 0A2 2 0 0 1 21.5 7a24.12 24.12 0 0 1 0 10 2 2 0 0 1-1.4 1.4 49.55 49.55 0 0 1-16.2 0A2 2 0 0 1 2.5 17\"/><path d=\"m10 15 5-3-5-3z\"/>"),
-	enter: E("<polyline points=\"9 10 4 15 9 20\"/><path d=\"M20 4v7a4 4 0 0 1-4 4H4\"/>", 16),
-	settings: E("<circle cx=\"12\" cy=\"12\" r=\"3\"/><path d=\"M12 1v2m0 18v2M4.22 4.22l1.42 1.42m12.72 12.72 1.42 1.42M1 12h2m18 0h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42\"/>", 16),
-	external: E("<path d=\"M15 3h6v6\"/><path d=\"M10 14 21 3\"/><path d=\"M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6\"/>", 16),
-	pencil: E("<path d=\"M17 3a2.83 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z\"/>", 16),
-	x: E("<line x1=\"18\" y1=\"6\" x2=\"6\" y2=\"18\"/><line x1=\"6\" y1=\"6\" x2=\"18\" y2=\"18\"/>", 16),
-	check: E("<polyline points=\"20 6 9 17 4 12\"/>", 14),
-	upload: E("<path d=\"M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4\"/><polyline points=\"17,8 12,3 7,8\"/><line x1=\"12\" y1=\"3\" x2=\"12\" y2=\"15\"/>", 16),
-	uploadBig: E("<path d=\"M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4\"/><polyline points=\"17,8 12,3 7,8\"/><line x1=\"12\" y1=\"3\" x2=\"12\" y2=\"15\"/>", 40),
-	search: E("<circle cx=\"11\" cy=\"11\" r=\"8\"/><line x1=\"21\" y1=\"21\" x2=\"16.65\" y2=\"16.65\"/>", 16),
-	folder: E("<path d=\"M20 20a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.69-.9L9.6 3.9A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2Z\"/>", 16),
-	folderPlus: E("<path d=\"M12 10v6\"/><path d=\"M9 13h6\"/><path d=\"M20 20a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.69-.9L9.6 3.9A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2Z\"/>", 16),
-	grid: E("<rect x=\"3\" y=\"3\" width=\"7\" height=\"7\"/><rect x=\"14\" y=\"3\" width=\"7\" height=\"7\"/><rect x=\"14\" y=\"14\" width=\"7\" height=\"7\"/><rect x=\"3\" y=\"14\" width=\"7\" height=\"7\"/>", 16),
-	list: E("<line x1=\"8\" y1=\"6\" x2=\"21\" y2=\"6\"/><line x1=\"8\" y1=\"12\" x2=\"21\" y2=\"12\"/><line x1=\"8\" y1=\"18\" x2=\"21\" y2=\"18\"/><line x1=\"3\" y1=\"6\" x2=\"3.01\" y2=\"6\"/><line x1=\"3\" y1=\"12\" x2=\"3.01\" y2=\"12\"/><line x1=\"3\" y1=\"18\" x2=\"3.01\" y2=\"18\"/>", 16),
-	trash: E("<path d=\"M3 6h18\"/><path d=\"M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6\"/><path d=\"M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2\"/>", 16),
-	copy: E("<rect x=\"9\" y=\"9\" width=\"13\" height=\"13\" rx=\"2\"/><path d=\"M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1\"/>", 16),
-	superscript: E("<path d=\"m4 19 8-8\"/><path d=\"m12 19-8-8\"/><path d=\"M20 12h-4c0-1.5.442-2 1.5-2.5S20 8.334 20 7.002c0-.472-.17-.93-.484-1.29a2.105 2.105 0 0 0-2.617-.436c-.42.239-.738.614-.899 1.06\"/>"),
-	subscript: E("<path d=\"m4 5 8 8\"/><path d=\"m12 5-8 8\"/><path d=\"M20 19h-4c0-1.5.44-2 1.5-2.5S20 15.33 20 14c0-.47-.17-.93-.48-1.29a2.11 2.11 0 0 0-2.62-.44c-.42.24-.74.62-.9 1.07\"/>"),
-	rowAbove: E("<rect x=\"3\" y=\"11\" width=\"18\" height=\"10\" rx=\"1.5\"/><line x1=\"3\" y1=\"16\" x2=\"21\" y2=\"16\"/><line x1=\"12\" y1=\"2\" x2=\"12\" y2=\"8\"/><line x1=\"9\" y1=\"5\" x2=\"15\" y2=\"5\"/>"),
-	rowBelow: E("<rect x=\"3\" y=\"3\" width=\"18\" height=\"10\" rx=\"1.5\"/><line x1=\"3\" y1=\"8\" x2=\"21\" y2=\"8\"/><line x1=\"12\" y1=\"16\" x2=\"12\" y2=\"22\"/><line x1=\"9\" y1=\"19\" x2=\"15\" y2=\"19\"/>"),
-	colLeft: E("<rect x=\"11\" y=\"3\" width=\"10\" height=\"18\" rx=\"1.5\"/><line x1=\"16\" y1=\"3\" x2=\"16\" y2=\"21\"/><line x1=\"2\" y1=\"12\" x2=\"8\" y2=\"12\"/><line x1=\"5\" y1=\"9\" x2=\"5\" y2=\"15\"/>"),
-	colRight: E("<rect x=\"3\" y=\"3\" width=\"10\" height=\"18\" rx=\"1.5\"/><line x1=\"8\" y1=\"3\" x2=\"8\" y2=\"21\"/><line x1=\"16\" y1=\"12\" x2=\"22\" y2=\"12\"/><line x1=\"19\" y1=\"9\" x2=\"19\" y2=\"15\"/>"),
-	rowDelete: E("<rect x=\"3\" y=\"7\" width=\"18\" height=\"10\" rx=\"1.5\"/><line x1=\"9\" y1=\"10\" x2=\"15\" y2=\"14\"/><line x1=\"15\" y1=\"10\" x2=\"9\" y2=\"14\"/>"),
-	colDelete: E("<rect x=\"7\" y=\"3\" width=\"10\" height=\"18\" rx=\"1.5\"/><line x1=\"10\" y1=\"9\" x2=\"14\" y2=\"15\"/><line x1=\"14\" y1=\"9\" x2=\"10\" y2=\"15\"/>"),
-	merge: E("<rect x=\"3\" y=\"5\" width=\"18\" height=\"14\" rx=\"1.5\"/><path d=\"M8 12h8\"/><path d=\"m6 10 2 2-2 2\"/><path d=\"m18 10-2 2 2 2\"/>"),
-	headerRow: E("<rect x=\"3\" y=\"4\" width=\"18\" height=\"16\" rx=\"1.5\"/><rect x=\"3\" y=\"4\" width=\"18\" height=\"5\" rx=\"1.5\" fill=\"currentColor\" stroke=\"none\" opacity=\".35\"/><line x1=\"3\" y1=\"9\" x2=\"21\" y2=\"9\"/><line x1=\"12\" y1=\"9\" x2=\"12\" y2=\"20\"/>"),
-	headerCol: E("<rect x=\"3\" y=\"4\" width=\"18\" height=\"16\" rx=\"1.5\"/><rect x=\"3\" y=\"4\" width=\"6\" height=\"16\" rx=\"1.5\" fill=\"currentColor\" stroke=\"none\" opacity=\".35\"/><line x1=\"9\" y1=\"4\" x2=\"9\" y2=\"20\"/><line x1=\"9\" y1=\"12\" x2=\"21\" y2=\"12\"/>"),
-	sort: E("<path d=\"m3 16 4 4 4-4\"/><path d=\"M7 20V4\"/><path d=\"M11 4h10\"/><path d=\"M11 8h7\"/><path d=\"M11 12h4\"/>", 16),
-	filter: E("<polygon points=\"22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3\"/>", 16),
-	folderMove: E("<path d=\"M2 9V5a2 2 0 0 1 2-2h3.9a2 2 0 0 1 1.69.9l.81 1.2a2 2 0 0 0 1.67.9H20a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H2\"/><path d=\"m8 16 3-3-3-3\"/><path d=\"M2 13h9\"/>", 16),
-	more: D("<circle cx=\"5\" cy=\"12\" r=\"1.8\"/><circle cx=\"12\" cy=\"12\" r=\"1.8\"/><circle cx=\"19\" cy=\"12\" r=\"1.8\"/>"),
-	linkSmall: E("<path d=\"M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71\"/><path d=\"M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71\"/>", 16),
-	info: E("<circle cx=\"12\" cy=\"12\" r=\"10\"/><line x1=\"12\" y1=\"16\" x2=\"12\" y2=\"12\"/><line x1=\"12\" y1=\"8\" x2=\"12.01\" y2=\"8\"/>", 16),
-	checkBig: E("<polyline points=\"20 6 9 17 4 12\"/>", 18),
-	close: E("<line x1=\"18\" y1=\"6\" x2=\"6\" y2=\"18\"/><line x1=\"6\" y1=\"6\" x2=\"18\" y2=\"18\"/>", 18),
-	chevronLeft: E("<polyline points=\"15 18 9 12 15 6\"/>", 16),
-	chevronDown: E("<polyline points=\"6 9 12 15 18 9\"/>", 14),
-	file: E("<path d=\"M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z\"/><polyline points=\"14 2 14 8 20 8\"/>", 32)
+	omega: A("<path d=\"M4 19h4.5v-2H6.8c.8-1.1 1.2-2.5 1.2-4 0-3.3 2.7-6 6-6s6 2.7 6 6c0 1.5.4 2.9 1.2 4h-1.7v2H24v-2h-2.3c-.5-.9-.7-1.9-.7-3 0-4.4-3.6-8-8-8s-8 3.6-8 8c0 1.1-.2 2.1-.7 3H2v2h2Z\"/>"),
+	hr: k("<line x1=\"5\" y1=\"12\" x2=\"19\" y2=\"12\"/>"),
+	removeFormat: k("<path d=\"M4 7V4h16v3\"/><path d=\"M9 20h6\"/><line x1=\"12\" y1=\"4\" x2=\"12\" y2=\"20\"/><line x1=\"17\" y1=\"4\" x2=\"7\" y2=\"20\" opacity=\"0.5\"/>"),
+	outdent: k("<polyline points=\"7 8 3 12 7 16\"/><line x1=\"21\" y1=\"12\" x2=\"11\" y2=\"12\"/><line x1=\"21\" y1=\"6\" x2=\"11\" y2=\"6\"/><line x1=\"21\" y1=\"18\" x2=\"11\" y2=\"18\"/>"),
+	indent: k("<polyline points=\"3 8 7 12 3 16\"/><line x1=\"21\" y1=\"12\" x2=\"11\" y2=\"12\"/><line x1=\"21\" y1=\"6\" x2=\"11\" y2=\"6\"/><line x1=\"21\" y1=\"18\" x2=\"11\" y2=\"18\"/>"),
+	undo: A("<path d=\"M6.4 8H12a6 6 0 0 1 0 12H8v-2h4a4 4 0 0 0 0-8H6.4l2.3 2.3-1.4 1.4L3 9.3l4.3-4.6 1.4 1.4L6.4 8Z\"/>"),
+	redo: A("<path d=\"M17.6 8H12a6 6 0 0 0 0 12h4v-2h-4a4 4 0 0 1 0-8h5.6l-2.3 2.3 1.4 1.4L21 9.3l-4.3-4.6-1.4 1.4L17.6 8Z\"/>"),
+	help: k("<circle cx=\"12\" cy=\"12\" r=\"10\"/><path d=\"M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3\"/><line x1=\"12\" y1=\"17\" x2=\"12.01\" y2=\"17\"/>"),
+	maximize: k("<polyline points=\"15 3 21 3 21 9\"/><polyline points=\"9 21 3 21 3 15\"/><line x1=\"21\" y1=\"3\" x2=\"14\" y2=\"10\"/><line x1=\"3\" y1=\"21\" x2=\"10\" y2=\"14\"/>"),
+	minimize: k("<polyline points=\"4 14 10 14 10 20\"/><polyline points=\"20 10 14 10 14 4\"/><line x1=\"14\" y1=\"10\" x2=\"21\" y2=\"3\"/><line x1=\"3\" y1=\"21\" x2=\"10\" y2=\"14\"/>"),
+	eye: k("<path d=\"M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z\"/><circle cx=\"12\" cy=\"12\" r=\"3\"/>", 14),
+	codeSmall: k("<polyline points=\"16 18 22 12 16 6\"/><polyline points=\"8 6 2 12 8 18\"/>", 14),
+	image: k("<rect x=\"3\" y=\"3\" width=\"18\" height=\"18\" rx=\"2\"/><circle cx=\"8.5\" cy=\"8.5\" r=\"1.5\"/><path d=\"m21 15-5-5L5 21\"/>"),
+	imagePlus: k("<rect x=\"3\" y=\"3\" width=\"18\" height=\"18\" rx=\"2\"/><circle cx=\"8.5\" cy=\"8.5\" r=\"1.5\"/><path d=\"m21 15-5-5L5 21\"/>", 16),
+	imageBig: k("<rect x=\"3\" y=\"3\" width=\"18\" height=\"18\" rx=\"2\"/><circle cx=\"8.5\" cy=\"8.5\" r=\"1.5\"/><path d=\"m21 15-5-5L5 21\"/>", 48),
+	youtube: k("<path d=\"M2.5 17a24.12 24.12 0 0 1 0-10 2 2 0 0 1 1.4-1.4 49.56 49.56 0 0 1 16.2 0A2 2 0 0 1 21.5 7a24.12 24.12 0 0 1 0 10 2 2 0 0 1-1.4 1.4 49.55 49.55 0 0 1-16.2 0A2 2 0 0 1 2.5 17\"/><path d=\"m10 15 5-3-5-3z\"/>"),
+	enter: k("<polyline points=\"9 10 4 15 9 20\"/><path d=\"M20 4v7a4 4 0 0 1-4 4H4\"/>", 16),
+	settings: k("<circle cx=\"12\" cy=\"12\" r=\"3\"/><path d=\"M12 1v2m0 18v2M4.22 4.22l1.42 1.42m12.72 12.72 1.42 1.42M1 12h2m18 0h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42\"/>", 16),
+	external: k("<path d=\"M15 3h6v6\"/><path d=\"M10 14 21 3\"/><path d=\"M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6\"/>", 16),
+	pencil: k("<path d=\"M17 3a2.83 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z\"/>", 16),
+	x: k("<line x1=\"18\" y1=\"6\" x2=\"6\" y2=\"18\"/><line x1=\"6\" y1=\"6\" x2=\"18\" y2=\"18\"/>", 16),
+	check: k("<polyline points=\"20 6 9 17 4 12\"/>", 14),
+	upload: k("<path d=\"M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4\"/><polyline points=\"17,8 12,3 7,8\"/><line x1=\"12\" y1=\"3\" x2=\"12\" y2=\"15\"/>", 16),
+	uploadBig: k("<path d=\"M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4\"/><polyline points=\"17,8 12,3 7,8\"/><line x1=\"12\" y1=\"3\" x2=\"12\" y2=\"15\"/>", 40),
+	search: k("<circle cx=\"11\" cy=\"11\" r=\"8\"/><line x1=\"21\" y1=\"21\" x2=\"16.65\" y2=\"16.65\"/>", 16),
+	folder: k("<path d=\"M20 20a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.69-.9L9.6 3.9A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2Z\"/>", 16),
+	folderPlus: k("<path d=\"M12 10v6\"/><path d=\"M9 13h6\"/><path d=\"M20 20a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.69-.9L9.6 3.9A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2Z\"/>", 16),
+	grid: k("<rect x=\"3\" y=\"3\" width=\"7\" height=\"7\"/><rect x=\"14\" y=\"3\" width=\"7\" height=\"7\"/><rect x=\"14\" y=\"14\" width=\"7\" height=\"7\"/><rect x=\"3\" y=\"14\" width=\"7\" height=\"7\"/>", 16),
+	list: k("<line x1=\"8\" y1=\"6\" x2=\"21\" y2=\"6\"/><line x1=\"8\" y1=\"12\" x2=\"21\" y2=\"12\"/><line x1=\"8\" y1=\"18\" x2=\"21\" y2=\"18\"/><line x1=\"3\" y1=\"6\" x2=\"3.01\" y2=\"6\"/><line x1=\"3\" y1=\"12\" x2=\"3.01\" y2=\"12\"/><line x1=\"3\" y1=\"18\" x2=\"3.01\" y2=\"18\"/>", 16),
+	trash: k("<path d=\"M3 6h18\"/><path d=\"M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6\"/><path d=\"M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2\"/>", 16),
+	copy: k("<rect x=\"9\" y=\"9\" width=\"13\" height=\"13\" rx=\"2\"/><path d=\"M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1\"/>", 16),
+	superscript: k("<path d=\"m4 19 8-8\"/><path d=\"m12 19-8-8\"/><path d=\"M20 12h-4c0-1.5.442-2 1.5-2.5S20 8.334 20 7.002c0-.472-.17-.93-.484-1.29a2.105 2.105 0 0 0-2.617-.436c-.42.239-.738.614-.899 1.06\"/>"),
+	subscript: k("<path d=\"m4 5 8 8\"/><path d=\"m12 5-8 8\"/><path d=\"M20 19h-4c0-1.5.44-2 1.5-2.5S20 15.33 20 14c0-.47-.17-.93-.48-1.29a2.11 2.11 0 0 0-2.62-.44c-.42.24-.74.62-.9 1.07\"/>"),
+	rowAbove: k("<rect x=\"3\" y=\"11\" width=\"18\" height=\"10\" rx=\"1.5\"/><line x1=\"3\" y1=\"16\" x2=\"21\" y2=\"16\"/><line x1=\"12\" y1=\"2\" x2=\"12\" y2=\"8\"/><line x1=\"9\" y1=\"5\" x2=\"15\" y2=\"5\"/>"),
+	rowBelow: k("<rect x=\"3\" y=\"3\" width=\"18\" height=\"10\" rx=\"1.5\"/><line x1=\"3\" y1=\"8\" x2=\"21\" y2=\"8\"/><line x1=\"12\" y1=\"16\" x2=\"12\" y2=\"22\"/><line x1=\"9\" y1=\"19\" x2=\"15\" y2=\"19\"/>"),
+	colLeft: k("<rect x=\"11\" y=\"3\" width=\"10\" height=\"18\" rx=\"1.5\"/><line x1=\"16\" y1=\"3\" x2=\"16\" y2=\"21\"/><line x1=\"2\" y1=\"12\" x2=\"8\" y2=\"12\"/><line x1=\"5\" y1=\"9\" x2=\"5\" y2=\"15\"/>"),
+	colRight: k("<rect x=\"3\" y=\"3\" width=\"10\" height=\"18\" rx=\"1.5\"/><line x1=\"8\" y1=\"3\" x2=\"8\" y2=\"21\"/><line x1=\"16\" y1=\"12\" x2=\"22\" y2=\"12\"/><line x1=\"19\" y1=\"9\" x2=\"19\" y2=\"15\"/>"),
+	rowDelete: k("<rect x=\"3\" y=\"7\" width=\"18\" height=\"10\" rx=\"1.5\"/><line x1=\"9\" y1=\"10\" x2=\"15\" y2=\"14\"/><line x1=\"15\" y1=\"10\" x2=\"9\" y2=\"14\"/>"),
+	colDelete: k("<rect x=\"7\" y=\"3\" width=\"10\" height=\"18\" rx=\"1.5\"/><line x1=\"10\" y1=\"9\" x2=\"14\" y2=\"15\"/><line x1=\"14\" y1=\"9\" x2=\"10\" y2=\"15\"/>"),
+	merge: k("<rect x=\"3\" y=\"5\" width=\"18\" height=\"14\" rx=\"1.5\"/><path d=\"M8 12h8\"/><path d=\"m6 10 2 2-2 2\"/><path d=\"m18 10-2 2 2 2\"/>"),
+	headerRow: k("<rect x=\"3\" y=\"4\" width=\"18\" height=\"16\" rx=\"1.5\"/><rect x=\"3\" y=\"4\" width=\"18\" height=\"5\" rx=\"1.5\" fill=\"currentColor\" stroke=\"none\" opacity=\".35\"/><line x1=\"3\" y1=\"9\" x2=\"21\" y2=\"9\"/><line x1=\"12\" y1=\"9\" x2=\"12\" y2=\"20\"/>"),
+	headerCol: k("<rect x=\"3\" y=\"4\" width=\"18\" height=\"16\" rx=\"1.5\"/><rect x=\"3\" y=\"4\" width=\"6\" height=\"16\" rx=\"1.5\" fill=\"currentColor\" stroke=\"none\" opacity=\".35\"/><line x1=\"9\" y1=\"4\" x2=\"9\" y2=\"20\"/><line x1=\"9\" y1=\"12\" x2=\"21\" y2=\"12\"/>"),
+	sort: k("<path d=\"m3 16 4 4 4-4\"/><path d=\"M7 20V4\"/><path d=\"M11 4h10\"/><path d=\"M11 8h7\"/><path d=\"M11 12h4\"/>", 16),
+	filter: k("<polygon points=\"22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3\"/>", 16),
+	folderMove: k("<path d=\"M2 9V5a2 2 0 0 1 2-2h3.9a2 2 0 0 1 1.69.9l.81 1.2a2 2 0 0 0 1.67.9H20a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H2\"/><path d=\"m8 16 3-3-3-3\"/><path d=\"M2 13h9\"/>", 16),
+	more: A("<circle cx=\"5\" cy=\"12\" r=\"1.8\"/><circle cx=\"12\" cy=\"12\" r=\"1.8\"/><circle cx=\"19\" cy=\"12\" r=\"1.8\"/>"),
+	linkSmall: k("<path d=\"M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71\"/><path d=\"M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71\"/>", 16),
+	info: k("<circle cx=\"12\" cy=\"12\" r=\"10\"/><line x1=\"12\" y1=\"16\" x2=\"12\" y2=\"12\"/><line x1=\"12\" y1=\"8\" x2=\"12.01\" y2=\"8\"/>", 16),
+	checkBig: k("<polyline points=\"20 6 9 17 4 12\"/>", 18),
+	close: k("<line x1=\"18\" y1=\"6\" x2=\"6\" y2=\"18\"/><line x1=\"6\" y1=\"6\" x2=\"18\" y2=\"18\"/>", 18),
+	chevronLeft: k("<polyline points=\"15 18 9 12 15 6\"/>", 16),
+	chevronDown: k("<polyline points=\"6 9 12 15 18 9\"/>", 14),
+	file: k("<path d=\"M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z\"/><polyline points=\"14 2 14 8 20 8\"/>", 32)
 };
 //#endregion
 //#region src/ui/components.ts
-function k(e, t = {}, ...n) {
+function M(e, t = {}, ...n) {
 	let r = document.createElement(e);
 	for (let [e, n] of Object.entries(t)) n != null && n !== !1 && (e === "class" ? r.className = n : e === "html" ? r.innerHTML = n : e === "style" && typeof n == "object" ? Object.assign(r.style, n) : e.startsWith("on") && typeof n == "function" ? r.addEventListener(e.slice(2).toLowerCase(), n) : e in r && typeof n != "string" ? r[e] = n : r.setAttribute(e, n === !0 ? "" : String(n)));
 	for (let e of n) e != null && e !== !1 && r.append(e);
 	return r;
 }
-var A = "a[href],button:not([disabled]),input:not([disabled]),select:not([disabled]),textarea:not([disabled]),[tabindex]:not([tabindex=\"-1\"])", j = [], M = class {
+var re = "a[href],button:not([disabled]),input:not([disabled]),select:not([disabled]),textarea:not([disabled]),[tabindex]:not([tabindex=\"-1\"])", N = [], P = class {
 	constructor(e) {
 		this.opts = e, this.overlay = null, this.dialog = null, this.bodyEl = null, this.isOpen = !1, this.prevFocus = null, this.onKeyDown = (e) => {
-			if (j[j.length - 1] === this) {
+			if (N[N.length - 1] === this) {
 				if (e.key === "Escape") e.preventDefault(), e.stopPropagation(), this.close();
 				else if (e.key === "Tab" && this.dialog) {
-					let t = Array.from(this.dialog.querySelectorAll(A)).filter((e) => e.offsetParent !== null);
+					let t = Array.from(this.dialog.querySelectorAll(re)).filter((e) => e.offsetParent !== null);
 					if (!t.length) return;
 					let n = t[0], r = t[t.length - 1];
 					e.shiftKey && document.activeElement === n ? (e.preventDefault(), r.focus()) : !e.shiftKey && document.activeElement === r && (e.preventDefault(), n.focus());
@@ -487,18 +526,18 @@ var A = "a[href],button:not([disabled]),input:not([disabled]),select:not([disabl
 		if (this.isOpen) return this;
 		this.isOpen = !0, this.prevFocus = document.activeElement;
 		let t = "zoro-dlg-" + Math.random().toString(36).slice(2, 8);
-		this.overlay = k("div", { class: `zoro-root zoro-dialog-overlay ${this.opts.themeClass ?? ""}` }), this.overlay.addEventListener("mousedown", (e) => {
+		this.overlay = M("div", { class: `zoro-root zoro-dialog-overlay ${this.opts.themeClass ?? ""}` }), this.overlay.addEventListener("mousedown", (e) => {
 			e.target === this.overlay && this.close();
-		}), this.dialog = k("div", {
+		}), this.dialog = M("div", {
 			class: `zoro-dialog zoro-dialog-${this.opts.size ?? "md"}`,
 			role: "dialog",
 			"aria-modal": "true",
 			"aria-labelledby": t
 		});
-		let n = k("div", { class: "zoro-dialog-header" }, k("h3", {
+		let n = M("div", { class: "zoro-dialog-header" }, M("h3", {
 			class: "zoro-dialog-title",
 			id: t
-		}, this.opts.title), k("button", {
+		}, this.opts.title), M("button", {
 			type: "button",
 			class: "zoro-dialog-close",
 			"aria-label": this.opts.closeLabel ?? "Kapat",
@@ -506,8 +545,8 @@ var A = "a[href],button:not([disabled]),input:not([disabled]),select:not([disabl
 			html: "<svg width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" aria-hidden=\"true\"><line x1=\"18\" y1=\"6\" x2=\"6\" y2=\"18\"/><line x1=\"6\" y1=\"6\" x2=\"18\" y2=\"18\"/></svg>",
 			onclick: () => this.close()
 		}));
-		return this.bodyEl = k("div", { class: "zoro-dialog-body" }), this.setBody(e), this.dialog.append(n, this.bodyEl), this.overlay.appendChild(this.dialog), document.body.appendChild(this.overlay), document.body.classList.add("zoro-scroll-lock"), j.push(this), this.dialog.addEventListener("keydown", this.onKeyDown), requestAnimationFrame(() => {
-			(this.bodyEl?.querySelector("input:not([type=hidden]),textarea,select") ?? this.dialog?.querySelector(A))?.focus();
+		return this.bodyEl = M("div", { class: "zoro-dialog-body" }), this.setBody(e), this.dialog.append(n, this.bodyEl), this.overlay.appendChild(this.dialog), document.body.appendChild(this.overlay), document.body.classList.add("zoro-scroll-lock"), N.push(this), this.dialog.addEventListener("keydown", this.onKeyDown), requestAnimationFrame(() => {
+			(this.bodyEl?.querySelector("input:not([type=hidden]),textarea,select") ?? this.dialog?.querySelector(re))?.focus();
 		}), this;
 	}
 	setBody(e) {
@@ -516,16 +555,16 @@ var A = "a[href],button:not([disabled]),input:not([disabled]),select:not([disabl
 	addFooter(e) {
 		if (!this.dialog) return;
 		this.dialog.querySelector(".zoro-dialog-footer")?.remove();
-		let t = k("div", { class: "zoro-dialog-footer" }, e);
+		let t = M("div", { class: "zoro-dialog-footer" }, e);
 		return this.dialog.appendChild(t), t;
 	}
 	close() {
 		if (!this.isOpen) return;
 		this.isOpen = !1;
-		let e = j.indexOf(this);
-		e >= 0 && j.splice(e, 1), j.length || document.body.classList.remove("zoro-scroll-lock"), this.overlay?.remove(), this.overlay = this.dialog = this.bodyEl = null, this.prevFocus instanceof HTMLElement && document.contains(this.prevFocus) && this.prevFocus.focus({ preventScroll: !0 }), this.opts.onClose?.();
+		let e = N.indexOf(this);
+		e >= 0 && N.splice(e, 1), N.length || document.body.classList.remove("zoro-scroll-lock"), this.overlay?.remove(), this.overlay = this.dialog = this.bodyEl = null, this.prevFocus instanceof HTMLElement && document.contains(this.prevFocus) && this.prevFocus.focus({ preventScroll: !0 }), this.opts.onClose?.();
 	}
-}, N = class {
+}, F = class {
 	constructor(e = "", t) {
 		this.themeClass = e, this.onClose = t, this.el = null, this.isOpen = !1, this.anchor = null, this.onOutside = (e) => {
 			let t = e.target;
@@ -537,7 +576,7 @@ var A = "a[href],button:not([disabled]),input:not([disabled]),select:not([disabl
 		};
 	}
 	open(e, t, n = "") {
-		return this.close(), this.isOpen = !0, this.anchor = t instanceof Element ? t : null, this.el = k("div", {
+		return this.close(), this.isOpen = !0, this.anchor = t instanceof Element ? t : null, this.el = M("div", {
 			class: `zoro-root zoro-popover ${n} ${this.themeClass}`,
 			role: "dialog"
 		}, e), document.body.appendChild(this.el), this.position(t instanceof Element ? t.getBoundingClientRect() : t), clearTimeout(this.listenTimer), this.listenTimer = setTimeout(() => {
@@ -552,7 +591,7 @@ var A = "a[href],button:not([disabled]),input:not([disabled]),select:not([disabl
 	close() {
 		this.isOpen && (this.isOpen = !1, clearTimeout(this.listenTimer), document.removeEventListener("pointerdown", this.onOutside, !0), document.removeEventListener("keydown", this.onKey, !0), window.removeEventListener("resize", this.onViewportChange), window.removeEventListener("scroll", this.onViewportChange, !0), this.el?.remove(), this.el = null, this.onClose?.());
 	}
-}, ee = "<svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><polyline points=\"20 6 9 17 4 12\"/></svg>", te = "<svg width=\"14\" height=\"14\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><polyline points=\"6 9 12 15 18 9\"/></svg>", P = class {
+}, ie = "<svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><polyline points=\"20 6 9 17 4 12\"/></svg>", ae = "<svg width=\"14\" height=\"14\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><polyline points=\"6 9 12 15 18 9\"/></svg>", I = class {
 	constructor(e) {
 		this.opts = e, this.dropdown = null, this.activeIndex = -1, this.isOpen = !1, this.onOutside = (e) => {
 			this.wrapper.contains(e.target) || this.close();
@@ -565,7 +604,7 @@ var A = "a[href],button:not([disabled]),input:not([disabled]),select:not([disabl
 	}
 	render() {
 		let e = this.opts.variant === "field";
-		return this.trigger = k("button", {
+		return this.trigger = M("button", {
 			type: "button",
 			class: e ? `zoro-select-field${this.opts.size === "sm" ? " sm" : ""}` : "zoro-select-trigger",
 			"aria-haspopup": "listbox",
@@ -573,7 +612,7 @@ var A = "a[href],button:not([disabled]),input:not([disabled]),select:not([disabl
 			"aria-label": this.opts.label
 		}), e || this.trigger.addEventListener("mousedown", (e) => e.preventDefault()), this.trigger.addEventListener("click", () => this.isOpen ? this.close() : this.open()), this.trigger.addEventListener("keydown", (e) => {
 			!this.isOpen && (e.key === "ArrowDown" || e.key === "Enter" || e.key === " ") ? (e.preventDefault(), this.open()) : this.isOpen && this.onKey(e);
-		}), this.wrapper = k("div", { class: "zoro-select-wrapper" + (e ? " zoro-select-wrapper-field" : "") }, this.trigger), this.updateTrigger(), this.wrapper;
+		}), this.wrapper = M("div", { class: "zoro-select-wrapper" + (e ? " zoro-select-wrapper-field" : "") }, this.trigger), this.updateTrigger(), this.wrapper;
 	}
 	setValue(e) {
 		this.opts.value !== e && (this.opts.value = e, this.updateTrigger());
@@ -589,37 +628,37 @@ var A = "a[href],button:not([disabled]),input:not([disabled]),select:not([disabl
 		let e = this.current(), t = this.opts.variant === "field";
 		this.trigger.innerHTML = "";
 		let n = e?.icon ?? this.opts.icon;
-		t && n && this.trigger.append(k("span", {
+		t && n && this.trigger.append(M("span", {
 			class: "zoro-select-icon",
 			html: n
 		}));
 		let r = e?.label ?? this.opts.placeholder ?? this.opts.items[0]?.label ?? "";
-		this.trigger.append(k("span", { class: "zoro-select-label" + (!e && this.opts.placeholder ? " placeholder" : "") }, r)), t && this.trigger.append(k("span", {
+		this.trigger.append(M("span", { class: "zoro-select-label" + (!e && this.opts.placeholder ? " placeholder" : "") }, r)), t && this.trigger.append(M("span", {
 			class: "zoro-select-chevron",
-			html: te
+			html: ae
 		}));
 	}
 	open() {
 		if (this.isOpen) return;
 		this.isOpen = !0;
 		let e = this.opts.variant === "field";
-		this.trigger.setAttribute("aria-expanded", "true"), this.dropdown = k("div", {
+		this.trigger.setAttribute("aria-expanded", "true"), this.dropdown = M("div", {
 			class: "zoro-select-dropdown" + (e ? " zoro-select-dropdown-field" : ""),
 			role: "listbox"
 		}), this.opts.items.forEach((t, n) => {
-			let r = t.value === this.opts.value, i = k("span", { class: "zoro-format-text" }, t.label);
+			let r = t.value === this.opts.value, i = M("span", { class: "zoro-format-text" }, t.label);
 			t.style && Object.assign(i.style, t.style);
-			let a = k("div", {
+			let a = M("div", {
 				class: "zoro-select-option" + (r ? " active" : ""),
 				role: "option",
 				"aria-selected": String(r),
 				style: t.depth ? { paddingLeft: `${10 + t.depth * 16}px` } : void 0
-			}, t.icon ? k("span", {
+			}, t.icon ? M("span", {
 				class: "zoro-select-icon",
 				html: t.icon
-			}) : null, i, t.meta ? k("span", { class: "zoro-select-meta" }, t.meta) : null, t.shortcut ? k("span", { class: "zoro-select-shortcut" }, t.shortcut) : null, e ? k("span", {
+			}) : null, i, t.meta ? M("span", { class: "zoro-select-meta" }, t.meta) : null, t.shortcut ? M("span", { class: "zoro-select-shortcut" }, t.shortcut) : null, e ? M("span", {
 				class: "zoro-select-check",
-				html: r ? ee : ""
+				html: r ? ie : ""
 			}) : null);
 			a.addEventListener("mousedown", (e) => e.preventDefault()), a.addEventListener("click", () => this.choose(n)), a.addEventListener("mouseenter", () => {
 				this.activeIndex = n, this.highlight(!1);
@@ -651,18 +690,18 @@ var A = "a[href],button:not([disabled]),input:not([disabled]),select:not([disabl
 	destroy() {
 		this.close();
 	}
-}, ne = class {
+}, oe = class {
 	constructor(e) {
 		this.opts = e, this.buttons = {}, this.panels = {};
 	}
 	render() {
-		let e = k("div", {
+		let e = M("div", {
 			class: "zoro-tabs-list",
 			role: "tablist"
 		});
-		this.container = k("div", { class: "zoro-tabs" }, e);
+		this.container = M("div", { class: "zoro-tabs" }, e);
 		for (let t of this.opts.tabs) {
-			let n = k("button", {
+			let n = M("button", {
 				type: "button",
 				class: "zoro-tab" + (t.id === this.opts.active ? " active" : ""),
 				role: "tab",
@@ -671,7 +710,7 @@ var A = "a[href],button:not([disabled]),input:not([disabled]),select:not([disabl
 				onclick: () => this.setActive(t.id)
 			});
 			this.buttons[t.id] = n, e.appendChild(n);
-			let r = k("div", {
+			let r = M("div", {
 				class: "zoro-tab-content" + (t.id === this.opts.active ? " active" : ""),
 				role: "tabpanel"
 			});
@@ -694,13 +733,13 @@ var A = "a[href],button:not([disabled]),input:not([disabled]),select:not([disabl
 		return this.panels[e];
 	}
 };
-function F(e, t = "info", n = "", r = 2600) {
+function L(e, t = "info", n = "", r = 2600) {
 	let i = document.querySelector(".zoro-toast-host");
-	i || (i = k("div", {
+	i || (i = M("div", {
 		class: "zoro-root zoro-toast-host",
 		"aria-live": "polite"
 	}), document.body.appendChild(i)), n && (i.className = `zoro-root zoro-toast-host ${n}`);
-	let a = k("div", {
+	let a = M("div", {
 		class: `zoro-toast zoro-toast-${t}`,
 		role: t === "error" ? "alert" : "status"
 	}, e);
@@ -710,20 +749,20 @@ function F(e, t = "info", n = "", r = 2600) {
 	};
 	return r > 0 && setTimeout(s, r), s;
 }
-function re(e, t) {
+function se(e, t) {
 	return new Promise((n) => {
-		let r = !1, i = new M({
+		let r = !1, i = new P({
 			title: t.title,
 			size: "sm",
 			themeClass: t.themeClass,
 			closeLabel: t.cancel,
 			onClose: () => n(r)
 		});
-		i.open(k("p", { class: "zoro-confirm-text" }, e)), i.addFooter(k("div", { class: "zoro-btn-row" }, k("button", {
+		i.open(M("p", { class: "zoro-confirm-text" }, e)), i.addFooter(M("div", { class: "zoro-btn-row" }, M("button", {
 			type: "button",
 			class: "zoro-btn zoro-btn-secondary",
 			onclick: () => i.close()
-		}, t.cancel), k("button", {
+		}, t.cancel), M("button", {
 			type: "button",
 			class: `zoro-btn ${t.danger ? "zoro-btn-danger" : "zoro-btn-primary"}`,
 			onclick: () => {
@@ -732,17 +771,17 @@ function re(e, t) {
 		}, t.ok)));
 	});
 }
-function ie(e) {
+function ce(e) {
 	return new Promise((t) => {
-		let n = null, r = k("input", {
+		let n = null, r = M("input", {
 			type: "text",
 			class: "zoro-input",
 			value: e.value ?? "",
 			placeholder: e.placeholder ?? ""
-		}), i = k("p", {
+		}), i = M("p", {
 			class: "zoro-field-error",
 			role: "alert"
-		}), a = new M({
+		}), a = new P({
 			title: e.title,
 			size: "sm",
 			themeClass: e.themeClass,
@@ -754,95 +793,95 @@ function ie(e) {
 		};
 		r.addEventListener("keydown", (e) => {
 			e.key === "Enter" && (e.preventDefault(), o());
-		}), a.open(k("div", { class: "zoro-field" }, k("label", { class: "zoro-label" }, e.label), r, i)), a.addFooter(k("div", { class: "zoro-btn-row" }, k("button", {
+		}), a.open(M("div", { class: "zoro-field" }, M("label", { class: "zoro-label" }, e.label), r, i)), a.addFooter(M("div", { class: "zoro-btn-row" }, M("button", {
 			type: "button",
 			class: "zoro-btn zoro-btn-secondary",
 			onclick: () => a.close()
-		}, e.cancel), k("button", {
+		}, e.cancel), M("button", {
 			type: "button",
 			class: "zoro-btn zoro-btn-primary",
 			onclick: o
 		}, e.ok)));
 	});
 }
-var ae = typeof navigator < "u" && /Mac|iPhone|iPad/.test(navigator.platform || navigator.userAgent);
-function oe(e) {
+var le = typeof navigator < "u" && /Mac|iPhone|iPad/.test(navigator.platform || navigator.userAgent);
+function ue(e) {
 	let t = /^(.*?)\s*\(([^()]*(?:Ctrl|Alt|Shift|⌘)[^()]*)\)\s*$/.exec(e);
 	if (!t) return {
 		label: e,
 		keys: ""
 	};
 	let n = t[2];
-	return ae && (n = n.replace(/Ctrl\+/g, "⌘").replace(/Shift\+/g, "⇧").replace(/Alt\+/g, "⌥")), {
+	return le && (n = n.replace(/Ctrl\+/g, "⌘").replace(/Shift\+/g, "⇧").replace(/Alt\+/g, "⌥")), {
 		label: t[1],
 		keys: n
 	};
 }
-var I = null, se, ce = 0, le = null;
-function L() {
-	clearTimeout(se), I && (I.remove(), I = null, ce = Date.now()), le = null;
+var R = null, de, fe = 0, pe = null;
+function z() {
+	clearTimeout(de), R && (R.remove(), R = null, fe = Date.now()), pe = null;
 }
-function ue(e) {
+function me(e) {
 	let t = e.getAttribute("data-tip");
 	if (!t || !e.isConnected) return;
-	L(), le = e;
-	let { label: n, keys: r } = oe(t), i = e.closest(".zoro-root");
-	I = k("div", {
+	z(), pe = e;
+	let { label: n, keys: r } = ue(t), i = e.closest(".zoro-root");
+	R = M("div", {
 		class: `zoro-root zoro-tooltip ${i ? Array.from(i.classList).filter((e) => e.startsWith("zoro-skin-") || e.startsWith("zoro-theme-")).join(" ") : ""}`,
 		role: "tooltip"
-	}, k("span", {}, n), r ? k("kbd", {}, r) : null), document.body.append(I);
-	let a = e.getBoundingClientRect(), o = I.getBoundingClientRect(), s = document.documentElement.clientWidth, c = a.bottom + 6;
-	c + o.height > window.innerHeight - 4 && (c = a.top - o.height - 6), I.style.top = `${Math.round(c)}px`, I.style.left = `${Math.round(Math.max(4, Math.min(a.left + a.width / 2 - o.width / 2, s - o.width - 4)))}px`;
+	}, M("span", {}, n), r ? M("kbd", {}, r) : null), document.body.append(R);
+	let a = e.getBoundingClientRect(), o = R.getBoundingClientRect(), s = document.documentElement.clientWidth, c = a.bottom + 6;
+	c + o.height > window.innerHeight - 4 && (c = a.top - o.height - 6), R.style.top = `${Math.round(c)}px`, R.style.left = `${Math.round(Math.max(4, Math.min(a.left + a.width / 2 - o.width / 2, s - o.width - 4)))}px`;
 }
-function de() {
+function he() {
 	typeof document > "u" || document.__zoroTips || (document.__zoroTips = !0, document.addEventListener("pointerover", (e) => {
 		if (e.pointerType === "touch") return;
 		let t = e.target?.closest?.(".zoro-root [data-tip]");
-		if (!t || t === le) return;
-		clearTimeout(se);
-		let n = I || Date.now() - ce < 400 ? 60 : 300;
-		se = setTimeout(() => ue(t), n);
+		if (!t || t === pe) return;
+		clearTimeout(de);
+		let n = R || Date.now() - fe < 400 ? 60 : 300;
+		de = setTimeout(() => me(t), n);
 	}), document.addEventListener("pointerout", (e) => {
 		let t = e.target?.closest?.("[data-tip]"), n = e.relatedTarget;
-		t && (!n || !t.contains(n)) && L();
+		t && (!n || !t.contains(n)) && z();
 	}), document.addEventListener("focusin", (e) => {
 		let t = e.target?.closest?.(".zoro-root [data-tip]");
-		t && t.matches(":focus-visible") && ue(t);
-	}), document.addEventListener("focusout", L), document.addEventListener("pointerdown", L, !0), document.addEventListener("keydown", (e) => {
-		e.key === "Escape" && L();
-	}, !0), window.addEventListener("scroll", L, !0));
+		t && t.matches(":focus-visible") && me(t);
+	}), document.addEventListener("focusout", z), document.addEventListener("pointerdown", z, !0), document.addEventListener("keydown", (e) => {
+		e.key === "Escape" && z();
+	}, !0), window.addEventListener("scroll", z, !0));
 }
 //#endregion
 //#region src/extensions/resizable-image.ts
-var R = /* @__PURE__ */ new Map(), z = /* @__PURE__ */ new Map(), B = {
-	get: (e) => R.get(e),
+var B = /* @__PURE__ */ new Map(), V = /* @__PURE__ */ new Map(), H = {
+	get: (e) => B.get(e),
 	set(e, t) {
-		R.set(e, {
+		B.set(e, {
 			progress: null,
-			...R.get(e),
+			...B.get(e),
 			...t
-		}), z.get(e)?.forEach((e) => e());
+		}), V.get(e)?.forEach((e) => e());
 	},
 	delete(e) {
-		R.delete(e), z.get(e)?.forEach((e) => e()), z.delete(e);
+		B.delete(e), V.get(e)?.forEach((e) => e()), V.delete(e);
 	},
 	subscribe(e, t) {
-		return z.has(e) || z.set(e, /* @__PURE__ */ new Set()), z.get(e).add(t), () => z.get(e)?.delete(t);
+		return V.has(e) || V.set(e, /* @__PURE__ */ new Set()), V.get(e).add(t), () => V.get(e)?.delete(t);
 	}
-}, fe = {
+}, ge = {
 	none: "",
 	left: "float:left;margin:0.25em 1.5em 1em 0",
 	center: "display:block;margin-left:auto;margin-right:auto",
 	right: "float:right;margin:0.25em 0 1em 1.5em"
 };
-function pe(e) {
+function _e(e) {
 	if (!e) return null;
 	let t = parseInt(e, 10);
 	return Number.isFinite(t) && t > 0 ? t : null;
 }
-var V = (e) => e.tagName === "FIGURE" ? e.querySelector("img") ?? e : e, H = (e) => (t) => V(t).getAttribute(e);
-function me(e) {
-	for (let t of [e, V(e)]) {
+var U = (e) => e.tagName === "FIGURE" ? e.querySelector("img") ?? e : e, W = (e) => (t) => U(t).getAttribute(e);
+function ve(e) {
+	for (let t of [e, U(e)]) {
 		let e = t.getAttribute("data-alignment");
 		if (e === "left" || e === "right" || e === "center") return e;
 		let n = t.className || "";
@@ -857,14 +896,14 @@ function me(e) {
 	}
 	return "none";
 }
-function he(e) {
+function ye(e) {
 	return e === "none" ? {} : {
 		"data-alignment": e,
 		class: `align${e}`,
-		style: fe[e]
+		style: ge[e]
 	};
 }
-var ge = t.create({
+var be = t.create({
 	name: "image",
 	group: "block",
 	inline: !1,
@@ -882,23 +921,23 @@ var ge = t.create({
 		return {
 			src: {
 				default: null,
-				parseHTML: H("src")
+				parseHTML: W("src")
 			},
 			alt: {
 				default: null,
-				parseHTML: H("alt")
+				parseHTML: W("alt")
 			},
 			title: {
 				default: null,
-				parseHTML: H("title")
+				parseHTML: W("title")
 			},
 			srcset: {
 				default: null,
-				parseHTML: H("srcset")
+				parseHTML: W("srcset")
 			},
 			sizes: {
 				default: null,
-				parseHTML: H("sizes")
+				parseHTML: W("sizes")
 			},
 			caption: {
 				default: null,
@@ -907,22 +946,22 @@ var ge = t.create({
 			},
 			decorative: {
 				default: !1,
-				parseHTML: (e) => V(e).getAttribute("role") === "presentation" || V(e).getAttribute("alt") === "",
+				parseHTML: (e) => U(e).getAttribute("role") === "presentation" || U(e).getAttribute("alt") === "",
 				rendered: !1
 			},
 			alignment: {
 				default: "none",
-				parseHTML: (e) => me(e),
+				parseHTML: (e) => ve(e),
 				rendered: !1
 			},
 			width: {
 				default: null,
-				parseHTML: (e) => pe(V(e).getAttribute("width") || V(e).style.width),
+				parseHTML: (e) => _e(U(e).getAttribute("width") || U(e).style.width),
 				rendered: !1
 			},
 			height: {
 				default: null,
-				parseHTML: (e) => pe(V(e).getAttribute("height") || V(e).style.height),
+				parseHTML: (e) => _e(U(e).getAttribute("height") || U(e).style.height),
 				rendered: !1
 			},
 			uploadId: {
@@ -946,9 +985,9 @@ var ge = t.create({
 		}, t);
 		if (n.width && (a.width = n.width), n.height && (a.height = n.height), n.decorative && (a.alt = "", a.role = "presentation"), !n.caption) return ["img", {
 			...a,
-			...he(i)
+			...ye(i)
 		}];
-		let o = he(i), s = [o.style, n.width ? `width:${n.width}px;max-width:100%` : ""].filter(Boolean).join(";");
+		let o = ye(i), s = [o.style, n.width ? `width:${n.width}px;max-width:100%` : ""].filter(Boolean).join(";");
 		return [
 			"figure",
 			{
@@ -981,33 +1020,33 @@ var ge = t.create({
 		};
 	},
 	addNodeView() {
-		return (e) => _e(e, this.options);
+		return (e) => xe(e, this.options);
 	}
 });
-function _e(e, t) {
-	let { editor: n, getPos: r } = e, i = e.node, a = t.messages, o = k("div", {
+function xe(e, t) {
+	let { editor: n, getPos: r } = e, i = e.node, a = t.messages, o = M("div", {
 		class: "zoro-image-wrapper",
 		"data-drag-handle": ""
-	}), s = k("div", { class: "zoro-image-container" }), c = k("img", { draggable: !1 }), l = k("div", {
+	}), s = M("div", { class: "zoro-image-container" }), c = M("img", { draggable: !1 }), l = M("div", {
 		class: "zoro-image-caption",
 		contenteditable: "false"
-	}), u = k("div", {
+	}), u = M("div", {
 		class: "zoro-upload-overlay",
 		contenteditable: "false"
 	});
 	u.hidden = !0, s.append(c, u, l);
 	let d = null, f = null, p = 2 * Math.PI * 18, m = () => {
-		let e = i.attrs.uploadId, t = e ? B.get(e) : void 0;
+		let e = i.attrs.uploadId, t = e ? H.get(e) : void 0;
 		if (u.hidden = !e, !e) return;
 		if (u.innerHTML = "", t?.error) {
-			u.classList.add("error"), u.append(k("div", { class: "zoro-upload-error-text" }, `${a.uploadFailed}${t.error ? ": " + t.error : ""}`), k("div", { class: "zoro-upload-error-actions" }, k("button", {
+			u.classList.add("error"), u.append(M("div", { class: "zoro-upload-error-text" }, `${a.uploadFailed}${t.error ? ": " + t.error : ""}`), M("div", { class: "zoro-upload-error-actions" }, M("button", {
 				type: "button",
 				class: "zoro-btn zoro-btn-primary zoro-btn-sm",
 				onmousedown: (e) => e.preventDefault(),
 				onclick: (e) => {
 					e.stopPropagation(), t.retry?.();
 				}
-			}, a.retry), k("button", {
+			}, a.retry), M("button", {
 				type: "button",
 				class: "zoro-btn zoro-btn-secondary zoro-btn-sm",
 				onmousedown: (e) => e.preventDefault(),
@@ -1018,7 +1057,7 @@ function _e(e, t) {
 			return;
 		}
 		u.classList.remove("error");
-		let n = t?.progress, r = k("div", {
+		let n = t?.progress, r = M("div", {
 			class: "zoro-upload-ring" + (n == null ? " indeterminate" : ""),
 			role: "progressbar",
 			"aria-label": a.uploading,
@@ -1032,7 +1071,7 @@ function _e(e, t) {
 		u.append(r);
 	}, h = () => {
 		let e = i.attrs.uploadId;
-		e !== f && (d?.(), d = null, f = e, e && (d = B.subscribe(e, m)));
+		e !== f && (d?.(), d = null, f = e, e && (d = H.subscribe(e, m)));
 	};
 	o.appendChild(s);
 	let g = null, _ = [], v = null, b = !1, x = () => {
@@ -1044,25 +1083,25 @@ function _e(e, t) {
 			...i.attrs,
 			...e
 		}));
-	}, w = () => {
+	}, ee = () => {
 		let e = S();
 		e !== void 0 && n.view.dispatch(n.state.tr.setSelection(y.create(n.state.doc, e)));
-	}, T = () => {
+	}, te = () => {
 		let e = S();
 		e !== void 0 && n.chain().focus().deleteRange({
 			from: e,
 			to: e + i.nodeSize
 		}).run();
-	}, E = () => {
+	}, ne = () => {
 		g?.remove();
 		let e = i.attrs.alignment || "none";
-		g = k("div", {
+		g = M("div", {
 			class: `zoro-root zoro-image-toolbar ${t.themeClass()}`,
 			role: "toolbar",
 			"aria-label": a.imageSettings
 		});
 		let r = (e, t, n, r = "") => {
-			let i = k("button", {
+			let i = M("button", {
 				type: "button",
 				class: `zoro-image-toolbar-btn ${r}`,
 				"data-tip": t,
@@ -1075,22 +1114,22 @@ function _e(e, t) {
 		}, o = [
 			[
 				"left",
-				O.alignLeft,
+				j.alignLeft,
 				a.left
 			],
 			[
 				"center",
-				O.alignCenter,
+				j.alignCenter,
 				a.center
 			],
 			[
 				"right",
-				O.alignRight,
+				j.alignRight,
 				a.right
 			],
 			[
 				"none",
-				O.alignNone,
+				j.alignNone,
 				a.alignNone
 			]
 		];
@@ -1103,74 +1142,74 @@ function _e(e, t) {
 					e.width = t, e.height = Math.round(t * n);
 				}
 			}
-			C(e), w();
+			C(e), ee();
 		}, e === t ? "active" : ""));
-		g.appendChild(k("div", { class: "zoro-image-toolbar-divider" })), g.appendChild(r(O.pencil, a.edit, P)), g.appendChild(r(O.x, a.delete, T, "danger")), document.body.appendChild(g), D();
-	}, D = () => {
+		g.appendChild(M("div", { class: "zoro-image-toolbar-divider" })), g.appendChild(r(j.pencil, a.edit, A)), g.appendChild(r(j.x, a.delete, te, "danger")), document.body.appendChild(g), w();
+	}, w = () => {
 		if (!g) return;
 		let e = c.getBoundingClientRect(), t = g.getBoundingClientRect(), n = document.documentElement.clientWidth, r = window.innerHeight, i = e.top - t.height - 8;
 		i < 8 && (i = e.top + 8), (i + t.height > r - 8 || e.bottom < 0) && (i = Math.min(r - t.height - 8, Math.max(8, e.bottom + 8)));
 		let a = Math.max(8, Math.min(e.left + e.width / 2 - t.width / 2, n - t.width - 8));
 		g.style.top = `${Math.round(i)}px`, g.style.left = `${Math.round(a)}px`, g.style.visibility = e.bottom < 0 || e.top > r || !c.offsetParent ? "hidden" : "";
-	}, A = () => D(), j = (e) => {
+	}, T = () => w(), E = (e) => {
 		if (!g) return;
 		let t = e.target, n = s.contains(t) || g.contains(t);
-		g.hidden = !n, n && requestAnimationFrame(D);
-	}, N = () => {
+		g.hidden = !n, n && requestAnimationFrame(w);
+	}, D = () => {
 		if (n.isEditable) {
-			E();
+			ne();
 			for (let e of [
 				"nw",
 				"ne",
 				"sw",
 				"se"
 			]) {
-				let t = k("div", {
+				let t = M("div", {
 					class: `zoro-resize-handle zoro-resize-${e}`,
 					contenteditable: "false"
 				});
-				t.addEventListener("pointerdown", (t) => te(t, e)), s.appendChild(t), _.push(t);
+				t.addEventListener("pointerdown", (t) => k(t, e)), s.appendChild(t), _.push(t);
 			}
-			v = k("div", { class: "zoro-resize-info" }), s.appendChild(v), window.addEventListener("scroll", A, !0), window.addEventListener("resize", A), document.addEventListener("pointerdown", j, !0), x();
+			v = M("div", { class: "zoro-resize-info" }), s.appendChild(v), window.addEventListener("scroll", T, !0), window.addEventListener("resize", T), document.addEventListener("pointerdown", E, !0), x();
 		}
-	}, ee = () => {
-		window.removeEventListener("scroll", A, !0), window.removeEventListener("resize", A), document.removeEventListener("pointerdown", j, !0), g?.remove(), g = null, _.forEach((e) => e.remove()), _ = [], v?.remove(), v = null;
+	}, O = () => {
+		window.removeEventListener("scroll", T, !0), window.removeEventListener("resize", T), document.removeEventListener("pointerdown", E, !0), g?.remove(), g = null, _.forEach((e) => e.remove()), _ = [], v?.remove(), v = null;
 	};
-	function te(e, t) {
+	function k(e, t) {
 		e.preventDefault(), e.stopPropagation();
 		let r = e.currentTarget;
 		r.setPointerCapture?.(e.pointerId), s.classList.add("resizing");
 		let a = e.clientX, o = c.offsetWidth || 1, l = o / (c.offsetHeight || 1), u = n.view.dom.clientWidth || 4e3, d = o, f = Math.round(o / l), p = (e) => {
 			let n = e.clientX - a, r = (i.attrs.alignment || "none") === "center" ? 2 : 1;
-			d = Math.round(Math.min(u, Math.max(50, t.endsWith("e") ? o + n * r : o - n * r))), f = Math.round(d / l), c.style.width = `${d}px`, s.style.width = `${d}px`, v && (v.textContent = `${d} × ${f}`), D();
+			d = Math.round(Math.min(u, Math.max(50, t.endsWith("e") ? o + n * r : o - n * r))), f = Math.round(d / l), c.style.width = `${d}px`, s.style.width = `${d}px`, v && (v.textContent = `${d} × ${f}`), w();
 		}, m = () => {
 			r.removeEventListener("pointermove", p), r.removeEventListener("pointerup", m), r.removeEventListener("pointercancel", m), s.classList.remove("resizing"), C({
 				width: d,
 				height: f
-			}), w();
+			}), ee();
 		};
 		r.addEventListener("pointermove", p), r.addEventListener("pointerup", m), r.addEventListener("pointercancel", m);
 	}
-	function P() {
-		let e = i.attrs, r = k("input", {
+	function A() {
+		let e = i.attrs, r = M("input", {
 			type: "text",
 			class: "zoro-input",
 			value: e.alt || "",
 			placeholder: a.imageAltPlaceholder
-		}), o = k("textarea", {
+		}), o = M("textarea", {
 			class: "zoro-input",
 			rows: 2,
 			placeholder: a.captionPlaceholder
 		});
 		o.value = e.caption || "";
-		let s = k("input", {
+		let s = M("input", {
 			type: "checkbox",
 			checked: !!e.decorative
 		}), l = () => {
 			r.disabled = s.checked;
 		};
 		s.addEventListener("change", l), l();
-		let u = e.alignment || "none", d = k("div", {
+		let u = e.alignment || "none", d = M("div", {
 			class: "zoro-segmented",
 			role: "group"
 		}), f = [
@@ -1180,7 +1219,7 @@ function _e(e, t) {
 			["none", a.alignNone]
 		], p = () => {
 			d.innerHTML = "";
-			for (let [e, t] of f) d.appendChild(k("button", {
+			for (let [e, t] of f) d.appendChild(M("button", {
 				type: "button",
 				class: "zoro-segment" + (u === e ? " active" : ""),
 				"aria-pressed": String(u === e),
@@ -1190,13 +1229,13 @@ function _e(e, t) {
 			}, t));
 		};
 		p();
-		let m = { value: e.width ? "custom" : "auto" }, h = k("div", {
+		let m = { value: e.width ? "custom" : "auto" }, h = M("div", {
 			class: "zoro-segmented",
 			role: "group",
 			"aria-label": a.size
 		}), g = () => {
 			h.innerHTML = "";
-			for (let [e, t] of [["auto", a.sizeAuto], ["custom", a.sizeCustom]]) h.append(k("button", {
+			for (let [e, t] of [["auto", a.sizeAuto], ["custom", a.sizeCustom]]) h.append(M("button", {
 				type: "button",
 				class: "zoro-segment" + (m.value === e ? " active" : ""),
 				"aria-pressed": String(m.value === e),
@@ -1204,14 +1243,14 @@ function _e(e, t) {
 					m.value = e, g(), b.style.display = e === "custom" ? "flex" : "none";
 				}
 			}, t));
-		}, _ = k("input", {
+		}, _ = M("input", {
 			type: "number",
 			class: "zoro-input",
 			min: 10,
 			value: e.width ?? "",
 			placeholder: a.width,
 			"aria-label": a.width
-		}), v = k("input", {
+		}), v = M("input", {
 			type: "number",
 			class: "zoro-input",
 			min: 10,
@@ -1224,22 +1263,22 @@ function _e(e, t) {
 		}), v.addEventListener("input", () => {
 			y && v.value && (_.value = String(Math.round(+v.value * y)));
 		});
-		let b = k("div", {
+		let b = M("div", {
 			class: "zoro-size-row",
 			style: { display: e.width ? "flex" : "none" }
-		}, _, k("span", {}, "×"), v);
+		}, _, M("span", {}, "×"), v);
 		g();
-		let x = k("div", { class: "zoro-form" }, k("div", { class: "zoro-field" }, k("label", { class: "zoro-label" }, a.imageAlt), r), k("label", { class: "zoro-checkbox-group" }, s, k("span", {}, a.imageDecorative)), k("div", { class: "zoro-field" }, k("label", { class: "zoro-label" }, a.caption), o), k("div", { class: "zoro-field" }, k("span", { class: "zoro-label" }, a.imageAlign), d), k("div", { class: "zoro-field" }, k("span", { class: "zoro-label" }, a.size), h, b)), S = new M({
+		let x = M("div", { class: "zoro-form" }, M("div", { class: "zoro-field" }, M("label", { class: "zoro-label" }, a.imageAlt), r), M("label", { class: "zoro-checkbox-group" }, s, M("span", {}, a.imageDecorative)), M("div", { class: "zoro-field" }, M("label", { class: "zoro-label" }, a.caption), o), M("div", { class: "zoro-field" }, M("span", { class: "zoro-label" }, a.imageAlign), d), M("div", { class: "zoro-field" }, M("span", { class: "zoro-label" }, a.size), h, b)), S = new P({
 			title: a.imageSettings,
 			size: "sm",
 			themeClass: t.themeClass(),
 			closeLabel: a.close
 		});
-		S.open(x), S.addFooter(k("div", { class: "zoro-btn-row" }, k("button", {
+		S.open(x), S.addFooter(M("div", { class: "zoro-btn-row" }, M("button", {
 			type: "button",
 			class: "zoro-btn zoro-btn-secondary",
 			onclick: () => S.close()
-		}, a.cancel), k("button", {
+		}, a.cancel), M("button", {
 			type: "button",
 			class: "zoro-btn zoro-btn-primary",
 			onclick: () => {
@@ -1249,26 +1288,26 @@ function _e(e, t) {
 					decorative: s.checked,
 					caption: o.value.trim() || null,
 					alignment: u,
-					width: e ? pe(_.value) : null,
-					height: e ? pe(v.value) : null
-				}), S.close(), n.commands.focus(), w();
+					width: e ? _e(_.value) : null,
+					height: e ? _e(v.value) : null
+				}), S.close(), n.commands.focus(), ee();
 			}
 		}, a.save)));
 	}
 	return c.addEventListener("dblclick", (e) => {
-		e.preventDefault(), n.isEditable && P();
+		e.preventDefault(), n.isEditable && A();
 	}), x(), {
 		dom: o,
 		update(e) {
 			if (e.type !== i.type) return !1;
 			let t = e.attrs.alignment !== i.attrs.alignment;
-			return i = e, x(), b && t ? E() : b && requestAnimationFrame(D), !0;
+			return i = e, x(), b && t ? ne() : b && requestAnimationFrame(w), !0;
 		},
 		selectNode() {
-			b = !0, s.classList.add("selected"), N();
+			b = !0, s.classList.add("selected"), D();
 		},
 		deselectNode() {
-			b = !1, s.classList.remove("selected"), ee();
+			b = !1, s.classList.remove("selected"), O();
 		},
 		stopEvent(e) {
 			return !!e.target.closest?.(".zoro-image-toolbar, .zoro-resize-handle");
@@ -1277,13 +1316,13 @@ function _e(e, t) {
 			return !0;
 		},
 		destroy() {
-			ee(), d?.();
+			O(), d?.();
 		}
 	};
 }
 //#endregion
 //#region src/finder/adapters.ts
-function ve(e) {
+function Se(e) {
 	return {
 		id: e.id,
 		url: e.url,
@@ -1302,13 +1341,13 @@ function ve(e) {
 		usageCount: e.usageCount ?? e.usage_count
 	};
 }
-var U = class extends Error {
+var G = class extends Error {
 	constructor(e, t) {
 		super(e), this.status = t, this.name = "MediaApiError";
 	}
-}, ye = class {
+}, Ce = class {
 	constructor(e) {
-		this.opts = e, this.transform = e.transform ?? ve;
+		this.opts = e, this.transform = e.transform ?? Se;
 	}
 	url(e, t = {}) {
 		let n = new URL(this.opts.endpoint, typeof location < "u" ? location.href : "http://localhost/");
@@ -1337,7 +1376,7 @@ var U = class extends Error {
 		try {
 			a = await i.json();
 		} catch {}
-		if (!i.ok || a?.error) throw new U(a?.error || `HTTP ${i.status}`, i.status);
+		if (!i.ok || a?.error) throw new G(a?.error || `HTTP ${i.status}`, i.status);
 		return a;
 	}
 	async list(e) {
@@ -1361,8 +1400,8 @@ var U = class extends Error {
 				try {
 					e = JSON.parse(i.responseText);
 				} catch {}
-				i.status >= 200 && i.status < 300 && e && !e.error ? (t.onProgress?.(100), n(this.transform(e.item ?? e.image ?? e))) : r(new U(e?.error || `HTTP ${i.status}`, i.status));
-			}, i.onerror = () => r(new U("Network error", 0)), i.onabort = () => r(new U("Aborted", 0)), t.signal?.addEventListener("abort", () => i.abort());
+				i.status >= 200 && i.status < 300 && e && !e.error ? (t.onProgress?.(100), n(this.transform(e.item ?? e.image ?? e))) : r(new G(e?.error || `HTTP ${i.status}`, i.status));
+			}, i.onerror = () => r(new G("Network error", 0)), i.onabort = () => r(new G("Aborted", 0)), t.signal?.addEventListener("abort", () => i.abort());
 			let a = new FormData();
 			a.append("file", e), a.append("alt", t.alt), t.folder && a.append("folder", t.folder), i.send(a);
 		});
@@ -1402,7 +1441,7 @@ var U = class extends Error {
 			body: JSON.stringify({ path: e })
 		});
 	}
-}, be = class {
+}, we = class {
 	constructor(e = []) {
 		this.items = [], this.folders = /* @__PURE__ */ new Set(), this.seq = 1;
 		for (let t of e) this.items.push({
@@ -1464,7 +1503,7 @@ var U = class extends Error {
 	}
 	async update(e, t) {
 		let n = this.items.find((t) => t.id === e);
-		if (!n) throw new U("Not found", 404);
+		if (!n) throw new G("Not found", 404);
 		return Object.assign(n, t), n;
 	}
 	async remove(e) {
@@ -1477,14 +1516,14 @@ var U = class extends Error {
 		this.folders.add(e);
 	}
 	async deleteFolder(e) {
-		if (this.items.some((t) => t.folder === e)) throw new U("Folder is not empty", 409);
+		if (this.items.some((t) => t.folder === e)) throw new G("Folder is not empty", 409);
 		this.folders.delete(e);
 	}
 };
-function W(e) {
+function Te(e) {
 	return !e && e !== 0 ? "" : e < 1024 ? `${e} B` : e < 1048576 ? `${(e / 1024).toFixed(1)} KB` : `${(e / 1048576).toFixed(1)} MB`;
 }
-function G(e, t = "lg") {
+function K(e, t = "lg") {
 	let n = e.variants?.[t], r = n?.url ?? e.url, i = e.srcset ?? null;
 	if (!i && e.variants) {
 		let t = Object.entries(e.variants).filter(([e, t]) => e !== "thumb" && t.width).map(([, e]) => `${e.url} ${e.width}w`);
@@ -1499,44 +1538,48 @@ function G(e, t = "lg") {
 }
 //#endregion
 //#region src/finder/finder.ts
-var xe = [
+var Ee = [
 	"image/jpeg",
 	"image/png",
 	"image/gif",
 	"image/webp",
 	"image/avif"
-], Se = 40;
-function Ce(e, t) {
+], De = 40;
+function Oe(e, t) {
 	try {
 		return localStorage.getItem("zoro-finder-" + e) ?? t;
 	} catch {
 		return t;
 	}
 }
-function we(e, t) {
+function ke(e, t) {
 	try {
 		localStorage.setItem("zoro-finder-" + e, t);
 	} catch {}
 }
-function Te(e) {
-	return e.adapter ? e.adapter : e.endpoint ? new ye({
+function Ae(e) {
+	return e.adapter ? e.adapter : e.endpoint ? new Ce({
 		endpoint: e.endpoint,
 		headers: e.headers,
 		credentials: e.credentials,
 		transform: e.transform
 	}) : null;
 }
-var Ee = class {
+var je = class {
 	constructor(e) {
 		this.opts = e, this.dialog = null, this.tabs = null, this.items = [], this.folders = [], this.total = 0, this.hasMore = !1, this.loading = !1, this.error = null, this.selected = /* @__PURE__ */ new Map(), this.focused = null, this.insertAlts = /* @__PURE__ */ new Map(), this.reqSeq = 0, this.queue = [], this.uploading = !1, this.el = {}, this.onPaste = (e) => {
 			let t = Array.from(e.clipboardData?.files ?? []);
 			t.length && (e.preventDefault(), this.tabs?.setActive("upload"), this.addFiles(t));
-		}, this.t = e.messages ?? w(e.locale);
-		let t = Te(e);
+		}, this.t = e.messages ?? D(e.locale);
+		let t = Ae(e);
 		if (!t) throw Error("ZoroFinder: an \"adapter\" or \"endpoint\" option is required.");
-		this.adapter = t, this.themeClass = e.themeClass ?? [`zoro-skin-${e.skin === "classic" ? "classic" : "modern"}`, e.theme && e.theme !== "light" ? `zoro-theme-${e.theme}` : ""].filter(Boolean).join(" "), this.view = Ce("view", "grid") === "list" ? "list" : "grid", this.params = {
+		this.adapter = t, this.themeClass = e.themeClass ?? [
+			`zoro-skin-${e.skin === "classic" ? "classic" : "modern"}`,
+			e.theme && e.theme !== "light" ? `zoro-theme-${e.theme}` : "",
+			E(e.locale) === "rtl" ? "zoro-rtl" : ""
+		].filter(Boolean).join(" "), this.view = Oe("view", "grid") === "list" ? "list" : "grid", this.params = {
 			page: 1,
-			limit: Se,
+			limit: De,
 			search: "",
 			folder: "*",
 			type: "",
@@ -1548,7 +1591,7 @@ var Ee = class {
 		return this.opts.folders !== !1 && !!this.adapter.createFolder;
 	}
 	get accept() {
-		return this.opts.accept ?? xe;
+		return this.opts.accept ?? Ee;
 	}
 	get maxMB() {
 		return this.opts.maxSizeMB ?? 20;
@@ -1558,27 +1601,27 @@ var Ee = class {
 	}
 	open() {
 		let e = this.t;
-		this.dialog = new M({
+		this.dialog = new P({
 			title: this.opts.title ?? e.finderTitle,
 			size: "xl",
 			themeClass: `${this.themeClass} zoro-finder-dialog`,
 			closeLabel: e.close,
 			onClose: () => this.cleanup()
-		}), this.tabs = new ne({
+		}), this.tabs = new oe({
 			tabs: [{
 				id: "library",
 				label: e.library,
-				icon: O.image.replace(/20/g, "16")
+				icon: j.image.replace(/20/g, "16")
 			}, {
 				id: "upload",
 				label: e.upload,
-				icon: O.upload
+				icon: j.upload
 			}],
 			active: this.opts.tab ?? "library",
 			onChange: () => this.renderFooter()
 		});
 		let t = this.tabs.render();
-		return t.classList.add("zoro-finder"), this.dialog.open(t), this.buildLibrary(this.tabs.panel("library")), this.buildUpload(this.tabs.panel("upload")), this.el.footer = k("div", { class: "zoro-finder-footer" }), this.dialog.addFooter(this.el.footer), this.dialog.dialog?.addEventListener("paste", this.onPaste), this.renderFooter(), this.load(), this;
+		return t.classList.add("zoro-finder"), this.dialog.open(t), this.buildLibrary(this.tabs.panel("library")), this.buildUpload(this.tabs.panel("upload")), this.el.footer = M("div", { class: "zoro-finder-footer" }), this.dialog.addFooter(this.el.footer), this.dialog.dialog?.addEventListener("paste", this.onPaste), this.renderFooter(), this.load(), this;
 	}
 	close() {
 		this.dialog?.close();
@@ -1590,27 +1633,27 @@ var Ee = class {
 	}
 	buildLibrary(e) {
 		let t = this.t;
-		this.el.search = k("input", {
+		this.el.search = M("input", {
 			type: "search",
 			placeholder: t.search,
 			"aria-label": t.search,
 			enterkeyhint: "search"
 		}), this.el.search.addEventListener("input", () => {
 			clearTimeout(this.searchTimer), this.searchTimer = setTimeout(() => this.reload({ search: this.el.search.value.trim() }), 300);
-		}), this.el.folderSelect = new P({
+		}), this.el.folderSelect = new I({
 			variant: "field",
 			label: t.allFolders,
-			icon: O.folder,
+			icon: j.folder,
 			value: "*",
 			items: [],
 			onChange: (e) => this.reload({ folder: e })
 		});
 		let n = this.el.folderSelect.render();
 		n.classList.add("zoro-finder-folder");
-		let r = new P({
+		let r = new I({
 			variant: "field",
 			label: t.sortNewest,
-			icon: O.sort,
+			icon: j.sort,
 			value: "newest",
 			items: [
 				{
@@ -1631,10 +1674,10 @@ var Ee = class {
 				}
 			],
 			onChange: (e) => this.reload({ sort: e })
-		}), i = new P({
+		}), i = new I({
 			variant: "field",
 			label: t.unused,
-			icon: O.filter,
+			icon: j.filter,
 			value: "",
 			items: [{
 				value: "",
@@ -1645,36 +1688,36 @@ var Ee = class {
 			}],
 			onChange: (e) => this.reload({ filter: e })
 		}).render();
-		i.classList.add("zoro-finder-usage"), i.hidden = !0, this.el.viewBtn = k("button", {
+		i.classList.add("zoro-finder-usage"), i.hidden = !0, this.el.viewBtn = M("button", {
 			type: "button",
 			class: "zoro-btn zoro-btn-ghost zoro-btn-icon",
 			onclick: () => this.toggleView()
 		}), this.updateViewBtn();
-		let a = this.canFolders ? k("button", {
+		let a = this.canFolders ? M("button", {
 			type: "button",
 			class: "zoro-btn zoro-btn-ghost zoro-btn-icon",
 			title: t.newFolder,
 			"aria-label": t.newFolder,
-			html: O.folderPlus,
+			html: j.folderPlus,
 			onclick: () => this.createFolder()
-		}) : null, o = k("div", { class: "zoro-finder-bar" }, k("div", { class: "zoro-media-search" }, k("span", { html: O.search }), this.el.search), k("div", { class: "zoro-finder-filters" }, this.canFolders || this.adapter.move ? n : null, a, i, r.render(), this.el.viewBtn));
-		this.el.count = k("span", { class: "zoro-finder-count" }), this.el.grid = k("div", {
+		}) : null, o = M("div", { class: "zoro-finder-bar" }, M("div", { class: "zoro-media-search" }, M("span", { html: j.search }), this.el.search), M("div", { class: "zoro-finder-filters" }, this.canFolders || this.adapter.move ? n : null, a, i, r.render(), this.el.viewBtn));
+		this.el.count = M("span", { class: "zoro-finder-count" }), this.el.grid = M("div", {
 			class: "zoro-finder-grid-wrap",
 			tabindex: "-1"
 		}), this.el.grid.addEventListener("scroll", () => {
 			let e = this.el.grid;
 			this.hasMore && !this.loading && e.scrollTop + e.clientHeight > e.scrollHeight - 200 && this.load(!0);
-		}), this.el.details = k("aside", {
+		}), this.el.details = M("aside", {
 			class: "zoro-finder-details",
 			"aria-label": t.details
-		}), this.el.root = k("div", { class: "zoro-finder-body" }, this.el.grid, this.el.details), e.append(o, this.el.root), this.renderFolders();
+		}), this.el.root = M("div", { class: "zoro-finder-body" }, this.el.grid, this.el.details), e.append(o, this.el.root), this.renderFolders();
 	}
 	updateViewBtn() {
 		let e = this.t, t = this.view === "grid";
-		this.el.viewBtn.innerHTML = t ? O.list : O.grid, this.el.viewBtn.title = t ? e.listView : e.gridView, this.el.viewBtn.setAttribute("aria-label", this.el.viewBtn.title);
+		this.el.viewBtn.innerHTML = t ? j.list : j.grid, this.el.viewBtn.title = t ? e.listView : e.gridView, this.el.viewBtn.setAttribute("aria-label", this.el.viewBtn.title);
 	}
 	toggleView() {
-		this.view = this.view === "grid" ? "list" : "grid", we("view", this.view), this.updateViewBtn(), this.renderGrid();
+		this.view = this.view === "grid" ? "list" : "grid", ke("view", this.view), this.updateViewBtn(), this.renderGrid();
 	}
 	reload(e) {
 		this.params = {
@@ -1713,17 +1756,17 @@ var Ee = class {
 			{
 				value: "*",
 				label: t.allFolders,
-				icon: O.grid
+				icon: j.grid
 			},
 			{
 				value: "",
 				label: t.rootFolder,
-				icon: O.folder
+				icon: j.folder
 			},
 			...this.folders.map((e) => ({
 				value: e.path,
 				label: e.name,
-				icon: O.folder,
+				icon: j.folder,
 				depth: e.path.split("/").length,
 				meta: e.count == null ? void 0 : String(e.count)
 			}))
@@ -1732,10 +1775,10 @@ var Ee = class {
 	renderGrid() {
 		let e = this.t, t = this.el.grid;
 		if (t.innerHTML = "", this.error && !this.items.length) {
-			t.append(k("div", {
+			t.append(M("div", {
 				class: "zoro-media-empty",
 				role: "alert"
-			}, k("p", {}, this.error), k("button", {
+			}, M("p", {}, this.error), M("button", {
 				type: "button",
 				class: "zoro-btn zoro-btn-secondary",
 				onclick: () => this.load()
@@ -1744,29 +1787,29 @@ var Ee = class {
 		}
 		if (!this.items.length) {
 			if (this.loading) {
-				let e = k("div", { class: `zoro-media-grid zoro-view-${this.view}` });
-				for (let t = 0; t < 12; t++) e.append(k("div", { class: "zoro-media-item zoro-skeleton" }));
+				let e = M("div", { class: `zoro-media-grid zoro-view-${this.view}` });
+				for (let t = 0; t < 12; t++) e.append(M("div", { class: "zoro-media-item zoro-skeleton" }));
 				t.append(e);
 				return;
 			}
 			let n = !!(this.params.search || this.params.filter || this.params.folder && this.params.folder !== "*");
-			t.append(k("div", {
+			t.append(M("div", {
 				class: "zoro-media-empty",
-				html: O.imageBig + `<p>${n ? e.noResults : e.emptyLibrary}</p>`
-			})), this.canFolders && this.params.folder && this.params.folder !== "*" && !this.params.search && t.append(k("div", { class: "zoro-center" }, k("button", {
+				html: j.imageBig + `<p>${n ? e.noResults : e.emptyLibrary}</p>`
+			})), this.canFolders && this.params.folder && this.params.folder !== "*" && !this.params.search && t.append(M("div", { class: "zoro-center" }, M("button", {
 				type: "button",
 				class: "zoro-btn zoro-btn-ghost zoro-btn-sm",
 				onclick: () => this.deleteFolder(this.params.folder)
 			}, e.deleteFolder)));
 			return;
 		}
-		let n = k("div", {
+		let n = M("div", {
 			class: `zoro-media-grid zoro-view-${this.view}`,
 			role: "listbox",
 			"aria-multiselectable": String(!!this.opts.multiple)
 		});
 		for (let e of this.items) n.append(this.renderItem(e));
-		t.append(n), this.hasMore && t.append(k("div", { class: "zoro-center" }, k("button", {
+		t.append(n), this.hasMore && t.append(M("div", { class: "zoro-center" }, M("button", {
 			type: "button",
 			class: "zoro-btn zoro-btn-secondary",
 			disabled: this.loading,
@@ -1777,23 +1820,23 @@ var Ee = class {
 		return e.variants?.thumb?.url ?? e.variants?.sm?.url ?? e.url;
 	}
 	renderItem(e) {
-		let t = this.selected.has(e.id), n = !e.mime || e.mime.startsWith("image/") ? k("img", {
+		let t = this.selected.has(e.id), n = !e.mime || e.mime.startsWith("image/") ? M("img", {
 			src: this.thumbOf(e),
 			alt: e.alt || "",
 			loading: "lazy",
 			decoding: "async"
-		}) : k("span", {
+		}) : M("span", {
 			class: "zoro-media-file",
-			html: O.file
-		}), r = k("div", {
+			html: j.file
+		}), r = M("div", {
 			class: "zoro-media-item" + (t ? " selected" : "") + (this.focused?.id === e.id ? " focused" : ""),
 			role: "option",
 			tabindex: "0",
 			"aria-selected": String(t),
 			title: e.filename
-		}, k("div", { class: "zoro-media-thumb" }, n), k("div", { class: "zoro-media-meta" }, k("span", { class: "zoro-media-name" }, e.filename), k("span", { class: "zoro-media-sub" }, [e.width && e.height ? `${e.width}×${e.height}` : "", W(e.size)].filter(Boolean).join(" · "))), k("span", {
+		}, M("div", { class: "zoro-media-thumb" }, n), M("div", { class: "zoro-media-meta" }, M("span", { class: "zoro-media-name" }, e.filename), M("span", { class: "zoro-media-sub" }, [e.width && e.height ? `${e.width}×${e.height}` : "", Te(e.size)].filter(Boolean).join(" · "))), M("span", {
 			class: "zoro-media-check",
-			html: O.check,
+			html: j.check,
 			"aria-hidden": "true"
 		})), i = (t) => {
 			let n = this.opts.multiple && (t.ctrlKey || t.metaKey || t.shiftKey || t.target.closest(".zoro-media-check") || this.selected.size > 0 && "pointerType" in t && t.pointerType === "touch");
@@ -1825,14 +1868,14 @@ var Ee = class {
 	renderDetails() {
 		let e = this.t, t = this.el.details, n = this.focused && this.selected.has(this.focused.id) ? this.focused : null;
 		if (t.innerHTML = "", this.el.root.classList.toggle("has-details", !!n), !n) return;
-		let r = k("div", { class: "zoro-details-preview" }, !n.mime || n.mime.startsWith("image/") ? k("img", {
+		let r = M("div", { class: "zoro-details-preview" }, !n.mime || n.mime.startsWith("image/") ? M("img", {
 			src: n.variants?.md?.url ?? n.variants?.sm?.url ?? n.url,
 			alt: n.alt || ""
-		}) : k("span", { html: O.file })), i = k("dl", { class: "zoro-details-meta" }), a = (e, t) => {
-			t && i.append(k("dt", {}, e), k("dd", {}, String(t)));
+		}) : M("span", { html: j.file })), i = M("dl", { class: "zoro-details-meta" }), a = (e, t) => {
+			t && i.append(M("dt", {}, e), M("dd", {}, String(t)));
 		};
-		a(e.filename, n.filename), a(e.dimensions, n.width && n.height ? `${n.width} × ${n.height}` : null), a(e.fileSize, W(n.size)), a(e.uploadedAt, n.createdAt ? new Date(n.createdAt).toLocaleDateString() : null), n.usageCount !== void 0 && a(e.usage, n.usageCount ? T(e.usedIn, { n: n.usageCount }) : e.notUsed);
-		let o = k("input", {
+		a(e.filename, n.filename), a(e.dimensions, n.width && n.height ? `${n.width} × ${n.height}` : null), a(e.fileSize, Te(n.size)), a(e.uploadedAt, n.createdAt ? new Date(n.createdAt).toLocaleDateString() : null), n.usageCount !== void 0 && a(e.usage, n.usageCount ? O(e.usedIn, { n: n.usageCount }) : e.notUsed);
+		let o = M("input", {
 			type: "text",
 			class: "zoro-input",
 			value: this.insertAlts.get(n.id) ?? n.alt ?? "",
@@ -1841,22 +1884,22 @@ var Ee = class {
 		o.addEventListener("input", () => {
 			this.insertAlts.set(n.id, o.value), this.renderFooter();
 		});
-		let s = k("div", { class: "zoro-form" });
-		if (this.opts.manageOnly || s.append(k("div", { class: "zoro-field" }, k("label", { class: "zoro-label" }, e.altForArticle), o)), this.adapter.update) {
-			let t = k("input", {
+		let s = M("div", { class: "zoro-form" });
+		if (this.opts.manageOnly || s.append(M("div", { class: "zoro-field" }, M("label", { class: "zoro-label" }, e.altForArticle), o)), this.adapter.update) {
+			let t = M("input", {
 				type: "text",
 				class: "zoro-input",
 				value: n.alt ?? ""
-			}), r = k("textarea", {
+			}), r = M("textarea", {
 				class: "zoro-input",
 				rows: 2
 			});
 			r.value = n.caption ?? "";
-			let i = k("input", {
+			let i = M("input", {
 				type: "text",
 				class: "zoro-input",
 				value: n.filename.replace(/\.[^.]+$/, "")
-			}), a = k("button", {
+			}), a = M("button", {
 				type: "button",
 				class: "zoro-btn zoro-btn-secondary zoro-btn-sm"
 			}, e.save);
@@ -1869,24 +1912,24 @@ var Ee = class {
 					}, o = n.filename.replace(/\.[^.]+$/, "");
 					i.value.trim() && i.value.trim() !== o && (a.filename = i.value.trim());
 					let s = await this.adapter.update(n.id, a);
-					Object.assign(n, s), F(e.saved, "success", this.themeClass), this.renderGrid();
+					Object.assign(n, s), L(e.saved, "success", this.themeClass), this.renderGrid();
 				} catch (t) {
-					F(t?.message || e.uploadFailed, "error", this.themeClass);
+					L(t?.message || e.uploadFailed, "error", this.themeClass);
 				} finally {
 					a.disabled = !1;
 				}
-			}), s.append(k("details", { class: "zoro-details-edit" }, k("summary", {}, e.edit), k("div", { class: "zoro-field" }, k("label", { class: "zoro-label" }, e.imageAlt), t), k("div", { class: "zoro-field" }, k("label", { class: "zoro-label" }, e.caption), r), k("div", { class: "zoro-field" }, k("label", { class: "zoro-label" }, e.filename), i), a));
+			}), s.append(M("details", { class: "zoro-details-edit" }, M("summary", {}, e.edit), M("div", { class: "zoro-field" }, M("label", { class: "zoro-label" }, e.imageAlt), t), M("div", { class: "zoro-field" }, M("label", { class: "zoro-label" }, e.caption), r), M("div", { class: "zoro-field" }, M("label", { class: "zoro-label" }, e.filename), i), a));
 		}
-		let c = k("div", { class: "zoro-btn-row zoro-details-actions" }, k("button", {
+		let c = M("div", { class: "zoro-btn-row zoro-details-actions" }, M("button", {
 			type: "button",
 			class: "zoro-btn zoro-btn-ghost zoro-btn-sm",
-			html: `${O.copy}<span>${e.copyUrl}</span>`,
+			html: `${j.copy}<span>${e.copyUrl}</span>`,
 			onclick: async () => {
 				let t = new URL(n.url, location.href).toString();
 				try {
-					await navigator.clipboard.writeText(t), F(e.copied, "success", this.themeClass);
+					await navigator.clipboard.writeText(t), L(e.copied, "success", this.themeClass);
 				} catch {
-					ie({
+					ce({
 						title: e.copyUrl,
 						label: "URL",
 						value: t,
@@ -1896,16 +1939,16 @@ var Ee = class {
 					});
 				}
 			}
-		}), this.adapter.remove ? k("button", {
+		}), this.adapter.remove ? M("button", {
 			type: "button",
 			class: "zoro-btn zoro-btn-ghost zoro-btn-sm zoro-text-danger",
-			html: `${O.trash}<span>${e.delete}</span>`,
+			html: `${j.trash}<span>${e.delete}</span>`,
 			onclick: () => this.removeSelected([n])
-		}) : null), l = k("button", {
+		}) : null), l = M("button", {
 			type: "button",
 			class: "zoro-btn zoro-btn-ghost zoro-btn-icon zoro-details-close",
 			"aria-label": e.close,
-			html: O.x,
+			html: j.x,
 			onclick: () => {
 				this.selected.delete(n.id), this.focused = null, this.toggleSelectRefresh();
 			}
@@ -1919,31 +1962,31 @@ var Ee = class {
 		let e = this.t, t = this.el.footer;
 		if (!t) return;
 		t.innerHTML = "";
-		let n = this.tabs?.active !== "upload", r = this.selected.size, i = k("div", { class: "zoro-finder-footer-left" });
+		let n = this.tabs?.active !== "upload", r = this.selected.size, i = M("div", { class: "zoro-finder-footer-left" });
 		if (n && r > 0) {
-			if (i.append(k("span", { class: "zoro-finder-selected" }, T(e.selected, { n: r }))), i.append(k("button", {
+			if (i.append(M("span", { class: "zoro-finder-selected" }, O(e.selected, { n: r }))), i.append(M("button", {
 				type: "button",
 				class: "zoro-btn zoro-btn-ghost zoro-btn-sm",
 				onclick: () => {
 					this.selected.clear(), this.focused = null, this.toggleSelectRefresh();
 				}
 			}, e.clearSelection)), this.adapter.move && (this.folders.length || this.canFolders)) {
-				let t = new P({
+				let t = new I({
 					variant: "field",
 					size: "sm",
 					label: e.moveTo,
-					icon: O.folderMove,
+					icon: j.folderMove,
 					placeholder: `${e.moveTo}…`,
 					value: "__",
 					resetAfterChange: !0,
 					items: [{
 						value: "",
 						label: e.rootFolder,
-						icon: O.folder
+						icon: j.folder
 					}, ...this.folders.map((e) => ({
 						value: e.path,
 						label: e.name,
-						icon: O.folder,
+						icon: j.folder,
 						depth: e.path.split("/").length
 					}))],
 					onChange: (e) => void n(e)
@@ -1951,25 +1994,25 @@ var Ee = class {
 					try {
 						await this.adapter.move([...this.selected.keys()], e), this.selected.clear(), this.focused = null, await this.load(), this.renderFooter();
 					} catch (e) {
-						F(e?.message || "Hata", "error", this.themeClass);
+						L(e?.message || "Hata", "error", this.themeClass);
 					}
 				};
 				i.append(t.render());
 			}
-			this.adapter.remove && r > 1 && i.append(k("button", {
+			this.adapter.remove && r > 1 && i.append(M("button", {
 				type: "button",
 				class: "zoro-btn zoro-btn-ghost zoro-btn-sm zoro-text-danger",
 				onclick: () => this.removeSelected()
 			}, e.deleteSelected));
-		} else n && this.total && i.append(k("span", { class: "zoro-finder-count" }, `${this.total}`));
-		let a = k("div", { class: "zoro-btn-row" });
-		if (a.append(k("button", {
+		} else n && this.total && i.append(M("span", { class: "zoro-finder-count" }, `${this.total}`));
+		let a = M("div", { class: "zoro-btn-row" });
+		if (a.append(M("button", {
 			type: "button",
 			class: "zoro-btn zoro-btn-secondary",
 			onclick: () => this.close()
 		}, e.close)), !this.opts.manageOnly && n) {
-			let t = this.requireAlt && [...this.selected.values()].some((e) => !(this.insertAlts.get(e.id) ?? e.alt ?? "").trim()), n = this.opts.selectLabel ?? (r > 1 ? T(e.insertImages, { n: r }) : e.insertImage);
-			a.append(k("button", {
+			let t = this.requireAlt && [...this.selected.values()].some((e) => !(this.insertAlts.get(e.id) ?? e.alt ?? "").trim()), n = this.opts.selectLabel ?? (r > 1 ? O(e.insertImages, { n: r }) : e.insertImage);
+			a.append(M("button", {
 				type: "button",
 				class: "zoro-btn zoro-btn-primary",
 				disabled: r === 0 || t,
@@ -1985,11 +2028,11 @@ var Ee = class {
 			...e,
 			insertAlt: (this.insertAlts.get(e.id) ?? e.alt ?? "").trim()
 		}));
-		this.requireAlt && e.some((e) => !e.insertAlt) ? F(this.t.altRequired, "error", this.themeClass) : (this.opts.onSelect?.(e), this.close());
+		this.requireAlt && e.some((e) => !e.insertAlt) ? L(this.t.altRequired, "error", this.themeClass) : (this.opts.onSelect?.(e), this.close());
 	}
 	async removeSelected(e) {
 		let t = this.t, n = e ?? [...this.selected.values()];
-		if (n.length && this.adapter.remove && await re(T(t.deleteConfirm, { n: n.length }), {
+		if (n.length && this.adapter.remove && await se(O(t.deleteConfirm, { n: n.length }), {
 			title: t.delete,
 			ok: t.delete,
 			cancel: t.cancel,
@@ -2000,11 +2043,11 @@ var Ee = class {
 			for (let e of n) this.selected.delete(e.id);
 			this.focused = null, await this.load(), this.renderFooter();
 		} catch (e) {
-			F(e?.message || "Hata", "error", this.themeClass);
+			L(e?.message || "Hata", "error", this.themeClass);
 		}
 	}
 	async createFolder() {
-		let e = this.t, t = this.params.folder && this.params.folder !== "*" ? this.params.folder : "", n = await ie({
+		let e = this.t, t = this.params.folder && this.params.folder !== "*" ? this.params.folder : "", n = await ce({
 			title: e.newFolder,
 			label: e.folderName,
 			ok: e.save,
@@ -2017,12 +2060,12 @@ var Ee = class {
 		try {
 			await this.adapter.createFolder(r), this.params.folder = r, await this.load();
 		} catch (e) {
-			F(e?.message || "Hata", "error", this.themeClass);
+			L(e?.message || "Hata", "error", this.themeClass);
 		}
 	}
 	async deleteFolder(e) {
 		let t = this.t;
-		if (this.adapter.deleteFolder && await re(t.deleteFolderConfirm, {
+		if (this.adapter.deleteFolder && await se(t.deleteFolderConfirm, {
 			title: t.deleteFolder,
 			ok: t.delete,
 			cancel: t.cancel,
@@ -2031,20 +2074,20 @@ var Ee = class {
 		})) try {
 			await this.adapter.deleteFolder(e), this.params.folder = "*", await this.load();
 		} catch (e) {
-			F(e?.message || "Hata", "error", this.themeClass);
+			L(e?.message || "Hata", "error", this.themeClass);
 		}
 	}
 	buildUpload(e) {
-		let t = this.t, n = k("input", {
+		let t = this.t, n = M("input", {
 			type: "file",
 			accept: this.accept.join(","),
 			multiple: !0,
 			hidden: !0
-		}), r = this.accept.map((e) => e.split("/")[1].toUpperCase()).join(", "), i = k("div", {
+		}), r = this.accept.map((e) => e.split("/")[1].toUpperCase()).join(", "), i = M("div", {
 			class: "zoro-dropzone",
 			role: "button",
 			tabindex: "0",
-			html: `${O.uploadBig}<p>${t.dropHere}</p><small>${T(t.dropHint, {
+			html: `${j.uploadBig}<p>${t.dropHere}</p><small>${O(t.dropHint, {
 				types: r,
 				max: this.maxMB
 			})}</small>`
@@ -2057,21 +2100,21 @@ var Ee = class {
 			e.preventDefault(), i.classList.remove("dragging"), this.addFiles(Array.from(e.dataTransfer?.files ?? []));
 		}), n.addEventListener("change", () => {
 			this.addFiles(Array.from(n.files ?? [])), n.value = "";
-		}), this.el.queue = k("div", { class: "zoro-upload-list" }), this.el.uploadBtn = k("div", { class: "zoro-upload-actions" }), e.append(i, n, this.el.queue, this.el.uploadBtn);
+		}), this.el.queue = M("div", { class: "zoro-upload-list" }), this.el.uploadBtn = M("div", { class: "zoro-upload-actions" }), e.append(i, n, this.el.queue, this.el.uploadBtn);
 	}
 	addFiles(e) {
 		let t = this.t;
-		for (let n of e) this.accept.includes(n.type) ? n.size > this.maxMB * 1048576 ? F(`${n.name}: ${T(t.tooLarge, { max: this.maxMB })}`, "error", this.themeClass) : this.queue.push({
+		for (let n of e) this.accept.includes(n.type) ? n.size > this.maxMB * 1048576 ? L(`${n.name}: ${O(t.tooLarge, { max: this.maxMB })}`, "error", this.themeClass) : this.queue.push({
 			file: n,
 			preview: URL.createObjectURL(n),
-			alt: K(n.name)
-		}) : F(`${n.name}: ${t.badType}`, "error", this.themeClass);
+			alt: Me(n.name)
+		}) : L(`${n.name}: ${t.badType}`, "error", this.themeClass);
 		this.tabs?.setActive("upload"), this.renderQueue();
 	}
 	renderQueue() {
 		let e = this.t, t = this.el.queue;
 		t.innerHTML = "", this.queue.forEach((n, r) => {
-			let i = k("input", {
+			let i = M("input", {
 				type: "text",
 				class: "zoro-input",
 				value: n.alt,
@@ -2082,22 +2125,22 @@ var Ee = class {
 			i.addEventListener("input", () => {
 				n.alt = i.value, this.renderUploadButton();
 			});
-			let a = k("div", { class: "zoro-upload-item" + (n.error ? " error" : "") }, k("img", {
+			let a = M("div", { class: "zoro-upload-item" + (n.error ? " error" : "") }, M("img", {
 				src: n.preview,
 				alt: ""
-			}), k("div", { class: "zoro-upload-item-info" }, k("div", { class: "zoro-upload-item-header" }, k("span", { class: "zoro-truncate" }, `${n.file.name} · ${W(n.file.size)}`), k("button", {
+			}), M("div", { class: "zoro-upload-item-info" }, M("div", { class: "zoro-upload-item-header" }, M("span", { class: "zoro-truncate" }, `${n.file.name} · ${Te(n.file.size)}`), M("button", {
 				type: "button",
 				class: "zoro-btn zoro-btn-ghost zoro-btn-icon-sm",
 				"aria-label": e.delete,
-				html: O.x,
+				html: j.x,
 				disabled: this.uploading,
 				onclick: () => {
 					URL.revokeObjectURL(n.preview), this.queue.splice(r, 1), this.renderQueue();
 				}
-			})), k("label", { class: "zoro-label" }, this.requireAlt ? e.altRequired : e.imageAlt), i, n.progress === void 0 ? null : k("div", { class: "zoro-progress" }, k("div", {
+			})), M("label", { class: "zoro-label" }, this.requireAlt ? e.altRequired : e.imageAlt), i, n.progress === void 0 ? null : M("div", { class: "zoro-progress" }, M("div", {
 				class: "zoro-progress-bar" + (n.error ? " error" : ""),
 				style: { width: `${Math.max(0, n.progress)}%` }
-			})), n.error ? k("p", { class: "zoro-field-error" }, `${e.uploadFailed}: ${n.error}`) : null));
+			})), n.error ? M("p", { class: "zoro-field-error" }, `${e.uploadFailed}: ${n.error}`) : null));
 			t.append(a);
 		}), this.renderUploadButton();
 	}
@@ -2105,11 +2148,11 @@ var Ee = class {
 		let e = this.t, t = this.el.uploadBtn;
 		if (t.innerHTML = "", !this.queue.length) return;
 		let n = !this.requireAlt || this.queue.every((e) => e.alt.trim());
-		t.append(k("button", {
+		t.append(M("button", {
 			type: "button",
 			class: "zoro-btn zoro-btn-primary zoro-btn-block",
 			disabled: !n || this.uploading,
-			html: this.uploading ? `<span class="zoro-spinner"></span> ${e.uploading}` : `${O.upload} ${T(e.uploadFiles, { n: this.queue.length })}`,
+			html: this.uploading ? `<span class="zoro-spinner"></span> ${e.uploading}` : `${j.upload} ${O(e.uploadFiles, { n: this.queue.length })}`,
 			onclick: () => this.startUpload()
 		}));
 	}
@@ -2141,19 +2184,19 @@ var Ee = class {
 		}
 	}
 };
-function K(e) {
+function Me(e) {
 	let t = e.replace(/\.[^.]+$/, "").replace(/[-_]+/g, " ").replace(/\s+/g, " ").trim();
 	return /^(img|image|dsc|pxl|screenshot|ekran görüntüsü|photo|whatsapp image)?\s*[\d\s.]*$/i.test(t) ? "" : t.charAt(0).toLocaleUpperCase("tr") + t.slice(1);
 }
-function De(e) {
-	return new Ee(e).open();
+function Ne(e) {
+	return new je(e).open();
 }
 //#endregion
 //#region src/core/paste.ts
-function Oe(e) {
+function Pe(e) {
 	return /docs-internal-guid/i.test(e) ? "gdocs" : /google-sheets-html-origin/i.test(e) ? "sheets" : /urn:schemas-microsoft-com:office:excel|ProgId\s+content=["']?Excel/i.test(e) ? "excel" : /urn:schemas-microsoft-com:office:word|class=["']?Mso|mso-list|ProgId\s+content=["']?Word/i.test(e) ? "word" : "html";
 }
-function ke(e) {
+function Fe(e) {
 	let t = /* @__PURE__ */ new Map(), n = /@list\s+l(\d+):level(\d+)\s*\{([^}]*)\}/gi, r;
 	for (; r = n.exec(e);) {
 		let e = r[3], n = /mso-level-number-format:\s*([\w-]+)/i.exec(e)?.[1]?.toLowerCase(), i = /mso-level-start-at:\s*(\d+)/i.exec(e)?.[1], a = !n || ![
@@ -2168,13 +2211,13 @@ function ke(e) {
 	}
 	return t;
 }
-var Ae = /^[\s ]*[•·§●○▪–o\-*][\s ]+/, je = /^[\s ]*(\d{1,3}|[a-z]{1,2}|[ivxlcdm]{1,5})[.)][\s ]+/i;
-function Me(e) {
-	let t = e.replace(/ /g, " "), n = je.exec(t);
+var Ie = /^[\s ]*[•·§●○▪–o\-*][\s ]+/, Le = /^[\s ]*(\d{1,3}|[a-z]{1,2}|[ivxlcdm]{1,5})[.)][\s ]+/i;
+function Re(e) {
+	let t = e.replace(/ /g, " "), n = Le.exec(t);
 	return n ? {
 		ordered: !0,
 		start: /^\d+$/.test(n[1]) ? +n[1] : void 0
-	} : Ae.test(t) || /^\s*[•·§●○▪]/.test(t) ? { ordered: !1 } : null;
+	} : Ie.test(t) || /^\s*[•·§●○▪]/.test(t) ? { ordered: !1 } : null;
 }
 function q(e) {
 	let t = e.parentNode;
@@ -2183,25 +2226,25 @@ function q(e) {
 		t.removeChild(e);
 	}
 }
-function Ne(e, t) {
+function ze(e, t) {
 	let n = e.ownerDocument.createElement(t);
 	for (let t of Array.from(e.attributes)) n.setAttribute(t.name, t.value);
 	for (; e.firstChild;) n.appendChild(e.firstChild);
 	return e.replaceWith(n), n;
 }
-function Pe(e) {
+function Be(e) {
 	return (e.getAttribute("style") ?? "").toLowerCase();
 }
-function Fe(e) {
+function Ve(e) {
 	return /^(#000(000)?|black|windowtext|rgb\(\s*0\s*,\s*0\s*,\s*0\s*\)|initial|inherit|auto)$/i.test(e.trim());
 }
-function Ie(e) {
+function He(e) {
 	return /^(transparent|#fff(fff)?|white|rgb\(\s*255\s*,\s*255\s*,\s*255\s*\)|rgba\(.*,\s*0\s*\)|initial|inherit|auto|none)$/i.test(e.trim());
 }
-function Le(e, t) {
+function Ue(e, t) {
 	let n = Array.from(e.body.querySelectorAll("p, h1, h2, h3, h4, h5, h6, div")).filter((e) => {
-		let t = Pe(e);
-		return /mso-list:\s*l\d+/.test(t) ? !0 : /MsoListParagraph/i.test(e.className) && !!Me(e.textContent ?? "");
+		let t = Be(e);
+		return /mso-list:\s*l\d+/.test(t) ? !0 : /MsoListParagraph/i.test(e.className) && !!Re(e.textContent ?? "");
 	});
 	if (!n.length) return;
 	let r = /* @__PURE__ */ new Set();
@@ -2218,12 +2261,12 @@ function Le(e, t) {
 		i.before(s);
 		let c = [];
 		for (let n of a) {
-			let r = Pe(n), i = /mso-list:\s*l(\d+)\s+level(\d+)/.exec(r), a = i ? +i[2] : 1, o = n.querySelector("[style*=\"mso-list:ignore\" i], [style*=\"mso-list: ignore\" i]"), l = o?.textContent ?? "";
+			let r = Be(n), i = /mso-list:\s*l(\d+)\s+level(\d+)/.exec(r), a = i ? +i[2] : 1, o = n.querySelector("[style*=\"mso-list:ignore\" i], [style*=\"mso-list: ignore\" i]"), l = o?.textContent ?? "";
 			o?.remove();
-			let u = i ? t.get(`${i[1]}:${i[2]}`) : void 0, d = Me(l || (n.textContent ?? ""));
+			let u = i ? t.get(`${i[1]}:${i[2]}`) : void 0, d = Re(l || (n.textContent ?? ""));
 			if (u ||= d ?? { ordered: !1 }, !o && !i && d) {
 				let t = e.createTreeWalker(n, NodeFilter.SHOW_TEXT).nextNode();
-				t && (t.textContent = t.textContent.replace(u.ordered ? je : Ae, "").replace(/^[•·§●○▪]\s*/, ""));
+				t && (t.textContent = t.textContent.replace(u.ordered ? Le : Ie, "").replace(/^[•·§●○▪]\s*/, ""));
 			}
 			for (; c.length && c[c.length - 1].level > a;) c.pop();
 			let f = c[c.length - 1];
@@ -2241,14 +2284,14 @@ function Le(e, t) {
 		q(s);
 	}
 }
-function Re(e) {
+function We(e) {
 	let t = Array.from(e.body.querySelectorAll("span, font"));
 	for (let n of t.reverse()) {
 		if (!n.isConnected) continue;
-		let t = Pe(n), r = [];
+		let t = Be(n), r = [];
 		/font-weight:\s*(bold|[6-9]00)/.test(t) && !n.closest("h1,h2,h3,h4,h5,h6,th,strong,b") && r.push("strong"), /font-style:\s*italic/.test(t) && r.push("em"), /text-decoration[^;]*underline/.test(t) && r.push("u"), /text-decoration[^;]*line-through/.test(t) && r.push("s"), /vertical-align:\s*super/.test(t) && r.push("sup"), /vertical-align:\s*sub\b/.test(t) && r.push("sub");
 		let i = /(?:^|;)\s*color:\s*([^;]+)/.exec(t)?.[1]?.trim(), a = /background(?:-color)?:\s*([^;]+)/.exec(t)?.[1]?.trim(), o = [];
-		i && !Fe(i) && o.push(`color: ${i}`), a && !Ie(a) && o.push(`background-color: ${a}`);
+		i && !Ve(i) && o.push(`color: ${i}`), a && !He(a) && o.push(`background-color: ${a}`);
 		let s = e.createDocumentFragment();
 		for (; n.firstChild;) s.appendChild(n.firstChild);
 		for (let t of r.reverse()) {
@@ -2269,15 +2312,15 @@ function Re(e) {
 		} else n.replaceWith(s);
 	}
 }
-var ze = /^(p|h[1-6]|li|td|th)$/i;
-function Be(e) {
+var Ge = /^(p|h[1-6]|li|td|th)$/i;
+function Ke(e) {
 	for (let t of Array.from(e.body.querySelectorAll("*"))) {
 		let e = t.tagName.toLowerCase();
 		for (let n of Array.from(t.attributes)) {
 			let r = n.name.toLowerCase();
 			if (r === "style") {
 				if (e === "span" || e === "mark") continue;
-				if (ze.test(e)) {
+				if (Ge.test(e)) {
 					let e = /text-align:\s*(left|center|right|justify)/i.exec(n.value)?.[1];
 					e && e !== "left" ? t.setAttribute("style", `text-align: ${e}`) : t.removeAttribute("style");
 				} else t.removeAttribute("style");
@@ -2301,14 +2344,14 @@ function Be(e) {
 		}
 	}
 }
-function Ve(e) {
-	let t = Oe(e);
+function qe(e) {
+	let t = Pe(e);
 	if (typeof DOMParser > "u") return {
-		html: He(e),
+		html: Je(e),
 		source: t,
 		droppedLocalImages: 0
 	};
-	let n = e.replace(/<!--(Start|End)Fragment-->/gi, "").replace(/<!\[if !supportLists\]>/gi, "<span style=\"mso-list:Ignore\">").replace(/<!\[endif\]>/gi, "</span>").replace(/<!\[if[^\]]*\]>/gi, "<span>").replace(/<!--\[if !supportLists\]-->/gi, "").replace(/<!--\[if[\s\S]*?<!\[endif\]-->/gi, "").replace(/<!--\[endif\]-->/gi, ""), r = ke(Array.from(n.matchAll(/<style[^>]*>([\s\S]*?)<\/style>/gi)).map((e) => e[1]).join("\n")), i = new DOMParser().parseFromString(n, "text/html"), a = i.body;
+	let n = e.replace(/<!--(Start|End)Fragment-->/gi, "").replace(/<!\[if !supportLists\]>/gi, "<span style=\"mso-list:Ignore\">").replace(/<!\[endif\]>/gi, "</span>").replace(/<!\[if[^\]]*\]>/gi, "<span>").replace(/<!--\[if !supportLists\]-->/gi, "").replace(/<!--\[if[\s\S]*?<!\[endif\]-->/gi, "").replace(/<!--\[endif\]-->/gi, ""), r = Fe(Array.from(n.matchAll(/<style[^>]*>([\s\S]*?)<\/style>/gi)).map((e) => e[1]).join("\n")), i = new DOMParser().parseFromString(n, "text/html"), a = i.body;
 	a.querySelectorAll("style, meta, link, script, title, xml, template, noscript").forEach((e) => e.remove()), a.querySelectorAll("[style*=\"mso-element:comment\"], [style*=\"mso-element: comment\"], .msocomtxt, .MsoCommentReference").forEach((e) => e.remove());
 	for (let e of Array.from(a.getElementsByTagName("*"))) {
 		if (!e.tagName.includes(":")) continue;
@@ -2321,13 +2364,13 @@ function Ve(e) {
 		let t = e.getAttribute("src") ?? "";
 		(/^file:/i.test(t) || /^(cid|webkit-fake-url):/i.test(t)) && (o++, e.remove());
 	}), t === "word") {
-		Le(i, r), a.querySelectorAll("p.MsoTitle").forEach((e) => Ne(e, "h1")), a.querySelectorAll("p.MsoSubtitle").forEach((e) => Ne(e, "h2"));
-		for (let e = 1; e <= 6; e++) a.querySelectorAll(`p.MsoHeading${e}, p[class^="MsoHeading${e}"]`).forEach((t) => Ne(t, `h${e}`));
+		Ue(i, r), a.querySelectorAll("p.MsoTitle").forEach((e) => ze(e, "h1")), a.querySelectorAll("p.MsoSubtitle").forEach((e) => ze(e, "h2"));
+		for (let e = 1; e <= 6; e++) a.querySelectorAll(`p.MsoHeading${e}, p[class^="MsoHeading${e}"]`).forEach((t) => ze(t, `h${e}`));
 	}
 	if (a.querySelectorAll("li > p:only-child").forEach((e) => q(e)), t === "gdocs") for (let e of Array.from(a.children).filter((e) => e.tagName === "BR")) e.replaceWith(i.createElement("p"));
 	a.querySelectorAll("colgroup, col").forEach((e) => e.remove()), a.querySelectorAll("div[align] > table").forEach((e) => q(e.parentElement)), a.querySelectorAll("td > p:only-child, th > p:only-child").forEach((e) => {
 		e.textContent?.trim() || (e.innerHTML = "");
-	}), Re(i), Be(i), a.querySelectorAll("span:not([style]), font").forEach((e) => q(e));
+	}), We(i), Ke(i), a.querySelectorAll("span:not([style]), font").forEach((e) => q(e));
 	let s = i.createTreeWalker(a, NodeFilter.SHOW_TEXT);
 	for (let e = s.nextNode(); e; e = s.nextNode()) e.parentElement?.closest("pre, code") || / /.test(e.textContent) && (e.textContent = e.textContent.replace(/ {2,}/g, " ").replace(/(\S) (\S)/g, "$1 $2"));
 	return {
@@ -2336,16 +2379,16 @@ function Ve(e) {
 		droppedLocalImages: o
 	};
 }
-function He(e) {
+function Je(e) {
 	let t = e;
 	return t = t.replace(/<b[^>]*id="docs-internal-guid[^"]*"[^>]*>([\s\S]*?)<\/b>/gi, "$1"), t = t.replace(/<!--\[if[\s\S]*?<!\[endif\]-->/gi, ""), t = t.replace(/<!\[if[^\]]*\]>[\s\S]*?<!\[endif\]>/gi, ""), t = t.replace(/<!--[\s\S]*?-->/g, ""), t = t.replace(/<\/?(o|w|m|v):[^>]*>/gi, ""), t = t.replace(/<xml[\s\S]*?<\/xml>/gi, ""), t = t.replace(/<style[\s\S]*?<\/style>/gi, ""), t = t.replace(/<meta[^>]*>/gi, "").replace(/<link[^>]*>/gi, ""), t = t.replace(/\s*mso-[^:;"']+:[^;"']+;?/gi, ""), t = t.replace(/\s+class="?Mso[^"\s>]*"?/gi, ""), t = t.replace(/<img[^>]+src=["']?file:[^>]*>/gi, ""), t = t.replace(/(&nbsp;\s*){2,}/g, " "), t;
 }
 //#endregion
 //#region src/core/slash.ts
-function Ue(e) {
+function Ye(e) {
 	return e.toLocaleLowerCase("tr").replace(/[ıİ]/g, "i").replace(/ş/g, "s").replace(/ğ/g, "g").replace(/ü/g, "u").replace(/ö/g, "o").replace(/ç/g, "c").normalize("NFD").replace(/[̀-ͯ]/g, "");
 }
-var We = (e) => e.replace(/width="\d+" height="\d+"/, "width=\"18\" height=\"18\""), Ge = [
+var Xe = (e) => e.replace(/width="\d+" height="\d+"/, "width=\"18\" height=\"18\""), Ze = [
 	{
 		id: "p",
 		title: (e) => e.paragraph,
@@ -2357,7 +2400,7 @@ var We = (e) => e.replace(/width="\d+" height="\d+"/, "width=\"18\" height=\"18\
 			"text",
 			"p"
 		],
-		icon: O.removeFormat,
+		icon: j.removeFormat,
 		group: "block",
 		run: (e) => e.chain().focus().setParagraph().run()
 	},
@@ -2391,7 +2434,7 @@ var We = (e) => e.replace(/width="\d+" height="\d+"/, "width=\"18\" height=\"18\
 			"ul",
 			"list"
 		],
-		icon: O.bulletList,
+		icon: j.bulletList,
 		group: "list",
 		run: (e) => e.chain().focus().toggleBulletList().run()
 	},
@@ -2407,7 +2450,7 @@ var We = (e) => e.replace(/width="\d+" height="\d+"/, "width=\"18\" height=\"18\
 			"ol",
 			"1."
 		],
-		icon: O.orderedList,
+		icon: j.orderedList,
 		group: "list",
 		run: (e) => e.chain().focus().toggleOrderedList().run()
 	},
@@ -2421,7 +2464,7 @@ var We = (e) => e.replace(/width="\d+" height="\d+"/, "width=\"18\" height=\"18\
 			"blockquote",
 			"soz"
 		],
-		icon: O.quote,
+		icon: j.quote,
 		group: "list",
 		run: (e) => e.chain().focus().toggleBlockquote().run()
 	},
@@ -2435,7 +2478,7 @@ var We = (e) => e.replace(/width="\d+" height="\d+"/, "width=\"18\" height=\"18\
 			"pre",
 			"blok"
 		],
-		icon: O.code,
+		icon: j.code,
 		group: "block",
 		run: (e) => e.chain().focus().toggleCodeBlock().run()
 	},
@@ -2449,7 +2492,7 @@ var We = (e) => e.replace(/width="\d+" height="\d+"/, "width=\"18\" height=\"18\
 			"cizelge",
 			"grid"
 		],
-		icon: O.table,
+		icon: j.table,
 		group: "table",
 		run: (e) => e.chain().focus().insertTable({
 			rows: 3,
@@ -2469,7 +2512,7 @@ var We = (e) => e.replace(/width="\d+" height="\d+"/, "width=\"18\" height=\"18\
 			"img",
 			"medya"
 		],
-		icon: O.image,
+		icon: j.image,
 		group: "media",
 		run: (e, t) => t.openMedia()
 	},
@@ -2483,7 +2526,7 @@ var We = (e) => e.replace(/width="\d+" height="\d+"/, "width=\"18\" height=\"18\
 			"gom",
 			"embed"
 		],
-		icon: O.youtube,
+		icon: j.youtube,
 		group: "embed",
 		run: (e, t) => void t.insertYoutube()
 	},
@@ -2499,11 +2542,11 @@ var We = (e) => e.replace(/width="\d+" height="\d+"/, "width=\"18\" height=\"18\
 			"line",
 			"---"
 		],
-		icon: O.hr,
+		icon: j.hr,
 		group: "extra",
 		run: (e) => e.chain().focus().setHorizontalRule().run()
 	}
-], Ke = class {
+], Qe = class {
 	constructor(e, t, n = []) {
 		this.editor = e, this.host = t, this.extra = n, this.el = null, this.items = [], this.index = 0, this.range = null, this.dismissedAt = -1;
 	}
@@ -2525,8 +2568,8 @@ var We = (e) => e.replace(/width="\d+" height="\d+"/, "width=\"18\" height=\"18\
 		this.render();
 	}
 	filter(e) {
-		let t = Ue(e).split(/\s+/).filter(Boolean), n = [...Ge, ...this.extra].filter((e) => !e.group || this.host.hasGroup(e.group)), r = this.host.t, i = n.map((e) => {
-			let n = [Ue(e.title(r)), ...e.keywords.map(Ue)], i = 0;
+		let t = Ye(e).split(/\s+/).filter(Boolean), n = [...Ze, ...this.extra].filter((e) => !e.group || this.host.hasGroup(e.group)), r = this.host.t, i = n.map((e) => {
+			let n = [Ye(e.title(r)), ...e.keywords.map(Ye)], i = 0;
 			for (let e of t) {
 				let t = Math.min(...n.map((t) => t.startsWith(e) ? 0 : t.includes(e) ? 1 : 9));
 				if (t === 9) return null;
@@ -2541,23 +2584,23 @@ var We = (e) => e.replace(/width="\d+" height="\d+"/, "width=\"18\" height=\"18\
 	}
 	render() {
 		let e = this.host.t;
-		this.el || (this.el = k("div", {
+		this.el || (this.el = M("div", {
 			class: `zoro-root zoro-slash ${this.host.themeClass}`,
 			role: "listbox",
 			"aria-label": e.slashTitle
 		}), this.el.addEventListener("mousedown", (e) => e.preventDefault()), document.body.append(this.el)), this.el.innerHTML = "", this.items.length ? this.items.forEach((t, n) => {
-			let r = k("div", {
+			let r = M("div", {
 				class: "zoro-slash-item" + (n === this.index ? " active" : ""),
 				role: "option",
 				"aria-selected": String(n === this.index)
-			}, k("span", {
+			}, M("span", {
 				class: "zoro-slash-icon",
-				html: We(t.icon)
-			}), k("span", { class: "zoro-slash-text" }, k("strong", {}, t.title(e)), t.hint ? k("small", {}, t.hint(e)) : null));
+				html: Xe(t.icon)
+			}), M("span", { class: "zoro-slash-text" }, M("strong", {}, t.title(e)), t.hint ? M("small", {}, t.hint(e)) : null));
 			r.addEventListener("mouseenter", () => {
 				this.index = n, this.highlight();
 			}), r.addEventListener("click", () => this.choose(n)), this.el.append(r);
-		}) : this.el.append(k("div", { class: "zoro-slash-empty" }, e.noResults)), this.position();
+		}) : this.el.append(M("div", { class: "zoro-slash-empty" }, e.noResults)), this.position();
 	}
 	highlight() {
 		this.el?.querySelectorAll(".zoro-slash-item").forEach((e, t) => {
@@ -2584,7 +2627,7 @@ var We = (e) => e.replace(/width="\d+" height="\d+"/, "width=\"18\" height=\"18\
 	reposition() {
 		this.el && this.position();
 	}
-}, qe = /* @__PURE__ */ new Set(/* @__PURE__ */ "p.h1.h2.h3.h4.h5.h6.ul.ol.li.blockquote.pre.table.thead.tbody.tfoot.tr.td.th.colgroup.col.figure.figcaption.div.hr.details.summary.section.article".split(".")), Je = /* @__PURE__ */ new Set([
+}, $e = /* @__PURE__ */ new Set(/* @__PURE__ */ "p.h1.h2.h3.h4.h5.h6.ul.ol.li.blockquote.pre.table.thead.tbody.tfoot.tr.td.th.colgroup.col.figure.figcaption.div.hr.details.summary.section.article".split(".")), et = /* @__PURE__ */ new Set([
 	"img",
 	"hr",
 	"br",
@@ -2593,29 +2636,29 @@ var We = (e) => e.replace(/width="\d+" height="\d+"/, "width=\"18\" height=\"18\
 	"source",
 	"wbr",
 	"embed"
-]), Ye = "  ";
-function Xe(e) {
+]), tt = "  ";
+function nt(e) {
 	return e.replace(/&/g, "&amp;").replace(/"/g, "&quot;").replace(/</g, "&lt;");
 }
-function Ze(e) {
+function rt(e) {
 	let t = `<${e.tagName.toLowerCase()}`;
-	for (let n of Array.from(e.attributes)) t += n.value === "" && /^(data-|allowfullscreen|hidden)/.test(n.name) ? ` ${n.name}` : ` ${n.name}="${Xe(n.value)}"`;
+	for (let n of Array.from(e.attributes)) t += n.value === "" && /^(data-|allowfullscreen|hidden)/.test(n.name) ? ` ${n.name}` : ` ${n.name}="${nt(n.value)}"`;
 	return t + ">";
 }
-function Qe(e) {
-	for (let t of Array.from(e.childNodes)) if (t.nodeType === 1 && (qe.has(t.tagName.toLowerCase()) || t.tagName === "IFRAME")) return !1;
+function it(e) {
+	for (let t of Array.from(e.childNodes)) if (t.nodeType === 1 && ($e.has(t.tagName.toLowerCase()) || t.tagName === "IFRAME")) return !1;
 	return !0;
 }
-function $e(e) {
+function at(e) {
 	if (![
 		"li",
 		"td",
 		"th"
 	].includes(e.tagName.toLowerCase())) return !1;
 	let t = Array.from(e.childNodes).filter((e) => !(e.nodeType === 3 && !e.textContent.trim()));
-	return t.length === 1 && t[0].nodeType === 1 && t[0].tagName === "P" && Qe(t[0]);
+	return t.length === 1 && t[0].nodeType === 1 && t[0].tagName === "P" && it(t[0]);
 }
-function et(e) {
+function ot(e) {
 	if (typeof document > "u") return {
 		html: e,
 		blockStarts: []
@@ -2625,7 +2668,7 @@ function et(e) {
 	let n = [], r = [], i = 0, a = (e, t = !1) => {
 		t && r.push(i), n.push(e), i += e.length + 1;
 	}, o = (e, t, n) => {
-		let r = Ye.repeat(t);
+		let r = tt.repeat(t);
 		if (e.nodeType === 3) {
 			let t = e.textContent.replace(/\s+/g, " ").trim();
 			t && a(r + t.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;"), n);
@@ -2633,15 +2676,15 @@ function et(e) {
 		}
 		if (e.nodeType === 8 || e.nodeType !== 1) return;
 		let i = e, c = i.tagName.toLowerCase();
-		if (!(qe.has(c) || c === "iframe" || n && !s(i))) a(r + i.outerHTML, n);
-		else if (Je.has(c)) a(r + Ze(i), n);
-		else if (c === "pre" || Qe(i) || $e(i)) a(r + i.outerHTML, n);
+		if (!($e.has(c) || c === "iframe" || n && !s(i))) a(r + i.outerHTML, n);
+		else if (et.has(c)) a(r + rt(i), n);
+		else if (c === "pre" || it(i) || at(i)) a(r + i.outerHTML, n);
 		else {
-			a(r + Ze(i), n);
+			a(r + rt(i), n);
 			for (let e of Array.from(i.childNodes)) o(e, t + 1, !1);
 			a(`${r}</${c}>`);
 		}
-	}, s = (e) => !["img", "iframe"].includes(e.tagName.toLowerCase()) && !qe.has(e.tagName.toLowerCase()), c = document.createTreeWalker(t.content, NodeFilter.SHOW_TEXT), l = [];
+	}, s = (e) => !["img", "iframe"].includes(e.tagName.toLowerCase()) && !$e.has(e.tagName.toLowerCase()), c = document.createTreeWalker(t.content, NodeFilter.SHOW_TEXT), l = [];
 	for (let e = c.nextNode(); e; e = c.nextNode()) /^\s*\n\s*$/.test(e.textContent) && !e.parentElement?.closest("pre") && l.push(e);
 	l.forEach((e) => e.parentNode?.removeChild(e));
 	for (let e of Array.from(t.content.childNodes)) o(e, 0, !0);
@@ -2650,7 +2693,7 @@ function et(e) {
 		blockStarts: r
 	};
 }
-function tt(e, t) {
+function st(e, t) {
 	let n = -1, r = 0;
 	for (let i = 0; i <= Math.min(t, e.length); i++) if (i === e.length || e[i] === "\n") {
 		let a = e.slice(r, i);
@@ -2663,38 +2706,38 @@ function tt(e, t) {
 function J(e) {
 	return String(e ?? "").replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#39;");
 }
-function nt(e) {
+function ct(e) {
 	return e.replace(/<(br|\/p|\/h[1-6]|\/li|\/div|\/blockquote|\/tr)\b[^>]*>/gi, " ").replace(/<[^>]*>/g, "").replace(/&nbsp;/g, " ").replace(/&[a-z]+;|&#\d+;/gi, "x");
 }
-function rt(e) {
-	let t = nt(e).trim();
+function lt(e) {
+	let t = ct(e).trim();
 	return t ? t.split(/\s+/).filter(Boolean).length : 0;
 }
-function it(e) {
-	return nt(e).replace(/\s+/g, " ").trim().length;
+function ut(e) {
+	return ct(e).replace(/\s+/g, " ").trim().length;
 }
-function at(e) {
+function dt(e) {
 	let t = e.replace(/<span[^>]*style=["'][^"']*color:\s*rgb\s*\(\s*(\d+)\s*,\s*(\d+)\s*,\s*(\d+)\s*\)[^"']*["'][^>]*>([\s\S]*?)<\/span>/gi, (e, t, n, r, i) => +t < 100 && +n < 100 && +r < 100 ? i : e).replace(/<span[^>]*style=["'][^"']*color:\s*#(?:000|111|222|333|444|555)[0-9a-f]*[^"']*["'][^>]*>([\s\S]*?)<\/span>/gi, "$1").replace(/\s*style=["']\s*["']/gi, "").replace(/<span>([\s\S]*?)<\/span>/gi, "$1").replace(/<p>\s*<\/p>/gi, "");
 	return t = t.replace(/(<\/(?:p|h[1-6]|ul|ol|li|div|blockquote|table|thead|tbody|tr|td|th|figure|figcaption|pre)>)/gi, "$1\n").replace(/(<hr[^>]*>)/gi, "$1\n").replace(/(<(?:ul|ol|table|thead|tbody|tr)[^>]*>)/gi, "$1\n").replace(/([^\n])(<(?:h[1-6]|ul|ol|blockquote|table)[^>]*>)/gi, "$1\n$2").replace(/\n{3,}/g, "\n\n").trim(), t;
 }
-var ot = /^(https?:|mailto:|tel:|sms:|ftp:)/i;
+var ft = /^(https?:|mailto:|tel:|sms:|ftp:)/i;
 function Y(e) {
 	let t = e.trim().replace(/[\u0000-\u001F\u007F\s]+/g, "");
-	return t ? /^[/#?.]/.test(t) || !/^[a-z][a-z0-9+.-]*:/i.test(t) ? !0 : ot.test(t) : !1;
+	return t ? /^[/#?.]/.test(t) || !/^[a-z][a-z0-9+.-]*:/i.test(t) ? !0 : ft.test(t) : !1;
 }
-function st(e) {
+function pt(e) {
 	let t = e.trim();
 	return !t || /^[/#?.]/.test(t) || /^[a-z][a-z0-9+.-]*:/i.test(t) ? t : /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(t) ? "mailto:" + t : "https://" + t;
 }
-function ct(e) {
-	return Ve(e).html;
+function mt(e) {
+	return qe(e).html;
 }
-function lt(e) {
+function ht(e) {
 	return /^(https?:\/\/)?(www\.|m\.|music\.)?(youtube\.com|youtu\.be|youtube-nocookie\.com)\/.+/i.test(e.trim());
 }
 //#endregion
 //#region src/core/commands.ts
-function ut(e) {
+function gt(e) {
 	let { state: t } = e, { from: n, empty: r } = t.selection;
 	if (!r) return null;
 	let i = t.doc.resolve(n), a = i.parent;
@@ -2709,7 +2752,7 @@ function ut(e) {
 }
 function X(e, t, n) {
 	if (!e) return;
-	let { from: r, to: i } = e.state.selection, a = ut(e), o = a || {
+	let { from: r, to: i } = e.state.selection, a = gt(e), o = a || {
 		from: r,
 		to: i
 	}, s = e.chain().focus();
@@ -2742,7 +2785,7 @@ function X(e, t, n) {
 	}
 	a && s.setTextSelection(a.to), s.run();
 }
-function dt(e, t) {
+function _t(e, t) {
 	if (!e) return;
 	let { from: n, to: r, empty: i } = e.state.selection;
 	if (!i) {
@@ -2754,18 +2797,18 @@ function dt(e, t) {
 	}
 	e.chain().focus().toggleHeading({ level: t }).run();
 }
-function ft(e, t) {
+function vt(e, t) {
 	let n = e.isActive("listItem") ? "listItem" : null;
 	n && (t > 0 ? e.chain().focus().sinkListItem(n).run() : e.chain().focus().liftListItem(n).run());
 }
 //#endregion
 //#region src/core/groups.ts
-var Z = (e) => e, pt = [
+var Z = (e) => e, yt = [
 	{
 		name: "block",
 		row: 1,
 		items: (e) => {
-			let { t } = e, n = new P({
+			let { t } = e, n = new I({
 				items: [
 					{
 						value: "p",
@@ -2809,7 +2852,7 @@ var Z = (e) => e, pt = [
 				label: t.paragraph,
 				onChange: (t) => {
 					let n = e.zoro.editor;
-					t === "p" ? n.chain().focus().setParagraph().run() : t === "pre" ? n.chain().focus().toggleCodeBlock().run() : dt(n, +t.slice(1));
+					t === "p" ? n.chain().focus().setParagraph().run() : t === "pre" ? n.chain().focus().toggleCodeBlock().run() : _t(n, +t.slice(1));
 				}
 			});
 			return {
@@ -2829,14 +2872,14 @@ var Z = (e) => e, pt = [
 		items: [
 			Z({
 				name: "bold",
-				icon: O.bold,
+				icon: j.bold,
 				title: (e) => e.bold,
 				run: ({ editor: e }) => X(e, "toggleBold"),
 				isActive: ({ editor: e }) => e.isActive("bold")
 			}),
 			Z({
 				name: "italic",
-				icon: O.italic,
+				icon: j.italic,
 				title: (e) => e.italic,
 				run: ({ editor: e }) => X(e, "toggleItalic"),
 				isActive: ({ editor: e }) => e.isActive("italic")
@@ -2844,7 +2887,7 @@ var Z = (e) => e, pt = [
 			Z({
 				name: "underline",
 				row: 2,
-				icon: O.underline,
+				icon: j.underline,
 				title: (e) => e.underline,
 				run: ({ editor: e }) => X(e, "toggleUnderline"),
 				isActive: ({ editor: e }) => e.isActive("underline")
@@ -2852,7 +2895,7 @@ var Z = (e) => e, pt = [
 			Z({
 				name: "strike",
 				row: 2,
-				icon: O.strikethrough,
+				icon: j.strikethrough,
 				title: (e) => e.strike,
 				run: ({ editor: e }) => X(e, "toggleStrike"),
 				isActive: ({ editor: e }) => e.isActive("strike")
@@ -2860,7 +2903,7 @@ var Z = (e) => e, pt = [
 			Z({
 				name: "code",
 				row: 2,
-				icon: O.code,
+				icon: j.code,
 				title: (e) => e.code,
 				run: ({ editor: e }) => X(e, "toggleCode"),
 				isActive: ({ editor: e }) => e.isActive("code")
@@ -2868,7 +2911,7 @@ var Z = (e) => e, pt = [
 			Z({
 				name: "superscript",
 				row: 2,
-				icon: O.superscript,
+				icon: j.superscript,
 				title: (e) => e.superscript,
 				run: ({ editor: e }) => e.chain().focus().toggleSuperscript().run(),
 				isActive: ({ editor: e }) => e.isActive("superscript")
@@ -2876,7 +2919,7 @@ var Z = (e) => e, pt = [
 			Z({
 				name: "subscript",
 				row: 2,
-				icon: O.subscript,
+				icon: j.subscript,
 				title: (e) => e.subscript,
 				run: ({ editor: e }) => e.chain().focus().toggleSubscript().run(),
 				isActive: ({ editor: e }) => e.isActive("subscript")
@@ -2889,21 +2932,21 @@ var Z = (e) => e, pt = [
 		items: [
 			Z({
 				name: "bulletList",
-				icon: O.bulletList,
+				icon: j.bulletList,
 				title: (e) => e.bulletList,
 				run: ({ editor: e }) => e.chain().focus().toggleBulletList().run(),
 				isActive: ({ editor: e }) => e.isActive("bulletList")
 			}),
 			Z({
 				name: "orderedList",
-				icon: O.orderedList,
+				icon: j.orderedList,
 				title: (e) => e.orderedList,
 				run: ({ editor: e }) => e.chain().focus().toggleOrderedList().run(),
 				isActive: ({ editor: e }) => e.isActive("orderedList")
 			}),
 			Z({
 				name: "blockquote",
-				icon: O.quote,
+				icon: j.quote,
 				title: (e) => e.blockquote,
 				run: ({ editor: e }) => e.chain().focus().toggleBlockquote().run(),
 				isActive: ({ editor: e }) => e.isActive("blockquote")
@@ -2920,7 +2963,7 @@ var Z = (e) => e, pt = [
 			"justify"
 		].map((e) => Z({
 			name: `align-${e}`,
-			icon: O[`align${e[0].toUpperCase()}${e.slice(1)}`],
+			icon: j[`align${e[0].toUpperCase()}${e.slice(1)}`],
 			title: (t) => t[`align${e[0].toUpperCase()}${e.slice(1)}`],
 			run: ({ editor: t }) => t.chain().focus().setTextAlign(e).run(),
 			isActive: ({ editor: t }) => t.isActive({ textAlign: e })
@@ -2931,14 +2974,14 @@ var Z = (e) => e, pt = [
 		row: 1,
 		items: [Z({
 			name: "link",
-			icon: O.link,
+			icon: j.link,
 			title: (e) => e.link,
 			run: ({ zoro: e }) => e.openLinkPopover(!0),
 			isActive: ({ editor: e }) => e.isActive("link")
 		}), Z({
 			name: "unlink",
 			row: 2,
-			icon: O.unlink,
+			icon: j.unlink,
 			title: (e) => e.unlink,
 			run: ({ editor: e }) => e.chain().focus().extendMarkRange("link").unsetLink().run(),
 			isEnabled: ({ editor: e }) => e.isActive("link")
@@ -2949,7 +2992,7 @@ var Z = (e) => e, pt = [
 		row: 1,
 		items: [Z({
 			name: "table",
-			icon: O.table,
+			icon: j.table,
 			title: (e) => e.table,
 			run: ({ zoro: e }, t) => e.openTableMenu(t.currentTarget),
 			isActive: ({ editor: e }) => e.isActive("table")
@@ -2960,7 +3003,7 @@ var Z = (e) => e, pt = [
 		row: 1,
 		items: [Z({
 			name: "image",
-			icon: O.image,
+			icon: j.image,
 			title: (e) => e.image,
 			run: ({ zoro: e }) => e.openMedia()
 		})]
@@ -2970,7 +3013,7 @@ var Z = (e) => e, pt = [
 		row: 2,
 		items: [Z({
 			name: "youtube",
-			icon: O.youtube,
+			icon: j.youtube,
 			title: (e) => e.youtube,
 			run: ({ zoro: e }) => e.insertYoutube()
 		})]
@@ -2980,12 +3023,12 @@ var Z = (e) => e, pt = [
 		row: 2,
 		items: [Z({
 			name: "textColor",
-			icon: O.textColor("#50575e"),
+			icon: j.textColor("#50575e"),
 			title: (e) => e.textColor,
 			run: ({ zoro: e }, t) => e.openColorPicker(t.currentTarget, "text")
 		}), Z({
 			name: "bgColor",
-			icon: O.bgColor("#ffff00"),
+			icon: j.bgColor("#ffff00"),
 			title: (e) => e.bgColor,
 			run: ({ zoro: e }, t) => e.openColorPicker(t.currentTarget, "bg")
 		})]
@@ -2996,19 +3039,19 @@ var Z = (e) => e, pt = [
 		items: [
 			Z({
 				name: "hr",
-				icon: O.hr,
+				icon: j.hr,
 				title: (e) => e.hr,
 				run: ({ editor: e }) => e.chain().focus().setHorizontalRule().run()
 			}),
 			Z({
 				name: "removeFormat",
-				icon: O.removeFormat,
+				icon: j.removeFormat,
 				title: (e) => e.removeFormat,
 				run: ({ editor: e }) => e.chain().focus().unsetAllMarks().clearNodes().run()
 			}),
 			Z({
 				name: "specialChars",
-				icon: O.omega,
+				icon: j.omega,
 				title: (e) => e.specialChars,
 				run: ({ zoro: e }, t) => e.openSpecialChars(t.currentTarget)
 			})
@@ -3019,15 +3062,15 @@ var Z = (e) => e, pt = [
 		row: 2,
 		items: [Z({
 			name: "outdent",
-			icon: O.outdent,
+			icon: j.outdent,
 			title: (e) => e.outdent,
-			run: ({ editor: e }) => ft(e, -1),
+			run: ({ editor: e }) => vt(e, -1),
 			isEnabled: ({ editor: e }) => e.can().liftListItem("listItem")
 		}), Z({
 			name: "indent",
-			icon: O.indent,
+			icon: j.indent,
 			title: (e) => e.indent,
-			run: ({ editor: e }) => ft(e, 1),
+			run: ({ editor: e }) => vt(e, 1),
 			isEnabled: ({ editor: e }) => e.can().sinkListItem("listItem")
 		})]
 	},
@@ -3036,13 +3079,13 @@ var Z = (e) => e, pt = [
 		row: 2,
 		items: [Z({
 			name: "undo",
-			icon: O.undo,
+			icon: j.undo,
 			title: (e) => e.undo,
 			run: ({ editor: e }) => e.chain().focus().undo().run(),
 			isEnabled: ({ editor: e }) => e.can().undo()
 		}), Z({
 			name: "redo",
-			icon: O.redo,
+			icon: j.redo,
 			title: (e) => e.redo,
 			run: ({ editor: e }) => e.chain().focus().redo().run(),
 			isEnabled: ({ editor: e }) => e.can().redo()
@@ -3053,7 +3096,7 @@ var Z = (e) => e, pt = [
 		row: 2,
 		items: [Z({
 			name: "help",
-			icon: O.help,
+			icon: j.help,
 			title: (e) => e.help,
 			run: ({ zoro: e }) => e.showHelp(),
 			keepFocus: !1
@@ -3064,7 +3107,7 @@ var Z = (e) => e, pt = [
 		row: 1,
 		items: []
 	}
-], mt = pt.map((e) => e.name), Q = {
+], bt = yt.map((e) => e.name), Q = {
 	minimal: [
 		"format",
 		"link",
@@ -3093,27 +3136,27 @@ var Z = (e) => e, pt = [
 		"help",
 		"view"
 	],
-	full: mt
-}, ht = new Map(pt.map((e) => [e.name, e]));
-function gt(e) {
-	ht.set(e.name, e);
+	full: bt
+}, xt = new Map(yt.map((e) => [e.name, e]));
+function St(e) {
+	xt.set(e.name, e);
 }
-function _t(e, t) {
+function Ct(e, t) {
 	Q[e] = t;
 }
 function $(e) {
-	return ht.get(e);
+	return xt.get(e);
 }
-function vt(e) {
+function wt(e) {
 	let t = e.groups ?? Q[e.preset ?? "full"] ?? Q.full, n = /* @__PURE__ */ new Set([...t, ...e.addGroups ?? []]);
 	for (let t of e.removeGroups ?? []) n.delete(t);
-	let r = [...n].filter((e) => ht.has(e)), i = [...ht.keys()];
+	let r = [...n].filter((e) => xt.has(e)), i = [...xt.keys()];
 	return r.sort((e, t) => {
-		let n = mt.indexOf(e), r = mt.indexOf(t);
+		let n = bt.indexOf(e), r = bt.indexOf(t);
 		return n >= 0 && r >= 0 ? n - r : n >= 0 ? -1 : r >= 0 ? 1 : i.indexOf(e) - i.indexOf(t);
 	});
 }
-var yt = /* @__PURE__ */ "#000000.#434343.#666666.#999999.#b7b7b7.#cccccc.#d9d9d9.#efefef.#f3f3f3.#ffffff.#980000.#ff0000.#ff9900.#ffff00.#00ff00.#00ffff.#4a86e8.#0000ff.#9900ff.#ff00ff.#e6b8af.#f4cccc.#fce5cd.#fff2cc.#d9ead3.#d0e0e3.#c9daf8.#cfe2f3.#d9d2e9.#ead1dc".split("."), bt = [
+var Tt = /* @__PURE__ */ "#000000.#434343.#666666.#999999.#b7b7b7.#cccccc.#d9d9d9.#efefef.#f3f3f3.#ffffff.#980000.#ff0000.#ff9900.#ffff00.#00ff00.#00ffff.#4a86e8.#0000ff.#9900ff.#ff00ff.#e6b8af.#f4cccc.#fce5cd.#fff2cc.#d9ead3.#d0e0e3.#c9daf8.#cfe2f3.#d9d2e9.#ead1dc".split("."), Et = [
 	"#f6f7f7",
 	"#f0f0f1",
 	"#dcdcde",
@@ -3134,25 +3177,25 @@ var yt = /* @__PURE__ */ "#000000.#434343.#666666.#999999.#b7b7b7.#cccccc.#d9d9d
 	"#ffe4e1",
 	"#e8f5e9",
 	"#e3f2fd"
-], xt = /* @__PURE__ */ "©.®.™.€.£.¥.¢.₺.§.†.‡.•.….–.—.°.±.÷.×.¼.½.¾.¹.².³.Ω.π.∞.≠.≤.≥.←.→.↑.↓.«.».“.”.‘.’.✓.✗.★".split("."), St = "zoro-recent-colors";
-function Ct() {
+], Dt = /* @__PURE__ */ "©.®.™.€.£.¥.¢.₺.§.†.‡.•.….–.—.°.±.÷.×.¼.½.¾.¹.².³.Ω.π.∞.≠.≤.≥.←.→.↑.↓.«.».“.”.‘.’.✓.✗.★".split("."), Ot = "zoro-recent-colors";
+function kt() {
 	try {
-		return JSON.parse(localStorage.getItem(St) ?? "[]").filter((e) => /^#[0-9a-f]{3,6}$/i.test(e)).slice(0, 10);
+		return JSON.parse(localStorage.getItem(Ot) ?? "[]").filter((e) => /^#[0-9a-f]{3,6}$/i.test(e)).slice(0, 10);
 	} catch {
 		return [];
 	}
 }
-function wt(e) {
+function At(e) {
 	try {
-		localStorage.setItem(St, JSON.stringify([e, ...Ct().filter((t) => t !== e)].slice(0, 10)));
+		localStorage.setItem(Ot, JSON.stringify([e, ...kt().filter((t) => t !== e)].slice(0, 10)));
 	} catch {}
 }
-var Tt = { backgroundColor: {
+var jt = { backgroundColor: {
 	default: null,
 	parseHTML: (e) => /background(?:-color)?:\s*([^;]+)/i.exec(e.getAttribute("style") ?? "")?.[1]?.trim() || e.getAttribute("data-background-color") || null,
 	renderHTML: (e) => e.backgroundColor ? { style: `background-color: ${e.backgroundColor}` } : {}
 } };
-function Et(e) {
+function Mt(e) {
 	return new Promise((t) => {
 		if (typeof Image > "u" || /jsdom/i.test(navigator.userAgent)) return t();
 		let n = new Image(), r = () => t(), i = setTimeout(r, 4e3);
@@ -3163,37 +3206,37 @@ function Et(e) {
 		}, n.src = e;
 	});
 }
-var Dt = [
+var Nt = [
 	"image/jpeg",
 	"image/png",
 	"image/gif",
 	"image/webp",
 	"image/avif"
-], Ot = 0;
-function kt(e) {
+], Pt = 0;
+function Ft(e) {
 	try {
 		return localStorage.getItem(e);
 	} catch {
 		return null;
 	}
 }
-function At(e, t) {
+function It(e, t) {
 	try {
 		t === null ? localStorage.removeItem(e) : localStorage.setItem(e, t);
 	} catch {}
 }
-var jt = class {
+var Lt = class {
 	static {
-		this.registerGroup = gt;
+		this.registerGroup = St;
 	}
 	static {
-		this.registerPreset = _t;
+		this.registerPreset = Ct;
 	}
 	static {
 		this.presets = Q;
 	}
 	constructor(e, t = {}) {
-		if (this.id = `zoro-${++Ot}`, this.mode = "visual", this.bubble = null, this.tableBar = null, this.slash = null, this.tableBarButtons = [], this.bubbleButtons = [], this.draftBar = null, this.buttons = [], this.widgets = [], this.viewEls = {}, this.fullscreen = !1, this.inputEl = null, this.replacedTextarea = null, this.cleanups = [], this.listeners = /* @__PURE__ */ new Map(), this.linkRange = null, this.rafId = 0, this.sourceCursor = {
+		if (this.id = `zoro-${++Pt}`, this.mode = "visual", this.bubble = null, this.tableBar = null, this.slash = null, this.tableBarButtons = [], this.bubbleButtons = [], this.draftBar = null, this.buttons = [], this.widgets = [], this.viewEls = {}, this.fullscreen = !1, this.inputEl = null, this.replacedTextarea = null, this.cleanups = [], this.listeners = /* @__PURE__ */ new Map(), this.linkRange = null, this.rafId = 0, this.sourceCursor = {
 			start: 0,
 			end: 0
 		}, this.sourceSnapshot = "", this.lastColors = {
@@ -3223,19 +3266,19 @@ var jt = class {
 			stickyToolbar: !0,
 			theme: "light",
 			...t
-		}, this.t = w(this.options.locale), this.groups = vt(this.options), this.adapter = this.options.media === !1 ? null : Te(this.options.media ?? {}), this.showRow2 = kt("zoro-kitchen-sink") === "1", this.linkPopover = new N("", () => {
+		}, this.t = D(this.options.locale), this.groups = wt(this.options), this.adapter = this.options.media === !1 ? null : Ae(this.options.media ?? {}), this.showRow2 = Ft("zoro-kitchen-sink") === "1", this.linkPopover = new F("", () => {
 			this.linkRange = null;
-		}), this.colorPopover = new N("");
+		}), this.colorPopover = new F("");
 		let r = this.options.content;
 		n instanceof HTMLTextAreaElement ? (r ??= n.value, this.inputEl = n, this.replacedTextarea = {
 			el: n,
 			display: n.style.display
-		}, n.style.display = "none", this.buildDom(), n.insertAdjacentElement("afterend", this.root)) : (this.buildDom(), n.appendChild(this.root)), !this.inputEl && this.options.input && (this.inputEl = typeof this.options.input == "string" ? document.querySelector(this.options.input) : this.options.input, this.inputEl && r == null && (r = this.inputEl.value)), this.initEditor(r ?? ""), de(), this.slash = new Ke(this.editor, this), this.renderToolbar(), this.bindEvents(), this.updateCounts(), this.setupDraft(r ?? ""), this.syncInput(), queueMicrotask(() => {
+		}, n.style.display = "none", this.buildDom(), n.insertAdjacentElement("afterend", this.root)) : (this.buildDom(), n.appendChild(this.root)), !this.inputEl && this.options.input && (this.inputEl = typeof this.options.input == "string" ? document.querySelector(this.options.input) : this.options.input, this.inputEl && r == null && (r = this.inputEl.value)), this.initEditor(r ?? ""), he(), this.slash = new Qe(this.editor, this), this.renderToolbar(), this.bindEvents(), this.updateCounts(), this.setupDraft(r ?? ""), this.syncInput(), queueMicrotask(() => {
 			this.destroyed || (this.options.onReady?.(this), this.emit("ready", this));
 		});
 	}
 	getHTML() {
-		return this.mode === "code" ? this.sourceEl.value.trim() : !this.editor || this.docIsEmpty() ? "" : at(this.editor.getHTML().replace(/<img[^>]*src="blob:[^"]*"[^>]*>/g, ""));
+		return this.mode === "code" ? this.sourceEl.value.trim() : !this.editor || this.docIsEmpty() ? "" : dt(this.editor.getHTML().replace(/<img[^>]*src="blob:[^"]*"[^>]*>/g, ""));
 	}
 	getText() {
 		return this.editor?.getText() ?? "";
@@ -3248,7 +3291,7 @@ var jt = class {
 		return e.childCount === 0 || e.childCount === 1 && !!t && t.type.name === "paragraph" && t.content.size === 0;
 	}
 	setContent(e, t = !1) {
-		this.destroyed || (this.editor.commands.setContent(e || "", { emitUpdate: !1 }), this.sourceEl.value = this.mode === "code" ? at(this.editor.getHTML()) : "", this.updateCounts(), this.syncInput(), t && this.fireChange());
+		this.destroyed || (this.editor.commands.setContent(e || "", { emitUpdate: !1 }), this.sourceEl.value = this.mode === "code" ? dt(this.editor.getHTML()) : "", this.updateCounts(), this.syncInput(), t && this.fireChange());
 	}
 	insertHTML(e) {
 		this.mode === "code" ? this.insertIntoSource(e) : this.editor.chain().focus().insertContent(e).run();
@@ -3275,13 +3318,13 @@ var jt = class {
 		this.setGroups(this.groups.filter((t) => !e.includes(t)));
 	}
 	setPreset(e, t) {
-		this.groups = vt({
+		this.groups = wt({
 			preset: e,
 			...t
 		}), this.renderToolbar();
 	}
 	setGroups(e) {
-		this.groups = vt({ groups: e }), this.renderToolbar();
+		this.groups = wt({ groups: e }), this.renderToolbar();
 	}
 	getGroups() {
 		return [...this.groups];
@@ -3295,7 +3338,7 @@ var jt = class {
 	setMode(e) {
 		if (!(e === this.mode || e === "code" && this.options.sourceMode === !1)) {
 			if (e === "code") {
-				let { html: e, blockStarts: t } = et(this.getHTML()), n = this.editor.state.selection.$from.index(0);
+				let { html: e, blockStarts: t } = ot(this.getHTML()), n = this.editor.state.selection.$from.index(0);
 				this.sourceEl.value = e, this.sourceSnapshot = e, this.mode = "code", this.contentEl.hidden = !0, this.sourceEl.hidden = !1, this.autosizeSource();
 				let r = t[Math.min(n, t.length - 1)] ?? 0;
 				this.sourceCursor = {
@@ -3308,7 +3351,7 @@ var jt = class {
 				let e = this.sourceEl.value, t = this.sourceEl.selectionStart ?? 0;
 				if (e !== this.sourceSnapshot) {
 					this.editor.commands.setContent(e, { emitUpdate: !1 });
-					let n = this.editor.state.doc, r = Math.min(tt(e, t), n.childCount - 1), i = 0;
+					let n = this.editor.state.doc, r = Math.min(st(e, t), n.childCount - 1), i = 0;
 					for (let e = 0; e < r; e++) i += n.child(e).nodeSize;
 					try {
 						this.editor.view.dispatch(this.editor.state.tr.setSelection(b.near(n.resolve(Math.min(i + 1, n.content.size)))).scrollIntoView());
@@ -3323,7 +3366,7 @@ var jt = class {
 		this.fullscreen = e ?? !this.fullscreen, this.root.classList.toggle("zoro-fullscreen", this.fullscreen), document.body.classList.toggle("zoro-scroll-lock", this.fullscreen || !!document.querySelector(".zoro-dialog-overlay"));
 		let t = this.viewEls.fullscreen;
 		if (t) {
-			t.innerHTML = this.fullscreen ? O.minimize : O.maximize;
+			t.innerHTML = this.fullscreen ? j.minimize : j.maximize;
 			let e = this.fullscreen ? this.t.exitFullscreen : this.t.fullscreen;
 			t.setAttribute("data-tip", e), t.setAttribute("aria-label", e), t.setAttribute("aria-pressed", String(this.fullscreen));
 		}
@@ -3335,17 +3378,17 @@ var jt = class {
 			onSelect: (e) => this.insertMedia(e)
 		});
 		else if (this.options.onImageUpload) {
-			let e = k("input", {
+			let e = M("input", {
 				type: "file",
-				accept: (this.mediaOpts.accept ?? Dt).join(","),
+				accept: (this.mediaOpts.accept ?? Nt).join(","),
 				multiple: !0
 			});
 			e.addEventListener("change", () => this.handleFiles(Array.from(e.files ?? []), null)), e.click();
-		} else F(this.t.uploadNotConfigured, "error", this.themeClass);
+		} else L(this.t.uploadNotConfigured, "error", this.themeClass);
 	}
 	finder(e = {}) {
 		if (!this.adapter) return null;
-		let t = this.mediaOpts, n = new Ee({
+		let t = this.mediaOpts, n = new je({
 			adapter: this.adapter,
 			messages: this.t,
 			themeClass: this.themeClass,
@@ -3364,13 +3407,13 @@ var jt = class {
 		let t = this.mediaOpts.insertVariant ?? "lg";
 		if (this.mode === "code") {
 			for (let n of e) {
-				let e = G(n, t);
+				let e = K(n, t);
 				this.insertIntoSource(`<img src="${J(e.src)}" alt="${J(n.insertAlt)}"${e.srcset ? ` srcset="${J(e.srcset)}" sizes="(max-width: 768px) 100vw, 768px"` : ""}>`);
 			}
 			return;
 		}
 		let n = e.map((e) => {
-			let n = G(e, t);
+			let n = K(e, t);
 			return {
 				type: "image",
 				attrs: {
@@ -3386,7 +3429,7 @@ var jt = class {
 	}
 	clearDraft() {
 		let e = this.draftKey;
-		e && At(e, null), this.draftBar?.remove(), this.draftBar = null;
+		e && It(e, null), this.draftBar?.remove(), this.draftBar = null;
 	}
 	destroy() {
 		if (!this.destroyed) {
@@ -3401,7 +3444,14 @@ var jt = class {
 	}
 	get themeClass() {
 		let e = this.options.theme;
-		return [`zoro-skin-${this.skin}`, e && e !== "light" ? `zoro-theme-${e}` : ""].filter(Boolean).join(" ");
+		return [
+			`zoro-skin-${this.skin}`,
+			e && e !== "light" ? `zoro-theme-${e}` : "",
+			this.dir === "rtl" ? "zoro-rtl" : ""
+		].filter(Boolean).join(" ");
+	}
+	get dir() {
+		return E(this.options.locale);
 	}
 	get skin() {
 		return this.options.skin === "classic" ? "classic" : "modern";
@@ -3421,7 +3471,7 @@ var jt = class {
 	}
 	buildDom() {
 		let e = this.t;
-		this.root = k("div", {
+		this.root = M("div", {
 			class: [
 				"zoro-root",
 				"zoro-editor-wrapper",
@@ -3429,20 +3479,21 @@ var jt = class {
 				this.options.readOnly ? "zoro-readonly" : "",
 				this.options.className ?? ""
 			].filter(Boolean).join(" "),
+			dir: this.dir,
 			id: this.id
 		});
 		let t = this.options.stickyToolbar;
-		t !== !1 && (this.root.classList.add("zoro-sticky"), typeof t == "number" && this.root.style.setProperty("--zoro-sticky-top", `${t}px`)), this.topBar = k("div", { class: "zoro-topbar" }), this.toolbarEl = k("div", {
+		t !== !1 && (this.root.classList.add("zoro-sticky"), typeof t == "number" && this.root.style.setProperty("--zoro-sticky-top", `${t}px`)), this.topBar = M("div", { class: "zoro-topbar" }), this.toolbarEl = M("div", {
 			class: "zoro-toolbar",
 			role: "toolbar",
 			"aria-label": e.toolbarLabel,
 			"aria-controls": `${this.id}-content`
-		}), this.row1 = k("div", { class: "zoro-toolbar-row zoro-row1" }), this.row2 = k("div", { class: "zoro-toolbar-row zoro-row2" }), this.toolbarEl.append(this.row1, this.row2), this.contentEl = k("div", {
+		}), this.row1 = M("div", { class: "zoro-toolbar-row zoro-row1" }), this.row2 = M("div", { class: "zoro-toolbar-row zoro-row2" }), this.toolbarEl.append(this.row1, this.row2), this.contentEl = M("div", {
 			class: "zoro-content",
 			id: `${this.id}-content`
 		});
 		let n = this.options.height;
-		this.contentEl.style.setProperty("--zoro-height", `${n}px`), this.options.autoGrow || this.contentEl.classList.add("zoro-fixed-height"), this.sourceEl = k("textarea", {
+		this.contentEl.style.setProperty("--zoro-height", `${n}px`), this.options.autoGrow || this.contentEl.classList.add("zoro-fixed-height"), this.sourceEl = M("textarea", {
 			class: "zoro-source",
 			hidden: !0,
 			spellcheck: !1,
@@ -3450,13 +3501,13 @@ var jt = class {
 			"aria-label": e.source,
 			autocapitalize: "off",
 			autocomplete: "off"
-		}), this.sourceEl.style.minHeight = `${n}px`, this.sourceEl.readOnly = !!this.options.readOnly, this.statusEl = k("div", {
+		}), this.sourceEl.style.minHeight = `${n}px`, this.sourceEl.readOnly = !!this.options.readOnly, this.statusEl = M("div", {
 			class: "zoro-status-bar",
 			"aria-live": "off"
-		}), this.pathEl = k("div", {
+		}), this.pathEl = M("div", {
 			class: "zoro-path",
 			"aria-label": e.path
-		}), this.countsEl = k("div", { class: "zoro-counts" }), this.statusEl.append(this.pathEl, this.countsEl), this.options.statusBar === !1 && (this.statusEl.hidden = !0), this.frame = k("div", { class: "zoro-frame" }, this.toolbarEl, this.contentEl, this.sourceEl, this.statusEl), this.root.append(this.topBar, this.frame);
+		}), this.countsEl = M("div", { class: "zoro-counts" }), this.statusEl.append(this.pathEl, this.countsEl), this.options.statusBar === !1 && (this.statusEl.hidden = !0), this.frame = M("div", { class: "zoro-frame" }, this.toolbarEl, this.contentEl, this.sourceEl, this.statusEl), this.root.append(this.topBar, this.frame);
 	}
 	initEditor(t) {
 		let n = this.t, r = this.groups.flatMap((e) => $(e)?.extensions ?? []), y = a.extend({ addAttributes() {
@@ -3489,7 +3540,7 @@ var jt = class {
 				undoRedo: { depth: 200 }
 			}),
 			y,
-			ge.configure({
+			be.configure({
 				messages: n,
 				themeClass: () => this.themeClass
 			}),
@@ -3507,13 +3558,13 @@ var jt = class {
 			d.extend({ addAttributes() {
 				return {
 					...this.parent?.(),
-					...Tt
+					...jt
 				};
 			} }),
 			f.extend({ addAttributes() {
 				return {
 					...this.parent?.(),
-					...Tt
+					...jt
 				};
 			} }),
 			m.configure({
@@ -3542,8 +3593,8 @@ var jt = class {
 				},
 				handleKeyDown: (e, t) => this.slashEnabled && this.slash ? this.slash.onKeyDown(t) : !1,
 				transformPastedHTML: (e) => {
-					let t = Ve(e);
-					return t.droppedLocalImages && F(T(n.localImagesDropped, { n: t.droppedLocalImages }), "info", this.themeClass, 5e3), t.html;
+					let t = qe(e);
+					return t.droppedLocalImages && L(O(n.localImagesDropped, { n: t.droppedLocalImages }), "info", this.themeClass, 5e3), t.html;
 				},
 				handlePaste: (e, t) => {
 					let n = t.clipboardData, r = Array.from(n?.files ?? []);
@@ -3598,8 +3649,8 @@ var jt = class {
 	}
 	updateCounts() {
 		if (this.options.statusBar === !1) return;
-		let e = this.t, t = this.mode === "visual" && !!this.editor, n = t ? "" : this.sourceEl.value, r = t ? this.editor.storage.characterCount.words() : rt(n), i = t ? this.editor.storage.characterCount.characters() : it(n), a = this.options.maxLength;
-		this.countsEl.innerHTML = "", this.countsEl.append(k("span", {}, `${r} ${e.words}`), k("span", { class: a && i >= a ? "zoro-limit" : "" }, a ? `${i} / ${a} ${e.chars}` : `${i} ${e.chars}`));
+		let e = this.t, t = this.mode === "visual" && !!this.editor, n = t ? "" : this.sourceEl.value, r = t ? this.editor.storage.characterCount.words() : lt(n), i = t ? this.editor.storage.characterCount.characters() : ut(n), a = this.options.maxLength;
+		this.countsEl.innerHTML = "", this.countsEl.append(M("span", {}, `${r} ${e.words}`), M("span", { class: a && i >= a ? "zoro-limit" : "" }, a ? `${i} / ${a} ${e.chars}` : `${i} ${e.chars}`));
 	}
 	updatePath() {
 		if (this.options.statusBar === !1 || !this.editor) return;
@@ -3657,7 +3708,7 @@ var jt = class {
 		], t = [...$("format")?.items, ...$("link")?.items], n = e.map((e) => t.find((t) => t.name === e)).filter(Boolean);
 		return this.hasGroup("color") && n.push({
 			name: "bubbleHighlight",
-			icon: O.bgColor("#ffe066"),
+			icon: j.bgColor("#ffe066"),
 			title: (e) => e.bgColor,
 			run: ({ editor: e }) => X(e, "toggleHighlight", { color: "#ffe066" }),
 			isActive: ({ editor: e }) => e.isActive("highlight")
@@ -3669,7 +3720,7 @@ var jt = class {
 		if (!this.bubbleEnabled || !e || this.mode !== "visual" || !e.isEditable || this.destroyed) return this.hideBubble();
 		let { selection: t } = e.state;
 		if (t.empty || t.node || e.isActive("codeBlock") || !e.state.doc.textBetween(t.from, t.to, " ").trim() || !e.view.hasFocus() || this.linkPopover.isOpen) return this.hideBubble();
-		this.bubble || (this.bubble = k("div", {
+		this.bubble || (this.bubble = M("div", {
 			class: `zoro-root zoro-bubble ${this.themeClass}`,
 			role: "toolbar",
 			"aria-label": this.t.formatMenu
@@ -3697,68 +3748,68 @@ var jt = class {
 		return [
 			{
 				name: "tRowBefore",
-				icon: O.rowAbove,
+				icon: j.rowAbove,
 				title: (e) => e.tableAddRowBefore,
 				run: e((e) => e.addRowBefore())
 			},
 			{
 				name: "tRowAfter",
-				icon: O.rowBelow,
+				icon: j.rowBelow,
 				title: (e) => e.tableAddRowAfter,
 				run: e((e) => e.addRowAfter())
 			},
 			{
 				name: "tRowDelete",
-				icon: O.rowDelete,
+				icon: j.rowDelete,
 				title: (e) => e.tableDeleteRow,
 				run: e((e) => e.deleteRow())
 			},
 			{
 				name: "tColBefore",
-				icon: O.colLeft,
+				icon: j.colLeft,
 				title: (e) => e.tableAddColBefore,
 				run: e((e) => e.addColumnBefore())
 			},
 			{
 				name: "tColAfter",
-				icon: O.colRight,
+				icon: j.colRight,
 				title: (e) => e.tableAddColAfter,
 				run: e((e) => e.addColumnAfter())
 			},
 			{
 				name: "tColDelete",
-				icon: O.colDelete,
+				icon: j.colDelete,
 				title: (e) => e.tableDeleteCol,
 				run: e((e) => e.deleteColumn())
 			},
 			{
 				name: "tMerge",
-				icon: O.merge,
+				icon: j.merge,
 				title: (e) => e.tableMerge,
 				run: e((e) => e.mergeOrSplit()),
 				isEnabled: ((e) => ({ editor: t }) => !!e(t.can().chain().focus()).run())((e) => e.mergeOrSplit())
 			},
 			{
 				name: "tHeaderRow",
-				icon: O.headerRow,
+				icon: j.headerRow,
 				title: (e) => e.tableToggleHeader,
 				run: e((e) => e.toggleHeaderRow())
 			},
 			{
 				name: "tHeaderCol",
-				icon: O.headerCol,
+				icon: j.headerCol,
 				title: (e) => e.tableToggleHeaderCol,
 				run: e((e) => e.toggleHeaderColumn())
 			},
 			{
 				name: "tCellBg",
-				icon: O.bgColor("#cfe2f3"),
+				icon: j.bgColor("#cfe2f3"),
 				title: (e) => e.tableCellBg,
 				run: ({ zoro: e }, t) => e.openCellColor(t.currentTarget)
 			},
 			{
 				name: "tDelete",
-				icon: O.trash,
+				icon: j.trash,
 				title: (e) => e.tableDelete,
 				run: e((e) => e.deleteTable())
 			}
@@ -3775,7 +3826,7 @@ var jt = class {
 		let r = n >= 0 ? e.view.nodeDOM(n) : null;
 		if (!r) return this.hideTableBar();
 		if (!this.tableBar) {
-			this.tableBar = k("div", {
+			this.tableBar = M("div", {
 				class: `zoro-root zoro-context-bar ${this.themeClass}`,
 				role: "toolbar",
 				"aria-label": this.t.tableToolbar
@@ -3789,7 +3840,7 @@ var jt = class {
 			], t = this.tableDefs();
 			this.tableBarButtons = [];
 			for (let [n, r] of e) {
-				let e = k("div", { class: "zoro-group" });
+				let e = M("div", { class: "zoro-group" });
 				for (let i of t.slice(n, r)) {
 					let t = this.makeButton(i);
 					i.name === "tDelete" && t.classList.add("zoro-danger-btn"), this.tableBarButtons.push({
@@ -3815,10 +3866,10 @@ var jt = class {
 		this.tableBar?.remove(), this.tableBar = null, this.tableBarButtons = [];
 	}
 	openCellColor(e) {
-		let t = this.t, n = new N(this.themeClass), r = (e) => {
+		let t = this.t, n = new F(this.themeClass), r = (e) => {
 			n.close(), this.editor.chain().focus().setCellAttribute("backgroundColor", e).run();
-		}, i = k("div", { class: "zoro-color-grid" });
-		for (let e of bt) i.append(k("button", {
+		}, i = M("div", { class: "zoro-color-grid" });
+		for (let e of Et) i.append(M("button", {
 			type: "button",
 			class: "zoro-color-swatch",
 			title: e,
@@ -3827,7 +3878,7 @@ var jt = class {
 			onmousedown: (e) => e.preventDefault(),
 			onclick: () => r(e)
 		}));
-		n.open(k("div", {}, i, k("button", {
+		n.open(M("div", {}, i, M("button", {
 			type: "button",
 			class: "zoro-btn zoro-btn-ghost zoro-btn-sm zoro-btn-block",
 			onmousedown: (e) => e.preventDefault(),
@@ -3848,15 +3899,15 @@ var jt = class {
 		let e = this.t;
 		for (let e of this.widgets) e.destroy?.();
 		this.widgets = [], this.buttons = [], this.viewEls = {}, this.row1.innerHTML = "", this.row2.innerHTML = "", this.topBar.innerHTML = "";
-		let t = k("div", { class: "zoro-toolbar-controls" }), n = k("div", { class: "zoro-toolbar-controls" }), r = k("div", { class: "zoro-toolbar-end" });
+		let t = M("div", { class: "zoro-toolbar-controls" }), n = M("div", { class: "zoro-toolbar-controls" }), r = M("div", { class: "zoro-toolbar-end" });
 		for (let e of this.groups) {
 			if (e === "view" || e === "media" && !this.mediaAvailable) continue;
 			let i = $(e);
 			if (!i) continue;
-			let a = i.row ?? 1, o = k("div", {
+			let a = i.row ?? 1, o = M("div", {
 				class: "zoro-group",
 				"data-group": e
-			}), s = k("div", {
+			}), s = M("div", {
 				class: "zoro-group",
 				"data-group": e
 			});
@@ -3877,7 +3928,7 @@ var jt = class {
 		if (i) {
 			let n = this.makeButton({
 				name: "toolbarToggle",
-				icon: this.skin === "modern" ? O.more : O.toolbarToggle,
+				icon: this.skin === "modern" ? j.more : j.toolbarToggle,
 				title: this.skin === "modern" ? e.more : e.toolbarToggle,
 				run: () => this.toggleRow2(),
 				isActive: () => this.showRow2
@@ -3891,46 +3942,46 @@ var jt = class {
 					run: () => {},
 					isActive: () => this.showRow2
 				}
-			}), this.viewEls.toggle = n, t.append(k("div", { class: "zoro-group" }, n));
+			}), this.viewEls.toggle = n, t.append(M("div", { class: "zoro-group" }, n));
 		}
 		if (this.row1.append(t), this.groups.includes("view")) {
-			let t = k("div", { class: "zoro-toolbar-end" });
-			this.options.sourceMode !== !1 && (this.viewEls.visual = k("button", {
+			let t = M("div", { class: "zoro-toolbar-end" });
+			this.options.sourceMode !== !1 && (this.viewEls.visual = M("button", {
 				type: "button",
 				class: "active",
 				"aria-pressed": "true",
-				html: `${O.eye}<span>${e.visual}</span>`,
+				html: `${j.eye}<span>${e.visual}</span>`,
 				onclick: () => this.setMode("visual")
-			}), this.viewEls.code = k("button", {
+			}), this.viewEls.code = M("button", {
 				type: "button",
 				"aria-pressed": "false",
-				html: `${O.codeSmall}<span>${e.source}</span>`,
+				html: `${j.codeSmall}<span>${e.source}</span>`,
 				onclick: () => this.setMode("code")
-			}), this.viewEls.visual.classList.toggle("active", this.mode === "visual"), this.viewEls.code.classList.toggle("active", this.mode === "code"), t.append(k("div", {
+			}), this.viewEls.visual.classList.toggle("active", this.mode === "visual"), this.viewEls.code.classList.toggle("active", this.mode === "code"), t.append(M("div", {
 				class: "zoro-tab-toggle",
 				role: "group"
-			}, this.viewEls.visual, k("div", { class: "zoro-tab-toggle-divider" }), this.viewEls.code))), this.viewEls.fullscreen = this.makeButton({
+			}, this.viewEls.visual, M("div", { class: "zoro-tab-toggle-divider" }), this.viewEls.code))), this.viewEls.fullscreen = this.makeButton({
 				name: "fullscreen",
-				icon: this.fullscreen ? O.minimize : O.maximize,
+				icon: this.fullscreen ? j.minimize : j.maximize,
 				title: this.fullscreen ? e.exitFullscreen : e.fullscreen,
 				run: () => this.toggleFullscreen(),
 				keepFocus: !1
 			}), t.append(this.viewEls.fullscreen), this.row1.append(t);
 		}
-		this.row2.append(n, r), this.row2.hidden = !(i && this.showRow2), this.toolbarEl.hidden = !this.row1.textContent && !t.childElementCount && !this.groups.includes("view"), this.groups.includes("media") && this.mediaAvailable && this.topBar.append(k("button", {
+		this.row2.append(n, r), this.row2.hidden = !(i && this.showRow2), this.toolbarEl.hidden = !this.row1.textContent && !t.childElementCount && !this.groups.includes("view"), this.groups.includes("media") && this.mediaAvailable && this.topBar.append(M("button", {
 			type: "button",
 			class: "zoro-btn zoro-btn-secondary zoro-btn-sm zoro-add-media",
-			html: `${O.imagePlus}<span>${e.addMedia}</span>`,
+			html: `${j.imagePlus}<span>${e.addMedia}</span>`,
 			onclick: () => this.openMedia()
 		})), this.topBar.hidden = !this.topBar.childElementCount, this.setupRovingTabindex(), this.scheduleToolbarUpdate();
 	}
 	makeButton(e) {
-		let t = typeof e.title == "function" ? e.title(this.t) : e.title, n = k("button", {
+		let t = typeof e.title == "function" ? e.title(this.t) : e.title, n = M("button", {
 			type: "button",
 			class: "zoro-toolbar-btn",
 			"data-tip": t,
-			"aria-label": oe(t).label,
-			"aria-keyshortcuts": oe(t).keys || null,
+			"aria-label": ue(t).label,
+			"aria-keyshortcuts": ue(t).keys || null,
 			"data-name": e.name,
 			html: e.icon,
 			tabindex: "-1"
@@ -3946,7 +3997,7 @@ var jt = class {
 		(this.toolbarEl.querySelector("[tabindex=\"0\"]") ?? this.toolbarEl.querySelector("button"))?.focus();
 	}
 	toggleRow2(e) {
-		this.showRow2 = e ?? !this.showRow2, At("zoro-kitchen-sink", this.showRow2 ? "1" : "0"), this.row2.hidden = !this.showRow2 || !this.row2.querySelector("button"), this.scheduleToolbarUpdate();
+		this.showRow2 = e ?? !this.showRow2, It("zoro-kitchen-sink", this.showRow2 ? "1" : "0"), this.row2.hidden = !this.showRow2 || !this.row2.querySelector("button"), this.scheduleToolbarUpdate();
 	}
 	scheduleToolbarUpdate() {
 		this.rafId || this.destroyed || (this.rafId = requestAnimationFrame(() => {
@@ -4032,7 +4083,7 @@ var jt = class {
 			KeyM: () => this.mediaAvailable && this.openMedia()
 		};
 		if (i) {
-			for (let e = 1; e <= 6; e++) a[`Digit${e}`] = () => dt(r, e);
+			for (let e = 1; e <= 6; e++) a[`Digit${e}`] = () => _t(r, e);
 			Object.assign(a, {
 				Digit7: () => r.chain().focus().setParagraph().run(),
 				KeyQ: () => r.chain().focus().toggleBlockquote().run(),
@@ -4082,31 +4133,31 @@ var jt = class {
 		if (!t) return;
 		let n = null;
 		try {
-			n = JSON.parse(kt(t) ?? "null");
+			n = JSON.parse(Ft(t) ?? "null");
 		} catch {}
-		if (!n?.html || n.html.trim() === at(e).trim()) return;
+		if (!n?.html || n.html.trim() === dt(e).trim()) return;
 		let r = this.t, i = new Date(n.at).toLocaleString(void 0, {
 			dateStyle: "medium",
 			timeStyle: "short"
 		});
-		this.draftBar = k("div", {
+		this.draftBar = M("div", {
 			class: "zoro-draft-bar",
 			role: "status"
-		}, k("span", {
+		}, M("span", {
 			class: "zoro-draft-icon",
-			html: O.info
-		}), k("span", { class: "zoro-draft-text" }, r.draftFound, " ", k("small", {}, i)), k("button", {
+			html: j.info
+		}), M("span", { class: "zoro-draft-text" }, r.draftFound, " ", M("small", {}, i)), M("button", {
 			type: "button",
 			class: "zoro-link-action",
 			onclick: () => {
 				this.setContent(n.html, !0), this.draftBar?.remove(), this.draftBar = null;
 			}
-		}, r.restore), k("button", {
+		}, r.restore), M("button", {
 			type: "button",
 			class: "zoro-icon-action",
 			"aria-label": r.dismiss,
 			title: r.dismiss,
-			html: O.close,
+			html: j.close,
 			onclick: () => this.clearDraft()
 		})), this.frame.insertBefore(this.draftBar, this.contentEl);
 	}
@@ -4114,7 +4165,7 @@ var jt = class {
 		let t = this.draftKey;
 		if (!t) return;
 		let n = this.options.autosave, r = typeof n == "object" && n.delay ? n.delay : 800;
-		clearTimeout(this.draftTimer), this.draftTimer = setTimeout(() => At(t, JSON.stringify({
+		clearTimeout(this.draftTimer), this.draftTimer = setTimeout(() => It(t, JSON.stringify({
 			html: e,
 			at: Date.now()
 		})), r);
@@ -4133,19 +4184,19 @@ var jt = class {
 			to: o
 		}), !0;
 		let s = i && r.state.selection.$from.parent.content.size === 0;
-		return s && this.hasGroup("embed") && lt(t) ? (r.chain().focus().setYoutubeVideo({ src: t }).run(), !0) : s && /\.(jpe?g|png|gif|webp|avif)(\?[^\s]*)?$/i.test(t) ? (r.chain().focus().setImage({
+		return s && this.hasGroup("embed") && ht(t) ? (r.chain().focus().setYoutubeVideo({ src: t }).run(), !0) : s && /\.(jpe?g|png|gif|webp|avif)(\?[^\s]*)?$/i.test(t) ? (r.chain().focus().setImage({
 			src: t,
 			alt: ""
 		}).run(), !0) : !1;
 	}
 	handleFiles(e, t) {
-		let n = this.mediaOpts.accept ?? Dt, r = e.filter((e) => e.type.startsWith("image/"));
+		let n = this.mediaOpts.accept ?? Nt, r = e.filter((e) => e.type.startsWith("image/"));
 		if (!r.length) return !1;
 		if (this.options.media === !1 || this.options.readOnly) return !0;
-		let i = this.t, a = this.mediaOpts.maxSizeMB ?? 20, o = r.filter((e) => n.includes(e.type) ? e.size > a * 1048576 ? (F(`${e.name}: ${T(i.tooLarge, { max: a })}`, "error", this.themeClass), !1) : !0 : (F(`${e.name}: ${i.badType}`, "error", this.themeClass), !1));
+		let i = this.t, a = this.mediaOpts.maxSizeMB ?? 20, o = r.filter((e) => n.includes(e.type) ? e.size > a * 1048576 ? (L(`${e.name}: ${O(i.tooLarge, { max: a })}`, "error", this.themeClass), !1) : !0 : (L(`${e.name}: ${i.badType}`, "error", this.themeClass), !1));
 		if (!o.length) return !0;
 		if (this.adapter) {
-			let e = this.mediaOpts.requireAlt !== !1, n = o.filter((t) => e && !K(t.name)), r = o.filter((e) => !n.includes(e));
+			let e = this.mediaOpts.requireAlt !== !1, n = o.filter((t) => e && !Me(t.name)), r = o.filter((e) => !n.includes(e));
 			n.length && (t !== null && this.editor.commands.setTextSelection(t), this.finder({
 				multiple: !0,
 				files: n,
@@ -4155,7 +4206,7 @@ var jt = class {
 				alt: t,
 				onProgress: n
 			}).then((e) => {
-				let n = G(e, this.mediaOpts.insertVariant ?? "lg");
+				let n = K(e, this.mediaOpts.insertVariant ?? "lg");
 				return {
 					src: n.src,
 					srcset: n.srcset,
@@ -4180,11 +4231,11 @@ var jt = class {
 			});
 			return !0;
 		}
-		return F(i.uploadNotConfigured, "error", this.themeClass), !0;
+		return L(i.uploadNotConfigured, "error", this.themeClass), !0;
 	}
 	async uploadWithPlaceholder(e, t, n) {
-		let r = `up-${++Ot}`, i = URL.createObjectURL(e), a = K(e.name), { state: o, view: s } = this.editor;
-		B.set(r, { progress: this.adapter ? 0 : null });
+		let r = `up-${++Pt}`, i = URL.createObjectURL(e), a = Me(e.name), { state: o, view: s } = this.editor;
+		H.set(r, { progress: this.adapter ? 0 : null });
 		let c = o.schema.nodes.image.create({
 			src: i,
 			alt: a,
@@ -4192,26 +4243,26 @@ var jt = class {
 		}), l = t === null ? o.tr.replaceSelectionWith(c) : o.tr.insert(Math.min(t, o.doc.content.size), c);
 		s.dispatch(l.setMeta("addToHistory", !1));
 		let u = async () => {
-			B.set(r, {
+			H.set(r, {
 				progress: this.adapter ? 0 : null,
 				error: void 0
 			});
 			try {
-				let t = await n(e, a, (e) => B.set(r, { progress: Math.min(99, Math.round(e)) }));
-				if (this.destroyed || (B.set(r, { progress: 100 }), await Et(t.src), this.destroyed)) return;
+				let t = await n(e, a, (e) => H.set(r, { progress: Math.min(99, Math.round(e)) }));
+				if (this.destroyed || (H.set(r, { progress: 100 }), await Mt(t.src), this.destroyed)) return;
 				this.replaceUploadPlaceholder(r, {
 					src: t.src,
 					srcset: t.srcset,
 					alt: t.alt || a,
 					sizes: t.srcset ? "(max-width: 768px) 100vw, 768px" : null
-				}), B.delete(r), URL.revokeObjectURL(i);
+				}), H.delete(r), URL.revokeObjectURL(i);
 			} catch (e) {
 				if (this.destroyed) return;
-				B.set(r, {
+				H.set(r, {
 					error: e?.message || "",
 					retry: () => void u(),
 					remove: () => {
-						this.replaceUploadPlaceholder(r, null), B.delete(r), URL.revokeObjectURL(i);
+						this.replaceUploadPlaceholder(r, null), H.delete(r), URL.revokeObjectURL(i);
 					}
 				});
 			}
@@ -4240,12 +4291,12 @@ var jt = class {
 		if (t.isActive("link") && (c = n(r.doc.resolve(i), s) ?? null), !c && !o && (c = {
 			from: i,
 			to: a
-		}), !c && e && (c = ut(t)), !c && !e) return;
+		}), !c && e && (c = gt(t)), !c && !e) return;
 		this.linkRange = c ?? {
 			from: i,
 			to: a
 		};
-		let l = t.getAttributes("link"), u = this.t, d = k("input", {
+		let l = t.getAttributes("link"), u = this.t, d = M("input", {
 			type: "url",
 			inputmode: "url",
 			placeholder: u.urlPlaceholder,
@@ -4262,7 +4313,7 @@ var jt = class {
 		d.addEventListener("keydown", (e) => {
 			e.key === "Enter" && (e.preventDefault(), f()), e.key === "Escape" && (e.preventDefault(), this.linkPopover.close(), t.commands.focus());
 		});
-		let p = (e, t, n, r = "") => k("button", {
+		let p = (e, t, n, r = "") => M("button", {
 			type: "button",
 			class: `zoro-link-btn ${r}`,
 			title: t,
@@ -4270,20 +4321,20 @@ var jt = class {
 			html: e,
 			onmousedown: (e) => e.preventDefault(),
 			onclick: n
-		}), m = k("div", { class: "zoro-link-row" }, k("label", { class: "zoro-link-field" }, k("span", {
+		}), m = M("div", { class: "zoro-link-row" }, M("label", { class: "zoro-link-field" }, M("span", {
 			class: "zoro-link-field-icon",
-			html: O.linkSmall
-		}), d), p(O.checkBig, u.apply, f, "zoro-link-apply")), h = k("div", { class: "zoro-link-tools" });
-		l.href && h.append(p(O.external, u.openLink, () => {
+			html: j.linkSmall
+		}), d), p(j.checkBig, u.apply, f, "zoro-link-apply")), h = M("div", { class: "zoro-link-tools" });
+		l.href && h.append(p(j.external, u.openLink, () => {
 			Y(l.href) && window.open(l.href, "_blank", "noopener");
-		}), p(O.unlink, u.unlink, () => {
+		}), p(j.unlink, u.unlink, () => {
 			this.linkRange && t.chain().focus().setTextSelection(this.linkRange).unsetLink().run(), this.linkPopover.close();
-		}), k("span", { class: "zoro-link-sep" })), h.append(p(O.settings, u.advanced, () => this.openLinkDialog(d.value))), m.append(k("span", { class: "zoro-link-sep" }), h);
-		let g = k("div", { class: "zoro-link-popover-inner" }, m);
+		}), M("span", { class: "zoro-link-sep" })), h.append(p(j.settings, u.advanced, () => this.openLinkDialog(d.value))), m.append(M("span", { class: "zoro-link-sep" }), h);
+		let g = M("div", { class: "zoro-link-popover-inner" }, m);
 		this.linkPopover.close(), this.linkRange = c ?? {
 			from: i,
 			to: a
-		}, this.linkPopover = new N(this.themeClass, () => {
+		}, this.linkPopover = new F(this.themeClass, () => {
 			this.linkRange = null;
 		});
 		let _ = this.linkRange, v = t.view.coordsAtPos(_.from), y = t.view.coordsAtPos(_.to), b = new DOMRect(Math.min(v.left, y.left), v.top, Math.max(1, Math.abs(y.right - v.left)), y.bottom - v.top);
@@ -4299,33 +4350,33 @@ var jt = class {
 			to: t.state.selection.to
 		}, i = t.getAttributes("link"), a = t.state.doc.textBetween(r.from, r.to, " ");
 		this.linkPopover.close(), this.linkRange = r;
-		let o = k("input", {
+		let o = M("input", {
 			type: "url",
 			inputmode: "url",
 			class: "zoro-input",
 			value: e || i.href || "",
 			placeholder: "https://ornek.com/sayfa"
-		}), s = k("input", {
+		}), s = M("input", {
 			type: "text",
 			class: "zoro-input",
 			value: a
-		}), c = k("input", {
+		}), c = M("input", {
 			type: "text",
 			class: "zoro-input",
 			value: i.title ?? ""
 		}), l = (e, t) => {
-			let n = k("input", {
+			let n = M("input", {
 				type: "checkbox",
 				checked: t
 			});
 			return {
 				input: n,
-				el: k("label", { class: "zoro-checkbox-group" }, n, k("span", {}, e))
+				el: M("label", { class: "zoro-checkbox-group" }, n, M("span", {}, e))
 			};
-		}, u = l(n.linkNewTab, i.target === "_blank"), d = l(n.linkNofollow, /nofollow/.test(i.rel ?? "")), f = l(n.linkSponsored, /sponsored/.test(i.rel ?? "")), p = k("p", {
+		}, u = l(n.linkNewTab, i.target === "_blank"), d = l(n.linkNofollow, /nofollow/.test(i.rel ?? "")), f = l(n.linkSponsored, /sponsored/.test(i.rel ?? "")), p = M("p", {
 			class: "zoro-field-error",
 			role: "alert"
-		}), m = k("div", { class: "zoro-form" }, k("div", { class: "zoro-field" }, k("label", { class: "zoro-label" }, n.linkUrl), o), k("div", { class: "zoro-grid-2" }, k("div", { class: "zoro-field" }, k("label", { class: "zoro-label" }, n.linkText), s), k("div", { class: "zoro-field" }, k("label", { class: "zoro-label" }, n.linkTitleAttr), c)), k("div", { class: "zoro-field" }, u.el, d.el, f.el), p), h = new M({
+		}), m = M("div", { class: "zoro-form" }, M("div", { class: "zoro-field" }, M("label", { class: "zoro-label" }, n.linkUrl), o), M("div", { class: "zoro-grid-2" }, M("div", { class: "zoro-field" }, M("label", { class: "zoro-label" }, n.linkText), s), M("div", { class: "zoro-field" }, M("label", { class: "zoro-label" }, n.linkTitleAttr), c)), M("div", { class: "zoro-field" }, u.el, d.el, f.el), p), h = new P({
 			title: n.linkTitle,
 			size: "md",
 			themeClass: this.themeClass,
@@ -4347,20 +4398,20 @@ var jt = class {
 		};
 		o.addEventListener("keydown", (e) => {
 			e.key === "Enter" && (e.preventDefault(), g());
-		}), h.addFooter(k("div", { class: "zoro-btn-row" }, k("button", {
+		}), h.addFooter(M("div", { class: "zoro-btn-row" }, M("button", {
 			type: "button",
 			class: "zoro-btn zoro-btn-secondary",
 			onclick: () => h.close()
-		}, n.cancel), k("button", {
+		}, n.cancel), M("button", {
 			type: "button",
 			class: "zoro-btn zoro-btn-primary",
 			onclick: g
 		}, n.linkTitle)));
 	}
 	applyLink(e, t = this.linkRange, n) {
-		let r = this.editor, i = st(e.href);
+		let r = this.editor, i = pt(e.href);
 		if (!i) return t && t.from !== t.to && r.chain().focus().setTextSelection(t).unsetLink().run(), this.linkPopover.close(), !0;
-		if (!Y(i)) return F(this.t.linkInvalid, "error", this.themeClass), !1;
+		if (!Y(i)) return L(this.t.linkInvalid, "error", this.themeClass), !1;
 		let a = [
 			e.newTab ? "noopener noreferrer" : "",
 			e.nofollow ? "nofollow" : "",
@@ -4385,8 +4436,8 @@ var jt = class {
 	}
 	openColorPicker(e, t) {
 		let n = this.t, r = (n) => {
-			this.colorPopover.close(), this.lastColors[t] = n, e.innerHTML = t === "text" ? O.textColor(n) : O.bgColor(n), X(this.editor, t === "text" ? "setColor" : "toggleHighlight", t === "text" ? n : { color: n }), wt(n);
-		}, i = (e) => k("button", {
+			this.colorPopover.close(), this.lastColors[t] = n, e.innerHTML = t === "text" ? j.textColor(n) : j.bgColor(n), X(this.editor, t === "text" ? "setColor" : "toggleHighlight", t === "text" ? n : { color: n }), At(n);
+		}, i = (e) => M("button", {
 			type: "button",
 			class: "zoro-color-swatch",
 			title: e,
@@ -4394,17 +4445,17 @@ var jt = class {
 			style: { backgroundColor: e },
 			onmousedown: (e) => e.preventDefault(),
 			onclick: () => r(e)
-		}), a = k("div", {
+		}), a = M("div", {
 			class: "zoro-color-grid",
 			role: "listbox",
 			"aria-label": t === "text" ? n.textColor : n.bgColor
 		});
-		for (let e of yt) a.append(i(e));
-		let o = Ct(), s = o.length ? k("div", { class: "zoro-color-section" }, k("span", { class: "zoro-color-label" }, n.recentColors), k("div", { class: "zoro-color-grid" }, ...o.map(i))) : null, c = k("input", {
+		for (let e of Tt) a.append(i(e));
+		let o = kt(), s = o.length ? M("div", { class: "zoro-color-section" }, M("span", { class: "zoro-color-label" }, n.recentColors), M("div", { class: "zoro-color-grid" }, ...o.map(i))) : null, c = M("input", {
 			type: "color",
 			value: this.lastColors[t],
 			"aria-label": n.customColor
-		}), l = k("input", {
+		}), l = M("input", {
 			type: "text",
 			class: "zoro-input zoro-input-sm",
 			value: this.lastColors[t],
@@ -4422,11 +4473,11 @@ var jt = class {
 		l.addEventListener("keydown", (e) => {
 			e.key === "Enter" && (e.preventDefault(), u());
 		});
-		let d = k("div", { class: "zoro-color-custom" }, c, l, k("button", {
+		let d = M("div", { class: "zoro-color-custom" }, c, l, M("button", {
 			type: "button",
 			class: "zoro-btn zoro-btn-secondary zoro-btn-sm",
 			onclick: u
-		}, n.apply)), f = k("button", {
+		}, n.apply)), f = M("button", {
 			type: "button",
 			class: "zoro-btn zoro-btn-ghost zoro-btn-sm zoro-btn-block",
 			onmousedown: (e) => e.preventDefault(),
@@ -4434,11 +4485,11 @@ var jt = class {
 				this.colorPopover.close(), X(this.editor, t === "text" ? "unsetColor" : "unsetHighlight");
 			}
 		}, n.removeColor);
-		this.colorPopover.close(), this.colorPopover = new N(this.themeClass), this.colorPopover.open(k("div", { class: "zoro-color-panel" }, a, s, d, f), e);
+		this.colorPopover.close(), this.colorPopover = new F(this.themeClass), this.colorPopover.open(M("div", { class: "zoro-color-panel" }, a, s, d, f), e);
 	}
 	openSpecialChars(e) {
-		let t = new N(this.themeClass), n = k("div", { class: "zoro-char-grid" });
-		for (let e of xt) n.append(k("button", {
+		let t = new F(this.themeClass), n = M("div", { class: "zoro-char-grid" });
+		for (let e of Dt) n.append(M("button", {
 			type: "button",
 			class: "zoro-char-btn",
 			"aria-label": e,
@@ -4450,9 +4501,9 @@ var jt = class {
 		t.open(n, e);
 	}
 	openTableMenu(e) {
-		let t = this.editor, n = this.t, r = new N(this.themeClass);
+		let t = this.editor, n = this.t, r = new F(this.themeClass);
 		if (t.isActive("table")) {
-			let i = (e, t, n = !1) => k("button", {
+			let i = (e, t, n = !1) => M("button", {
 				type: "button",
 				class: "zoro-menu-item" + (n ? " danger" : ""),
 				onmousedown: (e) => e.preventDefault(),
@@ -4460,20 +4511,20 @@ var jt = class {
 					r.close(), t();
 				}
 			}, e);
-			r.open(k("div", {
+			r.open(M("div", {
 				class: "zoro-menu",
 				role: "menu"
 			}, i(n.tableAddRowAfter, () => t.chain().focus().addRowAfter().run()), i(n.tableAddColAfter, () => t.chain().focus().addColumnAfter().run()), i(n.tableDeleteRow, () => t.chain().focus().deleteRow().run()), i(n.tableDeleteCol, () => t.chain().focus().deleteColumn().run()), i(n.tableToggleHeader, () => t.chain().focus().toggleHeaderRow().run()), i(n.tableMerge, () => t.chain().focus().mergeOrSplit().run()), i(n.tableDelete, () => t.chain().focus().deleteTable().run(), !0)), e);
 			return;
 		}
-		let i = k("div", { class: "zoro-table-picker-label" }, "1 × 1"), a = k("div", {
+		let i = M("div", { class: "zoro-table-picker-label" }, "1 × 1"), a = M("div", {
 			class: "zoro-table-picker",
 			style: { gridTemplateColumns: "repeat(8, 1fr)" }
 		}), o = [], s = (e, t) => {
 			o.forEach((n, r) => n.classList.toggle("on", Math.floor(r / 8) < e && r % 8 < t)), i.textContent = `${t} × ${e}`;
 		};
 		for (let e = 1; e <= 8; e++) for (let n = 1; n <= 8; n++) {
-			let i = k("button", {
+			let i = M("button", {
 				type: "button",
 				class: "zoro-table-cell",
 				"aria-label": `${n} × ${e}`,
@@ -4490,17 +4541,17 @@ var jt = class {
 			});
 			o.push(i), a.append(i);
 		}
-		r.open(k("div", {}, a, i), e), s(1, 1);
+		r.open(M("div", {}, a, i), e), s(1, 1);
 	}
 	async insertYoutube() {
-		let e = this.t, t = await ie({
+		let e = this.t, t = await ce({
 			title: e.youtube,
 			label: e.youtubePrompt,
 			placeholder: "https://www.youtube.com/watch?v=...",
 			ok: e.insert,
 			cancel: e.cancel,
 			themeClass: this.themeClass,
-			validate: (t) => lt(t) ? null : e.youtubeInvalid
+			validate: (t) => ht(t) ? null : e.youtubeInvalid
 		});
 		t && this.editor.chain().focus().setYoutubeVideo({ src: t }).run();
 	}
@@ -4541,19 +4592,19 @@ var jt = class {
 				["---", e.hr]
 			]],
 			["Alt + F10", [["F10", e.toolbarLabel]]]
-		], n = k("div", { class: "zoro-form" });
+		], n = M("div", { class: "zoro-form" });
 		for (let [e, r] of t) {
-			let t = k("div", { class: "zoro-shortcuts-grid" });
-			for (let [e, n] of r) t.append(k("div", { class: "zoro-shortcut-row" }, k("kbd", {}, e), k("span", {}, n.replace(/\s*\(.*\)$/, ""))));
-			n.append(k("h4", { class: "zoro-shortcuts-title" }, e), t);
+			let t = M("div", { class: "zoro-shortcuts-grid" });
+			for (let [e, n] of r) t.append(M("div", { class: "zoro-shortcut-row" }, M("kbd", {}, e), M("span", {}, n.replace(/\s*\(.*\)$/, ""))));
+			n.append(M("h4", { class: "zoro-shortcuts-title" }, e), t);
 		}
-		let r = new M({
+		let r = new P({
 			title: e.shortcutsTitle,
 			size: "lg",
 			themeClass: this.themeClass,
 			closeLabel: e.close
 		});
-		r.open(n), r.addFooter(k("div", { class: "zoro-btn-row" }, k("button", {
+		r.open(n), r.addFooter(M("div", { class: "zoro-btn-row" }, M("button", {
 			type: "button",
 			class: "zoro-btn zoro-btn-secondary",
 			onclick: () => r.close()
@@ -4561,6 +4612,6 @@ var jt = class {
 	}
 };
 //#endregion
-export { ge as A, De as C, W as D, ye as E, C as M, S as N, ve as O, w as P, Te as S, be as T, st as _, gt as a, Ee as b, X as c, at as d, ct as f, Y as g, J as h, $ as i, O as j, G as k, ut as l, rt as m, pt as n, _t as o, it as p, Q as r, vt as s, jt as t, dt as u, Ve as v, U as w, K as x, Oe as y };
+export { be as A, Ne as C, Te as D, Ce as E, E as F, ee as I, te as L, ne as M, T as N, Se as O, w as P, D as R, Ae as S, we as T, pt as _, St as a, je as b, X as c, dt as d, mt as f, Y as g, J as h, $ as i, j, K as k, gt as l, lt as m, yt as n, Ct as o, ut as p, Q as r, wt as s, Lt as t, _t as u, qe as v, G as w, Me as x, Pe as y };
 
-//# sourceMappingURL=editor-BpbEvjmr.js.map
+//# sourceMappingURL=editor-DLLp0J_f.js.map
